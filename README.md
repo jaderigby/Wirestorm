@@ -52,7 +52,7 @@ __Example:__
 
 __Result:__
 
-![Panel Example](https://github.com/jaderigby/wirestorm/readme-images/dark-panel-thumb.png)
+![Panel Example](http://www.mightywebtools.com/wirestorm/readme-images/dark-panel-thumb.png)
 
 #### +blockletter(arg1)
 
