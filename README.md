@@ -31,14 +31,14 @@ The two underscored files are for you: One for html, and one for css.  The `__ja
 
 The `__jade__` folder is a little more complex: In this folder, you will see files for `header` and `footer`.  They are exactly what they sound like.  Use the skeleton provided and modify these as needed.  For example, you can place any header info, "logo, nav, etc", inside this file -- Note, that there is a `nav.jade` file already provided within the `app` folder.  The app folder is where you will do a majority of your work: creating new files, editing the homepage, or `index.jade`, adding to and modifying your nav bar through the `nav.jade` file.  What makes wirestorm powerful is the prebaked components that live within the `widgets` folder.  You won't edit these files.  Instead, they are provided to be used for the files contained within the `app` folder.  In order to use these components, you simply "include" them, then use the guide below to add them to your files.  Once this is all done, run both the `jade-watch.sh` and the `stylus-watch.sh` files by opening a new instance of terminal and typing `sh jade-watch.sh`.  These files are provided as a convenience to help you compile your jade and stylus files.  If you prefer, you can use tools such as "LiveReload" or "Codekit", etc.
 
-Now, on to the goodies . . . 
+__Now, on to the goodies . . . __
 
 ## Wirestorm widgets
 
 #### +panel(arg1)
 
 __Parameters:__
-- arg1 = 'light' or 'dark'
+- arg1 = string, 'light' or 'dark'
 
 __Description:__
 The panel mixin can be used to create modern-looking, panel-based websites.  It creates a container that is stackable and centered, with exceptional amounts of top and bottom whitespace.  In short, panels are sections of a site stacking vertically on a page.
@@ -52,6 +52,7 @@ __Example:__
 
 __Result:__
 
+![Panel Example](https://github.com/jaderigby/wirestorm/readme-images/dark-panel-thumb.png)
 
 #### +blockletter(arg1)
 
@@ -70,7 +71,7 @@ __Result:__
 
 
 
-#### +image(arg1,arg2,arg3), #image2(arg1,arg2,arg3)
+#### +image(arg1, arg2, arg3), +image2(arg1, arg2, arg3)
 
 __Parameters:__
 - arg1 = integer or string, such as '100%', width
