@@ -1,0 +1,68 @@
+mixin input(myType, description)
+	- if (myType === 'submit') {
+		p
+			input(type=myType, value=description)
+	- }
+	- else {
+		p
+			input(type=myType, placeholder=description)
+	- }
+
+mixin switch(items)
+	- if (items) {
+		.switch-widget
+			ul
+				- each item in items
+					- var value = item.toLowerCase(item.replace(' ','-'))
+						li.switch-item
+							.switch-object
+								div.switch
+								div.on-text On
+								div.off-text Off
+							label= item
+	- }
+	- else {
+		.switch-widget
+			div.switch
+			div.on-text On
+			div.off-text Off
+	- }
+
+mixin checkbox(name, items, orientation)
+	- if (orientation === 'list') {
+		.checkbox-widget
+			ul
+				- var iterCheck = 1
+				- each item in items
+					- var value = item.toLowerCase(item.replace(' ','-'))
+					li.checkbox
+						input(type="checkbox",name=name,value=value,id="test"+iterCheck)
+						label(for="test"+iterCheck)= item
+						- iterCheck++
+	- }
+	- else {
+		.checkbox-widget
+			- var iterBox = 1
+			- var check = (Math.random() + 1).toString(36).substring(7)
+			p
+				- each item in items
+					- var value = item.toLowerCase(item.replace(' ','-'))
+					span.checkbox
+						input(type="checkbox",name=name,value=value,id=check+iterBox)
+						label(for=check+iterBox)= item
+						- iterBox++
+	- }
+
+mixin radio(name, items)
+	.radio-widget
+		- var iterRadio = 1;
+		- var rad = (Math.random() + 1).toString(36).substring(7);
+		p
+			each item in items
+				- var value = item.toLowerCase(item.replace(' ','-'))
+				span.radio
+					input(type="radio",name=name,value=value,id=rad+iterRadio)
+					label(for=rad+iterRadio)= item
+					- iterRadio++
+mixin textarea(description)
+	textarea(placeholder=description)

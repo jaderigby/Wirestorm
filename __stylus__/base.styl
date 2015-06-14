@@ -1,0 +1,868 @@
+base()
+	header
+		padding: 20px
+		background-color: white
+	h1
+		font-size: 3.3rem
+		margin: 25px 0
+		line-height: 1.15
+	h2
+		margin: 20px 0
+		font-size: 2.5rem
+	h3
+		margin: 15px 0
+		font-size: 1.9rem
+	h4
+		font-size: 1.6rem
+	h5
+		font-size: 0.83rem
+	h6
+		font-size: 0.67rem
+	h4
+	h5
+		line-height: 1.3
+	p
+		margin: 15px 0
+		line-height: 1.2
+	ol
+		list-style-type: decimal
+	ul
+		list-style-type: disc
+	ol
+	ul
+		margin-left: 20px
+		li
+			margin-left: 25px
+			padding: 5px 0
+	hr
+		border-bottom: 1px solid #ddd
+	.fill
+	.dark
+		ol
+		ul
+			color: #ddd
+	a
+		text-decoration: none
+		color: #00A0B5
+		&:hover
+			text-decoration: underline
+	img
+		max-width: 100%
+		height: auto
+	strong
+		font-weight: 700
+	.blockletter
+		font-family: blockletter
+		color: #B6B6B6
+	.wrap
+		margin: 10px 0
+		padding: 10px 15px
+		background-color: #EFEFEF
+		border: 1px solid #CCC
+	article.wrap
+		cf()
+	section.columnizer
+		.wrap
+			padding: 15px
+	.border-wrap
+		margin: 10px 0
+		padding: 10px 15px
+		border: 1px solid #CCC
+	article.border-wrap
+		cf()
+	.clear-wrap
+		margin: 25px 0
+	article.clear-wrap
+		cf()
+	.left-justify
+		text-align: left !important
+	.center-justify
+		text-align: center !important
+	.right-justify
+		text-align: right !important
+	.center
+		margin: 0 auto
+	.left
+		float: left
+	.right
+		float: right
+	//
+	// Main Wrapper
+	//
+	#siteWrapper
+		position: absolute
+		width: 100%
+		height: 100%
+		overflow: auto
+		background-color: #EFEFEF
+		transition: all 0.21s ease-in-out
+		-webkit-transition: all 0.17s ease-in-out
+		&.active
+			position: fixed
+			transform: translateX(251px)
+	//
+	// Navigation
+	//
+	nav 
+		ul
+			cf()
+			li
+				float: left
+		a
+			display: block
+			padding: 6px 20px
+			&.home-widget
+				padding: 0 20px
+				line-height: 1.8
+				&:hover
+					text-decoration: none
+				&:before
+					font-family: 'wireframe-iconfont'
+					speak: none
+					font-style: normal
+					font-weight: normal
+					font-variant: normal
+					text-transform: none
+					line-height: 1
+					
+					/* Enable Ligatures ================ */
+					-webkit-font-feature-settings: "liga"
+					-moz-font-feature-settings: "liga=1"
+					-moz-font-feature-settings: "liga"
+					-ms-font-feature-settings: "liga" 1
+					-o-font-feature-settings: "liga"
+					font-feature-settings: "liga"
+
+					/* Better Font Rendering =========== */
+					-webkit-font-smoothing: antialiased
+					-moz-osx-font-smoothing: grayscale
+					content: "\e609"
+					vertical-align: -13%
+					font-size: 1.3em
+		li
+			.search-widget
+				padding: 8px 0
+	#open
+	#contain
+		.desktop-nav
+			ul
+				padding: 0 20px
+				margin-left: 0
+	.desktop-nav
+		background-color: #E7E7E7
+		+below(large)
+			display: none
+		&.dark
+			background-color: #6B6B6B
+			a
+				color: #DDD
+				&:hover
+					color: #81F0FF
+					background-color: #4e4e4e
+		ul
+			list-style-type: none
+		li
+			margin-left: 0
+			padding: 0
+			a
+				padding: 11px 25px
+				&:hover
+					text-decoration: none
+					background-color: #d2d2d2
+			ul li
+				a
+					&:hover
+						background-color: #d2d2d2
+	//
+	// Buttons
+	//
+	a.button
+		margin-right: 5px
+		padding: 8px 25px
+		color: buttonColor
+		font-size: 0.9rem
+		background-color: buttonBg
+		border: 1px solid #565656
+		border-radius: 4px
+		transition: all 0.12s ease-in-out
+		-webkit-transition: all 0.12s ease-in-out
+		cursor: pointer
+		&:hover
+			text-decoration: none
+			color: buttonHoverColor
+			background-color: buttonHoverBg
+		&[class^="icon-"]
+			vertical-align: top
+	button
+	input[type="submit"]
+		margin-right: 5px
+		padding: 8px 25px
+		color: buttonColor
+		font-size: 0.9rem
+		background-color: buttonBg
+		border: 1px solid #565656
+		border-radius: 4px
+		transition: all 0.12s ease-in-out
+		-webkit-transition: all 0.12s ease-in-out
+		cursor: pointer
+		&:hover
+			color: buttonHoverColor
+			background-color: #222
+		&[class^="icon-"]
+			vertical-align: top
+	.fill
+	.dark
+		a.button
+		button
+		input[type="submit"]
+			color: buttonColorDark
+			background-color: buttonBgDark
+			border: 1px solid #444
+			&:hover
+				color: buttonHoverColorDark
+				background-color: buttonHoverBgDark
+	//
+	// Layout (columns/rows)
+	//
+	.thirds
+		cf()
+		aside
+			column(1/3)
+			+below(large)
+				column(1/1)
+		article
+			column(2/3)
+			+below(large)
+				column(1/1)
+	.fifths
+		cf()
+		aside
+			column(2/5)
+			+below(large)
+				column(1/1)
+		article
+			column(3/5)
+			+below(large)
+				column(1/1)
+	
+	section.columns-2
+		cf()
+		article
+			column(1/2)
+			+below(large)
+				column(1/1)
+
+	section.columns-3
+		cf()
+		article
+			column(1/3)
+			+below(large)
+				column(1/1)
+
+	section.columns-4
+		cf()
+		article
+			column(1/4)
+			+below(large)
+				column(1/1)
+
+	// Typically, columns max out at 5. You get more, just in case
+	section.columns-5
+		cf()
+		article
+			column(1/5)
+			+below(large)
+				column(1/1)
+	
+	section.columns-6
+		cf()
+		article
+			column(1/6)
+			+below(large)
+				column(1/1)
+	
+	section.columns-7
+		cf()
+		article
+			column(1/7)
+			+below(large)
+				column(1/1)
+	
+	section.columns-8
+		cf()
+		article
+			column(1/8)
+			+below(large)
+				column(1/1)
+	
+	section.columns-9
+		cf()
+		article
+			column(1/9)
+			+below(large)
+				column(1/1)
+	
+	section.columns-10
+		cf()
+		article
+			column(1/10)
+			+below(large)
+				column(1/1)
+
+forms()
+	input[type="text"]
+	input[type="password"]
+		display: block
+		padding: 4px 1.5%
+		width: 97%
+		height: 25px
+		font-size: 0.85rem
+		color: #84f1ff
+		line-height: 1.3
+		background-color: #444
+		border: 1px solid #888
+	textarea
+		padding: 4px 1.5%
+		width: 97%
+		height: 100px
+		font-size: 0.85rem
+		color: #84f1ff
+		line-height: 1.3
+		background-color: #444
+		border: 1px solid #888
+	input[type="file"]
+		width: 250px
+	// Styling for form element grouping by columnization
+	section.columns-2
+		article
+			input[type="text"]
+			input[type="password"]
+			textarea
+				padding: 4px 3%
+				width: 94%
+	section.columns-3
+		article
+			input[type="text"]
+			input[type="password"]
+			textarea
+				padding: 4px 4.5%
+				width: 91%
+	section.columns-4
+		article
+			input[type="text"]
+			input[type="password"]
+			textarea
+				padding: 4px 6%
+				width: 88%
+	form
+		section[class^="columns-"]
+			p
+				margin-bottom: 0
+
+widgets()
+	//
+	// Panels
+	//
+	#contain
+		.panel-wrap
+			padding-left: 2%
+			padding-right: 2%
+			width: 96%
+			.panel
+				width: 100%
+				+below(large)
+					margin: 0
+					padding: 40px 2%
+					width: 96%
+	.panel-wrap
+		.panel
+			margin: 0 auto
+			padding: 60px 0
+			width: large
+			+below(large)
+				margin: 0
+				padding: 40px 2%
+				width: 96%
+	.panel-wrap
+		.panel
+			margin: 0 auto
+			padding: 60px 0
+			width: large
+			+below(large)
+				margin: 0
+				padding: 40px 2%
+				width: 96%
+	.panel
+		padding: 20px 0
+	.panel.thirds
+	.panel.fifths
+		padding: 60px 0
+	.whiteout 
+		background-color: white
+	.fill
+		background-color: #838383
+	.dark
+		background-color: #6b6b6b
+		a
+			color: #98E2EB
+	.fill
+	.dark
+		a.button
+		button
+		input[type="submit"]
+			color: buttonColorDark
+			background-color: buttonBgDark
+			border: 1px solid #444
+			&:hover
+				color: buttonHoverColorDark
+				background-color: buttonHoverBgDark
+	#container
+		.fill
+		.dark
+			margin-left: -20px
+			margin-right: -20px
+			padding-left: 20px
+			padding-right: 20px
+	.fill
+	.dark
+		h1
+		h2
+		h3
+		h4
+		h5
+		h6
+			color: #DDD
+		.image-widget
+			background-color: #575757
+		.image-border
+			border: 1px solid #4a4a4a
+		.dimage
+			&.image-widget
+			.image-widget
+				background-color: #6d6d6d
+	//
+	// Search
+	//
+	.search-widget
+		.searchfield
+			position: relative
+			width: 140px
+			padding: 2px 5px
+			text-align: left
+			background-color: white
+			border: 1px solid #CCC
+			box-shadow: inset 0 0 5px rgba(0,0,0,0.12)
+			border-radius: 100px
+			.icon-search
+				color: #777
+			input
+				position: absolute
+				top: 0
+				left: 24px
+				width: 110px
+				height: 11px
+				color: #666
+				font-size: 0.95rem
+				background-color: transparent
+				border: 0
+	//
+	// Forms
+	//
+	.checkbox-widget
+		li.checkbox
+			list-style: none
+			margin-left: 0
+		span.checkbox
+			display: inline-block
+			margin-bottom: 10px
+		span.checkbox
+		li.checkbox
+			margin-right: 15px
+			label
+				display: inline-block
+			// 	margin-left: 5px
+			// &:first-child
+			// 	label
+			// 		margin-left: 0
+			&:last-child
+				margin-right: 0
+		[type="checkbox"]:not(:checked)
+		[type="checkbox"]:checked
+			position: absolute
+			left: -9999px
+		[type="checkbox"]:not(:checked) + label
+		[type="checkbox"]:checked + label
+			position: relative
+			padding-left: 25px
+			cursor: pointer
+		[type="checkbox"]:not(:checked) + label:before
+		[type="checkbox"]:checked + label:before
+			content: ''
+			position: absolute
+			top: 0px
+			left:0 
+			width: 14px 
+			height: 14px
+			border: 1px solid #444
+			background: #444
+		[type="checkbox"]:not(:checked) + label:after
+		[type="checkbox"]:checked + label:after
+			content: ''
+			position: absolute
+			top: 4px 
+			left: 4px
+			width: 8px
+			height: 8px
+			background-color: #84f1ff /* 84f1ff */
+			transition: all .1s
+			-webkit-transition: all .1s
+		[type="checkbox"]:not(:checked) + label:after
+			opacity: 0
+			transform: scale(0)
+		[type="checkbox"]:checked + label:after
+			opacity: 1
+			transform: scale(1)
+		[type="checkbox"]:disabled:not(:checked) + label:before,
+		[type="checkbox"]:disabled:checked + label:before
+			box-shadow: none
+			border-color: #bbb
+			background-color: #ddd
+		[type="checkbox"]:disabled:checked + label:after
+			color: #999
+		[type="checkbox"]:disabled + label
+			color: #aaa
+		// accessibility
+		[type="checkbox"]:checked:focus + label:before
+		[type="checkbox"]:not(:checked):focus + label:before
+			border: 1px dotted blue
+	.radio-widget
+		span.radio
+			display: inline-block
+			margin-right: 15px
+			label
+				display: inline-block
+			// 	margin-left: 5px
+			// &:first-child
+			// 	label
+			// 		margin-left: 0
+			&:last-child
+				margin-right: 0
+		[type="radio"]:not(:checked)
+		[type="radio"]:checked
+			position: absolute
+			left: -9999px
+		[type="radio"]:not(:checked) + label
+		[type="radio"]:checked + label
+			position: relative
+			padding-left: 22px
+			cursor: pointer
+		[type="radio"]:not(:checked) + label:before
+		[type="radio"]:checked + label:before
+			content: ''
+			position: absolute
+			top: 0px
+			left:0 
+			width: 14px 
+			height: 14px
+			border-radius: 100px
+			border: 1px solid #444
+			background: #444
+		[type="radio"]:not(:checked) + label:after
+		[type="radio"]:checked + label:after
+			content: ''
+			position: absolute
+			top: 4px 
+			left: 4px
+			width: 8px
+			height: 8px
+			border-radius: 100px
+			background-color: #84f1ff
+			transition: all .1s
+			-webkit-transition: all .1s
+		[type="radio"]:not(:checked) + label:after
+			opacity: 0
+			transform: scale(0)
+		[type="radio"]:checked + label:after
+			opacity: 1
+			transform: scale(1)
+		[type="radio"]:disabled:not(:checked) + label:before,
+		[type="radio"]:disabled:checked + label:before
+			box-shadow: none
+			border-color: #bbb
+			background-color: #84f1ff
+		[type="radio"]:disabled:checked + label:after
+			color: #999
+		[type="radio"]:disabled + label
+			color: #aaa
+		// accessibility
+		[type="radio"]:checked:focus + label:before
+		[type="radio"]:not(:checked):focus + label:before
+			border: 1px dotted blue
+	.switch-widget
+		li
+			list-style: none
+			cf()
+			margin-left: 0
+		label
+			display: block
+			float: left
+			margin-top: 4px
+			margin-left: 10px
+		.switch-object
+			float: left
+			width: 58px
+			height: 20px
+			font-size: 0.75rem
+			background-color: #444
+			border: 2px solid #444
+			cursor: pointer
+			.switch
+				position: absolute
+				height: 20px
+				width: 29px
+				background-color: #CCC
+				transition: all 0.03s linear
+				-webkit-transition: all 0.03s linear
+				z-index: 2
+			.on-text
+				position: relative
+				float: left
+				padding-top: 5px
+				padding-bottom: 3px
+				width: 29px
+				color: #84F1FF
+				text-align: center
+				background-color: transparent
+			.off-text
+				position: relative
+				margin-top: 5px
+				float: right
+				text-align: right
+				width: 29px
+				color: #DDD
+				text-align: center
+			&.on
+				.switch
+					transform: translateX(29px)
+	//
+	// Modals
+	//
+	.modal.window
+		display: none
+	.close-modal
+		position: absolute
+		top: 10px
+		right: 10px
+		color: #00a0b5
+		font-size: 1.4rem
+		cursor: pointer
+	//
+	// Media
+	//
+	.image-widget
+		position: relative
+		width: 100%
+		height: 100%
+		background: #DDD url(../images/demo-image4.svg) no-repeat
+		background-size: contain
+		background-position: center
+	.image-border
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		border: 1px solid #CCC
+	.dimage .image-widget
+	.dimage.image-widget
+		background: #DDD url(../images/demo-image-frame-inkscape3.svg) no-repeat
+		background-size: contain
+		background-position: center
+	.porthole
+		overflow: hidden
+		background-color: #777
+		border: 3px solid #ddd
+		border-radius: 1000px
+		.image-widget
+			border-radius: 1000px
+	.fill 
+	.dark
+		.porthole
+			border-color: #555
+	.slideshow-widget
+		position: relative
+		width: 100%
+		height: 100%
+		.icon-arrow-left
+		.icon-arrow-right
+			position: absolute
+			top: 50%
+			margin-top: -45px
+			height: 90px
+			font-size: 5.5rem
+			color: #EFEFEF
+		.icon-arrow-right
+			right: 0
+		.icon-progress
+			position: absolute
+			font-size: 1.27rem
+			color: white
+			bottom: 10px
+			right: 20px
+	nav.dark
+		.logo
+			border: 1px solid #000
+			background-color: #3D3D3D
+	.logo
+		display: inline-block
+		margin-right: 10px
+		padding: 8px 28px 9px 52px !important
+		font-size: 1.2rem
+		font-family: play
+		color: #00a0b5
+		background: #E7E7E7 url(../images/generic-logo.svg) no-repeat
+		background-size: contain
+		background-position: 15px
+		border: 1px solid #ccc
+		&.dark
+			color: #ddd
+			border: 1px solid #000
+			background-color: #3D3D3D
+			&:hover
+				color: #81f0ff
+				background-color: #4e4e4e
+	.desktop-nav .logo
+		float: left
+	.logo a:hover
+	a.logo:hover
+	.logo a:hover
+	a.logo:hover
+		text-decoration: none
+		background-color: #d2d2d2
+	.logo.dark a:hover
+	a.logo.dark:hover
+	.desktop-nav.dark .logo a:hover
+	.desktop-nav.dark a.logo:hover
+		text-decoration: none
+		background-color: #3D3D3D
+	//
+	// Tabs
+	//
+	div.tabs-widget
+		ul.tabs
+			cf()
+			li
+				list-style: none
+				float: left
+				margin-top: 15px
+				margin-left: 0
+				margin-right: 1px
+				padding: 10px 25px
+				color: #00A0B5
+				background-color: #EFEFEF
+				&.active
+					background-color: white
+				&:last-child
+					margin-right: 0
+				cursor: pointer
+		div.tabs-widget
+			ul.tabs
+				li
+					padding-right: 30px
+					font-size: 0.85em
+		[data-tab]
+			display: none;
+		[data-tab].active
+			display: block
+		section.tabs-wrapper
+			margin-bottom: 10px
+			padding: 10px 15px
+			border: 1px solid #CCC
+	.wrap
+		div.tabs-widget
+			section.tabs-wrapper
+				border-color: #ccc
+		div.tabs-widget
+			ul.tabs
+				li
+					background-color: white
+					&.active
+						background-color: transparent
+	.fill
+	.dark
+		div.tabs-widget
+			section.tabs-wrapper
+				border-color: #B3B3B3
+		div.tabs-widget
+			ul.tabs
+				li
+					color: #87F1FF // AAF5FF 88F1FF 87F1FF
+					background-color: #A0A0A0
+					&.active
+						color: #58ECFF
+						background-color: transparent
+	//
+	// Ratings
+	//
+	.stars-widget
+		.icon-star
+			font-size: 1.3em
+			color: #7E7E7E
+	.fill
+	.dark
+		.icon-star	
+			color: #DDD
+	//
+	// Edit Emulation Classes
+	//
+	.edit
+		display: none
+	.edit.active
+		display: block
+	//
+	// Pagination
+	//
+	.pagination
+		cf()
+		ul
+			margin-left: 0
+		li
+			list-style: none
+			float: left
+			margin: 0
+			padding: 0
+			border-top: 1px solid #CCC
+			border-bottom: 1px solid #CCC
+			border-left: 1px solid #CCC
+			a
+				padding: 8px 10px
+				color: #00A0B5
+				background-color: #EFEFEF
+				transition: background-color 0.11s ease-in-out
+				&:hover
+					text-decoration: none
+					cursor:pointer
+					background-color: #DDD
+			&:last-child
+				border-right: 1px solid #CCC
+			&.arrows
+				a
+					display: inline-block
+					line-height: 1
+					vertical-align: middle
+					padding: 6px 4px
+					span
+						font-size: 1.2rem
+
+// D5D5D5
+// B2B2B2
+
+
+
+
+
+
+
+
+
+

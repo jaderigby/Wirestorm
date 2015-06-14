@@ -1,0 +1,15 @@
+include ../widgets/elements
+include ../header
+	block content	
+		+panel('light')	
+			h2
+				strong Search Results For: 
+				span.search-string
+
+			- var i = 0;
+			+loop(7)
+				h3= titles[i++] + " Result"
+				p.blockletter
+					+lorem(40)
+
+	include ../footer

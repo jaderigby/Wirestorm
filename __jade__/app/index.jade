@@ -1,0 +1,69 @@
+include ../widgets/elements
+include ../widgets/media
+include ../widgets/forms
+include ../header
+	block content
+		+panel('light')
+			section.fifths
+				article
+					h1 First One
+					p
+						+blockletter(45)
+					p
+						button.modal.trigger(data-target="firstModal") Learn More
+					div#firstModal.modal.window
+						h3 Learn More
+						p
+							+blockletter(50)
+						form.wrap
+							section.columns-2
+								article
+									+input('text','First Name')
+								article
+									+input('text','Last Name')
+							+input('text','Email')
+							+textarea('Message')
+							+input('submit','Submit')
+				aside
+					+slideshow(380,235,'right')
+		+panel('dark')
+			+column-loop(4)
+				article
+					+porthole(120,120,'center')
+					p.center-align
+						+blockletter(15)
+		+panel('light')
+			section.thirds
+				aside
+					+image2('100%',180)
+				article
+					h2 Next Product
+					p
+						+blockletter(40)
+					p.right
+						button.modal.trigger(data-target="secondModal") Oh, Man Modal
+					div#secondModal.modal.window
+						h3 Oh, Man!
+						p
+							+blockletter(800)
+		+panel('footer')
+			+tabs(['First','Second','Third'])
+				section(data-tab="First")
+					h3 First Tab
+					p
+						+blockletter(45)
+				section(data-tab="Second")
+					h3 Second Tab
+					ol
+						- var i = 0;
+						+loop(4)
+							li= titles[i++] + " Item"
+				section(data-tab="Third")
+					h3 Third Tab
+					+column-loop(5)
+						article
+							+image('100%',100)
+							p
+								+rating()
+
+	include ../footer

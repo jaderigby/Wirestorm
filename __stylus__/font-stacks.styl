@@ -1,0 +1,56 @@
+fonts(name)
+	if name == open-sans
+		@css {@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800);}
+	if name == lato
+		@css {@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic);}
+	if name == roboto
+		@css{@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);}
+	if name == fira-sans
+		@css{@import url(http://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,700,300italic,400italic,500italic,700italic);}
+	if name == hind
+		@css{@import url(http://fonts.googleapis.com/css?family=Hind:400,300,500,600,700);}
+	if name == source-sans-pro
+		@css{@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic);}
+	if name == pt-sans
+		@css{@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic);}
+	if name == pt-sans-narrow
+		@css{@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);}
+	if name == raleway
+		@css{@import url(http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900);}
+	if name == montserrat
+		@css{@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);}
+	if name == play
+		@css{@import url(http://fonts.googleapis.com/css?family=Play:400,700);}
+	if name == blockletter
+		@css{
+			@font-face {
+				font-family: 'blockletter';
+				src:url('blockletter.eot?jawtuy');
+				src:url('blockletter.eot?#iefixjawtuy') format('embedded-opentype'),
+					url('blockletter.woff?jawtuy') format('woff'),
+					url('blockletter.ttf?jawtuy') format('truetype'),
+					url('blockletter.svg?jawtuy#blockletter') format('svg');
+				font-weight: normal;
+				font-style: normal;
+			}
+		}
+
+open-sans = "Open Sans", Verdana, Helvetica, sans-serif
+lato = Lato, "Helvetica Neue", Helvetica, Arial, sans-serif
+roboto = Roboto, Verdana, Helvetica, sans-serif
+fira-sans = "Fira Sans", Helvetica, Arial, Verdana, sans-serif
+hind = Hind, Helvetica, Arial, Verdana, sans-serif
+source-sans-pro = "Source Sans Pro", Helvetica, Arial, Verdana, sans-serif
+pt-sans = "PT Sans", Helvetica, Arial, Verdana, sans-serif
+pt-sans-narrow = "PT Sans Narrow", Helvetica, Arial, Verdana, sans-serif
+helvetica-neue = "Helvetica Neue", Helvetica, Arial, sans-serif
+raleway = Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif
+montserrat = Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif
+helvetica = Helvetica, Arial, Verdana, sans-serif
+play = Play, arial, sans-serif
+
+headings()
+	.sub
+		display: block
+		font-size: 0.7em
+		line-height: 1.5
