@@ -1,6 +1,6 @@
 ## What is Wirestorm?
 
-Wirestorm is a framework built on Jade, Stylus and Jeet, that leverages these technologies in order to allow developers and designers to build dynamic real-working wireframes __fast__.
+Wirestorm is a framework built on Jade, Stylus and Jeet, that leverages these technologies in order to allow developers and designers to build dynamic and "functional" wireframes __fast__.
 
 ## Why use code to wireframe?
 
@@ -20,12 +20,12 @@ So, instead of describing, "Then, when you click this button, you will go here",
 
 When you open up the wirestorm folder, you will notice the following:
 
-- __jade__
-- __stylus__
-- css
-- html
-- images
-- js
+- `__jade__`
+- `__stylus__`
+- `css`
+- `html`
+- `images`
+- `js`
 
 The two underscored files are for you: One for html, and one for css.  The `__jade__` folder is where you will build your structure, the html.  The `__stylus__` folder is where all of your styles live.  In the `__stylus__` folder, you will find a file called `main.styl`.  This is where you add any custom styles of your own, beyond what wirestorm provides.
 
