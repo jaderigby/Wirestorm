@@ -89,9 +89,27 @@ article
 	+image(150,150)
 ```
 
-### +porthole(arg1,arg2,arg3)
+__Result:__
 
+![Panel Example](http://www.mightywebtools.com/wirestorm/readme-images/images-thumb.png)
 
+### +porthole(arg1, arg2, arg3)
+
+__Parameters:__
+- arg1 = integer, width (width and height need to be equal)
+- arg2 = integer, height (width and height need to be equal)
+- arg3 = string, alignment, 'left', 'right', or 'center'. 'arg3' is optional
+
+__Example:__
+
+```
+article
+	+porthole(130, 130, 'center')
+```
+
+__Result:__
+
+![Panel Example](http://www.mightywebtools.com/wirestorm/readme-images/images-thumb.png)
 
 
 

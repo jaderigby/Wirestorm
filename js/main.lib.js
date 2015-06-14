@@ -338,11 +338,11 @@ $('.tabs-widget li').click(function() {
 //======================
 
 function initModals() {
-	$('.ohman.window').hide();
-	if ($('.ohman.window').length > 0) {
+	$('.modal.window').hide();
+	if ($('.modal.window').length > 0) {
 		$('body').prepend('<div id="overlay" style="display: none; position: fixed; width: 100%; height: 100%; background-color: rgba(0,0,0,0.45); opacity: 0; z-index: 9998"></div>');
-		$('.ohman.window').prepend('<div class="close-modal"><span class="icon-close"></span></div>');
-		$('.ohman.window').css({
+		$('.modal.window').prepend('<div class="close-modal"><span class="icon-close"></span></div>');
+		$('.modal.window').css({
 			position: 'absolute',
 			top: '100px',
 			left: '-600px',
@@ -356,19 +356,19 @@ function initModals() {
 			opacity: 0,
 			zIndex: 9999
 		});
-		var thisModal = $('.ohman.window').detach();
+		var thisModal = $('.modal.window').detach();
 		$('body').prepend(thisModal);
 	}
 }
 
 function resetModal() {
-	$('.ohman.window').hide();
-	$('.ohman.window').css('left','-600px');
+	$('.modal.window').hide();
+	$('.modal.window').css('left','-600px');
 }
 
 initModals();
 
-$('.ohman.trigger').parent().delegate('.ohman.trigger', 'click', function() {
+$('.modal.trigger').parent().delegate('.modal.trigger', 'click', function() {
 	var myModal = $(this).data('target');
 	var scrollTop = $(window).scrollTop();
 	$('#'+ myModal).css({
@@ -396,20 +396,20 @@ $('.ohman.trigger').parent().delegate('.ohman.trigger', 'click', function() {
 	// }, 150);
 });
 
-$('.ohman.window').delegate('.close-modal', 'click', function() {
+$('.modal.window').delegate('.close-modal', 'click', function() {
 	$('#overlay').animate({
 		opacity: 0
 	}, 280, function() {
 		$(this).hide();
 	});
-	TweenMax.to('.ohman.window', 0.22, {
+	TweenMax.to('.modal.window', 0.22, {
 		opacity: 0,
 		left: '400px',
 		scale: 0.6,
 		ease: Power1.easeIn,
 		onComplete: resetModal
 	});
-	// $('.ohman.window').animate({
+	// $('.modal.window').animate({
 	// 	opacity: 0,
 	// 	left: '400px'
 	// }, 150, function() {
@@ -424,14 +424,14 @@ $('#overlay').click(function() {
 	}, 280, function() {
 		$(this).hide();
 	});
-	TweenMax.to('.ohman.window', 0.22, {
+	TweenMax.to('.modal.window', 0.22, {
 		opacity: 0,
 		left: '400px',
 		scale: 0.6,
 		ease: Power1.easeIn,
 		onComplete: resetModal
 	});
-	// $('.ohman.window').animate({
+	// $('.modal.window').animate({
 	// 	opacity: 0,
 	// 	left: '400px'
 	// }, 150, function() {
