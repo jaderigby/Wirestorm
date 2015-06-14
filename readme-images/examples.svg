@@ -76,7 +76,7 @@
        style="display:inline" />
   </g>
   <g
-     style="display:inline"
+     style="display:none"
      id="webslicer-layer"
      inkscape:label="Web Slicer"
      inkscape:groupmode="layer">
