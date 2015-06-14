@@ -111,7 +111,7 @@ __Result:__
 
 ![Porthole Example](http://www.mightywebtools.com/wirestorm/readme-images/porthole-thumb.png)
 
-### +slideshow(arg1, arg2, arg3)
+### +slideshow(arg1, arg2, arg3), +slideshow2(arg1, arg2, arg3)
 
 __Parameters:__
 - arg1 = integer or string, such as '100%', width
@@ -127,7 +127,7 @@ article
 
 __Result:__
 
-![Slideshow Example](http://www.mightywebtools.com/wirestorm/readme-images/porthole-thumb.png)
+![Slideshow Example](http://www.mightywebtools.com/wirestorm/readme-images/slideshow-thumb.png)
 
 
 
