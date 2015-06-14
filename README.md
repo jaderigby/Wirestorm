@@ -35,7 +35,7 @@ __Now, on to the goodies . . . __
 
 ## Wirestorm widgets
 
-#### +panel(arg1)
+### +panel(arg1)
 
 __Parameters:__
 - arg1 = string, 'light' or 'dark'
@@ -54,7 +54,7 @@ __Result:__
 
 ![Panel Example](http://www.mightywebtools.com/wirestorm/readme-images/dark-panel-thumb.png)
 
-#### +blockletter(arg1)
+### +blockletter(arg1)
 
 __Parameters:__
 - arg1 = integer (how many words to use)
@@ -68,10 +68,9 @@ div.content
 
 __Result:__
 
+![Panel Example](http://www.mightywebtools.com/wirestorm/readme-images/blockletter-thumb.png)
 
-
-
-#### +image(arg1, arg2, arg3), +image2(arg1, arg2, arg3)
+### +image(arg1, arg2, arg3), +image2(arg1, arg2, arg3)
 
 __Parameters:__
 - arg1 = integer or string, such as '100%', width
@@ -90,7 +89,7 @@ article
 	+image(150,150)
 ```
 
-#### +porthole(arg1,arg2,arg3)
+### +porthole(arg1,arg2,arg3)
 
 
 
