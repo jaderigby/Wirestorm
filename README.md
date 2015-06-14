@@ -68,7 +68,7 @@ div.content
 
 __Result:__
 
-![Panel Example](http://www.mightywebtools.com/wirestorm/readme-images/blockletter-thumb.png)
+![Blockletter Example](http://www.mightywebtools.com/wirestorm/readme-images/blockletter-thumb.png)
 
 ### +image(arg1, arg2, arg3), +image2(arg1, arg2, arg3)
 
@@ -91,7 +91,7 @@ article
 
 __Result:__
 
-![Panel Example](http://www.mightywebtools.com/wirestorm/readme-images/images-thumb.png)
+![Image Examples](http://www.mightywebtools.com/wirestorm/readme-images/images-thumb.png)
 
 ### +porthole(arg1, arg2, arg3)
 
@@ -109,7 +109,25 @@ article
 
 __Result:__
 
-![Panel Example](http://www.mightywebtools.com/wirestorm/readme-images/images-thumb.png)
+![Porthole Example](http://www.mightywebtools.com/wirestorm/readme-images/porthole-thumb.png)
+
+### +slideshow(arg1, arg2, arg3)
+
+__Parameters:__
+- arg1 = integer or string, such as '100%', width
+- arg2 = integer or string, such as '100%', height
+- arg3 = string, alignment, 'left', 'right', or 'center'. 'arg3' is optional
+
+__Example:__
+
+```
+article
+	+slideshow('100%', 250)
+```
+
+__Result:__
+
+![Slideshow Example](http://www.mightywebtools.com/wirestorm/readme-images/porthole-thumb.png)
 
 
 
