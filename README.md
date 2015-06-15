@@ -346,6 +346,21 @@ __Result:__
 
 ![Wrap Class Example](http://www.mightywebtools.com/wirestorm/readme-images/wrap-thumb.png)
 
+### .button, button
+
+__Description:__
+
+For buttons, you can use the `button` tag, or - if you need a link - add the class `.button` to an anchor tag
+
+__Example:__
+
+```
+p
+	a.button(href="to/some/link.html") Link Button
+p
+	button Another Button
+```
+
 ## Other Classes
 
 - .border-wrap
