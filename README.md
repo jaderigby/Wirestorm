@@ -108,6 +108,33 @@ __Result:__
 
 ![Column Loop Example](http://www.mightywebtools.com/wirestorm/readme-images/column-loop-thumb.png)
 
+### +tabs(arg1)
+
+__Parameters:__ 
+
+- arg1 = an array, pass in the title of each tab as an array.
+
+__Description:__
+
+To use the tabs widget:
+
+- declare the tabs widget (`+tabs(['First Tab', 'Second Tab', 'Third Tab'])`)
+- nest section tags with included `data-tab` attribute, with the `data-tab` value being one of the `+tabs()` titles (from the array).
+
+__Example:__
+
+```
++tabs(['First Tab', 'Second Tab', 'Third Tab'])
+	section(data-tab="First Tab")
+		h3 Tab 1 Content
+		p
+			+blockletter(25)
+	section(data-tab="Second Tab")
+		h3 Tab 1 Content
+		p
+			+blockletter(25)
+```
+
 ### +blockletter(arg1)
 
 __Parameters:__
@@ -220,34 +247,6 @@ __Example:__
 __Result:__
 
 ![Rating Example](http://www.mightywebtools.com/wirestorm/readme-images/rating-thumb.png)
-
-### +tabs(arg1)
-
-__Parameters:__ 
-
-- arg1 = an array, pass in the title of each tab as an array.
-
-__Description:__
-
-To use the tabs widget:
-
-- declare the tabs widget (`+tabs(['First Tab', 'Second Tab', 'Third Tab'])`)
-- nest section tags with included `data-tab` attribute, with the `data-tab` value being one of the `+tabs()` titles (from the array).
-
-__Example:__
-
-```
-+tabs(['First Tab', 'Second Tab', 'Third Tab'])
-	section(data-tab="First Tab")
-		h3 Tab 1 Content
-		p
-			+blockletter(25)
-	section(data-tab="Second Tab")
-		h3 Tab 1 Content
-		p
-			+blockletter(25)
-```
-
 
 ## ID's
 
