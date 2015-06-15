@@ -4,21 +4,32 @@ Wirestorm is a framework built on Jade, Stylus and Jeet, that leverages these te
 
 ## Why use code to wireframe?
 
-"Visual" wireframes, those made up of images, can be fine, but fall short in larger scope projects.  What happens when your wireframe grows to 30 or 40 pages?  Are just images enough?  Does your wireframe demonstrate what happens when it goes from desktop to mobile?  With wirestorm, since it's composed of code, can give you not only the visual representation, but also the "flow" or representation of how the site will behave.  Now, keep in mind, the end goal is still at a lower level of fidelity than the finished product.  It is a "tool" and not a replacement for the actual website code.  But with wirestorm, you can see: 
+"Visual" wireframes - those made up of images - can be fine, but fall short in larger scope projects.  What happens when your wireframe grows to 30 or 40 pages?  Are just images enough?  Does your wireframe demonstrate what happens when it goes from desktop to mobile?  With wirestorm, since it's composed of code, you get not only a visual representation, but also a functional representation helping you to visualize "flow" and "behavior".  Now, keep in mind, the end goal is to stay at a lower level of fidelity.  It is a "tool" and not a replacement for the actual website.  But with wirestorm, you get an exceptional view of: 
 
-- How your pages are connected
-- How does the Mobile version relate to the Desktop version
-- What dynamic components it will contain:
-	- tabs
-	- modals
+- How your pages connect
+- How the Desktop version will morph into the Mobile versions
+- Dynamic components, such as:
 	- search
+	- modals
+	- tabs
 	- etc
 
 So, instead of describing, "Then, when you click this button, you will go here", you simply make it happen, and the behavior is self-evident.  Nice!
 
 ## Wirestorm Usage
 
-When you open up the wirestorm folder, you will notice the following:
+__Note:__ Wirestorm requires the following dependencies:
+
+- jade
+- for CSS:
+	- stylus
+	- jeet
+	- nib
+	- rupture
+
+Download NodeJS, and then use npm to install these. (For instructions, go to their respective sites or github repos.)
+
+When you first open up the wirestorm folder, you will see the following subfolders:
 
 - `__jade__`
 - `__stylus__`
@@ -31,7 +42,7 @@ The two underscored files are for you: One for html, and one for css.  The `__ja
 
 The `__jade__` folder is a little more complex: In this folder, you will see files for `header` and `footer`.  They are exactly what they sound like.  Use the skeleton provided and modify these as needed.  For example, you can place any header info, "logo, nav, etc", inside this file -- Note, that there is a `nav.jade` file already provided within the `app` folder.  The app folder is where you will do a majority of your work: creating new files, editing the homepage, or `index.jade`, adding to and modifying your nav bar through the `nav.jade` file.  What makes wirestorm powerful is the prebaked components that live within the `widgets` folder.  You won't edit these files.  Instead, they are provided to be used for the files contained within the `app` folder.  In order to use these components, you simply "include" them, then use the guide below to add them to your files.  Once this is all done, run both the `jade-watch.sh` and the `stylus-watch.sh` files by opening a new instance of terminal and typing `sh jade-watch.sh`.  These files are provided as a convenience to help you compile your jade and stylus files.  If you prefer, you can use tools such as "LiveReload" or "Codekit", etc.
 
-__Now, on to the goodies . . . __
+__Now, on to the goodies . . .__
 
 ## Widgets
 
@@ -89,7 +100,7 @@ article
 
 ```
 article
-	+image(150,150)
+	+image2(150,150)
 ```
 
 __Result:__
@@ -206,6 +217,8 @@ __Example:__
 		+porthole(140,140)
 ```
 
+__Result:__
+
 ![Column Loop Example](http://www.mightywebtools.com/wirestorm/readme-images/column-loop-thumb.png)
 
 ### +tabs(arg1)
@@ -290,7 +303,61 @@ div.fifths
 			+blockletter(30)
 ```
 
-![Thirds Class Example](http://www.mightywebtools.com/wirestorm/readme-images/thirds-thumb.png)
+![Fifths Class Example](http://www.mightywebtools.com/wirestorm/readme-images/fifths-thumb.png)
+
+### .columns-2 . . . .columns-10
+
+__Description:__
+
+To create columns, you don't need to use `+column-loop()`.  You can also use these classes.  When using these classes, each column is defined by an `article` tag. Since this is the case, it is recommended to use a `section` tag for applying the class to.  See example below . . .
+
+__Example:__
+
+```
+section.columns-2
+	article
+		h3 First Column Title
+		p
+			+blockletter(20)
+	article
+		h3 Second Column Title
+		p
+			+blockletter(20)
+```
+
+### .wrap
+
+__Description:__
+
+Use this class to wrap an element in a containing box.  Has styles to work within both `+panel('light')` and `+panel('dark')`.
+
+__Example:__
+
+```
+- var iteration = 0
++column-loop(3)
+	article
+		div.wrap
+			h3= titles[iteration++] + " Title"
+			p
+				+blockletter(25)
+```
+
+__Result:__
+
+![Wrap Class Example](http://www.mightywebtools.com/wirestorm/readme-images/wrap-thumb.png)
+
+## Other Classes
+
+- .border-wrap
+- .clear-wrap
+- .left
+- .center
+- .right
+- .cf (clearfix)
+- .left-justify
+- .center-justify
+- .right-justify
 
 
 
