@@ -33,14 +33,16 @@ The `__jade__` folder is a little more complex: In this folder, you will see fil
 
 __Now, on to the goodies . . . __
 
-## Wirestorm widgets
+## Widgets
 
 ### +panel(arg1)
 
 __Parameters:__
-- arg1 = string, 'light' or 'dark'
+
+- arg1 = string, 'light', 'dark', or 'footer'; can also be left blank
 
 __Description:__
+
 The panel mixin can be used to create modern-looking, panel-based websites.  It creates a container that is stackable and centered, with exceptional amounts of top and bottom whitespace.  In short, panels are sections of a site stacking vertically on a page.
 
 __Example:__
@@ -73,6 +75,7 @@ __Result:__
 ### +image(arg1, arg2, arg3), +image2(arg1, arg2, arg3)
 
 __Parameters:__
+
 - arg1 = integer or string, such as '100%', width
 - arg2 = integer or string, such as '100%', height
 - arg3 = string, alignment, 'left', 'right', or 'center'. 'arg3' is optional
@@ -96,6 +99,7 @@ __Result:__
 ### +porthole(arg1, arg2, arg3)
 
 __Parameters:__
+
 - arg1 = integer, width (width and height need to be equal)
 - arg2 = integer, height (width and height need to be equal)
 - arg3 = string, alignment, 'left', 'right', or 'center'. 'arg3' is optional
@@ -114,6 +118,7 @@ __Result:__
 ### +slideshow(arg1, arg2, arg3), +slideshow2(arg1, arg2, arg3)
 
 __Parameters:__
+
 - arg1 = integer or string, such as '100%', width
 - arg2 = integer or string, such as '100%', height
 - arg3 = string, alignment, 'left', 'right', or 'center'. 'arg3' is optional
@@ -128,6 +133,164 @@ article
 __Result:__
 
 ![Slideshow Example](http://www.mightywebtools.com/wirestorm/readme-images/slideshow-thumb.png)
+
+### +pagination(arg1)
+
+__Parameters:__
+
+- arg1 = integer, number of pages to represent
+
+__Example:__
+
+```
++pagination(5)
+```
+__Result:__
+
+![Pagination Example](http://www.mightywebtools.com/wirestorm/readme-images/pagination-thumb.png)
+
+### +rating(arg1)
+
+__Parameters:__
+
+- arg1 = integer, max number of stars
+
+__Description:__
+
+The ratings widget is randomized between 1 and the number set for arg1.
+
+__Example:__
+
+```
++rating(5)
+```
+
+__Result:__
+
+![Rating Example](http://www.mightywebtools.com/wirestorm/readme-images/rating-thumb.png)
+
+### +loop(arg1)
+
+__Parameters:__
+
+- arg1 = integer, number of items to create in loop
+
+__Example:__
+
+```
+- var iteration = 0;
++loop(3)
+	article.wrap
+		 h3= titles[iteration++] + ' Title'
+```
+
+__Result:__
+
+![Loop Example](http://www.mightywebtools.com/wirestorm/readme-images/loop-thumb.png)
+
+### +column-loop(arg1)
+
+__Parameters:__
+
+- arg1 = integer, number of columns (1 row)
+
+__Description:__
+
+When creating column loops, the article tag defines a column.
+
+__Example:__
+
+```
++column-loop(3)
+	article
+		+porthole(140,140)
+```
+
+![Column Loop Example](http://www.mightywebtools.com/wirestorm/readme-images/column-loop-thumb.png)
+
+### +tabs(arg1)
+
+__Parameters:__ 
+
+- arg1 = an array, pass in the title of each tab as an array.
+
+__Description:__
+
+To use the tabs widget:
+
+- declare the tabs widget (`+tabs(['First Tab', 'Second Tab', 'Third Tab'])`)
+- nest section tags with included `data-tab` attribute, with the `data-tab` value being one of the `+tabs()` titles (from the array).
+
+__Example:__
+
+```
++tabs(['First Tab', 'Second Tab', 'Third Tab'])
+	section(data-tab="First Tab")
+		h3 Tab 1 Content
+		p
+			+blockletter(25)
+	section(data-tab="Second Tab")
+		h3 Tab 1 Content
+		p
+			+blockletter(25)
+```
+
+
+## ID's
+
+### #contain
+
+__Description:__
+
+Only add this id to the containing element of the site, such as `div.site-wrapper`. The `#contain` id constrains the width of the site to `1024px`, or whatever the width is set to, including `+panel()` widget elements.
+
+### #open
+
+__Description:__
+
+Only add this id to the containing element of the site, such as `div.site-wrapper`. The `#open` id will allow `+panel()` elements to extend their background color to the width of the browser while constraining the inner content to `1024px`, or whatever the width is set to.  Great for designing modern-looking, and paralax-type websites.  __Note:__ Paralax may be coming in a future iteration.
+
+## Classes
+
+### .thirds
+
+__Description:__
+
+Breaks up content into two parts: 1/3 and 2/3.  The 1/3 section uses the `aside` tag.  The 2/3 section uses the `article` tag.
+
+__Example:__
+
+```
+div.thirds
+	aside
+		+image2('100%', 180)
+	article
+		h2 My Title
+		p
+			+blockletter(30)
+```
+
+![Thirds Class Example](http://www.mightywebtools.com/wirestorm/readme-images/thirds-thumb.png)
+
+### .fifths
+
+__Description:__
+
+Breaks up content into two parts: 2/5 and 3/5.  The 2/5 section uses the `aside` tag.  The 3/5 section uses the `article` tag.
+
+__Example:__
+
+```
+div.fifths
+	aside
+		+image2('100%', 220)
+	article
+		h2 My Title
+		p
+			+blockletter(30)
+```
+
+![Thirds Class Example](http://www.mightywebtools.com/wirestorm/readme-images/thirds-thumb.png)
 
 
 

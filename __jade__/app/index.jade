@@ -52,6 +52,39 @@ include ../header
 					+image('100%', 250)
 				article
 					+image2('100%', 250)
+			section
+				p
+					+pagination(5)
+				p
+					+rating(5)
+			section
+				- var iteration = 0;
+				+loop(3)
+					article.wrap
+						h3= titles[iteration++] + ' Title '
+		+panel('light')
+			section.fifths
+				article
+					+column-loop(3)
+						article
+							+porthole(140,140)
+				aside
+		+panel('light')
+			div.thirds
+				aside
+					+image2('100%', 180)
+				article
+					h2 My Title
+					p
+						+blockletter(30)
+		+panel('light')
+			div.fifths
+				aside
+					+image2('100%', 220)
+				article
+					h2 My Title
+					p
+						+blockletter(30)
 		+panel('footer')
 			+tabs(['First','Second','Third'])
 				section(data-tab="First")
