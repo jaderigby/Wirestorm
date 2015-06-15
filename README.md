@@ -67,6 +67,47 @@ __Result:__
 
 ![Panel Example](http://www.mightywebtools.com/wirestorm/readme-images/dark-panel-thumb.png)
 
+### +loop(arg1)
+
+__Parameters:__
+
+- arg1 = integer, number of items to create in loop
+
+__Example:__
+
+```
+- var iteration = 0;
++loop(3)
+	article.wrap
+		 h3= titles[iteration++] + ' Title'
+```
+
+__Result:__
+
+![Loop Example](http://www.mightywebtools.com/wirestorm/readme-images/loop-thumb.png)
+
+### +column-loop(arg1)
+
+__Parameters:__
+
+- arg1 = integer, number of columns (1 row)
+
+__Description:__
+
+When creating column loops, the article tag defines a column.
+
+__Example:__
+
+```
++column-loop(3)
+	article
+		+porthole(140,140)
+```
+
+__Result:__
+
+![Column Loop Example](http://www.mightywebtools.com/wirestorm/readme-images/column-loop-thumb.png)
+
 ### +blockletter(arg1)
 
 __Parameters:__
@@ -179,47 +220,6 @@ __Example:__
 __Result:__
 
 ![Rating Example](http://www.mightywebtools.com/wirestorm/readme-images/rating-thumb.png)
-
-### +loop(arg1)
-
-__Parameters:__
-
-- arg1 = integer, number of items to create in loop
-
-__Example:__
-
-```
-- var iteration = 0;
-+loop(3)
-	article.wrap
-		 h3= titles[iteration++] + ' Title'
-```
-
-__Result:__
-
-![Loop Example](http://www.mightywebtools.com/wirestorm/readme-images/loop-thumb.png)
-
-### +column-loop(arg1)
-
-__Parameters:__
-
-- arg1 = integer, number of columns (1 row)
-
-__Description:__
-
-When creating column loops, the article tag defines a column.
-
-__Example:__
-
-```
-+column-loop(3)
-	article
-		+porthole(140,140)
-```
-
-__Result:__
-
-![Column Loop Example](http://www.mightywebtools.com/wirestorm/readme-images/column-loop-thumb.png)
 
 ### +tabs(arg1)
 
