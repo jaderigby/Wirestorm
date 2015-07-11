@@ -9,9 +9,7 @@ include ../header
 					h1 First One
 					p
 						+blockletter(45)
-					p
-						button.modal.trigger(data-target="firstModal") Learn More
-					div#firstModal.modal.window
+					+modal('Learn More')
 						h3 Learn More
 						p
 							+blockletter(50)
@@ -40,9 +38,7 @@ include ../header
 					h2 Next Product
 					p
 						+blockletter(40)
-					p.right
-						button.modal.trigger(data-target="secondModal") Oh, Man Modal
-					div#secondModal.modal.window
+					+modal('Oh, Man Modal', 'right')
 						h3 Oh, Man!
 						p
 							+blockletter(800)

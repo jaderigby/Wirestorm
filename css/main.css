@@ -327,6 +327,22 @@ article.clear-wrap:after {
 article.clear-wrap:after {
   clear: both;
 }
+.desktop {
+  display: block;
+}
+@media only screen and (max-width: 1024px) {
+  .desktop {
+    display: none !important;
+  }
+}
+.mobile {
+  display: none !important;
+}
+@media only screen and (max-width: 1024px) {
+  .mobile {
+    display: block;
+  }
+}
 .left-justify {
   text-align: left !important;
 }
@@ -360,11 +376,11 @@ article.clear-wrap:after {
 }
 #siteWrapper.active {
   position: fixed;
-  -webkit-transform: translateX(251px);
-  -moz-transform: translateX(251px);
-  -o-transform: translateX(251px);
-  -ms-transform: translateX(251px);
-  transform: translateX(251px);
+  -webkit-transform: translateX(280px);
+  -moz-transform: translateX(280px);
+  -o-transform: translateX(280px);
+  -ms-transform: translateX(280px);
+  transform: translateX(280px);
 }
 nav ul {
   *zoom: 1;
@@ -455,6 +471,142 @@ nav li .search-widget {
 }
 .desktop-nav li ul li a:hover {
   background-color: #d2d2d2;
+}
+nav.mobile-nav {
+  position: fixed;
+  overflow: auto;
+  font-family: "Open Sans", Verdana, Helvetica, sans-serif;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin-bottom: 0;
+  width: 280px;
+  background-color: #4a4a4a;
+  z-index: 0;
+}
+nav.mobile-nav li {
+  display: block;
+}
+nav.mobile-nav li a {
+  color: #73e4f4;
+  background-color: #6e6e6e;
+}
+nav.mobile-nav li a:hover {
+  background-color: #898989;
+}
+.icon-menu {
+  display: none;
+  font-size: 1.6rem;
+  color: #00a0b5;
+  cursor: pointer;
+}
+@media only screen and (max-width: 1024px) {
+  .icon-menu {
+    display: inline-block;
+  }
+}
+.mobile-nav {
+  padding-top: 30px;
+  text-align: center;
+}
+.mobile-nav ul {
+  margin-left: 0;
+}
+.mobile-nav ul li {
+  float: none;
+}
+.mobile-nav a.decorate:after {
+  font-family: 'wireframe-iconfont';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+/* Enable Ligatures ================ */
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  -o-font-feature-settings: "liga";
+  font-feature-settings: "liga";
+/* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\e615";
+  position: absolute;
+  margin-left: 3px;
+}
+.mobile-nav a.decorate.active:after {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.mobile-nav .searchfield {
+  background-color: #a5a5a5;
+}
+.mobile-nav .searchfield .icon-search {
+  color: #fff;
+}
+.mobile-nav .searchfield input {
+  color: #fff;
+}
+.mobile-nav div > ul > li {
+  padding-top: 0;
+  padding-bottom: 1px;
+}
+.mobile-nav li {
+  text-align: left;
+  margin-left: 0;
+}
+.mobile-nav li > ul {
+  display: none;
+  padding-top: 1px;
+}
+.mobile-nav li > ul li {
+  padding-top: 0;
+  padding-bottom: 1px;
+}
+.mobile-nav li > ul li a {
+  padding-left: 45px;
+}
+.mobile-nav li > ul li [class^="icon-"] {
+  position: absolute;
+  margin-top: 8px;
+  margin-left: 43px;
+  font-size: 1.1rem;
+  color: #ababab;
+}
+.mobile-nav li > ul li > ul li a {
+  padding-left: 65px;
+  color: #7ad5e2;
+  background-color: #636363;
+}
+.mobile-nav li a {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #efefef;
+}
+.mobile-nav li a:hover {
+  text-decoration: none;
+  background-color: #ccc;
+}
+.mobile-nav li .search-widget {
+  margin: 10px 10px 10px 20px;
+}
+.mobile-nav a.logo {
+  display: inline-block;
+  position: relative;
+  margin: 10px 0 20px;
+  color: #73e4f4;
+  background-color: #6e6e6e;
+  border: 1px solid #353535;
+}
+.mobile-nav a.logo:hover {
+  background-color: #898989;
 }
 a.button {
   margin-right: 5px;

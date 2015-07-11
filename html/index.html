@@ -6,9 +6,27 @@
     <link rel="stylesheet" type="text/css" href="../css/main.css">
   </head>
   <body>
+    <nav class="mobile-nav">
+      <div class="use-native-click"><a href="" class="logo">TheSite</a>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="page2.html">Page 2</a></li>
+          <li class="right">
+            <div data-target="search-results.html" class="search-widget">
+              <div class="searchfield">
+                <div class="icon-search"></div>
+                <input type="text">
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <div id="siteWrapper">
       <div id="open">
-        <header><a href="" class="logo">TheSite</a></header>
+        <header>
+          <div data-target="#siteWrapper" class="icon-menu toggle use-native-click"></div><a href="" class="desktop logo">TheSite</a>
+        </header>
         <nav class="desktop-nav dark">
           <ul>
             <li><a href="index.html">Home</a></li>
@@ -28,37 +46,35 @@
                       <section class="fifths">
                         <article>
                           <h1>First One</h1>
-                          <p><span class="blockletter">Morbi mattis felis at nunc nulla turpis magna cursus sit amet suscipit a interdum id felis sed convallis magna eu sem aliquam erat volutpat nulla est nullam dapibus fermentum ipsum nulla accumsan elit sit amet varius semper nulla mauris mollis quam tempor suscipit diam nulla </span>
+                          <p><span class="blockletter">Vestibulum erat nulla ullamcorper nec rutrum non nonummy ac erat aliquam ante pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas class aptent taciti sociosqu ad litora torquent per conubia nostra per inceptos hymenaeos nullam lectus justo vulputate eget mollis sed </span>
                           </p>
-                          <p>
-                            <button data-target="firstModal" class="modal trigger">Learn More</button>
-                          </p>
-                          <div id="firstModal" class="modal window">
-                            <h3>Learn More</h3>
-                            <p><span class="blockletter">Suspendisse sagittis ultrices augue fusce nibh proin mattis lacinia justo sed convallis magna eu sem pellentesque arcu etiam sapien elit consequat eget tristique non venenatis quis ante aliquam erat volutpat pellentesque arcu nullam sapien sem ornare ac nonummy non lobortis a enim fusce aliquam vestibulum ipsum duis ante orci molestie </span>
-                            </p>
-                            <form class="wrap">
-                              <section class="columns-2">
-                                <article>
-                                  <p>
-                                    <input type="text" placeholder="First Name"/>
-                                  </p>
-                                </article>
-                                <article>
-                                  <p>
-                                    <input type="text" placeholder="Last Name"/>
-                                  </p>
-                                </article>
-                              </section>
-                              <p>
-                                <input type="text" placeholder="Email"/>
-                              </p>
-                              <textarea placeholder="Message"></textarea>
-                              <p>
-                                <input type="submit" value="Submit"/>
-                              </p>
-                            </form>
-                          </div>
+                                    <button data-target="modal1" class="modal trigger">Learn More</button>
+                                    <div id="modal1" class="modal window">
+                                      <h3>Learn More</h3>
+                                      <p><span class="blockletter">Proin pede metus vulputate nec fermentum fringilla vehicula vitae justo nulla quis diam ut tempus purus at lorem aliquam erat volutpat vestibulum fermentum tortor id mi integer pellentesque quam vel velit mauris suscipit ligula sit amet pharetra semper nibh ante cursus purus vel sagittis velit mauris vel metus curabitur ligula </span>
+                                      </p>
+                                      <form class="wrap">
+                                        <section class="columns-2">
+                                          <article>
+                                            <p>
+                                              <input type="text" placeholder="First Name"/>
+                                            </p>
+                                          </article>
+                                          <article>
+                                            <p>
+                                              <input type="text" placeholder="Last Name"/>
+                                            </p>
+                                          </article>
+                                        </section>
+                                        <p>
+                                          <input type="text" placeholder="Email"/>
+                                        </p>
+                                        <textarea placeholder="Message"></textarea>
+                                        <p>
+                                          <input type="submit" value="Submit"/>
+                                        </p>
+                                      </form>
+                                    </div>
                         </article>
                         <aside>
                           <div style="width: 380px; height: 235px">
@@ -83,28 +99,28 @@
                                     <div style="width: 120px; height: 120px; margin: 0 auto" class="porthole">
                                       <div class="image-widget"></div>
                                     </div>
-                                    <p class="center-align"><span class="blockletter">Nunc auctor mauris tincidunt sem sed arcu sed ac dolor sit amet purus malesuada congue </span>
+                                    <p class="center-align"><span class="blockletter">Vestibulum erat nulla ullamcorper nec rutrum non nonummy ac erat cras pede libero dapibus nec </span>
                                     </p>
                                   </article>
                                   <article>
                                     <div style="width: 120px; height: 120px; margin: 0 auto" class="porthole">
                                       <div class="image-widget"></div>
                                     </div>
-                                    <p class="center-align"><span class="blockletter">Integer in sapien donec odio urna tempus molestie porttitor ut iaculis quis sem nulla non </span>
+                                    <p class="center-align"><span class="blockletter">Curabitur ligula sapien pulvinar a vestibulum quis facilisis vel sapien morbi a metus nullam rhoncus </span>
                                     </p>
                                   </article>
                                   <article>
                                     <div style="width: 120px; height: 120px; margin: 0 auto" class="porthole">
                                       <div class="image-widget"></div>
                                     </div>
-                                    <p class="center-align"><span class="blockletter">Integer malesuada mauris suscipit ligula sit amet pharetra semper nibh ante cursus purus vel sagittis </span>
+                                    <p class="center-align"><span class="blockletter">Ut tempus purus at lorem etiam quis quam aliquam id dolor maecenas lorem suspendisse potenti </span>
                                     </p>
                                   </article>
                                   <article>
                                     <div style="width: 120px; height: 120px; margin: 0 auto" class="porthole">
                                       <div class="image-widget"></div>
                                     </div>
-                                    <p class="center-align"><span class="blockletter">Curabitur vitae diam non enim vestibulum interdum nulla quis diam aenean placerat integer malesuada etiam </span>
+                                    <p class="center-align"><span class="blockletter">Maecenas ipsum velit consectetuer eu lobortis ut dictum at dui aenean vel massa quis mauris </span>
                                     </p>
                                   </article>
                                 </section>
@@ -122,16 +138,14 @@
                         </aside>
                         <article>
                           <h2>Next Product</h2>
-                          <p><span class="blockletter">Cras elementum fusce suscipit libero eget elit in rutrum nunc auctor integer tempor nulla accumsan elit sit amet varius semper nulla mauris mollis quam tempor suscipit diam nulla vel leo etiam bibendum elit eget erat nulla accumsan elit sit amet </span>
+                          <p><span class="blockletter">Nulla quis diam aliquam erat volutpat aliquam erat volutpat etiam posuere lacus quis dolor nullam lectus justo vulputate eget mollis sed tempor sed magna mauris dictum facilisis augue fusce nibh mauris tincidunt sem sed arcu fusce tellus duis viverra diam </span>
                           </p>
-                          <p class="right">
-                            <button data-target="secondModal" class="modal trigger">Oh, Man Modal</button>
-                          </p>
-                          <div id="secondModal" class="modal window">
-                            <h3>Oh, Man!</h3>
-                            <p><span class="blockletter">Aenean fermentum risus id tortor etiam quis quam aenean fermentum risus id tortor etiam posuere quam ac quam nunc posuere class aptent taciti sociosqu ad litora torquent per conubia nostra per inceptos hymenaeos etiam egestas wisi a erat pellentesque ipsum nullam justo enim consectetuer nec ullamcorper ac vestibulum in elit mauris metus mauris metus lorem ipsum dolor sit amet consectetuer adipiscing elit pellentesque pretium lectus id turpis etiam posuere lacus quis dolor ut tempus purus at lorem integer tempor curabitur bibendum justo non orci integer tempor pellentesque arcu integer lacinia morbi a metus maecenas libero fusce wisi morbi imperdiet mauris ac auctor dictum nisl ligula egestas nulla et sollicitudin sem purus in lacus integer vulputate sem a nibh rutrum consequat praesent id justo in neque elementum ultrices curabitur bibendum justo non orci sed vel lectus fusce nibh aliquam ante nulla accumsan elit sit amet varius semper nulla mauris mollis quam tempor suscipit diam nulla vel leo morbi gravida libero nec velit in dapibus augue non sapien donec ipsum massa ullamcorper in auctor et scelerisque sed est integer vulputate sem a nibh rutrum consequat nunc dapibus tortor vel mi dapibus sollicitudin duis risus in dapibus augue non sapien fusce aliquam vestibulum ipsum integer vulputate sem a nibh rutrum consequat aenean vel massa quis mauris vehicula lacinia nullam feugiat turpis at pulvinar vulputate erat libero tristique tellus nec bibendum odio risus sit amet ante pellentesque sapien nulla non lectus sed nisl molestie malesuada fusce suscipit libero eget elit nunc posuere vestibulum facilisis auctor urna nulla turpis magna cursus sit amet suscipit a interdum id felis nunc posuere phasellus et lorem id felis nonummy placerat mauris elementum mauris vitae tortor curabitur bibendum justo non orci nulla non arcu lacinia neque faucibus fringilla nulla accumsan elit sit amet varius semper nulla mauris mollis quam tempor suscipit diam nulla vel leo maecenas libero ut tempus purus at lorem aliquam erat volutpat fusce wisi nullam justo enim consectetuer nec ullamcorper ac vestibulum in elit etiam quis quam donec ipsum massa ullamcorper in auctor et scelerisque sed est duis viverra diam non justo fusce tellus fusce aliquam vestibulum ipsum donec ipsum massa ullamcorper in auctor et scelerisque sed est in rutrum nullam feugiat turpis at pulvinar vulputate erat libero tristique tellus nec bibendum odio risus sit amet ante nunc dapibus tortor vel mi dapibus sollicitudin duis bibendum lectus ut viverra rhoncus dolor nunc faucibus libero eget facilisis enim ipsum id lacus nunc dapibus tortor vel mi dapibus sollicitudin suspendisse potenti donec odio urna tempus molestie porttitor ut iaculis quis sem curabitur vitae diam non enim vestibulum interdum quisque porta aenean fermentum risus id tortor aenean id metus id velit ullamcorper pulvinar sed ac dolor sit amet purus malesuada congue nulla quis diam etiam sapien elit consequat eget tristique non venenatis quis ante etiam dictum tincidunt diam fusce consectetuer risus a nunc maecenas libero nullam sapien sem ornare ac nonummy non lobortis a enim sed vel lectus praesent vitae arcu tempor neque lacinia pretium proin mattis lacinia justo nunc posuere fusce eget urna aliquam id dolor nunc dapibus tortor vel mi dapibus sollicitudin sed ac dolor sit amet purus malesuada congue nullam sit amet magna in magna gravida vehicula fusce nibh fusce consectetuer risus a nunc nullam eget nisl maecenas ipsum velit consectetuer eu lobortis ut dictum at dui donec odio urna tempus molestie porttitor ut iaculis quis sem curabitur bibendum justo non orci integer vulputate sem a nibh rutrum consequat duis bibendum lectus ut viverra rhoncus dolor nunc faucibus libero eget facilisis enim ipsum id lacus maecenas aliquet accumsan leo curabitur ligula sapien pulvinar a vestibulum quis facilisis vel sapien in nisl etiam neque pellentesque pretium lectus id turpis vivamus porttitor turpis ac leo maecenas fermentum sem in pharetra pellentesque velit turpis volutpat ante in pharetra metus odio a lectus in nisl duis ante orci molestie vitae vehicula venenatis tincidunt ac pede mauris dictum facilisis augue nullam sit amet magna in magna gravida vehicula nulla accumsan elit sit amet varius semper nulla mauris mollis quam tempor suscipit diam nulla vel leo nulla non lectus sed nisl molestie malesuada mauris dictum facilisis augue pellentesque sapien integer imperdiet lectus quis justo in convallis morbi mattis felis at nunc etiam bibendum elit eget erat quisque porta integer rutrum orci vestibulum ullamcorper ultricies lacus quam ultricies odio vitae placerat pede sem sit amet enim cras pede libero dapibus nec pretium sit amet tempor quis urna curabitur sagittis hendrerit ante quisque porta duis condimentum augue id magna semper rutrum fusce suscipit libero eget elit fusce dui leo imperdiet in aliquam sit amet feugiat eu orci maecenas sollicitudin pellentesque ipsum cras elementum mauris tincidunt sem sed arcu nam sed tellus id magna elementum tincidunt fusce consectetuer risus a nunc nunc posuere nulla pulvinar eleifend sem aliquam erat volutpat curabitur sagittis hendrerit ante mauris </span>
-                            </p>
-                          </div>
+                                    <button data-target="modal2" class="modal trigger right">Oh, Man Modal</button>
+                                    <div id="modal2" class="modal window">
+                                      <h3>Oh, Man!</h3>
+                                      <p><span class="blockletter">Fusce dui leo imperdiet in aliquam sit amet feugiat eu orci in rutrum suspendisse nisl duis condimentum augue id magna semper rutrum nunc dapibus tortor vel mi dapibus sollicitudin nullam lectus justo vulputate eget mollis sed tempor sed magna duis bibendum lectus ut viverra rhoncus dolor nunc faucibus libero eget facilisis enim ipsum id lacus proin pede metus vulputate nec fermentum fringilla vehicula vitae justo suspendisse sagittis ultrices augue etiam posuere lacus quis dolor curabitur bibendum justo non orci integer rutrum orci vestibulum ullamcorper ultricies lacus quam ultricies odio vitae placerat pede sem sit amet enim fusce wisi maecenas fermentum sem in pharetra pellentesque velit turpis volutpat ante in pharetra metus odio a lectus nulla accumsan elit sit amet varius semper nulla mauris mollis quam tempor suscipit diam nulla vel leo aliquam erat volutpat praesent vitae arcu tempor neque lacinia pretium nulla non arcu lacinia neque faucibus fringilla mauris tincidunt sem sed arcu praesent dapibus praesent dapibus duis condimentum augue id magna semper rutrum integer rutrum orci vestibulum ullamcorper ultricies lacus quam ultricies odio vitae placerat pede sem sit amet enim proin in tellus sit amet nibh dignissim sagittis integer lacinia vivamus ac urna vel leo pretium faucibus curabitur bibendum justo non orci morbi scelerisque luctus velit fusce suscipit libero eget elit nulla accumsan elit sit amet varius semper nulla mauris mollis quam tempor suscipit diam nulla vel leo integer in sapien nulla quis diam aliquam in lorem sit amet leo accumsan lacinia integer lacinia phasellus enim erat vestibulum vel aliquam a posuere eu velit maecenas libero pellentesque sapien mauris suscipit ligula sit amet pharetra semper nibh ante cursus purus vel sagittis velit mauris vel metus curabitur sagittis hendrerit ante nulla non lectus sed nisl molestie malesuada curabitur sagittis hendrerit ante class aptent taciti sociosqu ad litora torquent per conubia nostra per inceptos hymenaeos integer rutrum orci vestibulum ullamcorper ultricies lacus quam ultricies odio vitae placerat pede sem sit amet enim duis viverra diam non justo nulla non arcu lacinia neque faucibus fringilla class aptent taciti sociosqu ad litora torquent per conubia nostra per inceptos hymenaeos nullam dapibus fermentum ipsum maecenas libero praesent vitae arcu tempor neque lacinia pretium donec iaculis gravida nulla fusce dui leo imperdiet in aliquam sit amet feugiat eu orci mauris metus mauris dictum facilisis augue donec ipsum massa ullamcorper in auctor et scelerisque sed est pellentesque pretium lectus id turpis integer pellentesque quam vel velit etiam ligula pede sagittis quis interdum ultricies scelerisque eu urna integer tempor fusce tellus odio dapibus id fermentum quis suscipit id erat maecenas ipsum velit consectetuer eu lobortis ut dictum at dui suspendisse potenti etiam egestas wisi a erat etiam quis quam integer pellentesque quam vel velit nullam dapibus fermentum ipsum mauris dictum facilisis augue maecenas lorem suspendisse sagittis ultrices augue curabitur vitae diam non enim vestibulum interdum aliquam ante etiam egestas wisi a erat vivamus luctus egestas leo mauris tincidunt sem sed arcu nullam dapibus fermentum ipsum in convallis etiam quis quam nunc posuere suspendisse potenti in rutrum duis risus cras elementum nunc auctor class aptent taciti sociosqu ad litora torquent per conubia nostra per inceptos hymenaeos etiam posuere quam ac quam pellentesque sapien nulla non lectus sed nisl molestie malesuada nam quis nulla aliquam erat volutpat lorem ipsum dolor sit amet consectetuer adipiscing elit etiam neque vivamus porttitor turpis ac leo etiam ligula pede sagittis quis interdum ultricies scelerisque eu urna etiam bibendum elit eget erat praesent id justo in neque elementum ultrices phasellus enim erat vestibulum vel aliquam a posuere eu velit etiam dui sem fermentum vitae sagittis id malesuada in quam in dapibus augue non sapien mauris pretium quam et urna aenean id metus id velit ullamcorper pulvinar etiam posuere lacus quis dolor integer vulputate sem a nibh rutrum consequat proin pede metus vulputate nec fermentum fringilla vehicula vitae justo in dapibus augue non sapien proin in tellus sit amet nibh dignissim sagittis proin in tellus sit amet nibh dignissim sagittis maecenas libero vivamus luctus egestas leo duis pulvinar integer lacinia vestibulum fermentum tortor id mi fusce dui leo imperdiet in aliquam sit amet feugiat eu orci pellentesque sapien vestibulum fermentum tortor id mi curabitur vitae diam non enim vestibulum interdum nam quis nulla sed vel lectus etiam dui sem fermentum vitae sagittis id malesuada in quam maecenas libero morbi scelerisque luctus velit praesent vitae arcu tempor neque lacinia pretium phasellus et lorem id felis nonummy placerat etiam bibendum elit eget erat in rutrum etiam bibendum elit eget erat nunc dapibus tortor vel mi dapibus sollicitudin integer vulputate sem a nibh rutrum consequat pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas duis pulvinar etiam commodo dui eget wisi nunc tincidunt ante vitae massa etiam dui sem fermentum vitae sagittis id malesuada in quam aenean fermentum risus id tortor phasellus enim erat </span>
+                                      </p>
+                                    </div>
                         </article>
                       </section>
                     </section>
@@ -147,7 +161,7 @@
                                   <section class="tabs-wrapper">
                                     <section data-tab="First">
                                       <h3>First Tab</h3>
-                                      <p><span class="blockletter">Duis risus praesent in mauris eu tortor porttitor accumsan aliquam id dolor nullam dapibus fermentum ipsum aenean vel massa quis mauris vehicula lacinia praesent vitae arcu tempor neque lacinia pretium cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus pellentesque arcu vestibulum </span>
+                                      <p><span class="blockletter">Sed vel lectus in vulputate urna eu arcu mauris elementum mauris vitae tortor integer pellentesque quam vel velit etiam quis quam fusce suscipit libero eget elit nullam feugiat turpis at pulvinar vulputate erat libero tristique tellus nec bibendum odio risus sit amet ante maecenas libero </span>
                                       </p>
                                     </section>
                                     <section data-tab="Second">
@@ -169,7 +183,7 @@
                                                       </div>
                                                     </div>
                                                     <p>
-                                                                <div class="stars-widget"><span class="icon-star"></span>
+                                                                <div class="stars-widget"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span>
                                                                 </div>
                                                     </p>
                                                   </article>
@@ -202,7 +216,7 @@
                                                       </div>
                                                     </div>
                                                     <p>
-                                                                <div class="stars-widget"><span class="icon-star"></span><span class="icon-star"></span>
+                                                                <div class="stars-widget"><span class="icon-star"></span>
                                                                 </div>
                                                     </p>
                                                   </article>
@@ -213,7 +227,7 @@
                                                       </div>
                                                     </div>
                                                     <p>
-                                                                <div class="stars-widget"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span>
+                                                                <div class="stars-widget"><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span><span class="icon-star"></span>
                                                                 </div>
                                                     </p>
                                                   </article>

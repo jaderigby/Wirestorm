@@ -1,5 +1,16 @@
 - var titles = ['First','Second','Third','Fourth','Fifth','Sixth','Seventh','Eighth','Ninth','Tenth','Eleventh','Twelfth','Thirteenth','Fourteenth','Fifteenth','Sixteenth','Seventeenth','Eighteenth','Nineteenth','Twentieth']
 
+- var modalIter = 0
+
+mixin mobile-nav()
+	nav.mobile-nav
+		div.use-native-click
+			if block
+				block
+
+mixin menu-trigger()
+	div.icon-menu.toggle.use-native-click(data-target="#siteWrapper")
+
 mixin panel(type, name)
 	- if (type === 'light') {
 		.panel-wrap.whiteout
@@ -59,6 +70,19 @@ mixin columns(col)
 	- if (col == 9) {columnCount = 'columns-9'}
 	- if (col == 10) {columnCount = 'columns-10'}
 	section(class=columnCount)
+		if block
+			block
+
+mixin modal(nameValue, pos)
+	- modalIter += 1
+	- if (pos === 'right')
+		button.modal.trigger.right(data-target="modal" + modalIter)= nameValue
+	- else if (pos === 'center')
+		div.center-justify
+			button.modal.trigger(data-target="modal" + modalIter)= nameValue
+	- else
+		button.modal.trigger(data-target="modal" + modalIter)= nameValue
+	div(id="modal" + modalIter, class="modal window")
 		if block
 			block
 

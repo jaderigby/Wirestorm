@@ -74,6 +74,14 @@ base()
 		margin: 25px 0
 	article.clear-wrap
 		cf()
+	.desktop
+		display: block
+		+below(large)
+			display: none !important
+	.mobile
+		display: none !important
+		+below(large)
+			display: block
 	.left-justify
 		text-align: left !important
 	.center-justify
@@ -99,7 +107,7 @@ base()
 		-webkit-transition: all 0.17s ease-in-out
 		&.active
 			position: fixed
-			transform: translateX(251px)
+			transform: translateX(280px)
 	//
 	// Navigation
 	//
@@ -173,6 +181,120 @@ base()
 				a
 					&:hover
 						background-color: #d2d2d2
+	nav.mobile-nav
+		position: fixed
+		overflow: auto
+		font-family: open-sans
+		top: 0
+		left: 0
+		bottom: 0
+		margin-bottom: 0
+		width: 280px
+		background-color: #4A4A4A
+		// box-shadow: 0 0 30px rgba(0,0,0,0.15)
+		// transition: all 0.15s cubic-bezier(0.8, 0.03, 0.18, 1)
+		// -webkit-transition: all 0.15s cubic-bezier(0.8, 0.03, 0.18, 1)
+		z-index: 0
+		// &.active
+		// 	transform: translate3d(0, 0, 0) scale(1, 1)
+		li
+			display: block
+			a
+				color: #73E4F4
+				background-color: #6E6E6E
+				&:hover
+					background-color: #898989
+	.icon-menu
+		display: none
+		font-size: 1.6rem
+		color: #00a0b5
+		cursor: pointer
+		+below(large)
+			display: inline-block
+	.mobile-nav
+		padding-top: 30px
+		ul
+			margin-left: 0
+			li
+				float: none
+		a.decorate:after
+			font-family: 'wireframe-iconfont'
+			speak: none
+			font-style: normal
+			font-weight: normal
+			font-variant: normal
+			text-transform: none
+			line-height: 1
+			
+			/* Enable Ligatures ================ */
+			-webkit-font-feature-settings: "liga"
+			-moz-font-feature-settings: "liga=1"
+			-moz-font-feature-settings: "liga"
+			-ms-font-feature-settings: "liga" 1
+			-o-font-feature-settings: "liga"
+			font-feature-settings: "liga"
+
+			/* Better Font Rendering =========== */
+			-webkit-font-smoothing: antialiased
+			-moz-osx-font-smoothing: grayscale
+			content: "\e615"
+			position: absolute
+			margin-left: 3px
+		a.decorate.active:after
+			transform: rotate(180deg)
+		.searchfield
+			background-color: #A5A5A5
+			.icon-search
+				color: white
+			input
+				color: white
+		div > ul
+			> li
+				padding-top: 0
+				padding-bottom: 1px
+		li
+			text-align: left
+			margin-left: 0
+			> ul 
+				display: none
+				padding-top: 1px
+				li 
+					padding-top: 0
+					padding-bottom: 1px
+					a
+						padding-left: 45px
+					[class^="icon-"]
+						position: absolute
+						margin-top: 8px
+						margin-left: 43px
+						font-size: 1.1rem
+						color: #ABABAB
+			> ul li > ul li
+				a
+					padding-left: 65px
+					color: #7AD5E2
+					background-color: #636363
+			a
+				display: block
+				padding-top: 10px
+				padding-bottom: 10px
+				background-color: #efefef
+				&:hover
+					text-decoration: none
+					background-color: #CCC
+		li
+			.search-widget
+				margin: 10px 10px 10px 20px
+		text-align: center
+		a.logo
+			display: inline-block
+			position: relative
+			margin: 10px 0 20px
+			color: #73E4F4
+			background-color: #6e6e6e
+			border: 1px solid #353535
+			&:hover
+				background-color: #898989
 	//
 	// Buttons
 	//

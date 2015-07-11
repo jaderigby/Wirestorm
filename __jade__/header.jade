@@ -7,10 +7,14 @@ html(lang="en")
 		//- main stylesheet
 		link(rel="stylesheet", type="text/css", href="../css/main.css")
 	body
+		+mobile-nav()
+			a.logo(href="") TheSite
+			include app/nav
 		#siteWrapper
 			#open
 				header
-					a.logo(href="") TheSite
+					+menu-trigger()
+					a.desktop.logo(href="") TheSite
 				nav.desktop-nav.dark
 					include app/nav
 				block content

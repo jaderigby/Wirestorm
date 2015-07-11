@@ -344,9 +344,9 @@ function initModals() {
 		$('.modal.window').prepend('<div class="close-modal"><span class="icon-close"></span></div>');
 		$('.modal.window').css({
 			position: 'absolute',
-			top: '100px',
-			left: '-600px',
-			right: '0',
+			top: '-200px',
+			left: 0,
+			right: 0,
 			margin: 'auto',
 			padding: '20px',
 			width: '84%',
@@ -363,7 +363,7 @@ function initModals() {
 
 function resetModal() {
 	$('.modal.window').hide();
-	$('.modal.window').css('left','-600px');
+	$('.modal.window').css('top','-200px');
 }
 
 initModals();
@@ -376,8 +376,8 @@ $('.modal.trigger').parent().delegate('.modal.trigger', 'click', function() {
 	});
 	$('#overlay').show();
 	$('#overlay').animate({
-		opacity: 1,
-		left: 0
+		top: 0,
+		opacity: 1
 	}, 280);
 	$('#'+ myModal).show();
 	var scrollTop = $(window).scrollTop();
@@ -385,7 +385,6 @@ $('.modal.trigger').parent().delegate('.modal.trigger', 'click', function() {
 	TweenMax.to('#'+ myModal, 0.3, {
 		top: topPos,
 		opacity: 1,
-		left: 0,
 		scale: 1,
 		ease: Power2.easeOut
 	});
@@ -398,13 +397,13 @@ $('.modal.trigger').parent().delegate('.modal.trigger', 'click', function() {
 
 $('.modal.window').delegate('.close-modal', 'click', function() {
 	$('#overlay').animate({
+		top: 0,
 		opacity: 0
 	}, 280, function() {
 		$(this).hide();
 	});
 	TweenMax.to('.modal.window', 0.22, {
 		opacity: 0,
-		left: '400px',
 		scale: 0.6,
 		ease: Power1.easeIn,
 		onComplete: resetModal
@@ -426,7 +425,7 @@ $('#overlay').click(function() {
 	});
 	TweenMax.to('.modal.window', 0.22, {
 		opacity: 0,
-		left: '400px',
+		top: '100px',
 		scale: 0.6,
 		ease: Power1.easeIn,
 		onComplete: resetModal
