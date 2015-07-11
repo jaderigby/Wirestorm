@@ -8,7 +8,7 @@ Wirestorm is a framework built on Jade, Stylus and Jeet, that leverages these te
 
 - How your pages connect
 - How the Desktop version will morph into the Mobile versions
-- Dynamic components, such as:
+- How dynamic components will behave, such as:
 	- search
 	- modals
 	- tabs
@@ -38,7 +38,7 @@ When you first open up the wirestorm folder, you will see the following subfolde
 - `images`
 - `js`
 
-The two underscored files are for you: One for html, and one for css.  The `__jade__` folder is where you will build your structure, the html.  The `__stylus__` folder is where all of your styles live.  In the `__stylus__` folder, you will find a file called `main.styl`.  This is where you add any custom styles of your own, beyond what wirestorm provides.
+The two underscored files are for you: One for html, and one for css.  The `__jade__` folder is where you will build your structure, the html.  The `__stylus__` folder is where all of your css styles will live.  In the `__stylus__` folder, you will find a file called `main.styl`.  This is where you add any custom styles of your own, beyond what wirestorm provides.
 
 The `__jade__` folder is a little more complex: In this folder, you will see files for `header` and `footer`.  They are exactly what they sound like.  Use the skeleton provided and modify these as needed.  For example, you can place any header info, "logo, nav, etc", inside this file -- Note, that there is a `nav.jade` file already provided within the `app` folder.  The app folder is where you will do a majority of your work: creating new files, editing the homepage, or `index.jade`, adding to and modifying your nav bar through the `nav.jade` file.  What makes wirestorm powerful is the prebaked components that live within the `widgets` folder.  You won't edit these files.  Instead, they are provided to be used for the files contained within the `app` folder.  In order to use these components, you simply "include" them, then use the guide below to add them to your files.  Once this is all done, run both the `jade-watch.sh` and the `stylus-watch.sh` files by opening a new instance of terminal and typing `sh jade-watch.sh`.  These files are provided as a convenience to help you compile your jade and stylus files.  If you prefer, you can use tools such as "LiveReload" or "Codekit", etc.
 
@@ -232,11 +232,11 @@ __Result:__
 
 __Parameters:__
 
-- arg1 = integer, max number of stars
+- arg1 = integer, max number of stars (defaults to 5)
 
 __Description:__
 
-The ratings widget is randomized between 1 and the number set for arg1.
+The ratings widget is randomized between 1 and the number set for arg1 (defaults to 5).
 
 __Example:__
 
@@ -247,6 +247,38 @@ __Example:__
 __Result:__
 
 ![Rating Example](http://www.mightywebtools.com/wirestorm/readme-images/rating-thumb.png)
+
+### +mobile-nav()
+
+__Description:__
+
+The mobile nav widget should come before the `siteWrapper` id.  They are sibling elements.  A good practice is to nest `nav.jade` under both the `mobile-nav` widget, as well as within the `siteWrapper`.  This allows you to edit one file, and have both locations stay consistent. The `mobile-nav` widget is to be used in tandem with the `menu-trigger` widget.
+
+__Example:__
+
+```
+body
+	+mobile-nav()
+		include app/nav
+	div#siteWrapper
+		nav.desktop-nav
+			include app/nav
+```
+
+### +menu-trigger()
+
+__Description:__
+
+Creates a menu icon/button for opening and closing a mobile nav drawer.
+
+__Example:__
+
+```
+div#siteWrapper
+	nav.desktop-nav
+		include app/nav
+	+menu-trigger()
+```
 
 ## ID's
 
