@@ -248,21 +248,22 @@ __Result:__
 
 ![Rating Example](http://www.mightywebtools.com/wirestorm/readme-images/rating-thumb.png)
 
-### +mobile-nav()
+### +menu-drawer()
 
 __Description:__
 
-The mobile nav widget should come before the `siteWrapper` id.  They are sibling elements.  A good practice is to nest `nav.jade` under both the `mobile-nav` widget, as well as within the `siteWrapper`.  This allows you to edit one file, and have both locations stay consistent. The `mobile-nav` widget is to be used in tandem with the `menu-trigger` widget.
+The menu drawer widget should come before the `siteWrapper` id.  They are sibling elements.  A good practice is to nest `nav.jade` under both the `mobile-nav` widget, as well as within the `siteWrapper`.  This allows you to edit one file, and have both locations stay consistent. The `mobile-nav` widget is to be used in tandem with the `menu-trigger` widget.
 
 __Example:__
 
 ```
 body
-	+mobile-nav()
+	+menu-drawer()
 		include app/nav
-	div#siteWrapper
+	#siteWrapper
 		nav.desktop-nav
 			include app/nav
+		+menu-trigger()
 ```
 
 ### +menu-trigger()
@@ -274,7 +275,7 @@ Creates a menu icon/button for opening and closing a mobile nav drawer.
 __Example:__
 
 ```
-div#siteWrapper
+#siteWrapper
 	nav.desktop-nav
 		include app/nav
 	+menu-trigger()

@@ -472,7 +472,7 @@ nav li .search-widget {
 .desktop-nav li ul li a:hover {
   background-color: #d2d2d2;
 }
-nav.mobile-nav {
+nav.menu-drawer {
   position: fixed;
   overflow: auto;
   font-family: "Open Sans", Verdana, Helvetica, sans-serif;
@@ -484,14 +484,14 @@ nav.mobile-nav {
   background-color: #4a4a4a;
   z-index: 0;
 }
-nav.mobile-nav li {
+nav.menu-drawer li {
   display: block;
 }
-nav.mobile-nav li a {
+nav.menu-drawer li a {
   color: #73e4f4;
   background-color: #6e6e6e;
 }
-nav.mobile-nav li a:hover {
+nav.menu-drawer li a:hover {
   background-color: #898989;
 }
 .icon-menu {
@@ -505,17 +505,17 @@ nav.mobile-nav li a:hover {
     display: inline-block;
   }
 }
-.mobile-nav {
+.menu-drawer {
   padding-top: 30px;
   text-align: center;
 }
-.mobile-nav ul {
+.menu-drawer ul {
   margin-left: 0;
 }
-.mobile-nav ul li {
+.menu-drawer ul li {
   float: none;
 }
-.mobile-nav a.decorate:after {
+.menu-drawer a.decorate:after {
   font-family: 'wireframe-iconfont';
   speak: none;
   font-style: normal;
@@ -537,67 +537,67 @@ nav.mobile-nav li a:hover {
   position: absolute;
   margin-left: 3px;
 }
-.mobile-nav a.decorate.active:after {
+.menu-drawer a.decorate.active:after {
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
   -o-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   transform: rotate(180deg);
 }
-.mobile-nav .searchfield {
+.menu-drawer .searchfield {
   background-color: #a5a5a5;
 }
-.mobile-nav .searchfield .icon-search {
+.menu-drawer .searchfield .icon-search {
   color: #fff;
 }
-.mobile-nav .searchfield input {
+.menu-drawer .searchfield input {
   color: #fff;
 }
-.mobile-nav div > ul > li {
+.menu-drawer div > ul > li {
   padding-top: 0;
   padding-bottom: 1px;
 }
-.mobile-nav li {
+.menu-drawer li {
   text-align: left;
   margin-left: 0;
 }
-.mobile-nav li > ul {
+.menu-drawer li > ul {
   display: none;
   padding-top: 1px;
 }
-.mobile-nav li > ul li {
+.menu-drawer li > ul li {
   padding-top: 0;
   padding-bottom: 1px;
 }
-.mobile-nav li > ul li a {
+.menu-drawer li > ul li a {
   padding-left: 45px;
 }
-.mobile-nav li > ul li [class^="icon-"] {
+.menu-drawer li > ul li [class^="icon-"] {
   position: absolute;
   margin-top: 8px;
   margin-left: 43px;
   font-size: 1.1rem;
   color: #ababab;
 }
-.mobile-nav li > ul li > ul li a {
+.menu-drawer li > ul li > ul li a {
   padding-left: 65px;
   color: #7ad5e2;
   background-color: #636363;
 }
-.mobile-nav li a {
+.menu-drawer li a {
   display: block;
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: #efefef;
 }
-.mobile-nav li a:hover {
+.menu-drawer li a:hover {
   text-decoration: none;
   background-color: #ccc;
 }
-.mobile-nav li .search-widget {
+.menu-drawer li .search-widget {
   margin: 10px 10px 10px 20px;
 }
-.mobile-nav a.logo {
+.menu-drawer a.logo {
   display: inline-block;
   position: relative;
   margin: 10px 0 20px;
@@ -605,7 +605,7 @@ nav.mobile-nav li a:hover {
   background-color: #6e6e6e;
   border: 1px solid #353535;
 }
-.mobile-nav a.logo:hover {
+.menu-drawer a.logo:hover {
   background-color: #898989;
 }
 a.button {
