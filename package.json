@@ -1,0 +1,12 @@
+{
+  "name": "wirestorm",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "./jade-watch.sh & ./stylus-watch.sh"
+  },
+  "devDependencies": {
+    "jeet": "^6.1.2",
+    "nib": "^1.1.0",
+    "rupture": "^0.6.1"
+  }
+}
