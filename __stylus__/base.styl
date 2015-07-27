@@ -346,26 +346,52 @@ base()
 	//
 	// Layout (columns/rows)
 	//
+	.half
+		cf()
+		> aside
+			column(1/2)
+			+below(large)
+				column(1/1)
+		> article
+			column(1/2)
+			+below(large)
+				column(1/1)
 	.thirds
 		cf()
-		aside
+		> aside
 			column(1/3)
 			+below(large)
 				column(1/1)
-		article
+		> article
 			column(2/3)
+			+below(large)
+				column(1/1)
+	.fourths
+		cf()
+		> aside
+			column(1/4)
+			+below(large)
+				column(1/1)
+		> article
+			column(3/4)
 			+below(large)
 				column(1/1)
 	.fifths
 		cf()
-		aside
+		> aside
 			column(2/5)
+			&.single
+				column(1/5)
+				+below(large)
+					column(1/1)
 			+below(large)
 				column(1/1)
-		article
+		> article
 			column(3/5)
 			+below(large)
 				column(1/1)
+		> aside.single + article
+			column(4/5) !important
 	
 	section.columns-2
 		cf()
@@ -480,6 +506,9 @@ forms()
 		section[class^="columns-"]
 			p
 				margin-bottom: 0
+		.on-icon
+			.icon-checkmark:before
+				font-size: 0.85rem
 
 widgets()
 	//
@@ -559,6 +588,7 @@ widgets()
 		.image-border
 			border: 1px solid #4a4a4a
 		.dimage
+		.profile
 			&.image-widget
 			.image-widget
 				background-color: #6d6d6d
@@ -746,6 +776,18 @@ widgets()
 				transition: all 0.03s linear
 				-webkit-transition: all 0.03s linear
 				z-index: 2
+			.on
+				position: absolute
+				width: 27px
+				height: 20px
+				background-color: #81EAF7 // 81EAF7, 7FE8F6
+			.on-icon
+				display: block
+				position: absolute
+				margin-top: 1px
+				margin-left: 6px
+				color: #81EAF7
+				font-size: 1rem
 			.on-text
 				position: relative
 				float: left
@@ -795,22 +837,31 @@ widgets()
 		right: 0
 		bottom: 0
 		border: 1px solid #CCC
-	.dimage .image-widget
-	.dimage.image-widget
-		background: #DDD url(../images/demo-image-frame-inkscape3.svg) no-repeat
-		background-size: contain
-		background-position: center
+	.dimage
+		&.image-widget
+		.image-widget
+			background: #DDD url(../images/demo-image-frame-inkscape3.svg) no-repeat
+	.profile
+		&.image-widget
+		.image-widget
+			background: #DDD url(../images/profile-silhouette.svg) no-repeat
+	.dimage
+	.profile
+		&.image-widget
+		.image-widget
+			background-size: contain
+			background-position: center
 	.porthole
 		overflow: hidden
-		background-color: #777
-		border: 3px solid #ddd
+		padding: 3px
+		background-color: #ddd
 		border-radius: 1000px
 		.image-widget
 			border-radius: 1000px
 	.fill 
 	.dark
 		.porthole
-			border-color: #555
+			background-color: #555
 	.slideshow-widget
 		position: relative
 		width: 100%
@@ -930,10 +981,15 @@ widgets()
 		.icon-star
 			font-size: 1.3em
 			color: #7E7E7E
+			&.light
+				color: #ddd
 	.fill
 	.dark
 		.icon-star	
 			color: #DDD
+			&.light
+				color: #808080
+			
 	//
 	// Edit Emulation Classes
 	//
@@ -975,16 +1031,22 @@ widgets()
 					padding: 6px 4px
 					span
 						font-size: 1.2rem
-
-// D5D5D5
-// B2B2B2
-
-
-
-
-
-
-
-
-
-
+	.full
+		display: block
+		width: 100%
+	.reduce
+		font-size: 0.88em
+		button
+		input[type="submit"]
+			padding: 4px 18px
+	button.reduce
+	input[type="submit"].reduce
+		padding: 3px 18px
+	hr
+		margin: 10px 0
+		border: 0
+		height: 1px
+	.highlight
+		display: inline-block
+		background-color: #efefef
+		padding: 3px 5px

@@ -16,18 +16,18 @@ include ../header
 						form.wrap
 							section.columns-2
 								article
-									+input('text','First Name')
+									+input('First Name')
 								article
-									+input('text','Last Name')
-							+input('text','Email')
+									+input('Last Name')
+							+input('Email')
 							+textarea('Message')
-							+input('submit','Submit')
+							+submit('Submit','right')
 				aside
 					+slideshow(380,235,'right')
 		+panel('dark')
 			+column-loop(4)
 				article
-					+porthole(120,120,'center')
+					+porthole(120,'center')
 					p.center-align
 						+blockletter(15)
 		+panel('light')

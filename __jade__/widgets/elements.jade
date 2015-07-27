@@ -100,12 +100,12 @@ mixin pagination(count)
 	.page-widget
 		nav.pagination
 			ul.right-align
-				li.arrows: a(href="#") 
+				li.arrows: a(href="#")
 					span.icon-arrow-left
 				- var n = 1;
 				while n < (count + 1)
 					li: a(href="#")= n++
-				li.arrows: a(href="#") 
+				li.arrows: a(href="#")
 					span.icon-arrow-right
 
 mixin tabs(tabs)
@@ -120,11 +120,18 @@ mixin tabs(tabs)
 mixin rating(max)
 	- (max === undefined) ? max = 5 : max;
 	.stars-widget
-		- var starCount = (Math.random() * max)
-		- var z = 0
+		- var starCount = Math.floor((Math.random() * max));
+		- if (starCount === 0) {
+		- 	starCount = 1;
+		- }
+		- var z = 0;
+		- var leftover = max - starCount;
 		while z < starCount
 			span.icon-star
 			- z++
+		while (leftover > 0)
+			span.icon-star.light
+			- leftover--
 
 mixin footer-links(items)
 	ul.footer-links

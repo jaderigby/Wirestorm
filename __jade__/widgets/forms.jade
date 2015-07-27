@@ -1,14 +1,28 @@
-mixin input(myType, description)
-	- if (myType === 'submit') {
+mixin input(description)
+	- if (description) {
 		p
-			input(type=myType, value=description)
+			input(type="text", placeholder=description)
 	- }
 	- else {
 		p
-			input(type=myType, placeholder=description)
+			input(type="text")
 	- }
 
-mixin switch(items)
+mixin submit(description, pos)
+	- if (pos === 'center') {
+		p.center-justify
+			input(type="submit", placeholder=description)
+	- }
+	- else if (pos === 'right') {
+		p.right-justify
+			input(type="submit", placeholder=description)
+	- }
+	- else {
+		p
+			input(type="submit", placeholder=description)
+	- }
+
+mixin switch(name, items)
 	- if (items) {
 		.switch-widget
 			ul
@@ -20,6 +34,13 @@ mixin switch(items)
 								div.on-text On
 								div.off-text Off
 							label= item
+	- }
+	- else if (name) {
+		.switch-widget
+			div.switch
+			div.on-text On
+			div.off-text Off
+		label= name
 	- }
 	- else {
 		.switch-widget

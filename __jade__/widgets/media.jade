@@ -13,7 +13,7 @@ mixin image(w,h,alignment)
 		- a = "";
 	- }
 	- if (w === '100%' && h) {
-		div(style="width: "+ w +"px; height: "+ h +"px"+ a)
+		div(style="width: "+ w +"; height: "+ h +"px"+ a)
 			div.image-widget
 				.image-border
 	- }
@@ -41,7 +41,7 @@ mixin image2(w,h,alignment)
 		- a = "";
 	- }
 	- if (w === '100%' && h) {
-		div(style="width: "+ w +"px; height: "+ h +"px"+a)
+		div(style="width: "+ w +"; height: "+ h +"px"+a)
 			div.dimage.image-widget
 				.image-border
 	- }
@@ -60,7 +60,7 @@ mixin image2(w,h,alignment)
 			.image-border
 	- }
 
-mixin porthole(w,h,alignment)
+mixin porthole(size,alignment)
 	- var a;
 	- if (alignment === 'left') {
 		- a = "; float: left";
@@ -74,16 +74,8 @@ mixin porthole(w,h,alignment)
 	- else {
 		- a = "";
 	- }
-	- if (w === '100%' && h) {
-		div.porthole(style="width: "+ w +"px; height: "+ h +"px"+a)
-			div.image-widget
-	- }
-	- else if (w && h === '100%') {
-		div.porthole(style="width: "+ w +"px; height: "+ h +"px"+a)
-			div.image-widget
-	- }
-	- else if (w && h) {
-		div.porthole(style="width: "+ w +"px; height: "+ h +"px"+a)
+	- if (size) {
+		div.porthole(style="width: "+ size +"px; height: "+ size +"px"+a)
 			div.image-widget
 	- }
 	- else {
@@ -122,7 +114,7 @@ mixin porthole2(w,h,alignment)
 			div.dimage.image-widget
 	- }
 
-mixin profile(w,h,alignment)
+mixin profile(size,alignment)
 	- var a;
 	- if (alignment === 'center') {
 		- a = "; margin: 0 auto";
@@ -130,24 +122,37 @@ mixin profile(w,h,alignment)
 	- else {
 		- a = "";
 	- }
-	- if (w === '100%' && h) {
-		div(style="width: "+ w +"px; height: "+ h +"px"+a)
-			div.dimage.image-widget
-				.image-border
-	- }
-	- else if (w && h === '100%') {
-		div(style="width: "+ w +"px; height: "+ h +a)
-			div.dimage.image-widget
-				.image-border
-	- }
-	- else if (w && h) {
-		div(style="width: "+ w +"px; height: "+ h +"px"+a)
-			div.dimage.image-widget
+	- if (size) {
+		div(style="width: "+ size +"px; height: "+ size +"px"+a)
+			div.profile.image-widget
 				.image-border
 	- }
 	- else {
 		div.image-widget
 			.image-border
+	- }
+
+mixin profile-porthole(size,alignment)
+	- var a;
+	- if (alignment === 'left') {
+		- a = "; float: left";
+	- } 
+	- else if (alignment === 'center') {
+		- a = "; margin: 0 auto";
+	- } 
+	- else if (alignment === 'right') {
+		- a = "; float: right";
+	- } 
+	- else {
+		- a = "";
+	- }
+	- if (size) {
+		div.porthole(style="width: "+ size +"px; height: "+ size +"px"+a)
+			div.profile.image-widget
+	- }
+	- else {
+		div.porthole
+			div.profile.image-widget
 	- }
 
 mixin video(w,h,alignment)

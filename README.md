@@ -281,6 +281,110 @@ __Example:__
 	+menu-trigger()
 ```
 
+### +modal(arg1, arg2)
+	
+__Parameters:__
+
+- arg1 = string, text for button
+- arg2 = string, position of button (left, center, right)
+
+__Description:__
+
+Creates a modal window.  The modal window will contain any content nested within the `modal` widget.  The modal widget also creates a button where the first parameter is the button's text.
+
+__Example:__
+
+```
+section
+	h2 Title
+	p
+		+blockletter(50)
+		+modal
+			h3 Modal Title
+			p
+				+blockletter(80)
+```
+
+### +input(arg1)
+
+__Parameters:__
+
+- arg1 = string, placeholder text
+
+__Example:__
+
+```
+p
+	+input('First Name')
+```
+
+### +submit(arg1, arg2)
+
+__Parameters:__
+
+- arg1 = string, placeholder text
+- arg2 = string, position of button (left, center, right)
+
+__Example:__
+
+```
+p
+	+submit('Save', 'right')
+```
+
+### +checkbox(arg1, arg2, arg3)
+
+__Parameters:__
+
+- arg1 = string, this acts as the "name" value for the checkboxes
+- arg2 = array, pass in an array of strings to describe each checkbox
+- arg3 = string, optional value of 'list', otherwise checkboxes will be inline
+
+__Description:__
+
+Creates checkbox items, or optionally, a list of checkbox items
+
+__Example:__
+
+```
+p
+	+checkbox('')
+p
+	+checkbox('cars', ['Camaro', 'Corvette', 'Nissan 370z', 'Mustang'], 'list')
+```
+
+### +radio(arg1, arg2)
+
+__Parameters:__
+
+- arg1 = string, this acts as the "name" value for the radios
+- arg2 = array, pass in an array of strings to describe each radio
+
+__Description:__
+
+__Example:__
+
+```
+p
+	+radio('transmission', ['manual', 'automatic', 'sportronic'])
+```
+
+### +switch(arg1, arg2, arg3)
+
+__Parameters:__
+
+- arg1 = string, this acts as the "name" value for the switches
+- arg2 = array, pass in an array of strings to describe each switch
+
+__Description:__
+
+__Example:__
+
+```
+p
+	+switch('transmission', ['manual', 'automatic', 'sportronic'])
+```
+
 ## ID's
 
 ### #contain
