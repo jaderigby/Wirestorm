@@ -34,6 +34,7 @@ base()
 		li
 			margin-left: 25px
 			padding: 5px 0
+			line-height: 1.5
 	hr
 		border-bottom: 1px solid #ddd
 	.fill
@@ -51,9 +52,13 @@ base()
 		height: auto
 	strong
 		font-weight: 700
+	em
+		font-style: italic
 	.blockletter
 		font-family: blockletter
 		color: #B6B6B6
+	p
+		line-height: 1.5
 	.wrap
 		margin: 10px 0
 		padding: 10px 15px
@@ -116,6 +121,7 @@ base()
 			cf()
 			li
 				float: left
+				line-height: 1
 		a
 			display: block
 			padding: 6px 20px
@@ -348,6 +354,8 @@ base()
 			border-color: #5c5c5c
 			.dimage.image-widget
 				background-color: #616161
+		p
+			color: #B6B6B6
 	//
 	// Layout (columns/rows)
 	//
@@ -464,6 +472,7 @@ base()
 
 forms()
 	input[type="text"]
+	input[type="email"]
 	input[type="password"]
 		display: block
 		padding: 4px 1.5%
@@ -837,6 +846,8 @@ widgets()
 		color: #00a0b5
 		font-size: 1.4rem
 		cursor: pointer
+	.modal.trigger
+		cursor: pointer
 	//
 	// Media
 	//
@@ -965,6 +976,7 @@ widgets()
 		[data-tab].active
 			display: block
 		section.tabs-wrapper
+			position: relative
 			margin-bottom: 10px
 			padding: 10px 15px
 			border: 1px solid #CCC
@@ -1067,3 +1079,33 @@ widgets()
 		display: inline-block
 		background-color: #efefef
 		padding: 3px 5px
+.demo-heading
+	margin-bottom: 60px
+h3.demo-heading
+	padding-bottom: 10px
+	border-bottom: 1px solid #ddd
+.ft-hd
+	margin-top: 40px
+	font-size: 1.5rem
+	color: #00A0B5
+.demo
+	position: relative
+	margin: 30px 0
+	.demo-height
+		margin-bottom: 80px
+	.web-wrap
+		position: absolute
+		display: inline-block
+		padding: 10px
+		transform: scale(0.67)
+		transform-origin: 0 0
+		background: url(../images/checker-bg.svg)
+		border: 1px solid #ccc
+		box-shadow: 0 0 45px rgba(0,0,0,0.13)
+		border-radius: 4px
+		section
+		article
+		div
+			max-width: 977px !important
+		.extend
+			width: 250px
