@@ -8,6 +8,21 @@ mixin input(description)
 			input(type="text")
 	- }
 
+mixin password(description)
+	- if (description) {
+		p
+			input(type="password", placeholder=description)
+	- }
+	- else {
+		p
+			input(type="password")
+	- }
+
+mixin select(items)
+	select
+		- each item in items
+			option= item
+
 mixin submit(description, pos)
 	- if (pos === 'center') {
 		p.center-justify
@@ -31,8 +46,8 @@ mixin switch(name, items)
 						li.switch-item
 							.switch-object
 								div.switch
-								div.on-text On
-								div.off-text Off
+								div.on-icon
+									span.icon-checkmark
 							label= item
 	- }
 	- else if (name) {
@@ -86,4 +101,5 @@ mixin radio(name, items)
 					label(for=rad+iterRadio)= item
 					- iterRadio++
 mixin textarea(description)
-	textarea(placeholder=description)
+	p
+		textarea(placeholder=description)

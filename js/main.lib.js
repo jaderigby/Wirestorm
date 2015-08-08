@@ -252,6 +252,15 @@ $('.tabs-widget li').click(function() {
 	equalize();
 });
 
+$('.tabs-wrapper').each(function() {
+	var i = 0;
+	var sectionTabs = $(this).prevAll('ul.tabs').children('li');
+	$('.tab-element').each(function() {
+		var myItem = sectionTabs[i++];
+		$(this).attr('data-tab',$(myItem).html());
+	});
+});
+
 //======================
 //	MODALS
 //======================

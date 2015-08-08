@@ -343,6 +343,11 @@ base()
 			&:hover
 				color: buttonHoverColorDark
 				background-color: buttonHoverBgDark
+		.wrap
+			background-color: #6f6f6f
+			border-color: #5c5c5c
+			.dimage.image-widget
+				background-color: #616161
 	//
 	// Layout (columns/rows)
 	//
@@ -464,6 +469,16 @@ forms()
 		padding: 4px 1.5%
 		width: 97%
 		height: 25px
+		font-size: 0.85rem
+		color: #84f1ff
+		line-height: 1.3
+		background-color: #444
+		border: 1px solid #888
+	select
+		display: block
+		padding: 4px 1.5%
+		width: 100%
+		height: 35px
 		font-size: 0.85rem
 		color: #84f1ff
 		line-height: 1.3
@@ -751,6 +766,8 @@ widgets()
 		[type="radio"]:not(:checked):focus + label:before
 			border: 1px dotted blue
 	.switch-widget
+		ul
+			margin: 10px 0
 		li
 			list-style: none
 			cf()
@@ -893,7 +910,7 @@ widgets()
 		font-size: 1.2rem
 		font-family: play
 		color: #00a0b5
-		background: #E7E7E7 url(../images/generic-logo.svg) no-repeat
+		background: #E7E7E7 url(../images/generic-logo-final2B.svg) no-repeat
 		background-size: contain
 		background-position: 15px
 		border: 1px solid #ccc
@@ -1050,3 +1067,33 @@ widgets()
 		display: inline-block
 		background-color: #efefef
 		padding: 3px 5px
+	.demo
+		position: relative
+		margin: 25px 0
+		> h2
+			position: absolute
+			margin-top: 80px
+			margin-left: 30%
+			padding: 10px 0
+			width: 400px
+			color: white
+			text-align: center
+			background-color: rgba(0,0,0,0.4)
+			border-radius: 8px
+			z-index: 2
+		aside
+		article
+			.box
+				position: relatve
+				width: 100%
+				height: 220px
+				color: white
+				h2
+					margin: 0
+					padding: 30px 0
+		aside
+			.box
+				background-color: #999
+		article
+			.box
+				background-color: #bbb
