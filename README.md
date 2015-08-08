@@ -332,7 +332,7 @@ __Example:__
 
 ```
 article
-	+email('New Password')
+	+email('Email Address')
 ```
 
 ### +password(arg1)
