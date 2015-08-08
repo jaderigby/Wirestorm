@@ -322,6 +322,19 @@ article
 	+input('First Name')
 ```
 
+### +email(arg1)
+
+__Parameters:__
+
+- arg1 = string, placeholder text
+
+__Example:__
+
+```
+article
+	+email('New Password')
+```
+
 ### +password(arg1)
 
 __Parameters:__
