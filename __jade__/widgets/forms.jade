@@ -8,6 +8,16 @@ mixin input(description)
 			input(type="text")
 	- }
 
+mixin email(description)
+	- if (description) {
+		p
+			input(type="email", placeholder=description)
+	- }
+	- else {
+		p
+			input(type="email")
+	- }
+
 mixin password(description)
 	- if (description) {
 		p

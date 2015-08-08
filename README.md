@@ -119,18 +119,22 @@ __Description:__
 To use the tabs widget:
 
 - declare the tabs widget (`+tabs(['First Tab', 'Second Tab', 'Third Tab'])`)
-- nest section tags with included `data-tab` attribute, with the `data-tab` value being one of the `+tabs()` titles (from the array).
+- nest each tab within a `+tab()` mixin. JavaScript will assign each tab and title.  Note: Make sure that you have one `+tab()` for every tab title in your tab array.
 
 __Example:__
 
 ```
 +tabs(['First Tab', 'Second Tab', 'Third Tab'])
-	section(data-tab="First Tab")
+	+tab()
 		h3 Tab 1 Content
 		p
 			+blockletter(25)
-	section(data-tab="Second Tab")
-		h3 Tab 1 Content
+	+tab()
+		h3 Tab 2 Content
+		p
+			+blockletter(25)
+	+tab()
+		h3 Tab 3 Content
 		p
 			+blockletter(25)
 ```
@@ -314,8 +318,21 @@ __Parameters:__
 __Example:__
 
 ```
-p
+article
 	+input('First Name')
+```
+
+### +password(arg1)
+
+__Parameters:__
+
+- arg1 = string, placeholder text
+
+__Example:__
+
+```
+article
+	+password('New Password')
 ```
 
 ### +submit(arg1, arg2)
