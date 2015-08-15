@@ -1,10 +1,11 @@
 include ../widgets/elements
 include ../widgets/media
 include ../widgets/forms
+include ../widgets/responsive
 include ../header
 	block content
 		+panel('light')
-			section.fifths
+			+break({lg : 'fifths', md : 'half', sm : 'stack'})
 				article
 					h1 First One
 					p
@@ -31,7 +32,7 @@ include ../header
 					p.center-align
 						+blockletter(15)
 		+panel('light')
-			section.thirds
+			+break({lg : 'thirds', md : 'half', sm : 'stack'})
 				aside
 					+image2('100%',180)
 				article

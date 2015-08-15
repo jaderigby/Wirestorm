@@ -41,7 +41,7 @@ mixin loop(count)
 		if block
 			block
 
-mixin column-loop(col)
+mixin column-loop(col, equalize)
 	- var a = 1;
 	- var columnCount; 
 	- if (col == 2) {columnCount = 'columns-2'}
@@ -53,11 +53,20 @@ mixin column-loop(col)
 	- if (col == 8) {columnCount = 'columns-8'}
 	- if (col == 9) {columnCount = 'columns-9'}
 	- if (col == 10) {columnCount = 'columns-10'}
-	section(class=columnCount+' columnizer')
-		while a < (col + 1)
-			- a++
-			if block
-				block
+	- if (equalize === 'equalize') {
+		section(class=columnCount+' columnizer', data-equalize)
+			while a < (col + 1)
+				- a++
+				if block
+					block
+	- }
+	- else {
+		section(class=columnCount+' columnizer')
+			while a < (col + 1)
+				- a++
+				if block
+					block
+	- }
 
 mixin columns(col)
 	- if (col == 2) {columnCount = 'columns-2'}
@@ -130,6 +139,11 @@ mixin tabs(tabs)
 		section.tabs-wrapper
 			if block
 				block
+
+mixin tab()
+	section.tab-element
+		if block
+			block
 
 mixin rating(max)
 	- (max === undefined) ? max = 5 : max;

@@ -114,21 +114,37 @@ mixin porthole2(w,h,alignment)
 			div.dimage.image-widget
 	- }
 
-mixin profile(size,alignment)
+mixin profile(w,h,alignment)
 	- var a;
 	- if (alignment === 'center') {
 		- a = "; margin: 0 auto";
 	- } 
+	- else if (alignment === 'left') {
+		- a = "; float: left; padding-right: 10px; padding-bottom: 5px";
+	- }
+	- else if (alignment === 'right') {
+		- a = "; float: right; padding-left: 10px; padding-bottom: 5px";
+	- }
 	- else {
 		- a = "";
 	- }
-	- if (size) {
-		div(style="width: "+ size +"px; height: "+ size +"px"+a)
+	- if (w === '100%' && h) {
+		div(style="width: "+ w +"; height: "+ h +"px"+ a)
+			div.profile.image-widget
+				.image-border
+	- }
+	- else if (w && h === '100%') {
+		div(style="width: "+ w +"px; height: "+ h +a)
+			div.profile.image-widget
+				.image-border
+	- }
+	- else if (w && h) {
+		div(style="width: "+ w +"px; height: "+ h +"px"+a)
 			div.profile.image-widget
 				.image-border
 	- }
 	- else {
-		div.image-widget
+		div.profile.image-widget
 			.image-border
 	- }
 
@@ -157,38 +173,36 @@ mixin profile-porthole(size,alignment)
 
 mixin video(w,h,alignment)
 	- var a;
-	- if (alignment === 'center') {
+	- if (alignment === 'left') {
+		- a = "; float: left";
+	- } 
+	- else if (alignment === 'center') {
 		- a = "; margin: 0 auto";
+	- } 
+	- else if (alignment === 'right') {
+		- a = "; float: right";
 	- } 
 	- else {
 		- a = "";
 	- }
 	- if (w === '100%' && h) {
-		div(style="width: "+ w +"px; height: "+ h +"px"+a)
-			.video-widget
-				.video-border
-					.video-frame
-						.icon-play
+		div(style="width: "+ w +"; height: "+ h +"px"+ a)
+			div.video-widget
+				.image-border
 	- }
 	- else if (w && h === '100%') {
 		div(style="width: "+ w +"px; height: "+ h +a)
-			.video-widget
-				.video-border
-					.video-frame
-						.icon-play
+			div.video-widget
+				.image-border
 	- }
 	- else if (w && h) {
 		div(style="width: "+ w +"px; height: "+ h +"px"+a)
-			.video-widget
-				.video-border
-					.video-frame
-						.icon-play
+			div.video-widget
+				.image-border
 	- }
 	- else {
-		.video-widget
-			.video-border
-				.video-frame
-					.icon-play
+		div.video-widget
+			.image-border
 	- }
 
 mixin slideshow(w,h,alignment)

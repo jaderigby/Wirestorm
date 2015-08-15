@@ -36,15 +36,15 @@ mixin select(items)
 mixin submit(description, pos)
 	- if (pos === 'center') {
 		p.center-justify
-			input(type="submit", placeholder=description)
+			input(type="submit", name=description)
 	- }
 	- else if (pos === 'right') {
 		p.right-justify
-			input(type="submit", placeholder=description)
+			input(type="submit", name=description)
 	- }
 	- else {
 		p
-			input(type="submit", placeholder=description)
+			input(type="submit", name=description)
 	- }
 
 mixin switch(name, items)
@@ -101,7 +101,7 @@ mixin checkbox(name, items, orientation)
 
 mixin radio(name, items)
 	.radio-widget
-		- var iterRadio = 1;
+		- var iterRadio = 1
 		- var rad = (Math.random() + 1).toString(36).substring(7);
 		p
 			each item in items

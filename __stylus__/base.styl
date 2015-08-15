@@ -57,8 +57,6 @@ base()
 	.blockletter
 		font-family: blockletter
 		color: #B6B6B6
-	p
-		line-height: 1.5
 	.wrap
 		margin: 10px 0
 		padding: 10px 15px
@@ -73,6 +71,8 @@ base()
 		margin: 10px 0
 		padding: 10px 15px
 		border: 1px solid #CCC
+	.light
+		background-color: white
 	article.border-wrap
 		cf()
 	.clear-wrap
@@ -910,6 +910,25 @@ widgets()
 			color: white
 			bottom: 10px
 			right: 20px
+	.video-widget
+		position: relative
+		width: 100%
+		height: 100%
+		background: #DFDFDF url(../images/play-icon.svg) no-repeat
+		background-size: contain
+		background-position: center
+		cursor: pointer
+		&:hover
+			background: #DFDFDF url(../images/play-icon-glow.svg) no-repeat
+			background-size: contain
+			background-position: center
+		.image-border
+			position: absolute
+			top: 0
+			left: 0
+			right: 0
+			bottom: 0
+			border: 3px solid #CCC
 	nav.dark
 		.logo
 			border: 1px solid #000
@@ -1018,6 +1037,7 @@ widgets()
 			color: #DDD
 			&.light
 				color: #808080
+				background-color: transparent
 			
 	//
 	// Edit Emulation Classes
@@ -1072,9 +1092,13 @@ widgets()
 	input[type="submit"].reduce
 		padding: 3px 18px
 	hr
-		margin: 10px 0
+		margin: 20px 0
 		border: 0
 		height: 1px
+		backgroud-color: #ddd
+	.wrap
+		hr
+			background-color: #bfbfbf
 	.highlight
 		display: inline-block
 		background-color: #efefef
@@ -1084,28 +1108,284 @@ widgets()
 h3.demo-heading
 	padding-bottom: 10px
 	border-bottom: 1px solid #ddd
-.ft-hd
+.ft-hd // feature heading
 	margin-top: 40px
-	font-size: 1.5rem
+	font-size: 1.4rem
 	color: #00A0B5
+	font-family: 'wireframe-iconfont'
+	speak: none
+	font-style: normal
+	font-weight: normal
+	font-variant: normal
+	text-transform: none
+	line-height: 1
+	
+	/* Enable Ligatures ================ */
+	-webkit-font-feature-settings: "liga"
+	-moz-font-feature-settings: "liga=1"
+	-moz-font-feature-settings: "liga"
+	-ms-font-feature-settings: "liga" 1
+	-o-font-feature-settings: "liga"
+	font-feature-settings: "liga"
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+	&:before
+		content: "\e60d"
+		font-size: 1.2rem
+		vertical-align: -1px
+		color: #ccc
+		transition: all 0.21s ease-in-out
+		-webkit-transition: all 0.21s ease-in-out
+	&:hover
+		&:before
+			color: #00A0B5
+			margin-left: -5px
+			margin-right: 5px
 .demo
 	position: relative
 	margin: 30px 0
 	.demo-height
-		margin-bottom: 80px
+		margin-bottom: 50px
 	.web-wrap
 		position: absolute
 		display: inline-block
 		padding: 10px
 		transform: scale(0.67)
 		transform-origin: 0 0
-		background: url(../images/checker-bg.svg)
 		border: 1px solid #ccc
 		box-shadow: 0 0 45px rgba(0,0,0,0.13)
 		border-radius: 4px
+		&.checkered
+			background: url(../images/checker-bg.svg)
+		&.light
+			background: #fff
+		&.dark
+			background: #838383
 		section
 		article
 		div
 			max-width: 977px !important
 		.extend
 			width: 250px
+responsive()
+	lg = 1024px
+	md = 960px
+	tablet = 768px
+	sm = 640px
+	xs = 320px
+	section.break
+		cf()
+		//
+		// FIFTHS
+		//
+		&.lg-fifths
+			> aside
+				column(2/5)
+			> article
+				column(3/5)
+			+below(lg)
+				> aside
+					column(2/5)
+				> article
+					column(3/5)
+		&.md-fifths
+			+below(md)
+				> aside
+					column(2/5)
+				> article
+					column(3/5)
+		&.tablet-fifths
+			+below(tablet)
+				> aside
+					column(2/5)
+				> article
+					column(3/5)
+		&.sm-fifths
+			+below(sm)
+				> aside
+					column(2/5)
+				> article
+					column(3/5)
+		&.xs-fifths
+			+below(xs)
+				> aside
+					column(2/5)
+				> article
+					column(3/5)
+		//
+		// FOURTHS
+		//
+		&.lg-fourths
+			> aside
+				column(1/4)
+			> article
+				column(3/4)
+			+below(lg)
+				> aside
+					column(1/4)
+				> article
+					column(3/4)
+		&.md-fourths
+			+below(md)
+				> aside
+					column(1/4)
+				> article
+					column(3/4)
+		&.tablet-fourths
+			+below(tablet)
+				> aside
+					column(1/4)
+				> article
+					column(3/4)
+		&.sm-fourths
+			+below(sm)
+				> aside
+					column(1/4)
+				> article
+					column(3/4)
+		&.xs-fourths
+			+below(xs)
+				> aside
+					column(1/4)
+				> article
+					column(3/4)
+		//	
+		// THIRDS
+		//
+		&.lg-thirds
+			> aside
+				column(1/3)
+			> article
+				column(2/3)
+			+below(lg)
+				> aside
+					column(1/3)
+				> article
+					column(2/3)
+		&.md-thirds
+			+below(md)
+				> aside
+					column(1/3)
+				> article
+					column(2/3)
+		&.tablet-thirds
+			+below(tablet)
+				> aside
+					column(1/3)
+				> article
+					column(2/3)
+		&.sm-thirds
+			+below(sm)
+				> aside
+					column(1/3)
+				> article
+					column(2/3)
+		&.xs-thirds
+			+below(xs)
+				> aside
+					column(1/3)
+				> article
+					column(2/3)
+		//	
+		// HALF
+		//
+		&.lg-half
+			> aside
+				column(1/2)
+			> article
+				column(1/2)
+			+below(lg)
+				> aside
+					column(1/2)
+				> article
+					column(1/2)
+		&.md-half
+			+below(md)
+				> aside
+					column(1/2)
+				> article
+					column(1/2)
+		&.tablet-half
+			+below(tablet)
+				> aside
+					column(1/2)
+				> article
+					column(1/2)
+		&.sm-half
+			+below(sm)
+				> aside
+					column(1/2)
+				> article
+					column(1/2)
+		&.xs-half
+			+below(xs)
+				> aside
+					column(1/2)
+				> article
+					column(1/2)
+		//
+		// STACK
+		//
+		&.lg-stack
+			> aside
+				stack()
+			> article
+				stack()
+			+below(lg)
+				> aside
+					stack()
+				> article
+					stack()
+		&.md-stack
+			+below(md)
+				> aside
+					stack()
+				> article
+					stack()
+		&.tablet-stack
+			+below(tablet)
+				> aside
+					stack()
+				> article
+					stack()
+		&.sm-stack
+			+below(sm)
+				> aside
+					stack()
+				> article
+					stack()
+		&.xs-stack
+			+below(xs)
+				> aside
+					stack()
+				> article
+					stack()
+		//
+		// FOR COLUMNS
+		//
+		for item in (2..10)
+			&.lg-columns-{item}
+				> article
+					column(1/item)
+				+below(lg)
+					> article
+						column(1/item)
+			&.md-columns-{item}
+				+below(md)
+					> article
+						column(1/item)
+			&.tablet-columns-{item}
+				+below(tablet)
+					> article
+						column(1/item)
+			&.sm-columns-{item}
+				+below(sm)
+					> article
+						column(1/item)
+			&.xs-columns-{item}
+				+below(xs)
+					> article
+						column(1/item)
+			

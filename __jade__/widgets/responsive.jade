@@ -1,0 +1,14 @@
+- var breakpoints = ['lg','md','tablet','sm']
+
+mixin break(items)
+	- var clss = ""
+	- for (var i = 0; i < breakpoints.length; i++) {
+	- 	if (items[breakpoints[i]] !== undefined) {
+	- 		itemBreak = breakpoints[i];
+	- 		clss += itemBreak + "-" + items[itemBreak] + " "
+	- 	}
+	- }
+	- clss = clss + 'break'
+	section(class=clss)
+		if block
+			block
