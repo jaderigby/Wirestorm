@@ -1,10 +1,17 @@
 {
   "name": "wirestorm",
   "version": "0.1.0",
-  "scripts": {
-    "start": "./jade-watch.sh & ./stylus-watch.sh"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaderigby/wirestorm"
   },
   "devDependencies": {
+    "grunt": "^1.0.0",
+    "grunt-contrib-jade": "^1.0.0",
+    "grunt-contrib-stylus": "^1.2.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "load-grunt-tasks": "^3.5.0",
     "jeet": "^6.1.2",
     "nib": "^1.1.0",
     "rupture": "^0.6.1"

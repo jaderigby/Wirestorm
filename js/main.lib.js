@@ -262,88 +262,7 @@ $('.tabs-wrapper').each(function() {
 });
 
 //======================
-//	MODALS
-//======================
-
-// function initModals() {
-// 	$('.modal.window').hide();
-// 	if ($('.modal.window').length > 0) {
-// 		$('body').prepend('<div id="overlay" style="display: none; position: fixed; width: 100%; height: 100%; background-color: rgba(0,0,0,0.45); opacity: 0; z-index: 999"></div>');
-// 		$('.modal.window').prepend('<div class="close-modal"><span class="icon-close"></span></div>');
-// 		$('.modal.window').css({
-// 			position: 'absolute',
-// 			top: '0',
-// 			left: '0',
-// 			right: '0',
-// 			margin: 'auto',
-// 			padding: '20px',
-// 			width: '84%',
-// 			maxWidth: '650px',
-// 			backgroundColor: '#FFF',
-// 			opacity: 0,
-// 			zIndex: 9999
-// 		});
-// 		var thisModal = $('.modal.window').detach();
-// 		$('body').prepend(thisModal);
-// 	}
-// }
-
-// initModals();
-
-// $('.modal.trigger').parent().delegate('.modal.trigger', 'click', function() {
-// 	var myModal = $(this).data('target');
-// 	var scrollTop = $(window).scrollTop();
-// 	var topPos = scrollTop - 100 + 'px';
-// 	$('#'+ myModal).css({
-// 		top: topPos
-// 	});
-// 	$('#overlay').show();
-// 	$('#overlay').animate({
-// 		opacity: 1
-// 	}, 240);
-// 	$('#'+ myModal).show();
-// 	var scrollTop = $(window).scrollTop();
-// 	var topPos = scrollTop + 100 + 'px';
-// 	$('#'+ myModal).animate({
-// 		top: topPos,
-// 		opacity: 1
-// 	}, 150);
-// });
-
-// $('.modal.window').delegate('.close-modal', 'click', function() {
-// 	$('#overlay').animate({
-// 		opacity: 0
-// 	}, 240, function() {
-// 		$(this).hide();
-// 	});
-// 	var scrollTop = $(window).scrollTop();
-// 	var topPos = scrollTop - 100 + 'px';
-// 	$('.modal.window').animate({
-// 		top: topPos,
-// 		opacity: 0
-// 	}, 150, function() {
-// 		$(this).hide();
-// 	});
-// });
-
-// $('#overlay').click(function() {
-// 	$(this).animate({
-// 		opacity: 0
-// 	}, 240, function() {
-// 		$(this).hide();
-// 	});
-// 	var scrollTop = $(window).scrollTop();
-// 	var topPos = scrollTop - 100 + 'px';
-// 	$('.modal.window').animate({
-// 		top: topPos,
-// 		opacity: 0
-// 	}, 150, function() {
-// 		$(this).hide();
-// 	});
-// });
-
-//======================
-//	Ohman Modal
+//	Modal
 //======================
 
 function initModals() {
@@ -353,7 +272,7 @@ function initModals() {
 		$('.modal.window').prepend('<div class="close-modal"><span class="icon-close"></span></div>');
 		$('.modal.window').css({
 			position: 'absolute',
-			top: '-200px',
+			top: '100px',
 			left: 0,
 			right: 0,
 			margin: 'auto',
@@ -372,7 +291,7 @@ function initModals() {
 
 function resetModal() {
 	$('.modal.window').hide();
-	$('.modal.window').css('top','-200px');
+	$('.modal.window').css('top','100px');
 }
 
 initModals();
@@ -397,11 +316,6 @@ $('.modal.trigger').parent().delegate('.modal.trigger', 'click', function() {
 		scale: 1,
 		ease: Power2.easeOut
 	});
-	// $('#'+ myModal).animate({
-	// 	top: topPos,
-	// 	opacity: 1,
-	// 	left: 0
-	// }, 150);
 });
 
 $('.modal.window').delegate('.close-modal', 'click', function() {
@@ -417,13 +331,6 @@ $('.modal.window').delegate('.close-modal', 'click', function() {
 		ease: Power1.easeIn,
 		onComplete: resetModal
 	});
-	// $('.modal.window').animate({
-	// 	opacity: 0,
-	// 	left: '400px'
-	// }, 150, function() {
-	// 	$(this).hide();
-	// 	$(this).css('left','-400px');
-	// });
 });
 
 $('#overlay').click(function() {
@@ -439,13 +346,6 @@ $('#overlay').click(function() {
 		ease: Power1.easeIn,
 		onComplete: resetModal
 	});
-	// $('.modal.window').animate({
-	// 	opacity: 0,
-	// 	left: '400px'
-	// }, 150, function() {
-	// 	$(this).hide();
-	// 	$(this).css('left','-400px');
-	// });
 });
 
 //======================

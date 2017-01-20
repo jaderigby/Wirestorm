@@ -33,6 +33,9 @@ mixin panel(type, name)
 				block
 	- }
 
+mixin link(linkName, linkDescriptor)
+	a(href=linkName + ".html")= linkDescriptor
+
 //- Main loop
 mixin loop(count)
 	- var n = 1;

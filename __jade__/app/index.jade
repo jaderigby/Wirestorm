@@ -10,19 +10,20 @@ include ../header
 					h1 First One
 					p
 						+blockletter(45)
-					+modal('Learn More')
-						h3 Learn More
-						p
-							+blockletter(50)
-						form.wrap
-							section.columns-2
-								article
-									+input('First Name')
-								article
-									+input('Last Name')
-							+input('Email')
-							+textarea('Message')
-							+submit('Submit','right')
+					p
+						+modal('Learn More')
+							h3 Learn More
+							p
+								+blockletter(50)
+							form.wrap
+								section.columns-2
+									article
+										+input('First Name')
+									article
+										+input('Last Name')
+								+input('Email')
+								+textarea('Message')
+								+submit('Submit','right')
 				aside
 					+slideshow(380,235,'right')
 		+panel('dark')
@@ -39,8 +40,8 @@ include ../header
 					h2 Next Product
 					p
 						+blockletter(40)
-					+modal('Oh, Man Modal', 'right')
-						h3 Oh, Man!
+					+modal('Another Modal', 'right')
+						h3 Another Modal
 						p
 							+blockletter(800)
 		+panel('footer')

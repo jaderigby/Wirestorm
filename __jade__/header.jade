@@ -9,13 +9,11 @@ html(lang="en")
 		link(rel="stylesheet", type="text/css", href="../css/main.css")
 	body
 		+menu-drawer()
-			a.logo(href="") TheSite
 			include app/nav
 		#siteWrapper
 			#open
 				header
 					+menu-trigger()
-					a.desktop.logo(href="index.html") TheSite
 				nav.desktop-nav.dark
 					include app/nav
 				block content

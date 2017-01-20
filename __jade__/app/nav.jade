@@ -1,6 +1,8 @@
 include ../widgets/elements
 ul
-	li: a(href="index.html") Home
-	li: a(href="page2.html") Page 2
+	li: a.logo(href="index.html") TheSite
+	li: +link("index", "Home")
+	li: +link("page2", "Page 2")
+	li: +link("usage", "Usage")
 	li.right
 		+search('search-results.html')

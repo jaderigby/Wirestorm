@@ -1,7 +1,7 @@
 base()
 	header
-		padding: 20px
-		background-color: white
+		// padding: 20px
+		background-color: backgroundLight
 	h1
 		font-size: 3.3rem
 		margin: 25px 0
@@ -36,12 +36,12 @@ base()
 			padding: 5px 0
 			line-height: 1.5
 	hr
-		border-bottom: 1px solid #ddd
+		border-bottom: 1px solid imageBgLight
 	.fill
 	.dark
 		ol
 		ul
-			color: #ddd
+			color: textLightOnDark
 	a
 		text-decoration: none
 		color: #00A0B5
@@ -60,7 +60,7 @@ base()
 	.wrap
 		margin: 10px 0
 		padding: 10px 15px
-		background-color: #EFEFEF
+		background-color: textLightOnDark
 		border: 1px solid #CCC
 	article.wrap
 		cf()
@@ -72,7 +72,7 @@ base()
 		padding: 10px 15px
 		border: 1px solid #CCC
 	.light
-		background-color: white
+		background-color: backgroundLight
 	article.border-wrap
 		cf()
 	.clear-wrap
@@ -107,7 +107,7 @@ base()
 		width: 100%
 		height: 100%
 		overflow: auto
-		background-color: #EFEFEF
+		background-color: imageAccents
 		transition: all 0.21s ease-in-out
 		-webkit-transition: all 0.17s ease-in-out
 		&.active
@@ -167,12 +167,12 @@ base()
 		+below(large)
 			display: none
 		&.dark
-			background-color: #6B6B6B
+			background-color: primary
 			a
-				color: #DDD
+				color: textLightOnDark
 				&:hover
 					color: #81F0FF
-					background-color: #4e4e4e
+					background-color: btnHoverColor
 		ul
 			list-style-type: none
 		li
@@ -284,7 +284,7 @@ base()
 				display: block
 				padding-top: 10px
 				padding-bottom: 10px
-				background-color: #efefef
+				background-color: imageAccents
 				&:hover
 					text-decoration: none
 					background-color: #CCC
@@ -573,11 +573,11 @@ widgets()
 	.panel.fifths
 		padding: 60px 0
 	.whiteout 
-		background-color: white
+		background-color: backgroundLight
 	.fill
-		background-color: #838383
+		background-color: lightness(primary, 51.5%)
 	.dark
-		background-color: #6b6b6b
+		background-color: primary
 		a
 			color: #98E2EB
 	.fill
@@ -606,9 +606,9 @@ widgets()
 		h4
 		h5
 		h6
-			color: #DDD
+			color: textLightOnDark
 		.image-widget
-			background-color: #575757
+			background-color: lightness(secondary, 34%) // #575757
 		.image-border
 			border: 1px solid #4a4a4a
 		.dimage
@@ -702,7 +702,7 @@ widgets()
 		[type="checkbox"]:disabled:checked + label:before
 			box-shadow: none
 			border-color: #bbb
-			background-color: #ddd
+			background-color: textLightOnDark
 		[type="checkbox"]:disabled:checked + label:after
 			color: #999
 		[type="checkbox"]:disabled + label
@@ -829,7 +829,7 @@ widgets()
 				float: right
 				text-align: right
 				width: 29px
-				color: #DDD
+				color: textLightOnDark
 				text-align: center
 			&.on
 				.switch
@@ -855,7 +855,7 @@ widgets()
 		position: relative
 		width: 100%
 		height: 100%
-		background: #DDD url(../images/demo-image4.svg) no-repeat
+		background: imageBgLight url(../images/demo-image4.svg) no-repeat
 		background-size: contain
 		background-position: center
 	.image-border
@@ -868,11 +868,11 @@ widgets()
 	.dimage
 		&.image-widget
 		.image-widget
-			background: #DDD url(../images/demo-image-frame-inkscape3.svg) no-repeat
+			background: imageBgLight url(../images/demo-image-frame-inkscape3.svg) no-repeat
 	.profile
 		&.image-widget
 		.image-widget
-			background: #DDD url(../images/profile-silhouette.svg) no-repeat
+			background: imageBgLight url(../images/profile-silhouette.svg) no-repeat
 	.dimage
 	.profile
 		&.image-widget
@@ -882,14 +882,14 @@ widgets()
 	.porthole
 		overflow: hidden
 		padding: 3px
-		background-color: #ddd
+		background-color: imageBgLight
 		border-radius: 1000px
 		.image-widget
 			border-radius: 1000px
 	.fill 
 	.dark
 		.porthole
-			background-color: #555
+			background-color: lightness(secondary, 33.5%) // #555
 	.slideshow-widget
 		position: relative
 		width: 100%
@@ -901,7 +901,7 @@ widgets()
 			margin-top: -45px
 			height: 90px
 			font-size: 5.5rem
-			color: #EFEFEF
+			color: imageAccents
 		.icon-arrow-right
 			right: 0
 		.icon-progress
@@ -932,7 +932,7 @@ widgets()
 	nav.dark
 		.logo
 			border: 1px solid #000
-			background-color: #3D3D3D
+			background-color: logoColor
 	.logo
 		display: inline-block
 		margin-right: 10px
@@ -945,12 +945,12 @@ widgets()
 		background-position: 15px
 		border: 1px solid #ccc
 		&.dark
-			color: #ddd
+			color: imageBgLight
 			border: 1px solid #000
-			background-color: #3D3D3D
+			background-color: logoColor
 			&:hover
 				color: #81f0ff
-				background-color: #4e4e4e
+				background-color: btnHoverColor
 	.desktop-nav .logo
 		float: left
 	.logo a:hover
@@ -964,7 +964,7 @@ widgets()
 	.desktop-nav.dark .logo a:hover
 	.desktop-nav.dark a.logo:hover
 		text-decoration: none
-		background-color: #3D3D3D
+		background-color: secondary
 	//
 	// Tabs
 	//
@@ -979,7 +979,7 @@ widgets()
 				margin-right: 1px
 				padding: 10px 25px
 				color: #00A0B5
-				background-color: #EFEFEF
+				background-color: imageAccents
 				&.active
 					background-color: white
 				&:last-child
@@ -1018,7 +1018,7 @@ widgets()
 			ul.tabs
 				li
 					color: #87F1FF // AAF5FF 88F1FF 87F1FF
-					background-color: #A0A0A0
+					background-color: tabColor
 					&.active
 						color: #58ECFF
 						background-color: transparent
@@ -1030,11 +1030,11 @@ widgets()
 			font-size: 1.3em
 			color: #7E7E7E
 			&.light
-				color: #ddd
+				color: textLightOnDark
 	.fill
 	.dark
 		.icon-star	
-			color: #DDD
+			color: textLightOnDark
 			&.light
 				color: #808080
 				background-color: transparent
@@ -1064,12 +1064,12 @@ widgets()
 			a
 				padding: 8px 10px
 				color: #00A0B5
-				background-color: #EFEFEF
+				background-color: imageAccents
 				transition: background-color 0.11s ease-in-out
 				&:hover
 					text-decoration: none
 					cursor:pointer
-					background-color: #DDD
+					background-color: textLightOnDark
 			&:last-child
 				border-right: 1px solid #CCC
 			&.arrows
@@ -1095,13 +1095,13 @@ widgets()
 		margin: 20px 0
 		border: 0
 		height: 1px
-		backgroud-color: #ddd
+		backgroud-color: imageBgLight
 	.wrap
 		hr
 			background-color: #bfbfbf
 	.highlight
 		display: inline-block
-		background-color: #efefef
+		background-color: imageAccents
 		padding: 3px 5px
 .demo-heading
 	margin-bottom: 60px
