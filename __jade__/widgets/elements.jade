@@ -148,20 +148,26 @@ mixin tab()
 		if block
 			block
 
-mixin rating(max)
-	- (max === undefined) ? max = 5 : max;
-	.stars-widget
+mixin rating(min, max)
+	- if (min && max) {
+		- var starCount = Math.floor((Math.random() * (max - min + 1) + min));
+	- }
+	- else {
+		- max = min
+		- (max === undefined) ? max = 5 : max;
 		- var starCount = Math.floor((Math.random() * max));
 		- if (starCount === 0) {
 		- 	starCount = 1;
 		- }
+	- }
+	.stars-widget
 		- var z = 0;
 		- var leftover = max - starCount;
 		while z < starCount
 			span.icon-star
 			- z++
 		while (leftover > 0)
-			span.icon-star.light
+			span.icon-star.unmarked
 			- leftover--
 
 mixin footer-links(items)

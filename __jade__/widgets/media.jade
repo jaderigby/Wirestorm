@@ -1,5 +1,8 @@
 mixin image(w,h,alignment)
 	- var a;
+	- if (h === undefined) {
+		- h = w;
+	- }
 	- if (alignment === 'center') {
 		- a = "; margin: 0 auto";
 	- } 
@@ -34,6 +37,9 @@ mixin image(w,h,alignment)
 
 mixin image2(w,h,alignment)
 	- var a;
+	- if (h === undefined) {
+		- h = w;
+	- }
 	- if (alignment === 'center') {
 		- a = "; margin: 0 auto";
 	- } 
@@ -116,6 +122,9 @@ mixin porthole2(w,h,alignment)
 
 mixin profile(w,h,alignment)
 	- var a;
+	- if (h === undefined) {
+		- h = w;
+	- }
 	- if (alignment === 'center') {
 		- a = "; margin: 0 auto";
 	- } 
@@ -173,6 +182,9 @@ mixin profile-porthole(size,alignment)
 
 mixin video(w,h,alignment)
 	- var a;
+	- if (h === undefined) {
+		- h = w;
+	- }
 	- if (alignment === 'left') {
 		- a = "; float: left";
 	- } 
@@ -207,6 +219,9 @@ mixin video(w,h,alignment)
 
 mixin slideshow(w,h,alignment)
 	- var a;
+	- if (h === undefined) {
+		- h = w;
+	- }
 	- if (alignment === 'center') {
 		- a = "; margin: 0 auto";
 	- } 
@@ -251,6 +266,9 @@ mixin slideshow(w,h,alignment)
 
 mixin slideshow2(w,h,alignment)
 	- var a;
+	- if (h === undefined) {
+		- h = w;
+	- }
 	- if (alignment === 'center') {
 		- a = "; margin: 0 auto";
 	- } 

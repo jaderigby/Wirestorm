@@ -56,22 +56,19 @@ mixin switch(name, items)
 						li.switch-item
 							.switch-object
 								div.switch
-								div.on-icon
-									span.icon-checkmark
+								div.on
 							label= item
 	- }
 	- else if (name) {
 		.switch-widget
 			div.switch
-			div.on-text On
-			div.off-text Off
+			div.on
 		label= name
 	- }
 	- else {
 		.switch-widget
 			div.switch
-			div.on-text On
-			div.off-text Off
+			div.on
 	- }
 
 mixin checkbox(name, items, orientation)

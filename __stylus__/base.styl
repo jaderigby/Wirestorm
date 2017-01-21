@@ -58,18 +58,18 @@ base()
 		font-family: blockletter
 		color: #B6B6B6
 	.wrap
-		margin: 10px 0
-		padding: 10px 15px
-		background-color: textLightOnDark
-		border: 1px solid #CCC
+		margin: 15px 0
+		padding: 15px 15px
+		background-color: backgroundMediumLight
+		// border: 1px solid #CCC
 	article.wrap
 		cf()
 	section.columnizer
 		.wrap
 			padding: 15px
 	.border-wrap
-		margin: 10px 0
-		padding: 10px 15px
+		margin: 15px 0
+		padding: 15px 15px
 		border: 1px solid #CCC
 	.light
 		background-color: backgroundLight
@@ -675,8 +675,8 @@ widgets()
 		[type="checkbox"]:checked + label:before
 			content: ''
 			position: absolute
-			top: 0px
-			left:0 
+			top: 1px
+			left: 0 
 			width: 14px 
 			height: 14px
 			border: 1px solid #444
@@ -685,7 +685,7 @@ widgets()
 		[type="checkbox"]:checked + label:after
 			content: ''
 			position: absolute
-			top: 4px 
+			top: 5px 
 			left: 4px
 			width: 8px
 			height: 8px
@@ -800,12 +800,14 @@ widgets()
 				width: 29px
 				background-color: #CCC
 				transition: all 0.03s linear
-				-webkit-transition: all 0.03s linear
+				-webkit-transition: all 0.05s linear
 				z-index: 2
 			.on
 				position: absolute
-				width: 27px
-				height: 20px
+				margin-top: 1px
+				margin-left: 1px
+				width: 25px
+				height: 18px
 				background-color: #81EAF7 // 81EAF7, 7FE8F6
 			.on-icon
 				display: block
@@ -841,8 +843,8 @@ widgets()
 		display: none
 	.close-modal
 		position: absolute
-		top: 10px
-		right: 10px
+		top: 15px
+		right: 15px
 		color: #00a0b5
 		font-size: 1.4rem
 		cursor: pointer
@@ -886,6 +888,11 @@ widgets()
 		border-radius: 1000px
 		.image-widget
 			border-radius: 1000px
+	.wrap
+		.dimage
+		.image-widget
+		.porthole
+			background-color: imageBgMedium // cecece, d2d2d2
 	.fill 
 	.dark
 		.porthole
@@ -1029,13 +1036,18 @@ widgets()
 		.icon-star
 			font-size: 1.3em
 			color: #7E7E7E
-			&.light
+			&.unmarked
 				color: textLightOnDark
+	.wrap
+		.icon-star
+			color: #6b6b6b
+			&.unmarked
+				color: #c5c5c5
 	.fill
 	.dark
 		.icon-star	
 			color: textLightOnDark
-			&.light
+			&.unmarked
 				color: #808080
 				background-color: transparent
 			
