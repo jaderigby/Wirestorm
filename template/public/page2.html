@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/wc-segments.lib.min.css">
+    <script src="js/segments.lib.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <div class="use-native-click" id="drawer">
+      <nav class="menu-drawer">
+        <div>
+          <ul>
+            <li>
+              <div class="logo-wrapper"><a class="logo" href="index.html">TheSite</a></div>
+            </li>
+            <li><a href="/">Home</a>
+            </li>
+            <li><a href="page2.html">Page 2</a>
+            </li>
+            <li><a href="usage.html">Usage</a>
+            </li>
+            <li class="right">
+            </li>
+          </ul>
+          <div class="clear-wrap menu-drawer-search-cleanup">
+            <div class="search-widget" data-target="search-results.html">
+              <div class="searchfield">
+                <div class="icon-search"></div>
+                <input type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div id="siteWrapper">
+      <header>
+        <div class="show-for-mobile">
+          <div class="rack compress mobile-cleanup vertical-align">
+            <div class="icon-menu toggle use-native-click" data-target="body, #siteWrapper, #drawer"></div>
+            <div class="logo-wrapper"><a class="logo" href="index.html">TheSite</a></div>
+          </div>
+        </div>
+      </header>
+      <nav class="desktop-nav dark hide-for-mobile">
+        <prime-segment class="vertical-align">
+          <x-major>
+            <ul>
+              <li>
+                            <div class="logo-wrapper"><a class="logo" href="index.html">TheSite</a></div>
+              </li>
+              <li><a href="/">Home</a>
+              </li>
+              <li><a href="page2.html">Page 2</a>
+              </li>
+              <li><a href="usage.html">Usage</a>
+              </li>
+              <li class="right">
+              </li>
+            </ul>
+          </x-major>
+          <x-minor>
+                        <div class="search-widget" data-target="search-results.html">
+                          <div class="searchfield">
+                            <div class="icon-search"></div>
+                            <input type="text">
+                          </div>
+                        </div>
+          </x-minor>
+        </prime-segment>
+      </nav>
+      <div class="panel-wrap">
+        <section class="panel" style="padding: lightpx 0">
+          <div class="collapsible trigger icon-cog trigger-icon" data-target="settingsDrawer"></div>
+          <section class="collapsible drawer" id="settingsDrawer">
+            <form class="wrap">
+              <h4>Settings</h4>
+              <hr>
+              <div class="segment break lg-columns-4">
+                <div class="cell">
+                  <div class="form-switch-widget">
+                    <ul>
+                      <li>
+                        <div class="switch-item">
+                          <input type="checkbox" name="settingsToggle" value="first feature" id="first feature1"/>
+                          <label for="first feature1">First Feature</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="switch-item">
+                          <input type="checkbox" name="settingsToggle" value="second feature" id="second feature2"/>
+                          <label for="second feature2">Second Feature</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="switch-item">
+                          <input type="checkbox" name="settingsToggle" value="third feature" id="third feature3"/>
+                          <label for="third feature3">Third Feature</label>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="cell">
+                  <div class="border-wrap">
+                    <div>
+                      <select>
+                        <option>Light</option>
+                        <option>Dark</option>
+                        <option>Neutral</option>
+                      </select>
+                    </div>
+                    <p>
+                      <div class="radio-widget">
+                        <div class="form-element"><span class="radio">
+                            <input type="radio" name="settingsRadio" value="setting a" id="qi3du1"/>
+                            <label for="qi3du1">Setting A</label></span><span class="radio">
+                            <input type="radio" name="settingsRadio" value="setting b" id="qi3du2"/>
+                            <label for="qi3du2">Setting B</label></span>
+                        </div>
+                      </div>
+                    </p>
+                    <div class="center-justify">
+                      <div class="form-switch-widget">
+                        <div class="switch-item">
+                          <input type="checkbox" name="Use" value="use" id="use"/>
+                          <label for="use">Use</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="cell">
+                  <div class="checkbox-widget">
+                    <ul>
+                      <li class="checkbox">
+                        <input type="checkbox" name="add" value="add item 1" id="test1"/>
+                        <label for="test1">Add Item 1</label>
+                      </li>
+                      <li class="checkbox">
+                        <input type="checkbox" name="add" value="add item 2" id="test2"/>
+                        <label for="test2">Add Item 2</label>
+                      </li>
+                      <li class="checkbox">
+                        <input type="checkbox" name="add" value="add item 3" id="test3"/>
+                        <label for="test3">Add Item 3</label>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="cell">
+                  <div class="switch-widget">
+                    <div class="switch"></div>
+                    <div class="on"></div>
+                  </div>
+                  <p><span class="blockletter">Integer lacinia maecenas ipsum velit consectetuer eu lobortis ut dictum at dui integer pellentesque quam vel velit curabitur sagittis hendrerit ante class aptent taciti sociosqu ad litora torquent per conubia </span>
+                  </p>
+                </div>
+              </div>
+              <hr>
+            </form>
+          </section>
+                      <div class="segment thirds wrap">
+                        <div class="segment-min">
+                          <div class="dimage" style="width: 100%; height: 200px;">
+                            <div class="image-widget">
+                              <div class="image-border"></div>
+                            </div>
+                          </div>
+                          <p class="right-justify"><span class="blockletter">Nullam lectus justo vulputate </span>
+                          </p>
+                          <p class="right-justify"><span class="blockletter">Donec quis </span>
+                          </p>
+                        </div>
+                        <div class="segment-max">
+                          <h3>First Blog Title</h3>
+                          <p><span class="blockletter">Mauris suscipit ligula sit amet pharetra semper nibh ante cursus purus vel sagittis velit mauris vel metus etiam bibendum elit eget erat curabitur ligula sapien pulvinar a vestibulum quis facilisis </span>
+                          </p>
+                          <div class="segment thirds">
+                            <div class="segment-min">
+                                          <article class="rack cf">
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                          </article>
+                            </div>
+                            <div class="segment-max">
+                              <p class="right">
+                                <button>Read More</button>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="segment thirds wrap">
+                        <div class="segment-min">
+                          <div class="dimage" style="width: 100%; height: 200px;">
+                            <div class="image-widget">
+                              <div class="image-border"></div>
+                            </div>
+                          </div>
+                          <p class="right-justify"><span class="blockletter">Mauris elementum mauris vitae </span>
+                          </p>
+                          <p class="right-justify"><span class="blockletter">Sed convallis </span>
+                          </p>
+                        </div>
+                        <div class="segment-max">
+                          <h3>Second Blog Title</h3>
+                          <p><span class="blockletter">In sem justo commodo ut suscipit at pharetra vitae orci integer malesuada nulla non lectus sed nisl molestie malesuada integer malesuada nunc posuere morbi a metus fusce consectetuer risus a </span>
+                          </p>
+                          <div class="segment thirds">
+                            <div class="segment-min">
+                                          <article class="rack cf">
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                          </article>
+                            </div>
+                            <div class="segment-max">
+                              <p class="right">
+                                <button>Read More</button>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="segment thirds wrap">
+                        <div class="segment-min">
+                          <div class="dimage" style="width: 100%; height: 200px;">
+                            <div class="image-widget">
+                              <div class="image-border"></div>
+                            </div>
+                          </div>
+                          <p class="right-justify"><span class="blockletter">Mauris tincidunt sem sed </span>
+                          </p>
+                          <p class="right-justify"><span class="blockletter">Nam sed </span>
+                          </p>
+                        </div>
+                        <div class="segment-max">
+                          <h3>Third Blog Title</h3>
+                          <p><span class="blockletter">Nullam rhoncus aliquam metus nulla non arcu lacinia neque faucibus fringilla fusce tellus odio dapibus id fermentum quis suscipit id erat duis ante orci molestie vitae vehicula venenatis tincidunt ac </span>
+                          </p>
+                          <div class="segment thirds">
+                            <div class="segment-min">
+                                          <article class="rack cf">
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                          </article>
+                            </div>
+                            <div class="segment-max">
+                              <p class="right">
+                                <button>Read More</button>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="segment thirds wrap">
+                        <div class="segment-min">
+                          <div class="dimage" style="width: 100%; height: 200px;">
+                            <div class="image-widget">
+                              <div class="image-border"></div>
+                            </div>
+                          </div>
+                          <p class="right-justify"><span class="blockletter">Vivamus luctus egestas leo </span>
+                          </p>
+                          <p class="right-justify"><span class="blockletter">Aenean fermentum </span>
+                          </p>
+                        </div>
+                        <div class="segment-max">
+                          <h3>Fourth Blog Title</h3>
+                          <p><span class="blockletter">Integer imperdiet lectus quis justo etiam ligula pede sagittis quis interdum ultricies scelerisque eu urna maecenas sollicitudin nam quis nulla etiam egestas wisi a erat donec vitae arcu nulla non </span>
+                          </p>
+                          <div class="segment thirds">
+                            <div class="segment-min">
+                                          <article class="rack cf">
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                          </article>
+                            </div>
+                            <div class="segment-max">
+                              <p class="right">
+                                <button>Read More</button>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="segment thirds wrap">
+                        <div class="segment-min">
+                          <div class="dimage" style="width: 100%; height: 200px;">
+                            <div class="image-widget">
+                              <div class="image-border"></div>
+                            </div>
+                          </div>
+                          <p class="right-justify"><span class="blockletter">Fusce dui leo imperdiet </span>
+                          </p>
+                          <p class="right-justify"><span class="blockletter">Fusce aliquam </span>
+                          </p>
+                        </div>
+                        <div class="segment-max">
+                          <h3>Fifth Blog Title</h3>
+                          <p><span class="blockletter">Fusce eget urna fusce nibh cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus maecenas ipsum velit consectetuer eu lobortis ut dictum at dui etiam dictum tincidunt </span>
+                          </p>
+                          <div class="segment thirds">
+                            <div class="segment-min">
+                                          <article class="rack cf">
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                                        <div style="width: 40px; height: 40px;">
+                                                          <div class="image-widget">
+                                                            <div class="image-border"></div>
+                                                          </div>
+                                                        </div>
+                                          </article>
+                            </div>
+                            <div class="segment-max">
+                              <p class="right">
+                                <button>Read More</button>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+          <div class="right">
+                        <div class="page-widget">
+                          <nav class="pagination">
+                            <ul class="right-align">
+                              <li class="arrows"><a href="#"><span class="icon-arrow-left"></span></a></li>
+                              <li><a href="#">1</a></li>
+                              <li><a href="#">2</a></li>
+                              <li><a href="#">3</a></li>
+                              <li class="arrows"><a href="#"><span class="icon-arrow-right"></span></a></li>
+                            </ul>
+                          </nav>
+                        </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
+<div class="footer-nav"></div>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/TweenMax.min.js"></script>
+<script src="js/main.lib.js"></script>
+<script src="js/magicVial-0.6.2.js"></script>

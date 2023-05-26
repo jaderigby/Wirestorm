@@ -1,0 +1,20 @@
+mixin demo(bg)
+	- var clss
+	- if (bg) {
+	- 	 if (bg === 'transparent') {
+	-		clss = ' checkered'
+	-	}
+	-	else if (bg === 'dark') {
+	-		clss = ' dark'
+	-	}
+	-	else if (bg === 'light') {
+	-		clss = ' light'
+	-	}
+	- }
+	- else {
+	- 	clss = ""
+	- }
+	.demo
+		div(class="web-wrap" + clss)
+			block
+		.demo-height

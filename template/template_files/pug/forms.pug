@@ -1,0 +1,233 @@
+mixin form-segment(cols)
+	- if (!cols) {
+		- var cls = (attributes.class) ? "form-segment " + attributes.class : "form-segment";
+		div(class=cls, id!=attributes.id)
+			if block
+				block
+	- }
+	- else if (typeof cols === 'object') {
+		- var cls = (attributes.class) ? attributes.class + " " : "";
+		- cls += 'form-segment break'
+		- for (var i = 0; i < breakpoints.length; i++) {
+			- 	if (cols[breakpoints[i]] !== undefined) {
+				- 		itemBreak = breakpoints[i];
+				- 		cls += " "+ itemBreak + "-columns-" + cols[itemBreak]
+				- 	}
+				- }
+		div(class=cls, id!=attributes.id)
+			if block
+				block
+	- }
+	- else {
+		- var cls = (attributes.class) ? attributes.class + " " : "";
+		- cls += "form-segment break lg-columns-" + cols
+		div(class=cls, id!=attributes.id)
+			if block
+				block
+	- }
+
+mixin cell()
+	div.cell(class!=attributes.class, id!=attributes.id)
+		if block
+			block
+
+mixin input(description, required, features)
+	- var capsule = false, capsulized = ""
+	- if (features && features.hasOwnProperty('capsule')) {
+	-		capsule = features.capsule
+	- 		capsulized = 'capsulized'
+	- } 
+	- if (arguments.length === 2 && arguments[1].hasOwnProperty('capsule')) {
+	-		capsule = arguments[1].capsule
+	-		capsulized = 'capsulized'
+	- }
+	- if (required) {
+		.form-element
+			- if (capsule) {
+				span(class=capsule)
+			- }
+			input(class=capsulized, type="text", data-required='')
+			label=description
+	- }
+	- else if (description) {
+		.form-element
+			- if (capsule) {
+				span(class=capsule)
+			- }
+			input(class=capsulized, type="text")
+			label=description
+	- }
+	- else {
+		.form-element
+			- if (capsule) {
+				span(class=capsule)
+			- }
+			input(class=capsulized, type="text")
+	- }
+
+mixin email(description, required)
+	- if (required) {
+		.form-element
+			input(type="email", data-validate="email", data-required='')
+			label=description
+	- }
+	- else if (description) {
+		.form-element
+			input(type="email", data-validate="email")
+			label=description
+	- }
+	- else {
+		.form-element
+			input(type="email", data-validate="email")
+	- }
+
+mixin password(description, required, matchName, features)
+	- if (matchName) {
+		.form-element
+			input(type="password", data-required='', data-match=matchName)
+			label=description
+	- }
+	- else if (required) {
+		.form-element
+			input(type="password", data-required='')
+			label=description
+	- }
+	- else if (description) {
+		.form-element
+			input(type="password")
+			label=description
+	- }
+	- else {
+		.form-element
+			input(type="password")
+	- }
+
+mixin select(items)
+	select
+		each item in items
+			option= item
+
+mixin submit(description, pos)
+	- if (pos === 'center') {
+		.form-element.center-justify
+			input(type="submit", value=description)
+	- }
+	- else if (pos === 'right') {
+		.form-element.right-justify
+			input(type="submit", value=description)
+	- }
+	- else if (pos === 'extend') {
+		.form-element
+			input.extend(type="submit", value=description)
+	- }
+	- else {
+		.form-element
+			input(type="submit", value=description)
+	- }
+
+mixin switch-old(name, items)
+	- if (items) {
+		.switch-widget
+			ul
+				each item in items
+					- var value = item.toLowerCase(item.replace(' ','-'))
+						li.switch-item
+							.switch-object
+								div.switch
+								div.on
+							label= item
+	- }
+	- else if (name) {
+		.switch-widget
+			.switch-object
+				div.switch
+				div.on
+			label= name
+	- }
+	- else {
+		.switch-widget
+			div.switch
+			div.on
+	- }
+
+mixin switch(name, items)
+	- if (items) {
+		.form-switch-widget
+			ul
+				- var iterCheck = 1
+				each item in items
+					- var value = item.toLowerCase(item.replace(' ','-'))
+						li
+							.switch-item
+								input(type="checkbox",name=name,value=value,id=value+iterCheck)
+								label(for=value+iterCheck)= item
+								- iterCheck++
+	- }
+	- else if (name) {
+		.form-switch-widget
+			.switch-item
+				- var value = name.toLowerCase(name.replace(' ','-'))
+				input(type="checkbox",name=name,value=value,id=value)
+				label(for=value)= name
+	- }
+	- else {
+		.switch-widget
+			div.switch
+			div.on
+	- }
+
+mixin trigger(family, value, reference)
+	- var chk = (Math.random() + 1).toString(36).substring(7);
+	.radio-widget.radio-trigger-widget
+		.form-element
+			span.radio
+				input(type="radio", data-target=reference name=family, value=value, id=chk)
+				label(for=chk)
+
+mixin checkbox(name, items)
+	- if (typeof items === 'object') {
+		.checkbox-widget
+			ul
+				- var iterCheck = 1
+				each item in items
+					- var value = item.toLowerCase(item.replace(' ','-'))
+					li.checkbox
+						input(type="checkbox",name=name,value=value,id="test"+iterCheck)
+						label(for="test"+iterCheck)= item
+						- iterCheck++
+	- }
+	- else {
+		- var item = items
+		.checkbox-widget
+			- var iterBox = 1
+			- var check = (Math.random() + 1).toString(36).substring(7)
+			.form-element
+				- var value = item.toLowerCase(item.replace(' ','-'))
+				span.checkbox
+					input(type="checkbox",name=name,value=value,id=check+iterBox)
+					label(for=check+iterBox)= item
+	- }
+
+mixin radio(name, items)
+	.radio-widget
+		- var iterRadio = 1
+		- var rad = (Math.random() + 1).toString(36).substring(7);
+		.form-element
+			each item in items
+				- var value = item.toLowerCase(item.replace(' ','-'))
+				span.radio
+					input(type="radio",name=name,value=value,id=rad+iterRadio)
+					label(for=rad+iterRadio)= item
+					- iterRadio++
+mixin textarea(description)
+	.form-element
+		textarea
+		label=description
+
+mixin login(urlPath)
+	div.wrap
+		h3 Login
+		form#loginForm
+			+input("Username")
+			+password("Password")
+			+button({title: "Login", url: urlPath, position: "right"})

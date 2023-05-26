@@ -1,0 +1,64 @@
+fonts(name, variants)
+	if name == montserrat
+		// variants: 100,100i,200,200i,300,400,400i,500,600,600i,700,700i,800,800i,900,900i
+		@import url(https://fonts.googleapis.com/css?family=Montserrat:variants)
+	if name == raleway
+		// variants: 400,100,200,300,500,600,700,800,900
+		@import url(http://fonts.googleapis.com/css?family=Raleway:variants)
+	if name == open-sans
+		// variants: 300italic,400italic,600italic,700italic,800italic,400,300,600,700,800
+		@import url('http://fonts.googleapis.com/css?family=Open+Sans':variants)
+	if name == lato
+		// variants: 100,300,400,700,900,100italic,300italic,400italic,700italic,900italic
+		@import url(http://fonts.googleapis.com/css?family=Lato:variants)
+	if name == roboto
+		// variants: 400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic
+		@import url(http://fonts.googleapis.com/css?family=Roboto:variants)
+	if name == fira-sans
+		// variants: 300,400,500,700,300italic,400italic,500italic,700italic
+		@import url("http://fonts.googleapis.com/css?family=Fira+Sans":variants)
+	if name == hind
+		// variants: 400,300,500,600,700
+		@import url(http://fonts.googleapis.com/css?family=Hind:variants)
+	if name == hind-madurai
+		// variants: 300,400,500,600,700
+		@import url("https://fonts.googleapis.com/css?family=Hind+Madurai":variants)
+	if name == source-sans-pro
+		// variants: 200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic
+		@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro":variants)
+	if name == pt-sans
+		// variants: 400,700,400italic,700italic
+		@import url("http://fonts.googleapis.com/css?family=PT+Sans":variants)
+	if name == pt-sans-narrow
+		// variants: 400,700
+		@import url("http://fonts.googleapis.com/css?family=PT+Sans+Narrow":variants)
+	if name == play
+		// variants: 400,700
+		@import url(http://fonts.googleapis.com/css?family=Play:variants)
+	if name == blockletter
+		@css{
+			@font-face {
+				font-family: 'blockletter';
+				src:url('ws-blockletter/ws-blockletter.eot?jawtuy');
+				src:url('ws-blockletter/ws-blockletter.eot?#iefixjawtuy') format('embedded-opentype'),
+					url('ws-blockletter/WS-Blockletter.woff?jawtuy') format('woff'),
+					url('ws-blockletter/ws-blockletter.ttf?jawtuy') format('truetype');
+				font-weight: normal;
+				font-style: normal;
+			}
+		}
+
+montserrat = Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif
+raleway = Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif
+open-sans = "Open Sans", Verdana, Helvetica, sans-serif
+lato = Lato, "Helvetica Neue", Helvetica, Arial, sans-serif
+roboto = Roboto, Verdana, Helvetica, sans-serif
+fira-sans = "Fira Sans", Helvetica, Arial, Verdana, sans-serif
+hind = Hind, Helvetica, Arial, Verdana, sans-serif
+hind-madurai = "Hind Madurai", Helvetica, Arial, Verdana, sans-serif
+source-sans-pro = "Source Sans Pro", Helvetica, Arial, Verdana, sans-serif
+pt-sans = "PT Sans", Helvetica, Arial, Verdana, sans-serif
+pt-sans-narrow = "PT Sans Narrow", Helvetica, Arial, Verdana, sans-serif
+helvetica-neue = "Helvetica Neue", Helvetica, Arial, sans-serif
+helvetica = Helvetica, Arial, Verdana, sans-serif
+play = 'Play', arial, sans-serif

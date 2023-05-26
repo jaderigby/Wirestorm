@@ -1,0 +1,40 @@
+@import '../template_files/stylus/imports'
+@import 'nib'
+
+// Declare all fonts first
+fonts(open-sans, '300italic,400italic,600italic,700italic,800italic,400,300,600,700,800')
+fonts(play, '400,700')
+fonts(blockletter, '')
+iconfont()
+// Now declare global reset and all dependencies: base, headings, forms, etc
+global-reset()
+base()
+headings()
+forms()
+widgets()
+mobile()
+segments()
+responsive-segments()
+demo()
+
+// edit()
+
+body, *
+	font-family: open-sans
+h1
+h2
+h3
+h4
+h5
+h6
+	font-family: open-sans
+.show-for-mobile
+	display: none
+	+below(tablet)
+		display: block
+.hide-for-mobile
+	display: block
+	+below(tablet)
+		display: none
+
+// Begin your custom styles here!

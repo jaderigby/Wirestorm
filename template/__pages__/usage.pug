@@ -1,0 +1,740 @@
+extend __core__/default
+include ../template_files/pug/demo
+block content
+	link(rel="stylesheet", type="text/css", href="../css/prism-okaidia.css")
+	script(src="../js/prism.js")
+	+panel().darker
+		+segment().fifths
+			+min()
+				h2 Usage
+			+max()
+				div.wrap
+					p Note: Click on any element&squo;s name in order to see full details.
+	+panel().light
+		h4 Sections
+		ul
+			li: a(href="#layout", data-move-to="200") Layout
+			li: a(href="#dynamic-elements") Dynamic Elements
+			li: a(href="#loops") Loops
+			li: a(href="#media") Media
+			li: a(href="#forms") Forms
+		h3#layout.demo-heading(data-move-to="150") Layout
+
+		+segment().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="panelDark") +panel()
+				div#panelDark.modal.window
+					p
+						strong Description: 
+						| Creates a panel content wrapper including substantial whitespace above and below, as well as centering content while allowing background color to extend to the edge of the browser. Panels should be stacked one upon another and not nested. Background property can be controlled by attaching a class with the background-color assigned in the css.  Current options include:
+						
+					ul
+						li .light
+						li .dark
+						li .fill
+
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +panel().dark
+							|	h3 Demo
+							|	p
+							|		+blockletter(30)
+							| </code>
+			+max()
+				+demo('dark')
+					+panel('dark')
+						h3 Demo
+						p
+							+blockletter(30)
+		
+		
+		+segment().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="half") .half
+				div#half.modal.window
+					p
+						strong Description: 
+						| Breaks content into halves.  These are defined by either "+min", "+max()", or both.
+					ul
+						li: strong Class
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +segment().half
+							| 	+max()
+							| 		+image('100%', 200)
+							| 	+max()
+							|			h3 Content Title
+							| 		p
+							| 			+blockletter(40)
+							| </code>
+			+max()
+				+demo()
+					+panel('light')
+						+segment().half
+							+min()
+								+image('100%', 200)
+							+max()
+								h3 Content Title
+								p
+									+blockletter(50)
+
+		+segment().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="thirds") .thirds
+				div#thirds.modal.window
+					p
+						strong Description: 
+						| Breaks content into 3rds with a dominant and subbordinate section.  These are defined by "aside" tag for the dominant (1/3) and "article" tag for subbordinate (2/3).
+					ul
+						li: strong Class
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +seg().thirds
+							| 	+min()
+							| 		+image('100%', 200)
+							| 	+max()
+							|		h3 Content Title
+							| 		p
+							| 			+blockletter(40)
+							| </code>
+			+max()
+				+demo()
+					+panel('light')
+						+segment().thirds
+							+min()
+								+image('100%', 200)
+							+max()
+								h3 Content Title
+								p
+									+blockletter(50)
+
+		+segment().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="fifths") .fifths
+				div#fifths.modal.window
+					p
+						strong Description: 
+						| Breaks content into 5ths with a dominant and subbordinate section.  These are defined by "aside" tag for the subbordinate (2/5) and "article" tag for the dominant (3/5).
+					ul
+						li: strong Class
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +panel('light')
+							| 	section.fifths
+							| 		aside
+							| 			+image('100%', 200)
+							| 		article
+							| 			h3 Content Title
+							| 			p
+							| 				+blockletter(50)
+							| </code>
+
+			+max()
+				+demo()
+					+panel('light')
+						+segment().fifths
+							+min()
+								+image('100%', 200)
+							+max()
+								h3 Content Title
+								p
+									+blockletter(50)
+
+		+segment().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="sevenths") .sevenths
+				div#sevenths.modal.window
+					p
+						strong Description: 
+						| Breaks content into 4ths with a dominant and subbordinate section.  These are defined by "aside" tag for the dominant (1/4) and "article" tag for subbordinate (3/4).
+						ul
+							li: strong Class
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +segment().sevenths
+							| 	+min()
+							| 		+image('100%', 200)
+							| 	+max()
+							|		  h3 Content Title
+							| 		p
+							| 			+blockletter(40)
+							| </code>
+			+max()
+				+demo()
+					+panel().light
+						+segment().sevenths
+							+min()
+								+image('100%', 200)
+							+max()
+								h3 Content Title
+								p
+									+blockletter(50)
+			
+		h3#dynamic-elements.demo-heading Dynamic Elements
+		+segment().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="modal") +modal(arg1, arg2)
+				div#modal.modal.window
+					p
+						strong Description: 
+						| Creates a button linking to a modal window.  Content of modal is anything indented underneath the modal element (see below). Content of the modal can be any html (content, images, etc)
+					ul
+						li
+							strong arg1 
+							br
+							| [ 
+							em string 
+							| ] &ndash; button text
+						li
+							strong arg2 
+							br
+							| [ 
+							em string (optional) 
+							| ] &ndash; position of button ("left", "center", or "right")
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +modal("Learn More")
+							|     p Content of the modal     
+							| 
+							| // or . . . 
+							| 
+							| +modal("Learn More", "center")
+							|     p Content of the modal including an image
+							|    +image(100)
+							| </code>
+			+max()
+				+demo()
+					+panel('light')
+						+modal('Learn More', 'center')
+							h3 Special Modal
+							p Here lies my very special modal!
+		+segment().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="tabs") +tabs(arg1)
+				div#tabs.modal.window
+					p
+						strong Description: 
+						| Creates a section of tabs.  The +tabs() element is used in conjunction with the +tab() element (singular).  Each tab can be defined under a +tab() element. Refer to the code example below.
+					ul
+						li
+							strong arg1 
+							br
+							| [ 
+							em array 
+							| ] &ndash; title of each tab, as a list of strings.
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +tabs(['Tab 1', 'Tab 2', 'Tab 3'])
+							|     +tab()
+							|         p This content will be contained within the first tab.
+							|     +tab()
+							|         p This is the content for the second tab.
+							|     +tab()
+							|         p And finally, the content for the third tab.
+							| 
+							| </code>
+			+max()
+				+demo()
+					+panel('light')
+						+tabs(['Tab 1', 'Tab 2', 'Tab 3'])
+							+tab()
+								p This content will be contained within the first tab.
+							+tab()
+								p This is the content for the second tab.
+							+tab()
+								p And finally, the content for the third tab.
+
+		h3#loops.demo-heading Loops
+		+seg().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="loop") +loop(arg1)
+				div#loop.modal.window
+					p
+						strong Description: 
+						| Makes a copy of the content for the number of times passed in as "arg1".
+					ul
+						li
+							strong arg1 
+							br
+							| [ 
+							em integer 
+							| ] &ndash; number of times to loop.
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +panel('light')
+							| 	- var i = 0
+							| 	+loop(3)
+							| 		article.border-wrap
+							|			h3= titles[i++] + ' Title'
+							|			p
+							|				+blockletter(35)
+							| </code>
+			+max()
+				+demo('transparent')
+					+panel()
+						- var i = 0
+						+loop(3)
+							article.border-wrap.light
+								h3= titles[i++] + ' Title'
+								p
+									+blockletter(35)
+
+		+seg().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="columnLoop") +column-loop(arg1, arg2)
+				div#columnLoop.modal.window
+					p
+						strong Description: 
+						| Makes a copy of the content for the number of times passed in as "arg1", as columns.  The copied column must be contained within an "article" tag.
+					ul
+						li
+							strong arg1 
+							br
+							| [ 
+							em integer 
+							| ] &ndash; number of columns to create.
+						li
+							strong arg2 
+							br
+							| [ 
+							em string 
+							| ] &ndash; pass in the string "equalize", if you would like each column to be equal in height.  Then, add "data-equalize" to each wrapper that acts as the column's height (See code below.)
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +panel('dark')
+							| 	+column-loop(4,'equalize')
+							| 		article
+							| 			div.wrap(data-equal-height)
+							| 				p
+							| 					+porthole(150, 'center')
+							| 				p
+							| 					+blockletter(15)
+							| </code>
+			+max()
+				+demo('dark')
+					+panel('dark')
+						+column-loop(4,'equalize')
+							article
+								div.wrap(data-equal-height)
+									p
+										+porthole(150, 'center')
+									p
+										+blockletter(15)
+
+		h3#media.demo-heading Media
+		+seg().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="image") +image(arg1, arg2, arg3)
+				div#image.modal.window
+					p
+						strong Description: 
+						| Creates a dummy image element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.
+					ul
+						li
+							strong arg1 
+							br
+							| [ 
+							em integer, string 
+							| ] &ndash; width of element. Note: you can pass in a string for percentages, such as "100%".
+						li
+							strong arg2 
+							br
+							| [ 
+							em integer, string 
+							| ] &ndash; height of element. Note: you can pass in a string for percentages, such as "100%".
+						li
+							strong arg3
+							br
+							| [ 
+							em string 
+							| ] &ndash; position of element; can pass in the strings "left", "center", or "right"
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +image(450, 250)
+							| 
+							| // or . . . 
+							| 
+							| article
+							|    +image('100%', 150, 'center')
+							| </code>
+			+max()
+				+demo()
+					+image(450, 250)
+
+		+seg().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="image2") +image2(arg1, arg2, arg3)
+				div#image2.modal.window
+					p
+						strong Description: 
+						| Creates a dummy image element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.
+					ul
+						li
+							strong arg1 
+							br
+							| [ 
+							em integer, string 
+							| ] &ndash; width of element. Note: you can pass in a string for percentages, such as "100%".
+						li
+							strong arg2 
+							br
+							| [ 
+							em integer, string 
+							| ] &ndash; height of element. Note: you can pass in a string for percentages, such as "100%".
+						li
+							strong arg3
+							br
+							| [ 
+							em string 
+							| ] &ndash; position of element; can pass in the strings "left", "center", or "right"
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +image(450, 250).dimage
+							| 
+							| // or . . . 
+							| 
+							| article
+							|    +image('100%', 150, 'center').dimage
+							| </code>
+			+max()
+				+demo()
+					+image(450, 250).dimage
+
+		+seg().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="porthole") +porthole(arg1, arg2)
+				div#porthole.modal.window
+					p
+						strong Description: 
+						| Creates a dummy image element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.
+					ul
+						li
+							strong arg1 
+							br
+							| [ 
+							em integer 
+							| ] &ndash; dimensions of element (width and height)
+						li
+							strong arg2
+							br
+							| [ 
+							em string 
+							| ] &ndash; position of element; can pass in the strings "left", "center", or "right"
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +porthole(150)
+							| 
+							| // or . . . 
+							| 
+							| +panel('light')
+							|    +porthole(200, 'center')
+							| </code>
+			+max()
+				+demo('transparent')
+					article(style="width: 450px")
+						+porthole(200, 'center')
+
+		+seg().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="profile") +profile(arg1, arg2, arg3)
+				div#profile.modal.window
+					p
+						strong Description: 
+						| Creates a dummy profile element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.
+					ul
+						li
+							strong arg1 
+							br
+							| [ 
+							em integer, string 
+							| ] &ndash; width of element. Note: you can pass in a string for percentages, such as "100%".
+						li
+							strong arg2 
+							br
+							| [ 
+							em integer, string 
+							| ] &ndash; height of element. Note: you can pass in a string for percentages, such as "100%".
+						li
+							strong arg3
+							br
+							| [ 
+							em string 
+							| ] &ndash; position of element; can pass in the strings "left", "center", or "right"
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +profile(150)
+							| 
+							| // or . . . 
+							| 
+							| +panel('light')
+							|    +profile(200, 'center')
+							| </code>
+			+max()
+				+demo('transparent')
+					article(style="width: 450px")
+						+profile(200, 200, 'center')
+
+		+seg().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="profilePorthole") +profile-porthole(arg1, arg2)
+				div#profilePorthole.modal.window
+					p
+						strong Description: 
+						| Creates a dummy profile element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.
+					ul
+						li
+							strong arg1 
+							br
+							| [ 
+							em integer 
+							| ] &ndash; dimensions of element (width and height)
+						li
+							strong arg2
+							br
+							| [ 
+							em string 
+							| ] &ndash; position of element; can pass in the strings "left", "center", or "right"
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +profile-porthole(150)
+							| 
+							| // or . . . 
+							| 
+							| +panel('light')
+							|    +profile-porthole(200, 'center')
+							| </code>
+			+max()
+				+demo('transparent')
+					article(style="width: 450px")
+						+profile-porthole(200, 'center')
+
+		+seg().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="video") +video(arg1, arg2, arg3)
+				div#video.modal.window
+					p
+						strong Description: 
+						| Creates a dummy video element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.
+					ul
+						li
+							strong arg1 
+							br
+							| [ 
+							em integer, string 
+							| ] &ndash; width of element. Note: you can pass in a string for percentages, such as "100%".
+						li
+							strong arg2 
+							br
+							| [ 
+							em integer, string 
+							| ] &ndash; height of element. Note: you can pass in a string for percentages, such as "100%".
+						li
+							strong arg3
+							br
+							| [ 
+							em string 
+							| ] &ndash; position of element; can pass in the strings "left", "center", or "right"
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +video(450, 250)
+							| 
+							| // or . . . 
+							| 
+							| article
+							|    +video('100%', 150, 'center')
+							| </code>
+			+max()
+				+demo()
+					+video(450, 250)
+
+		+seg().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="slideshow") +slideshow(arg1, arg2, arg3)
+				div#slideshow.modal.window
+					p
+						strong Description: 
+						| Creates a dummy video element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.
+					ul
+						li
+							strong arg1 
+							br
+							| [ 
+							em integer, string 
+							| ] &ndash; width of element. Note: you can pass in a string for percentages, such as "100%".
+						li
+							strong arg2 
+							br
+							| [ 
+							em integer, string 
+							| ] &ndash; height of element. Note: you can pass in a string for percentages, such as "100%".
+						li
+							strong arg3
+							br
+							| [ 
+							em string 
+							| ] &ndash; position of element; can pass in the strings "left", "center", or "right"
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +slideshow(450, 250)
+							| 
+							| // or . . . 
+							| 
+							| article
+							|    +slideshow('100%', 150, 'center')
+							| </code>
+			+max()
+				+demo()
+					+slideshow(450, 250)
+
+		+seg().thirds
+			+min()
+				h4.ft-hd.modal.trigger(data-target="slideshow2") +slideshow2(arg1, arg2, arg3)
+				div#slideshow2.modal.window
+					p
+						strong Description: 
+						| Creates a dummy video element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.
+					ul
+						li
+							strong arg1 
+							br
+							| [ 
+							em integer, string 
+							| ] &ndash; width of element. Note: you can pass in a string for percentages, such as "100%".
+						li
+							strong arg2 
+							br
+							| [ 
+							em integer, string 
+							| ] &ndash; height of element. Note: you can pass in a string for percentages, such as "100%".
+						li
+							strong arg3
+							br
+							| [ 
+							em string 
+							| ] &ndash; position of element; can pass in the strings "left", "center", or "right"
+					div.clear-wrap
+						h4 Code
+						pre
+							| <code class="language-jade">
+							| +slideshow2(450, 250)
+							| 
+							| // or . . . 
+							| 
+							| article
+							|    +slideshow2('100%', 150, 'center')
+							| </code>
+			+max()
+				+demo()
+					+slideshow2(450, 250)
+
+		h3#forms.demo-heading Forms
+		+seg().thirds
+			+min()
+				h4.ft-hd +input(arg1)
+			+max()
+				+demo()
+					article.extend
+						+input('First Name')
+
+		+seg().thirds
+			+min()
+				h4.ft-hd +email(arg1)
+			+max()
+				+demo()
+					article.extend
+						+email('Email Address')
+
+		+seg().thirds
+			+min()
+				h4.ft-hd +password(arg1)
+			+max()
+				+demo()
+					article.extend
+						+password('New Password')
+
+		+seg().thirds
+			+min()
+				h4.ft-hd +switch(arg1, arg2)
+			+max()
+				+demo()
+					+switch('switches', ['Item 1', 'Item 2', 'Item 3'])
+
+		+seg().thirds
+			+min()
+				h4.ft-hd +checkbox(arg1, arg2, arg3)
+			+max()
+				+demo()
+					article
+						div.wrap
+							article
+								h4 Default:
+								+checkbox('checkboxes', ['Item 1', 'Item 2', 'Item 3'])
+								hr
+							article
+								h4 As A List:
+								+checkbox('checkboxes', ['Item 1', 'Item 2', 'Item 3'], 'list')
+
+		+seg().thirds
+			+min()
+				h4.ft-hd +radio(arg1, arg2)
+			+max()
+				+demo()
+					article
+						+radio('radios', ['Item 1', 'Item 2', 'Item 3'])
+
+		+seg().thirds
+			+min()
+				h4.ft-hd +select(arg1)
+			+max()
+				+demo()
+					article.extend
+						+select(['Item 1', 'Item 2', 'Item 3'])
+
+		+seg().thirds
+			+min()
+				h4.ft-hd +submit(arg1, arg2)
+			+max()
+				+demo()
+					article.extend
+						div.wrap
+							+submit('Submit', 'center')
+
+block script
+	script.
+		$('.web-wrap').each(function() {
+			var myHeight = $(this).outerHeight();
+			myHeight = Math.floor(myHeight * 0.67);
+			$(this).siblings('.demo-height').css('height', myHeight);
+		});

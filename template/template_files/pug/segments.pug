@@ -1,0 +1,86 @@
+- var breakpoints = ['lg','md','tablet','sm']
+
+mixin panel(size)
+	- if (size) {
+		div.panel-wrap(class!=attributes.class, id!=attributes.id)
+			section.panel(style="padding: "+ size +"px 0")
+				block
+	- }
+	- else {
+		div.panel-wrap(class!=attributes.class, id!=attributes.id)
+			section.panel
+				block
+	- }
+	
+mixin segment(items)
+	- if (items) {
+		- var cls = ""
+		- for (var i = 0; i < breakpoints.length; i++) {
+			- 	if (items[breakpoints[i]] !== undefined) {
+				- 		itemBreak = breakpoints[i];
+				- 		cls += " "+ itemBreak + "-" + items[itemBreak]
+				- 	}
+				- }
+		div.segment(class!=attributes.class + (items) ? " break" + cls : cls, id!=attributes.id)
+			if block
+				block
+	- }
+	- else {
+		div.segment(class!=attributes.class, id!=attributes.id)
+			if block
+				block
+	- }
+
+mixin seg(items)
+	- if (items) {
+		- var cls = ""
+		- for (var i = 0; i < breakpoints.length; i++) {
+			- 	if (items[breakpoints[i]] !== undefined) {
+				- 		itemBreak = breakpoints[i];
+				- 		cls += " "+ itemBreak + "-" + items[itemBreak]
+				- 	}
+				- }
+		div.segment(class!=attributes.class + (items) ? " break" + cls : cls, id!=attributes.id)
+			if block
+				block
+	- }
+	- else {
+		div.segment(class!=attributes.class, id!=attributes.id)
+			if block
+				block
+	- }
+
+mixin max()
+	div.segment-max
+		block
+
+mixin min()
+	div.segment-min
+		block
+
+mixin col(cols)
+	- if (typeof cols === 'object') {
+		- var cls = (attributes.class) ? attributes.class + " " : "";
+		- cls += 'segment break'
+		- for (var i = 0; i < breakpoints.length; i++) {
+			- 	if (cols[breakpoints[i]] !== undefined) {
+				- 		itemBreak = breakpoints[i];
+				- 		cls += " "+ itemBreak + "-columns-" + cols[itemBreak]
+				- 	}
+				- }
+		div(class=cls, id!=attributes.id)
+			if block
+				block
+	- }
+	- else {
+		- var cls = (attributes.class) ? attributes.class + " " : "";
+		- cls += "segment break lg-columns-" + cols
+		div(class=cls, id!=attributes.id)
+			if block
+				block
+	- }
+
+mixin cell()
+	div.cell(class!=attributes.class, id!=attributes.id)
+		if block
+			block

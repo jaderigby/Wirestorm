@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/wc-segments.lib.min.css">
+    <script src="js/segments.lib.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <div class="use-native-click" id="drawer">
+      <nav class="menu-drawer">
+        <div>
+          <ul>
+            <li>
+              <div class="logo-wrapper"><a class="logo" href="index.html">TheSite</a></div>
+            </li>
+            <li><a href="/">Home</a>
+            </li>
+            <li><a href="page2.html">Page 2</a>
+            </li>
+            <li><a href="usage.html">Usage</a>
+            </li>
+            <li class="right">
+            </li>
+          </ul>
+          <div class="clear-wrap menu-drawer-search-cleanup">
+            <div class="search-widget" data-target="search-results.html">
+              <div class="searchfield">
+                <div class="icon-search"></div>
+                <input type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div id="siteWrapper">
+      <header>
+        <div class="show-for-mobile">
+          <div class="rack compress mobile-cleanup vertical-align">
+            <div class="icon-menu toggle use-native-click" data-target="body, #siteWrapper, #drawer"></div>
+            <div class="logo-wrapper"><a class="logo" href="index.html">TheSite</a></div>
+          </div>
+        </div>
+      </header>
+      <nav class="desktop-nav dark hide-for-mobile">
+        <prime-segment class="vertical-align">
+          <x-major>
+            <ul>
+              <li>
+                            <div class="logo-wrapper"><a class="logo" href="index.html">TheSite</a></div>
+              </li>
+              <li><a href="/">Home</a>
+              </li>
+              <li><a href="page2.html">Page 2</a>
+              </li>
+              <li><a href="usage.html">Usage</a>
+              </li>
+              <li class="right">
+              </li>
+            </ul>
+          </x-major>
+          <x-minor>
+                        <div class="search-widget" data-target="search-results.html">
+                          <div class="searchfield">
+                            <div class="icon-search"></div>
+                            <input type="text">
+                          </div>
+                        </div>
+          </x-minor>
+        </prime-segment>
+      </nav>
+      <link rel="stylesheet" type="text/css" href="../css/prism-okaidia.css">
+      <script src="../js/prism.js"></script>
+      <div class="panel-wrap darker">
+        <section class="panel">
+          <div class="segment fifths">
+            <div class="segment-min">
+              <h2>Usage</h2>
+            </div>
+            <div class="segment-max">
+              <div class="wrap">
+                <p>Note: Click on any element&squo;s name in order to see full details.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="panel-wrap light">
+        <section class="panel">
+          <h4>Sections</h4>
+          <ul>
+            <li><a href="#layout" data-move-to="200">Layout</a></li>
+            <li><a href="#dynamic-elements">Dynamic Elements</a></li>
+            <li><a href="#loops">Loops</a></li>
+            <li><a href="#media">Media</a></li>
+            <li><a href="#forms">Forms</a></li>
+          </ul>
+          <h3 class="demo-heading" id="layout" data-move-to="150">Layout</h3>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="panelDark">+panel()</h4>
+              <div class="modal window" id="panelDark">
+                <p><strong>Description: </strong>Creates a panel content wrapper including substantial whitespace above and below, as well as centering content while allowing background color to extend to the edge of the browser. Panels should be stacked one upon another and not nested. Background property can be controlled by attaching a class with the background-color assigned in the css.  Current options include:</p>
+                <ul>
+                  <li>.light</li>
+                  <li>.dark</li>
+                  <li>.fill</li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++panel().dark
+	h3 Demo
+	p
+		+blockletter(30)
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap dark">
+                  <div class="panel-wrap">
+                    <section class="panel" style="padding: darkpx 0">
+                      <h3>Demo</h3>
+                      <p><span class="blockletter">Praesent in mauris eu tortor porttitor accumsan etiam neque lorem ipsum dolor sit amet consectetuer adipiscing elit in in enim a arcu imperdiet malesuada mauris metus suspendisse potenti donec vitae </span>
+                      </p>
+                    </section>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="half">.half</h4>
+              <div class="modal window" id="half">
+                <p><strong>Description: </strong>Breaks content into halves.  These are defined by either "+min", "+max()", or both.</p>
+                <ul>
+                  <li><strong>Class</strong></li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++segment().half
+	+max()
+		+image('100%', 200)
+	+max()
+			h3 Content Title
+		p
+			+blockletter(40)
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <div class="panel-wrap">
+                    <section class="panel" style="padding: lightpx 0">
+                      <div class="segment half">
+                        <div class="segment-min">
+                          <div style="width: 100%; height: 200px;">
+                            <div class="image-widget">
+                              <div class="image-border"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="segment-max">
+                          <h3>Content Title</h3>
+                          <p><span class="blockletter">Etiam posuere lacus quis dolor in in enim a arcu imperdiet malesuada pellentesque ipsum integer lacinia sed vel lectus duis sapien nunc commodo et interdum suscipit sollicitudin et dolor sed convallis magna eu sem fusce dui leo imperdiet in aliquam sit amet feugiat eu orci integer malesuada aliquam id dolor </span>
+                          </p>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="thirds">.thirds</h4>
+              <div class="modal window" id="thirds">
+                <p><strong>Description: </strong>Breaks content into 3rds with a dominant and subbordinate section.  These are defined by "aside" tag for the dominant (1/3) and "article" tag for subbordinate (2/3).</p>
+                <ul>
+                  <li><strong>Class</strong></li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++seg().thirds
+	+min()
+		+image('100%', 200)
+	+max()
+		h3 Content Title
+		p
+			+blockletter(40)
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <div class="panel-wrap">
+                    <section class="panel" style="padding: lightpx 0">
+                      <div class="segment thirds">
+                        <div class="segment-min">
+                          <div style="width: 100%; height: 200px;">
+                            <div class="image-widget">
+                              <div class="image-border"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="segment-max">
+                          <h3>Content Title</h3>
+                          <p><span class="blockletter">Etiam quis quam praesent id justo in neque elementum ultrices aenean fermentum risus id tortor etiam neque praesent in mauris eu tortor porttitor accumsan morbi a metus nunc auctor proin pede metus vulputate nec fermentum fringilla vehicula vitae justo fusce suscipit libero eget elit duis ante orci molestie vitae vehicula </span>
+                          </p>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="fifths">.fifths</h4>
+              <div class="modal window" id="fifths">
+                <p><strong>Description: </strong>Breaks content into 5ths with a dominant and subbordinate section.  These are defined by "aside" tag for the subbordinate (2/5) and "article" tag for the dominant (3/5).</p>
+                <ul>
+                  <li><strong>Class</strong></li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++panel('light')
+	section.fifths
+		aside
+			+image('100%', 200)
+		article
+			h3 Content Title
+			p
+				+blockletter(50)
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <div class="panel-wrap">
+                    <section class="panel" style="padding: lightpx 0">
+                      <div class="segment fifths">
+                        <div class="segment-min">
+                          <div style="width: 100%; height: 200px;">
+                            <div class="image-widget">
+                              <div class="image-border"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="segment-max">
+                          <h3>Content Title</h3>
+                          <p><span class="blockletter">Mauris metus fusce aliquam vestibulum ipsum maecenas lorem integer in sapien maecenas sollicitudin phasellus enim erat vestibulum vel aliquam a posuere eu velit fusce aliquam vestibulum ipsum pellentesque sapien etiam dui sem fermentum vitae sagittis id malesuada in quam etiam ligula pede sagittis quis interdum ultricies scelerisque eu urna quisque </span>
+                          </p>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="sevenths">.sevenths</h4>
+              <div class="modal window" id="sevenths">
+                <p><strong>Description: </strong>Breaks content into 4ths with a dominant and subbordinate section.  These are defined by "aside" tag for the dominant (1/4) and "article" tag for subbordinate (3/4).
+                  <ul>
+                    <li><strong>Class</strong></li>
+                  </ul>
+                </p>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++segment().sevenths
+	+min()
+		+image('100%', 200)
+	+max()
+		  h3 Content Title
+		p
+			+blockletter(40)
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <div class="panel-wrap light">
+                    <section class="panel">
+                      <div class="segment sevenths">
+                        <div class="segment-min">
+                          <div style="width: 100%; height: 200px;">
+                            <div class="image-widget">
+                              <div class="image-border"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="segment-max">
+                          <h3>Content Title</h3>
+                          <p><span class="blockletter">Aliquam ante integer in sapien curabitur vitae diam non enim vestibulum interdum nullam feugiat turpis at pulvinar vulputate erat libero tristique tellus nec bibendum odio risus sit amet ante morbi a metus fusce aliquam vestibulum ipsum donec quis nibh at felis congue commodo vestibulum erat nulla ullamcorper nec rutrum non </span>
+                          </p>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <h3 class="demo-heading" id="dynamic-elements">Dynamic Elements</h3>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="modal">+modal(arg1, arg2)</h4>
+              <div class="modal window" id="modal">
+                <p><strong>Description: </strong>Creates a button linking to a modal window.  Content of modal is anything indented underneath the modal element (see below). Content of the modal can be any html (content, images, etc)</p>
+                <ul>
+                  <li><strong>arg1 </strong><br>[ <em>string </em>] &ndash; button text</li>
+                  <li><strong>arg2 </strong><br>[ <em>string (optional) </em>] &ndash; position of button ("left", "center", or "right")</li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++modal("Learn More")
+    p Content of the modal     
+ 
+// or . . . 
+ 
++modal("Learn More", "center")
+    p Content of the modal including an image
+   +image(100)
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <div class="panel-wrap">
+                    <section class="panel" style="padding: lightpx 0">
+                                  <div class="center-justify">
+                                    <button class="modal trigger" data-target="modal1">Learn More</button>
+                                  </div>
+                                  <div class="modal window" id="modal1">
+                                    <h3>Special Modal</h3>
+                                    <p>Here lies my very special modal!</p>
+                                  </div>
+                    </section>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="tabs">+tabs(arg1)</h4>
+              <div class="modal window" id="tabs">
+                <p><strong>Description: </strong>Creates a section of tabs.  The +tabs() element is used in conjunction with the +tab() element (singular).  Each tab can be defined under a +tab() element. Refer to the code example below.</p>
+                <ul>
+                  <li><strong>arg1 </strong><br>[ <em>array </em>] &ndash; title of each tab, as a list of strings.</li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++tabs(['Tab 1', 'Tab 2', 'Tab 3'])
+    +tab()
+        p This content will be contained within the first tab.
+    +tab()
+        p This is the content for the second tab.
+    +tab()
+        p And finally, the content for the third tab.
+ 
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <div class="panel-wrap">
+                    <section class="panel" style="padding: lightpx 0">
+                                  <div class="tabs-widget">
+                                    <ul class="tabs">
+                                      <li data-target="Tab 1">Tab 1</li>
+                                      <li data-target="Tab 2">Tab 2</li>
+                                      <li data-target="Tab 3">Tab 3</li>
+                                      <hr>
+                                    </ul>
+                                    <section class="tabs-wrapper">
+                                                  <section class="tab-element">
+                                                    <p>This content will be contained within the first tab.</p>
+                                                  </section>
+                                                  <section class="tab-element">
+                                                    <p>This is the content for the second tab.</p>
+                                                  </section>
+                                                  <section class="tab-element">
+                                                    <p>And finally, the content for the third tab.</p>
+                                                  </section>
+                                    </section>
+                                  </div>
+                    </section>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <h3 class="demo-heading" id="loops">Loops</h3>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="loop">+loop(arg1)</h4>
+              <div class="modal window" id="loop">
+                <p><strong>Description: </strong>Makes a copy of the content for the number of times passed in as "arg1".</p>
+                <ul>
+                  <li><strong>arg1 </strong><br>[ <em>integer </em>] &ndash; number of times to loop.</li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++panel('light')
+	- var i = 0
+	+loop(3)
+		article.border-wrap
+			h3= titles[i++] + ' Title'
+			p
+				+blockletter(35)
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap checkered">
+                  <div class="panel-wrap">
+                    <section class="panel">
+                                  <article class="border-wrap light">
+                                    <h3>First Title</h3>
+                                    <p><span class="blockletter">In in enim a arcu imperdiet malesuada nullam lectus justo vulputate eget mollis sed tempor sed magna sed vel lectus morbi a metus sed elit dui pellentesque a faucibus vel interdum nec diam aenean id </span>
+                                    </p>
+                                  </article>
+                                  <article class="border-wrap light">
+                                    <h3>Second Title</h3>
+                                    <p><span class="blockletter">Pellentesque ipsum aliquam ante nullam justo enim consectetuer nec ullamcorper ac vestibulum in elit praesent id justo in neque elementum ultrices pellentesque ipsum nullam rhoncus aliquam metus fusce eget urna etiam bibendum elit eget erat </span>
+                                    </p>
+                                  </article>
+                                  <article class="border-wrap light">
+                                    <h3>Third Title</h3>
+                                    <p><span class="blockletter">Suspendisse potenti nunc posuere nam sed tellus id magna elementum tincidunt fusce aliquam vestibulum ipsum nullam dapibus fermentum ipsum nullam justo enim consectetuer nec ullamcorper ac vestibulum in elit maecenas libero praesent dapibus curabitur vitae </span>
+                                    </p>
+                                  </article>
+                    </section>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="columnLoop">+column-loop(arg1, arg2)</h4>
+              <div class="modal window" id="columnLoop">
+                <p><strong>Description: </strong>Makes a copy of the content for the number of times passed in as "arg1", as columns.  The copied column must be contained within an "article" tag.</p>
+                <ul>
+                  <li><strong>arg1 </strong><br>[ <em>integer </em>] &ndash; number of columns to create.</li>
+                  <li><strong>arg2 </strong><br>[ <em>string </em>] &ndash; pass in the string "equalize", if you would like each column to be equal in height.  Then, add "data-equalize" to each wrapper that acts as the column's height (See code below.)</li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++panel('dark')
+	+column-loop(4,'equalize')
+		article
+			div.wrap(data-equal-height)
+				p
+					+porthole(150, 'center')
+				p
+					+blockletter(15)
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap dark">
+                  <div class="panel-wrap">
+                    <section class="panel" style="padding: darkpx 0">
+                                  <section class="columns-4 columnizer" data-equalize>
+                                    <article>
+                                      <div class="wrap" data-equal-height>
+                                        <p>
+                                          <div class="porthole" style="width: 150px; height: 150px; margin: 0 auto">
+                                            <div class="image-widget"></div>
+                                          </div>
+                                        </p>
+                                        <p><span class="blockletter">Morbi scelerisque luctus velit morbi imperdiet mauris ac auctor dictum nisl ligula egestas nulla et </span>
+                                        </p>
+                                      </div>
+                                    </article>
+                                    <article>
+                                      <div class="wrap" data-equal-height>
+                                        <p>
+                                          <div class="porthole" style="width: 150px; height: 150px; margin: 0 auto">
+                                            <div class="image-widget"></div>
+                                          </div>
+                                        </p>
+                                        <p><span class="blockletter">Donec ipsum massa ullamcorper in auctor et scelerisque sed est phasellus et lorem id felis </span>
+                                        </p>
+                                      </div>
+                                    </article>
+                                    <article>
+                                      <div class="wrap" data-equal-height>
+                                        <p>
+                                          <div class="porthole" style="width: 150px; height: 150px; margin: 0 auto">
+                                            <div class="image-widget"></div>
+                                          </div>
+                                        </p>
+                                        <p><span class="blockletter">Sed elit dui pellentesque a faucibus vel interdum nec diam fusce aliquam vestibulum ipsum integer </span>
+                                        </p>
+                                      </div>
+                                    </article>
+                                    <article>
+                                      <div class="wrap" data-equal-height>
+                                        <p>
+                                          <div class="porthole" style="width: 150px; height: 150px; margin: 0 auto">
+                                            <div class="image-widget"></div>
+                                          </div>
+                                        </p>
+                                        <p><span class="blockletter">Mauris pretium quam et urna maecenas libero mauris dolor felis sagittis at luctus sed aliquam </span>
+                                        </p>
+                                      </div>
+                                    </article>
+                                  </section>
+                    </section>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <h3 class="demo-heading" id="media">Media</h3>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="image">+image(arg1, arg2, arg3)</h4>
+              <div class="modal window" id="image">
+                <p><strong>Description: </strong>Creates a dummy image element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.</p>
+                <ul>
+                  <li><strong>arg1 </strong><br>[ <em>integer, string </em>] &ndash; width of element. Note: you can pass in a string for percentages, such as "100%".</li>
+                  <li><strong>arg2 </strong><br>[ <em>integer, string </em>] &ndash; height of element. Note: you can pass in a string for percentages, such as "100%".</li>
+                  <li><strong>arg3</strong><br>[ <em>string </em>] &ndash; position of element; can pass in the strings "left", "center", or "right"</li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++image(450, 250)
+ 
+// or . . . 
+ 
+article
+   +image('100%', 150, 'center')
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <div style="width: 450px; height: 250px;">
+                    <div class="image-widget">
+                      <div class="image-border"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="image2">+image2(arg1, arg2, arg3)</h4>
+              <div class="modal window" id="image2">
+                <p><strong>Description: </strong>Creates a dummy image element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.</p>
+                <ul>
+                  <li><strong>arg1 </strong><br>[ <em>integer, string </em>] &ndash; width of element. Note: you can pass in a string for percentages, such as "100%".</li>
+                  <li><strong>arg2 </strong><br>[ <em>integer, string </em>] &ndash; height of element. Note: you can pass in a string for percentages, such as "100%".</li>
+                  <li><strong>arg3</strong><br>[ <em>string </em>] &ndash; position of element; can pass in the strings "left", "center", or "right"</li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++image(450, 250).dimage
+ 
+// or . . . 
+ 
+article
+   +image('100%', 150, 'center').dimage
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <div class="dimage" style="width: 450px; height: 250px;">
+                    <div class="image-widget">
+                      <div class="image-border"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="porthole">+porthole(arg1, arg2)</h4>
+              <div class="modal window" id="porthole">
+                <p><strong>Description: </strong>Creates a dummy image element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.</p>
+                <ul>
+                  <li><strong>arg1 </strong><br>[ <em>integer </em>] &ndash; dimensions of element (width and height)</li>
+                  <li><strong>arg2</strong><br>[ <em>string </em>] &ndash; position of element; can pass in the strings "left", "center", or "right"</li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++porthole(150)
+ 
+// or . . . 
+ 
++panel('light')
+   +porthole(200, 'center')
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap checkered">
+                  <article style="width: 450px">
+                    <div class="porthole" style="width: 200px; height: 200px; margin: 0 auto">
+                      <div class="image-widget"></div>
+                    </div>
+                  </article>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="profile">+profile(arg1, arg2, arg3)</h4>
+              <div class="modal window" id="profile">
+                <p><strong>Description: </strong>Creates a dummy profile element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.</p>
+                <ul>
+                  <li><strong>arg1 </strong><br>[ <em>integer, string </em>] &ndash; width of element. Note: you can pass in a string for percentages, such as "100%".</li>
+                  <li><strong>arg2 </strong><br>[ <em>integer, string </em>] &ndash; height of element. Note: you can pass in a string for percentages, such as "100%".</li>
+                  <li><strong>arg3</strong><br>[ <em>string </em>] &ndash; position of element; can pass in the strings "left", "center", or "right"</li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++profile(150)
+ 
+// or . . . 
+ 
++panel('light')
+   +profile(200, 'center')
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap checkered">
+                  <article style="width: 450px">
+                    <div style="width: 200px; height: 200px; margin: 0 auto">
+                      <div class="profile image-widget">
+                        <div class="image-border"></div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="profilePorthole">+profile-porthole(arg1, arg2)</h4>
+              <div class="modal window" id="profilePorthole">
+                <p><strong>Description: </strong>Creates a dummy profile element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.</p>
+                <ul>
+                  <li><strong>arg1 </strong><br>[ <em>integer </em>] &ndash; dimensions of element (width and height)</li>
+                  <li><strong>arg2</strong><br>[ <em>string </em>] &ndash; position of element; can pass in the strings "left", "center", or "right"</li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++profile-porthole(150)
+ 
+// or . . . 
+ 
++panel('light')
+   +profile-porthole(200, 'center')
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap checkered">
+                  <article style="width: 450px">
+                    <div class="porthole" style="width: 200px; height: 200px; margin: 0 auto">
+                      <div class="profile image-widget"></div>
+                    </div>
+                  </article>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="video">+video(arg1, arg2, arg3)</h4>
+              <div class="modal window" id="video">
+                <p><strong>Description: </strong>Creates a dummy video element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.</p>
+                <ul>
+                  <li><strong>arg1 </strong><br>[ <em>integer, string </em>] &ndash; width of element. Note: you can pass in a string for percentages, such as "100%".</li>
+                  <li><strong>arg2 </strong><br>[ <em>integer, string </em>] &ndash; height of element. Note: you can pass in a string for percentages, such as "100%".</li>
+                  <li><strong>arg3</strong><br>[ <em>string </em>] &ndash; position of element; can pass in the strings "left", "center", or "right"</li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++video(450, 250)
+ 
+// or . . . 
+ 
+article
+   +video('100%', 150, 'center')
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <div style="width: 450px; height: 250px">
+                    <div class="video-widget">
+                      <div class="image-border"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="slideshow">+slideshow(arg1, arg2, arg3)</h4>
+              <div class="modal window" id="slideshow">
+                <p><strong>Description: </strong>Creates a dummy video element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.</p>
+                <ul>
+                  <li><strong>arg1 </strong><br>[ <em>integer, string </em>] &ndash; width of element. Note: you can pass in a string for percentages, such as "100%".</li>
+                  <li><strong>arg2 </strong><br>[ <em>integer, string </em>] &ndash; height of element. Note: you can pass in a string for percentages, such as "100%".</li>
+                  <li><strong>arg3</strong><br>[ <em>string </em>] &ndash; position of element; can pass in the strings "left", "center", or "right"</li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++slideshow(450, 250)
+ 
+// or . . . 
+ 
+article
+   +slideshow('100%', 150, 'center')
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <div style="width: 450px; height: 250px">
+                    <div class="slideshow-widget">
+                      <div class="image-widget">
+                        <div class="image-border">
+                          <div class="icon-arrow-left"></div>
+                          <div class="icon-arrow-right"></div>
+                          <div class="icon-progress"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd modal trigger" data-target="slideshow2">+slideshow2(arg1, arg2, arg3)</h4>
+              <div class="modal window" id="slideshow2">
+                <p><strong>Description: </strong>Creates a dummy video element. You can leave all parameters off, and allow the image to take on the dimensions of the parent, as well.</p>
+                <ul>
+                  <li><strong>arg1 </strong><br>[ <em>integer, string </em>] &ndash; width of element. Note: you can pass in a string for percentages, such as "100%".</li>
+                  <li><strong>arg2 </strong><br>[ <em>integer, string </em>] &ndash; height of element. Note: you can pass in a string for percentages, such as "100%".</li>
+                  <li><strong>arg3</strong><br>[ <em>string </em>] &ndash; position of element; can pass in the strings "left", "center", or "right"</li>
+                </ul>
+                <div class="clear-wrap">
+                  <h4>Code</h4>
+                  <pre><code class="language-jade">
++slideshow2(450, 250)
+ 
+// or . . . 
+ 
+article
+   +slideshow2('100%', 150, 'center')
+</code></pre>
+                </div>
+              </div>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <div style="width: 450px; height: 250px">
+                    <div class="slideshow-widget">
+                      <div class="dimage image-widget">
+                        <div class="image-border">
+                          <div class="icon-arrow-left"></div>
+                          <div class="icon-arrow-right"></div>
+                          <div class="icon-progress"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <h3 class="demo-heading" id="forms">Forms</h3>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd">+input(arg1)</h4>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <article class="extend">
+                    <div class="form-element">
+                      <input type="text"/>
+                      <label>First Name</label>
+                    </div>
+                  </article>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd">+email(arg1)</h4>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <article class="extend">
+                    <div class="form-element">
+                      <input type="email" data-validate="email"/>
+                      <label>Email Address</label>
+                    </div>
+                  </article>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd">+password(arg1)</h4>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <article class="extend">
+                    <div class="form-element">
+                      <input type="password"/>
+                      <label>New Password</label>
+                    </div>
+                  </article>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd">+switch(arg1, arg2)</h4>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <div class="form-switch-widget">
+                    <ul>
+                      <li>
+                        <div class="switch-item">
+                          <input type="checkbox" name="switches" value="item 1" id="item 11"/>
+                          <label for="item 11">Item 1</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="switch-item">
+                          <input type="checkbox" name="switches" value="item 2" id="item 22"/>
+                          <label for="item 22">Item 2</label>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="switch-item">
+                          <input type="checkbox" name="switches" value="item 3" id="item 33"/>
+                          <label for="item 33">Item 3</label>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd">+checkbox(arg1, arg2, arg3)</h4>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <article>
+                    <div class="wrap">
+                      <article>
+                        <h4>Default:</h4>
+                        <div class="checkbox-widget">
+                          <ul>
+                            <li class="checkbox">
+                              <input type="checkbox" name="checkboxes" value="item 1" id="test1"/>
+                              <label for="test1">Item 1</label>
+                            </li>
+                            <li class="checkbox">
+                              <input type="checkbox" name="checkboxes" value="item 2" id="test2"/>
+                              <label for="test2">Item 2</label>
+                            </li>
+                            <li class="checkbox">
+                              <input type="checkbox" name="checkboxes" value="item 3" id="test3"/>
+                              <label for="test3">Item 3</label>
+                            </li>
+                          </ul>
+                        </div>
+                        <hr>
+                      </article>
+                      <article>
+                        <h4>As A List:</h4>
+                        <div class="checkbox-widget">
+                          <ul>
+                            <li class="checkbox">
+                              <input type="checkbox" name="checkboxes" value="item 1" id="test1"/>
+                              <label for="test1">Item 1</label>
+                            </li>
+                            <li class="checkbox">
+                              <input type="checkbox" name="checkboxes" value="item 2" id="test2"/>
+                              <label for="test2">Item 2</label>
+                            </li>
+                            <li class="checkbox">
+                              <input type="checkbox" name="checkboxes" value="item 3" id="test3"/>
+                              <label for="test3">Item 3</label>
+                            </li>
+                          </ul>
+                        </div>
+                      </article>
+                    </div>
+                  </article>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd">+radio(arg1, arg2)</h4>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <article>
+                    <div class="radio-widget">
+                      <div class="form-element"><span class="radio">
+                          <input type="radio" name="radios" value="item 1" id="h4s1fk1"/>
+                          <label for="h4s1fk1">Item 1</label></span><span class="radio">
+                          <input type="radio" name="radios" value="item 2" id="h4s1fk2"/>
+                          <label for="h4s1fk2">Item 2</label></span><span class="radio">
+                          <input type="radio" name="radios" value="item 3" id="h4s1fk3"/>
+                          <label for="h4s1fk3">Item 3</label></span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd">+select(arg1)</h4>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <article class="extend">
+                    <select>
+                      <option>Item 1</option>
+                      <option>Item 2</option>
+                      <option>Item 3</option>
+                    </select>
+                  </article>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+          <div class="segment thirds">
+            <div class="segment-min">
+              <h4 class="ft-hd">+submit(arg1, arg2)</h4>
+            </div>
+            <div class="segment-max">
+              <div class="demo">
+                <div class="web-wrap">
+                  <article class="extend">
+                    <div class="wrap">
+                      <div class="form-element center-justify">
+                        <input type="submit" value="Submit"/>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div class="demo-height"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
+<div class="footer-nav"></div>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/TweenMax.min.js"></script>
+<script src="js/main.lib.js"></script>
+<script src="js/magicVial-0.6.2.js"></script>
+<script>
+  $('.web-wrap').each(function() {
+  	var myHeight = $(this).outerHeight();
+  	myHeight = Math.floor(myHeight * 0.67);
+  	$(this).siblings('.demo-height').css('height', myHeight);
+  });
+</script>

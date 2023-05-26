@@ -1,0 +1,18 @@
+{
+    "alias": "wire",
+    "toolName": "Wirestorm",
+    "actions": [
+        {
+            "name": "new",
+            "description": "creates a new wireframe"
+        },
+        {
+            "name": "-",
+            "description": "shortcut for creating a new wireframe. Available options:\n\nname:\t\tproject name, such as 'Wireframe New Homepage'\n\t\t(be sure to wrap in quotes)\n"
+        },
+        {
+            "name": "ready",
+            "description": "generates a gitlab pipeline yaml file"
+        }
+    ]
+}

@@ -1,0 +1,69 @@
+extend __core__/default
+block content
+	+panel().light
+		+segment({lg : 'fifths', md : 'half', sm : 'stack'})
+			+max()
+				h1 First One
+				p
+					+blockletter(45)
+				p
+					+modal('Learn More')
+						h3 Learn More
+						p
+							+blockletter(50)
+						form#moreInfo.wrap
+							+form-segment(2)
+								+cell()
+									+input('First Name', 'required')
+								+cell()
+									+input('Last Name')
+							+email('Email', 'required')
+							+textarea('Message')
+							+submit('Submit','right')
+			+min()
+				+slideshow(380,235,'right')
+	+panel().dark
+		+col({lg : 4, md : 2, tablet : 1})
+			+loop(4)
+				+cell()
+					+porthole(120,'center')
+					p.center-align
+						+blockletter(15)
+	+panel().light
+		+segment({lg : 'thirds', md : 'half', sm : 'stack'})
+			+min()
+				+image('100%',180).dimage
+			+max()
+				h2 Next Product
+				p
+					+blockletter(40)
+				+modal('Another Modal', 'right')
+					h3 Another Modal
+					p
+						+blockletter(800)
+	+panel().dark.footer
+		+tabs(['First','Second','Third'])
+			+tab()
+				h3 First Tab
+				p
+					+blockletter(45)
+			+tab()
+				h3 Second Tab
+				ol
+					- var i = 0;
+					+loop(4)
+						li= titles[i++] + " Item"
+			+tab()
+				h3 Third Tab
+				+col({lg : 5, sm : 1})
+					+loop(5)
+						+cell()
+							+image('100%',100).dimage
+							p
+								+rating(3, 5)
+block script
+	script.
+		$('form').each(function() {
+			console.log($(this).attr('id'));
+			magicVial('form#' + $(this).attr('id'), "Sorry, please fix the errors below.");
+		});

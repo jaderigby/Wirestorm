@@ -1,0 +1,388 @@
+mixin image(param1,param2,position)
+	- var width = null;
+	- var height = null;
+	- var size = null;
+	- var position = position || null;
+	- var styl = [];
+	- var cls = [];
+	- var stylString = "";
+	- var clsString = "";
+	- var pt = null;
+	- if (typeof param1 === 'object') {
+	-   param1.width = param1.width || '100%';
+	-   param1.height = param1.height || '100%';
+	-   param1.size = param1.size || null;
+	-   param1.position = param1.position || null;
+	-   param1.version = param1.version || 1;
+	-   param1.dynamic = param1.dynamic || false;
+	-   pt = "padding-top: " + (((param1.height * 1000) / (param1.width * 1000)) * 100) + "%";
+	-// Assign object values to standard values
+	-   width = param1.width;
+	-   height = param1.height;
+	-	if (param1.size) {
+	-	  width = param1.size;
+	-	  height = pram1.size;
+	-   }
+	-   if (param1.position) {
+	-	  position = param1.position;
+	-   }
+	-	if (param1.version === 2) {
+	-	  cls.push('dimage');
+	-   }
+	- }
+	- else {
+	-   if (!param2) {
+	-     size = param1;
+	-   }
+	-   else if (typeof param2 === 'string') {
+	-     if (param2 !== '100%') {
+	-       size = param1;
+	-       position = param2;	
+	-     }
+	-     else {
+	-	    width = param1;
+	-		height = param2;
+	-     }
+	-   } 
+	-   else {
+	-     width = param1;
+	-     height = param2;
+	-   }
+	- }
+	-// assign 'px' string to pixel values
+	- if (width !== '100%') {
+	-   width = width + 'px'
+	- }
+	- if (height !== '100%') {
+	-   height = height + 'px'
+	- }
+	- if (size) {
+	-   styl.push('width: ' + size + 'px');
+	-   styl.push('height: ' + size + 'px');
+	- }
+	- else {
+	-   styl.push('width: ' + width);
+	-   styl.push('height: ' + height);
+	- }
+	- if (position) {
+	-   cls.push(position);
+	- }
+	- if (styl.length > 0) {
+	-   styl.forEach(function(_item_, _index_) {
+	-     if (_index_ == 0) {
+	-       stylString += _item_ + ";"
+	-     }
+	-     else {
+	-       stylString += " " + _item_ + ";"
+	-     }
+	-   });
+	- }
+	- if (attributes.class) {
+	-   clsString =  attributes.class;
+	- }
+	- if (attributes.class !== undefined && cls.length > 0) {
+	-   clsString += " ";
+	- }
+	- if (cls.length > 0) {
+	-   cls.forEach(function(_item_, _index_) {
+	-     if (_index_ == 0) {
+	-       clsString += _item_
+	-     }
+	-     else {
+	-       clsString += " " + _item_
+	-     }
+	-   });
+	- }
+	- if (param1.dynamic) {
+		div.image-widget-wrapper(style="max-width: " + width, class!=clsString)
+			div.image-widget-outer(style=pt)
+				.image-widget-inner.image-widget
+					.image-border
+	- }
+	- else {
+		div(style!=stylString, class!=clsString)
+			div.image-widget
+				div.image-border
+	- }
+
+mixin chart(w,h,alignment)
+	- var a;
+	- if (h === undefined) {
+		- h = w;
+	- }
+	- if (alignment === 'center') {
+		- a = "; margin: 0 auto";
+	- } 
+	- else if (alignment === 'left') {
+		- a = "; float: left; padding-right: 10px; padding-bottom: 5px";
+	- }
+	- else if (alignment === 'right') {
+		- a = "; float: right; padding-left: 10px; padding-bottom: 5px";
+	- }
+	- else {
+		- a = "";
+	- }
+	- if (w === '100%' && h) {
+		div(style="width: "+ w +"; height: "+ h +"px"+ a)
+			div.chart.image-widget
+				.image-border
+	- }
+	- else if (w && h === '100%') {
+		div(style="width: "+ w +"px; height: "+ h +a)
+			div.chart.image-widget
+				.image-border
+	- }
+	- else if (w && h) {
+		div(style="width: "+ w +"px; height: "+ h +"px"+a)
+			div.chart.image-widget
+				.image-border
+	- }
+	- else {
+		div.chart.image-widget
+			.image-border
+	- }
+
+mixin porthole(size,alignment)
+	- var a;
+	- if (alignment === 'left') {
+		- a = "; float: left";
+	- } 
+	- else if (alignment === 'center') {
+		- a = "; margin: 0 auto";
+	- } 
+	- else if (alignment === 'right') {
+		- a = "; float: right";
+	- } 
+	- else {
+		- a = "";
+	- }
+	- if (size) {
+		div.porthole(style="width: "+ size +"px; height: "+ size +"px"+a)
+			div.image-widget
+	- }
+	- else {
+		div.porthole
+			div.image-widget
+	- }
+
+mixin porthole2(w,h,alignment)
+	- var a;
+	- if (alignment === 'left') {
+		- a = "; float: left";
+	- } 
+	- else if (alignment === 'center') {
+		- a = "; margin: 0 auto";
+	- } 
+	- else if (alignment === 'right') {
+		- a = "; float: right";
+	- } 
+	- else {
+		- a = "";
+	- }
+	- if (w === '100%' && h) {
+		div.porthole(style="width: "+ w +"px; height: "+ h +"px"+a)
+			div.dimage.image-widget
+	- }
+	- else if (w && h === '100%') {
+		div.porthole(style="width: "+ w +"px; height: "+ h +"px"+a)
+			div.dimage.image-widget
+	- }
+	- else if (w && h) {
+		div.porthole(style="width: "+ w +"px; height: "+ h +"px"+a)
+			div.dimage.image-widget
+	- }
+	- else {
+		div.porthole
+			div.dimage.image-widget
+	- }
+
+mixin profile(w,h,alignment)
+	- var a;
+	- if (h === undefined) {
+		- h = w;
+	- }
+	- if (alignment === 'center') {
+		- a = "; margin: 0 auto";
+	- } 
+	- else if (alignment === 'left') {
+		- a = "; float: left; padding-right: 10px; padding-bottom: 5px";
+	- }
+	- else if (alignment === 'right') {
+		- a = "; float: right; padding-left: 10px; padding-bottom: 5px";
+	- }
+	- else {
+		- a = "";
+	- }
+	- if (w === '100%' && h) {
+		div(style="width: "+ w +"; height: "+ h +"px"+ a)
+			div.profile.image-widget
+				.image-border
+	- }
+	- else if (w && h === '100%') {
+		div(style="width: "+ w +"px; height: "+ h +a)
+			div.profile.image-widget
+				.image-border
+	- }
+	- else if (w && h) {
+		div(style="width: "+ w +"px; height: "+ h +"px"+a)
+			div.profile.image-widget
+				.image-border
+	- }
+	- else {
+		div.profile.image-widget
+			.image-border
+	- }
+
+mixin profile-porthole(size,alignment)
+	- var a;
+	- if (alignment === 'left') {
+		- a = "; float: left";
+	- } 
+	- else if (alignment === 'center') {
+		- a = "; margin: 0 auto";
+	- } 
+	- else if (alignment === 'right') {
+		- a = "; float: right";
+	- } 
+	- else {
+		- a = "";
+	- }
+	- if (size) {
+		div.porthole(style="width: "+ size +"px; height: "+ size +"px"+a)
+			div.profile.image-widget
+	- }
+	- else {
+		div.porthole
+			div.profile.image-widget
+	- }
+
+mixin video(w,h,alignment)
+	- var a;
+	- if (h === undefined) {
+		- h = w;
+	- }
+	- if (alignment === 'left') {
+		- a = "; float: left";
+	- } 
+	- else if (alignment === 'center') {
+		- a = "; margin: 0 auto";
+	- } 
+	- else if (alignment === 'right') {
+		- a = "; float: right";
+	- } 
+	- else {
+		- a = "";
+	- }
+	- if (w === '100%' && h) {
+		div(style="width: "+ w +"; height: "+ h +"px"+ a)
+			div.video-widget
+				.image-border
+	- }
+	- else if (w && h === '100%') {
+		div(style="width: "+ w +"px; height: "+ h +a)
+			div.video-widget
+				.image-border
+	- }
+	- else if (w && h) {
+		div(style="width: "+ w +"px; height: "+ h +"px"+a)
+			div.video-widget
+				.image-border
+	- }
+	- else {
+		div.video-widget
+			.image-border
+	- }
+
+mixin slideshow(w,h,alignment)
+	- var a;
+	- if (h === undefined) {
+		- h = w;
+	- }
+	- if (alignment === 'center') {
+		- a = "; margin: 0 auto";
+	- } 
+	- else {
+		- a = "";
+	- }
+	- if (w === '100%' && h) {
+		div(style="width: "+ w +"px; height: "+ h +"px"+a)
+			.slideshow-widget
+				.image-widget
+					.image-border
+						.icon-arrow-left
+						.icon-arrow-right
+						.icon-progress
+	- }
+	- else if (w && h === '100%') {
+		div(style="width: "+ w +"px; height: "+ h +a)
+			.slideshow-widget
+				.image-widget
+					.image-border
+						.icon-arrow-left
+						.icon-arrow-right
+						.icon-progress
+	- }
+	- else if (w && h) {
+		div(style="width: "+ w +"px; height: "+ h +"px"+a)
+			.slideshow-widget
+				.image-widget
+					.image-border
+						.icon-arrow-left
+						.icon-arrow-right
+						.icon-progress
+	- }
+	- else {
+		.slideshow-widget
+			.image-widget
+				.image-border
+					.icon-arrow-left
+					.icon-arrow-right
+					.icon-progress
+	- }
+
+mixin slideshow2(w,h,alignment)
+	- var a;
+	- if (h === undefined) {
+		- h = w;
+	- }
+	- if (alignment === 'center') {
+		- a = "; margin: 0 auto";
+	- } 
+	- else {
+		- a = "";
+	- }
+	- if (w === '100%' && h) {
+		div(style="width: "+ w +"px; height: "+ h +"px"+a)
+			.slideshow-widget
+				.dimage.image-widget
+					.image-border
+						.icon-arrow-left
+						.icon-arrow-right
+						.icon-progress
+	- }
+	- else if (w && h === '100%') {
+		div(style="width: "+ w +"px; height: "+ h +a)
+			.slideshow-widget
+				.dimage.image-widget
+					.image-border
+						.icon-arrow-left
+						.icon-arrow-right
+						.icon-progress
+	- }
+	- else if (w && h) {
+		div(style="width: "+ w +"px; height: "+ h +"px"+a)
+			.slideshow-widget
+				.dimage.image-widget
+					.image-border
+						.icon-arrow-left
+						.icon-arrow-right
+						.icon-progress
+	- }
+	- else {
+		.slideshow-widget
+			.dimage.image-widget
+				.image-border
+					.icon-arrow-left
+					.icon-arrow-right
+					.icon-progress
+	- }
