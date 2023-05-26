@@ -184,7 +184,7 @@ def add_gitlab_ci_file(FILEPATH):
     paths:
     - public
   only:
-  - master'''
+  - main'''
 	write_file(FILEPATH, content)
 
 def rebuild_package_file(FILEPATH, NEW_NAME, REPO_NAME):
