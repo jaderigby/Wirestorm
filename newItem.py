@@ -38,7 +38,7 @@ def execute(ARGS):
 	helpers.rebuild_package_file(wireDirectory + '/' + 'package.json', newFolder, repoName)
 	helpers.rebuild_start_file(wireDirectory + '/' + 'start.js', 'app')
 	helpers.populate_app_folder(wireDirectory)
-	helpers.run_command('cd '+ wireDirectory +' && yarn install')
+	helpers.run_command('cd '+ wireDirectory +' && npm install')
 	helpers.add_gitlab_ci_file(wireDirectory + '/' +'.gitlab-ci.yml')
 	helpers.run_command('cd '+ wireDirectory +' && grunt dev')
 	helpers.run_command('cd '+ wireDirectory +' && git status && git add -A && git commit -m "adding project files" && git push')

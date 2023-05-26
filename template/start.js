@@ -19,6 +19,6 @@ app.use(express.logger('dev'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-opn('http://localhost:3000');
+opn('http://localhost:3030');
 
-app.listen(3000);
+app.listen(3030);
