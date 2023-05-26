@@ -1,5 +1,5 @@
 # Wirestorm #
 
-"~~~ Made With Bacon!"
+&tilde;&tilde;&tilde; Made With Bacon!
 
 Documentation coming soon!
