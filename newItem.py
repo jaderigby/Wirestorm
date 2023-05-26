@@ -1,5 +1,5 @@
 import messages as msg
-import subprocess, os, helpers
+import subprocess, os, helpers, time
 
 settings = helpers.get_settings()
 
@@ -27,7 +27,8 @@ def execute(ARGS):
 	helpers.generate_repository(projectName, selectedGroup)
 	helpers.clone_repo(destination, selectedGroup, repoName)
 	helpers.rename_repo(destination + '/' + repoName, wireDirectory)
-	helpers.add_readme(wireDirectory, projectName)
+	print(selectedGroup)
+	helpers.add_readme(wireDirectory, selectedGroup, projectName)
 	helpers.install_wirestorm(wireDirectory)
 	gruntCliInstalled = helpers.verify_installation('grunt --version')
 
@@ -41,7 +42,9 @@ def execute(ARGS):
 	helpers.run_command('cd '+ wireDirectory +' && npm install')
 	helpers.add_gitlab_ci_file(wireDirectory + '/' +'.gitlab-ci.yml')
 	helpers.run_command('cd '+ wireDirectory +' && grunt dev')
-	helpers.run_command('cd '+ wireDirectory +' && git status && git add -A && git commit -m "adding project files" && git push')
+	time.sleep(1)
+	helpers.run_command('cd '+ wireDirectory +' && git status')
+	helpers.run_command('cd '+ wireDirectory +' && git add -A && git commit -m "adding project files" && git push')
 	helpers.run_command('cd '+ wireDirectory +' && code __pages__/index.pug')
 	helpers.run_command('cd '+ wireDirectory +' && grunt dev')
 	helpers.run_command('cd '+ wireDirectory +' && node start')

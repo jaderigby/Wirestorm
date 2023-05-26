@@ -132,9 +132,20 @@ def clone_repo(DESTINATION, GROUP, NAME):
 	cloneCommand = 'cd {DESTINATION} && git clone git@gitlab.com:{USER}/{NAME}.git'.format(DESTINATION = DESTINATION, USER = GROUP['name'], NAME = NAME)
 	run_command(cloneCommand)
 
-def add_readme(DESTINATION, NAME):
-	readmeCmd = '''cd {} && echo "# {} #" >> README.md && git add -A && git commit -m "adding readme" && git push'''.format(DESTINATION, NAME)
+def add_readme(DESTINATION, GROUP, NAME):
+	formattedName = NAME.replace(' ', '-')
+	url = 'https://{}.gitlab.io/{}'.format(GROUP['name'], formattedName.lower())
+	content = '''# {name} #
+
+[Gitlab Page]({url})
+
+Link: {url}
+
+Note: Page will not update until after Gitlab Pipeline has completed for the Project. Also, may take a minute for it to update after pipeline has finished.
+'''.format(name = NAME, url = url)
+	readmeCmd = '''cd {} && echo "{}" >> README.md'''.format(DESTINATION, content)
 	run_command(readmeCmd)
+	run_command('cd {} git status && git add README.md && git commit -m "adding readme" && git push'.format(DESTINATION))
 
 def install_wirestorm(DESTINATION):
 	copyCommand = "scp -r {root}/template/ {destination}/".format(root = path('util'), destination = DESTINATION)
