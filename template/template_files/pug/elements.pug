@@ -35,9 +35,14 @@ mixin link(linkFile, linkDescriptor)
 	a(href=linkFile)= linkDescriptor
 
 //- Main loop
-mixin loop(count)
-	- var n = 1;
-	while n < (count + 1)
+mixin loop(PARAM1)
+	- let count = PARAM1;
+	- if (typeof PARAM1 === 'object') {
+		- count = PARAM1.length;
+	- }
+	- let n = 0;
+	while n < (count)
+		- i = PARAM1[n]
 		- n++
 		if block
 			block
