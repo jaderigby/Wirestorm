@@ -69,23 +69,23 @@ mixin column-loop(col, equalize)
 					block
 	- }
 	
-mixin button(nameValue, pos)
+mixin button(nameValue, pos="left")
 	- if (typeof nameValue === 'object') {
-	- 	nameValue.title = nameValue.title || "OK"
+	- 	nameValue.name = nameValue.name || "OK"
 	- 	nameValue.url = nameValue.url || ""
 	- 	nameValue.position = nameValue.position || "left"
 	- 	if (nameValue.position === 'left')
 				div.left-justify.button-module
-					a(href=nameValue.url, class!=attributes.class, id!=attributes.id).button= nameValue.title
+					a(href=nameValue.url, class!=attributes.class, id!=attributes.id).button= nameValue.name
 	- 	else if (nameValue.position === 'right')
 				div.right-justify.button-module
-					a(href=nameValue.url, class!=attributes.class, id!=attributes.id).button= nameValue.title
+					a(href=nameValue.url, class!=attributes.class, id!=attributes.id).button= nameValue.name
 	- 	else if (nameValue.position === 'center')
 				div.center-justify.button-module
-					a(href=url, class!=attributes.class, id!=attributes.id).button= nameValue.title
+					a(href=url, class!=attributes.class, id!=attributes.id).button= nameValue.name
 	- 	else if (nameValue.position === 'extend') {
 				div.button-module
-					a(href=nameValue.url, class!=attributes.class, id!=attributes.id).button.extend= nameValue.title
+					a(href=nameValue.url, class!=attributes.class, id!=attributes.id).button.extend= nameValue.name
 	- 	}
 	- }
 	- else {
