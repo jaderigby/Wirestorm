@@ -23,11 +23,11 @@ This will generate the appropriate profiles folder along with the profile.py fil
         "privateToken" : "123YourGitlabApiPrivateTokenABC",
         "gitlabGroups" : [
             {
-                "name" : "NameOfYourFirstGitlabGroup",
+                "name" : "yourDefaultGroup",
                 "group_id" : ""
             },
             {
-                "name" : "SomeOtherGroup",
+                "name" : "GroupThatYouAdded",
                 "group_id" : 12345678
             }
         ]
