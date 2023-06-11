@@ -44,3 +44,28 @@ You will also need a Gitlab account.  Once you have a Gitlab account set up, you
 
 - __gitlabGroups:__ You will need to create a group inside Gitlab.  Once you have created a group for your Wireframes, add the name here, as well as it's group_id. The name is for the bacon utility; the group_id is for gitlab's api.
 
+## LocalStorage ##
+
+Wirestorm stores a localStorage object in the background for every page.  You can take advantage of this object using the global variable `localData`.  And to save anything that you add to localStorage, you can simply do `localData.save()` in your JS code!  
+
+If you need to share data from one page with another page, you can frontload localData.  You can do this by adding the following script block to `__core__/footer.pug`:
+
+```
+script.
+    const pageList = [
+        'first-page',
+        'second-page',
+        'third-page',
+        'etc'
+    ];
+
+    newObj
+    pageList.forEach(function(_page_) {
+        localData[_page_] = {};
+    });
+
+    localData.save();
+
+```
+
+By adding each page to the `pageList` array, you can prepopulate the data without having to open the page in your browser. Just note that it won't run until you've opened at least one page.
