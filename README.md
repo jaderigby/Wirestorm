@@ -69,3 +69,21 @@ script.
 ```
 
 By adding each page to the `pageList` array, you can prepopulate the data without having to open the page in your browser. Just note that it won't run until you've opened at least one page.
+
+You can easily store the value of any input form element.  Simply add the class `store` to the input. For example:
+
+```
++input("First Name").store
+```
+
+Adding the `store` class to a submit button will transform that button into a localStorage save button. It will generally store ALL items with the `store` class.  If you want to isolate just certain items, or different items with multiple submit buttons, then add `data-store` to the submit buttion.  The id will be the id of the element wrapping the items to include, such as a div element:
+
+```
+div#username&password
+    +input("Username").store
+    +input("Password").store
+
++submit()(data-store="username&password")
+```
+
+In the above example, clicking the submit button will submit only those items inside the `username&password` div.
