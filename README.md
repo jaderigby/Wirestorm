@@ -76,14 +76,14 @@ You can easily store the value of any input form element.  Simply add the class 
 +input("First Name").store
 ```
 
-Adding the `store` class to a submit button will transform that button into a localStorage save button. It will generally store ALL items with the `store` class.  If you want to isolate just certain items, or different items with multiple submit buttons, then add `data-store` to the submit buttion.  The id will be the id of the element wrapping the items to include, such as a div element:
+Adding the `store` class to a submit button will transform that button into a localStorage save button. It will generally store ALL items with the `store` class.  If you want to isolate just certain items, or different items with multiple submit buttons, then add `store` to the submit buttion as a key/value pair (make sure not to forget the curly braces).  The id will be the id of the element wrapping the items to include, such as a div element:
 
 ```
-div#username&password
+div#username-password
     +input("Username").store
     +input("Password").store
 
-+submit()(data-store="username&password")
++submit({"name" : "Save", "store" : "username-password"})
 ```
 
 In the above example, clicking the submit button will submit only those items inside the `username&password` div.
