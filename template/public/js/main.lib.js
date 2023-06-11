@@ -412,6 +412,15 @@ $('.form-element input[type="text"], .form-element input[type="email"], .form-el
 	}
 });
 
+function formInit() {
+	$('.form-element input[type="text"], .form-element input[type="email"], .form-element input[type="password"], textarea').each(function() {
+		var $parent = ($(this).closest('.cell').length !== 0) ? $(this).closest('.cell').find('.form-element') : $(this).parent();
+		if ($(this).val() !== "") {
+			$parent.addClass('has-value');
+		}
+	});
+}
+
 //==================================
 //	Url Params, goto, and goback
 //==================================
@@ -441,9 +450,10 @@ $('[data-goback]').on('click', function(e) {
 function getParams() {
   var vars = {};
   var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-      vars[key] = value;
+      vars[key] = value.replace('%20', ' ');
   });
-  window.params = decodeURI(vars);
+//   window.params = decodeURI(vars);
+	window.params = vars;
 }
 
 getParams();
@@ -454,3 +464,72 @@ function uuidv4() {
 		(c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
 	);
 }
+
+
+//============================
+//	Highlight Nav Element
+//============================
+
+function highlightNav() {
+	_$('.nav-highlight a').removeClass('selected');
+	var test = window.location.pathname.replace('/', '') + window.location.search;
+	_$('.nav-highlight a').items.forEach(function(_item_) {
+		if ( _$(_item_).attr('href') === test ) {
+			_$(_item_).addClass('selected');
+		}
+	});
+}
+
+highlightNav();
+
+
+//================
+//	localData
+//================
+
+if (localStorage.getItem('localData') !== null) {
+    console.log('localData is available!');
+} else {
+    const localStorageData = {};
+    localStorage.setItem('localData', JSON.stringify(localStorageData));
+}
+
+const localData = JSON.parse(localStorage.getItem("localData"));
+
+localData['save'] = function() {
+	const localDataPreserve = JSON.parse(JSON.stringify(localData));
+	delete localDataPreserve.save;
+	localStorage.setItem('localData', JSON.stringify(localDataPreserve));
+}
+
+const thisPage = window.location.pathname.replace(/^\/|\.html$/g, '').replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+
+if (!(localData.hasOwnProperty(thisPage))) {
+	localData[thisPage] = {};
+	localData.save();
+}
+
+_$('.localStorage').items.forEach(function(_item_) {
+	const itemName = _item_.id;
+	val = _item_.value;
+	if (!(localData[thisPage].hasOwnProperty(itemName))) {
+		localData[thisPage][itemName] = val;
+		localData.save();
+	}
+	if (localData[thisPage][itemName] !== '') {
+		_item_.value = localData[thisPage][itemName];
+	}
+});
+
+_$('input[type="submit"').click(function(e) {
+	if (_$(e.target).hasClass('localStorage')) {
+		_$('.localStorage').items.forEach(function(_item_) {
+			const itemName = _item_.id;
+			val = _item_.value;
+			localData[thisPage][itemName] = val;
+			localData.save();
+		});
+	}
+});
+
+formInit();

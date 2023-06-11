@@ -32,7 +32,7 @@ mixin cell()
 			block
 
 mixin input(description, required, features)
-	- var capsule = false, capsulized = ""
+	- var capsule = false, capsulized = "", cls = attributes.class
 	- if (features && features.hasOwnProperty('capsule')) {
 	-		capsule = features.capsule
 	- 		capsulized = 'capsulized'
@@ -41,12 +41,15 @@ mixin input(description, required, features)
 	-		capsule = arguments[1].capsule
 	-		capsulized = 'capsulized'
 	- }
+	- if (capsulized !== '') {
+	- 	cls = cls.push(capsulized);
+	- }
 	- if (required) {
 		.form-element
 			- if (capsule) {
 				span(class=capsule)
 			- }
-			input(class=capsulized, type="text", data-required='')
+			input(class=cls, type="text", data-required='', id!=attributes.id)
 			label=description
 	- }
 	- else if (description) {
@@ -54,7 +57,7 @@ mixin input(description, required, features)
 			- if (capsule) {
 				span(class=capsule)
 			- }
-			input(class=capsulized, type="text")
+			input(class=cls, type="text", id!=attributes.id)
 			label=description
 	- }
 	- else {
@@ -62,7 +65,7 @@ mixin input(description, required, features)
 			- if (capsule) {
 				span(class=capsule)
 			- }
-			input(class=capsulized, type="text")
+			input(class=cls, type="text", id!=attributes.id)
 	- }
 
 mixin email(description, required)
@@ -110,19 +113,19 @@ mixin select(items)
 mixin submit(description, pos)
 	- if (pos === 'center') {
 		.form-element.center-justify
-			input(type="submit", value=description)
+			input(type="submit", value=description, class!=attributes.class, id!=attributes.id)
 	- }
 	- else if (pos === 'right') {
 		.form-element.right-justify
-			input(type="submit", value=description)
+			input(type="submit", value=description, class!=attributes.class, id!=attributes.id)
 	- }
 	- else if (pos === 'extend') {
 		.form-element
-			input.extend(type="submit", value=description)
+			input.extend(type="submit", value=description, class!=attributes.class, id!=attributes.id)
 	- }
 	- else {
 		.form-element
-			input(type="submit", value=description)
+			input(type="submit", value=description, class!=attributes.class, id!=attributes.id)
 	- }
 
 mixin switch-old(name, items)
@@ -221,7 +224,7 @@ mixin radio(name, items)
 					- iterRadio++
 mixin textarea(description)
 	.form-element
-		textarea
+		textarea(class!=attributes.class, id!=attributes.id)
 		label=description
 
 mixin login(urlPath)
