@@ -74,7 +74,7 @@ mixin column-loop(col, equalize)
 					block
 	- }
 	
-mixin button(nameValue, pos="left")
+mixin button(nameValue, pos='left')
 	- if (typeof nameValue === 'object') {
 	- 	nameValue.name = nameValue.name || "OK"
 	- 	nameValue.url = nameValue.url || ""
@@ -108,6 +108,27 @@ mixin button(nameValue, pos="left")
 				a(href=url, class!=attributes.class, id!=attributes.id).button.extend= nameValue
 		- }
 	- }
+
+
+mixin bar-link(nameValue, arg2 = '#', arg3 = '#')
+	- linkUrl = arg2
+	- if (linkUrl.includes('icon-'))
+		- if (arg3 !== '#')
+			a(href= arg3).bar-link
+				prime-segment.vertical-center
+					x-minor
+						div(class= arg2)
+					x-major
+						div= nameValue
+		- else 
+			a(href= linkUrl).bar-link
+				prime-segment.vertical-center
+					x-minor
+						div(class= arg2)
+					x-major
+						div= nameValue
+	- else
+		a(href= linkUrl).bar-link= nameValue
 
 mixin placeholder(SIZE,LABEL)
 	- let size = SIZE || [150,150];
@@ -223,6 +244,21 @@ mixin rating(min, max)
 		while (leftover > 0)
 			span.icon-star.unmarked
 			- leftover--
+
+mixin wrap(TOP = 0, BOTTOM = 0)
+	- BOTTOM = (BOTTOM == 0) ? BOTTOM = TOP : BOTTOM;
+	- const marginString = "margin-top: "+ TOP +"px; margin-bottom: "+ BOTTOM +"px";
+	.wrap(style= marginString,  class!=attributes.class, id!=attributes.id)
+		if block
+			block
+
+mixin clear-wrap(TOP = 0, BOTTOM = 0)
+	- BOTTOM = (BOTTOM == 0) ? BOTTOM = TOP : BOTTOM;
+	- const marginString = "margin-top: "+ TOP +"px; margin-bottom: "+ BOTTOM +"px";
+	.clear-wrap(style= marginString,  class!=attributes.class, id!=attributes.id)
+		if block
+			block
+
 
 mixin footer-links(items)
 	ul.footer-links
