@@ -563,3 +563,7 @@ _$('input[type="submit"][data-store], a[data-store]').click(function(e) {
 });
 
 formInit();
+
+function emphasize(PARAM1) {
+	_$(PARAM1).addClass('emphasize');
+}

@@ -408,6 +408,17 @@ base()
 			font-size: 1.1rem
 		.category-stat
 			padding-right: 70px
+	.emphasize
+		animation: show-emphasis 2.5s forwards ease-in-out
+	@keyframes show-emphasis
+		0%
+			box-shadow: 0 0 0 rgba(0,0,0,0)
+		25%
+			box-shadow: 0 0 40px rgba(181,0,0,0.4), 0 0 6px rgba(181,0,0,0.7)
+		75%
+			box-shadow: 0 0 40px rgba(181,0,0,0.4), 0 0 6px rgba(181,0,0,0.7)
+		100%
+			box-shadow: 0 0 0 rgba(0,0,0,0)
 
 widgets()
 	//
