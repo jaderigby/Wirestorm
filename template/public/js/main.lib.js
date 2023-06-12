@@ -521,15 +521,34 @@ _$('.store').items.forEach(function(_item_) {
 	}
 });
 
+function updateVals() {
+	_$('[data-ref]').items.forEach(function(_item_) {
+		const keyVal = _$(_item_).attr('data-ref');
+		if (keyVal !== '') {
+			_item_.innerHTML = localData[thisPage][keyVal];
+		}
+	});
+}
+
+updateVals();
+
 _$('input[type="submit"').click(function(e) {
 	if (_$(e.target).hasClass('store') && _$(e.target).attr('data-store') == null) {
 		_$('.store').items.forEach(function(_item_) {
+			let val = '';
 			const itemName = _item_.id;
-			val = _item_.value;
+			console.log(_item_.innerHTML);
+			if (_item_.nodeName == 'INPUT' || _item_.nodeName === 'SELECT' || _item_.nodeName == 'TEXTAREA') {
+				val = _item_.value;
+			}
+			else {
+				val = _item_.innerHTML;
+			}
 			localData[thisPage][itemName] = val;
 			localData.save();
 		});
 	}
+	updateVals();
 });
 
 _$('input[type="submit"][data-store], a[data-store]').click(function(e) {
@@ -540,6 +559,7 @@ _$('input[type="submit"][data-store], a[data-store]').click(function(e) {
 		localData[thisPage][itemName] = val;
 		localData.save();
 	});
+	updateVals();
 });
 
 formInit();
