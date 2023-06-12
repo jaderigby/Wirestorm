@@ -110,22 +110,45 @@ mixin select(items)
 		each item in items
 			option= item
 
-mixin submit(description, pos)
-	- if (pos === 'center') {
-		.form-element.center-justify
-			input(type="submit", value=description, class!=attributes.class, id!=attributes.id)
-	- }
-	- else if (pos === 'right') {
-		.form-element.right-justify
-			input(type="submit", value=description, class!=attributes.class, id!=attributes.id)
-	- }
-	- else if (pos === 'extend') {
-		.form-element
-			input.extend(type="submit", value=description, class!=attributes.class, id!=attributes.id)
+mixin submit(nameValue, pos='left')
+	- if (typeof nameValue === 'object') {
+	-	nameValue.name = nameValue.name || "Submit"
+	- 	nameValue.position = nameValue.position || "left"
+	- 	nameValue.store = nameValue.store || null
+		- if (nameValue.position === 'center') {
+			.form-element.center-justify
+				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id)
+		- }
+		- else if (nameValue.position === 'right') {
+			.form-element.right-justify
+				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id)
+		- }
+		- else if (nameValue.position === 'extend') {
+			.form-element
+				input.extend(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id)
+		- }
+		- else {
+			.form-element
+				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-store!=nameValue.store)
+		- }
 	- }
 	- else {
-		.form-element
-			input(type="submit", value=description, class!=attributes.class, id!=attributes.id)
+		- if (pos === 'center') {
+			.form-element.center-justify
+				input(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id)
+		- }
+		- else if (pos === 'right') {
+			.form-element.right-justify
+				input(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id)
+		- }
+		- else if (pos === 'extend') {
+			.form-element
+				input.extend(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id)
+		- }
+		- else {
+			.form-element
+				input(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id)
+		- }
 	- }
 
 mixin switch-old(name, items)
