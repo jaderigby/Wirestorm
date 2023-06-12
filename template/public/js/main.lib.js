@@ -511,13 +511,15 @@ if (!(localData.hasOwnProperty(thisPage))) {
 
 _$('.store').items.forEach(function(_item_) {
 	const itemName = _item_.id;
-	val = _item_.value;
-	if (!(localData[thisPage].hasOwnProperty(itemName))) {
-		localData[thisPage][itemName] = val;
-		localData.save();
-	}
-	if (localData[thisPage][itemName] !== '') {
-		_item_.value = localData[thisPage][itemName];
+	const val = _item_.value;
+	if (_$(_item_).attr('input') !== 'submit') {
+		if (!(localData[thisPage].hasOwnProperty(itemName))) {
+			localData[thisPage][itemName] = val;
+			localData.save();
+		}
+		if (localData[thisPage][itemName] !== '') {
+			_item_.value = localData[thisPage][itemName];
+		}
 	}
 });
 
