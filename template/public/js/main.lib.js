@@ -502,7 +502,7 @@ localData['save'] = function() {
 	localStorage.setItem('localData', JSON.stringify(localDataPreserve));
 }
 
-const thisPage = window.location.pathname.replace(/^\/|\.html$/g, '').replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+const thisPage = window.location.pathname.replace(/^.*\/([^/]+)\.html$/, '$1').replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
 
 if (!(localData.hasOwnProperty(thisPage))) {
 	localData[thisPage] = {};
