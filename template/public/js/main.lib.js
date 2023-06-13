@@ -512,7 +512,7 @@ if (!(localData.hasOwnProperty(thisPage))) {
 _$('.store').items.forEach(function(_item_) {
 	const itemName = _item_.id;
 	const val = _item_.value;
-	if (_$(_item_).attr('input') !== 'submit') {
+	if (_$(_item_).attr('type') !== 'submit') {
 		if (!(localData[thisPage].hasOwnProperty(itemName))) {
 			localData[thisPage][itemName] = val;
 			localData.save();
@@ -538,11 +538,15 @@ _$('input[type="submit"').click(function(e) {
 	if (_$(e.target).hasClass('store') && _$(e.target).attr('data-store') == null) {
 		_$('.store').items.forEach(function(_item_) {
 			let val = '';
-			const itemName = _item_.id;
-			console.log(_item_.innerHTML);
-			if (_item_.nodeName == 'INPUT' || _item_.nodeName === 'SELECT' || _item_.nodeName == 'TEXTAREA') {
+			let itemName = _item_.id;
+			if (_$(_item_).attr('type') == 'text' || _item_.nodeName == 'TEXTAREA') {
 				val = _item_.value;
 			}
+			// else if (_$(_item_).attr('type') == 'radio') {
+			// 	itemName = _item_.name;
+			// 	val = _$(`[name="${_item_.name}"]:checked`);
+			// 	console.log(val);
+			// }
 			else {
 				val = _item_.innerHTML;
 			}
@@ -569,3 +573,12 @@ formInit();
 function emphasize(PARAM1) {
 	_$(PARAM1).addClass('emphasize');
 }
+
+/*
+input types:
+
+- text
+- radio
+- checkbox
+- email
+*/
