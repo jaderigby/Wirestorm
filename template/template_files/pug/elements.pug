@@ -73,8 +73,34 @@ mixin column-loop(col, equalize)
 				if block
 					block
 	- }
-	
-mixin button(nameValue, pos='left')
+
+mixin button(PARAM1, PARAM2)
+	- const buttonObj = {};
+	if (typeof PARAM1 === 'object')
+		- buttonObj.name = PARAM1.name || 'OK'
+		- buttonObj.url = PARAM1.url || ''
+		- buttonObj.target = PARAM1.url || null
+	else
+		- buttonObj.name = PARAM1 || 'OK'
+		- buttonObj.url = ''
+		- buttonObj.target = null
+	if (PARAM2 === 'left')
+		div.left-justify.button-module
+			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id).button= buttonObj.name
+	else if (PARAM2 === 'right')
+		div.right-justify.button-module
+			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id).button= buttonObj.name
+	else if (PARAM2 === 'center')
+		div.center-justify.button-module
+			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id).button= buttonObj.name
+	else if (PARAM2 === 'extend')
+		div.button-module
+			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id).button.extend= buttonObj.name
+	else
+		div.button-module
+			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id).button= buttonObj.name
+		
+mixin old-button(nameValue, pos='left')
 	- if (typeof nameValue === 'object') {
 	- 	nameValue.name = nameValue.name || "OK"
 	- 	nameValue.url = nameValue.url || ""
@@ -114,21 +140,21 @@ mixin bar-link(nameValue, arg2 = '#', arg3 = '#')
 	- linkUrl = arg2
 	- if (linkUrl.includes('icon-'))
 		- if (arg3 !== '#')
-			a(href= arg3).bar-link
+			a(href= arg3, class!=attributes.class, id!=attributes.id).bar-link
 				prime-segment.vertical-center
 					x-minor
 						div(class= arg2)
 					x-major
 						div= nameValue
 		- else 
-			a(href= linkUrl).bar-link
+			a(href= linkUrl, class!=attributes.class, id!=attributes.id).bar-link
 				prime-segment.vertical-center
 					x-minor
 						div(class= arg2)
 					x-major
 						div= nameValue
 	- else
-		a(href= linkUrl).bar-link= nameValue
+		a(href= linkUrl, class!=attributes.class, id!=attributes.id).bar-link= nameValue
 
 mixin placeholder(SIZE,LABEL)
 	- let size = SIZE || [150,150];
@@ -200,7 +226,7 @@ mixin pagination(count)
 					span.icon-arrow-right
 
 mixin tabs(tabs)
-	div.tabs-widget
+	div.tabs-widget(id!=attributes.id)
 		ul.tabs
 			each tab in tabs
 				li(data-target=tab)= tab

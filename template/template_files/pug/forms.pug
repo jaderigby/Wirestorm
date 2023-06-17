@@ -129,7 +129,7 @@ mixin submit(nameValue, pos='left')
 		- }
 		- else {
 			.form-element
-				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-store!=nameValue.store)
+				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-store=nameValue.store)
 		- }
 	- }
 	- else {
@@ -151,32 +151,67 @@ mixin submit(nameValue, pos='left')
 		- }
 	- }
 
-mixin switch-old(name, items)
-	- if (items) {
-		.switch-widget
-			ul
-				each item in items
-					- var value = item.toLowerCase(item.replace(' ','-'))
-						li.switch-item
-							.switch-object
-								div.switch
-								div.on
-							label= item
-	- }
-	- else if (name) {
-		.switch-widget
-			.switch-object
-				div.switch
-				div.on
-			label= name
-	- }
-	- else {
-		.switch-widget
-			div.switch
-			div.on
-	- }
+mixin switch(PARAM1, PARAM2)
+	- const switchList = [];
+	- PARAM1 = (typeof PARAM1 == 'object') ? PARAM1 : [PARAM1];
+	- const randomizedFamily = (Math.random() + 1).toString(36).substring(7);
+	each _item_ in PARAM1
+		- 	const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-	if (typeof _item_ === 'object') {
+		-		_item_.name = _item_.name || '';
+		-		_item_.value = _item_.value || _item_.name.toLowerCase().replace(/ /g, '-');
+		-		_item_.family = _item_.family || randomizedFamily;
+		-		_item_.class = attributes.class || null;
+		-		_item_.id = _item_.id || randomizedId;
+		-		_item_.checked = _item_.checked || false;
+		-		switchList.push(_item_);
+		-	}
+		- 	else {
+		- 		const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-		const switchItem = {};
+		-		switchItem.name = _item_ || '';
+		-		switchItem.value = (_item_ !== undefined && typeof _item_ !== 'object') ? _item_.toLowerCase().replace(/ /g, '-') : null;
+		-		switchItem.family = randomizedFamily;
+		-		switchItem.class = attributes.class || null;
+		-		switchItem.id = randomizedId;
+		-		switchItem.checked = false;
+		-		switchList.push(switchItem);
+		- 	}
+		//- - console.log('list', switchList);
+	if (PARAM2 === 'horizontal')
+		.rack.compress
+			each item in switchList
+				.form-switch-widget
+					.form-element
+						.switch-item
+							if (item.checked)
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked")
+							else
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class)
+							label(for=item.id)= item.name
 
-mixin switch(name, items)
+	else
+		each item in switchList
+			if (item.name === null || item.name === '')
+				.form-switch-widget
+					.form-element
+						.switch-item
+							if (item.checked)
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked")
+							else
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class)
+							label(for=item.id)
+			else
+				.form-switch-widget
+					.form-element
+						.switch-item
+							if (item.checked)
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked")
+							else
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class)
+							label(for=item.id)= item.name
+
+mixin old-switch(name, items)
 	- if (items) {
 		.form-switch-widget
 			ul
@@ -210,31 +245,104 @@ mixin trigger(family, value, reference)
 				input(type="radio", data-target=reference name=family, value=value, id=chk)
 				label(for=chk)
 
-mixin checkbox(name, items)
-	- if (typeof items === 'object') {
-		.checkbox-widget
-			ul
-				- var iterCheck = 1
-				each item in items
-					- var value = item.toLowerCase(item.replace(' ','-'))
-					li.checkbox
-						input(type="checkbox",name=name,value=value,id="test"+iterCheck)
-						label(for="test"+iterCheck)= item
-						- iterCheck++
-	- }
-	- else {
-		- var item = items
-		.checkbox-widget
-			- var iterBox = 1
-			- var check = (Math.random() + 1).toString(36).substring(7)
-			.form-element
-				- var value = item.toLowerCase(item.replace(' ','-'))
-				span.checkbox
-					input(type="checkbox",name=name,value=value,id=check+iterBox)
-					label(for=check+iterBox)= item
-	- }
+mixin checkbox(PARAM1, PARAM2)
+	- const checkList = [];
+	- PARAM1 = (typeof PARAM1 == 'object') ? PARAM1 : [PARAM1];
+	each _item_ in PARAM1
+		- 	const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-	if (typeof _item_ === 'object') {
+		-		_item_.name = _item_.name || 'Test';
+		-		_item_.value = _item_.name.toLowerCase().replace(/ /g, '-');
+		-		_item_.family = _item_.family || randomizedFamily;
+		-		_item_.class = attributes.class || null;
+		-		_item_.id = _item_.id || randomizedId;
+		-		_item_.checked = _item_.checked || false;
+		-		checkList.push(_item_);
+		-	}
+		- 	else {
+		- 		const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-		const checkItem = {};
+		-		checkItem.name = _item_ || '';
+		-		checkItem.value = (_item_ !== undefined && typeof _item_ !== 'object') ? _item_.toLowerCase().replace(/ /g, '-') : null;
+		-		checkItem.family = randomizedFamily;
+		-		checkItem.class = attributes.class || null;
+		-		checkItem.id = randomizedId;
+		-		checkItem.checked = false;
+		-		checkList.push(checkItem);
+		- 	}
+	
+	if (PARAM2 === 'horizontal')
+		.rack.compress
+			each item in checkList
+				.checkbox-widget
+					.form-element
+						span.checkbox
+							if (item.checked)
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked")
+							else
+								input(type="checkbox",name=item.family,value=item.value,class!=item.class,id=item.id)
+							label(for=item.id)= item.name
+	else
+		each item in checkList
+			.checkbox-widget
+				.form-element
+					- const value = item.value
+					span.checkbox
+						if (item.checked)
+							input(type="checkbox",name=item.name,value=value,id=item.id,class!=item.class,checked="checked")
+						else
+							input(type="checkbox",name=item.name,value=value,class!=item.class,id=item.id)
+						label(for=item.id)= item.name
 
-mixin radio(name, items)
+mixin radio(PARAM1, PARAM2)
+	- const radioList = [];
+	- PARAM1 = (typeof PARAM1 == 'object') ? PARAM1 : [PARAM1];
+	- const randomizedFamily = (Math.random() + 1).toString(36).substring(7);
+	each _item_ in PARAM1
+		- 	const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-	if (typeof _item_ === 'object') {
+		-		_item_.name = _item_.name || '';
+		-		_item_.value = _item_.value || _item_.name.toLowerCase().replace(/ /g, '-');
+		-		_item_.family = _item_.family || randomizedFamily;
+		-		_item_.class = attributes.class || null;
+		-		_item_.id = _item_.id || randomizedId;
+		-		_item_.checked = _item_.checked || false;
+		-		radioList.push(_item_);
+		-	}
+		- 	else {
+		- 		const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-		const radioItem = {};
+		-		radioItem.name = _item_ || '';
+		-		radioItem.value = (_item_ !== undefined && typeof _item_ !== 'object') ? _item_.toLowerCase().replace(/ /g, '-') : null;
+		-		radioItem.family = randomizedFamily;
+		-		radioItem.class = attributes.class || null;
+		-		radioItem.id = randomizedId;
+		-		radioItem.checked = false;
+		-		radioList.push(radioItem);
+		- 	}
+	if (PARAM2 === 'horizontal')
+		.rack.compress
+			each item in radioList
+				.radio-widget
+					.form-element
+						span.radio
+							if (item.checked)
+								input(type="radio",name=item.family,value=item.value,id=item.id,data-id!=attributes.id,class!=attributes.class,checked="checked")
+							else
+								input(type="radio",name=item.family,value=item.value,id=item.id,data-id!=attributes.id,class!=attributes.class)
+							label(for=item.id)= item.name
+	else
+		each item in radioList
+			.radio-widget
+				.form-element
+					span.radio
+						if (item.checked)
+							input(type="radio",name=item.family,value=item.value,id=item.id,data-id!=attributes.id,class!=attributes.class,checked="checked")
+						else
+							input(type="radio",name=item.family,value=item.value,id=item.id,data-id!=attributes.id,class!=attributes.class)
+						label(for=item.id)= item.name
+
+mixin old-radio(name, items)
 	.radio-widget
 		- var iterRadio = 1
 		- var rad = (Math.random() + 1).toString(36).substring(7);
@@ -242,7 +350,7 @@ mixin radio(name, items)
 			each item in items
 				- var value = item.toLowerCase(item.replace(' ','-'))
 				span.radio
-					input(type="radio",name=name,value=value,id=rad+iterRadio)
+					input(type="radio",name=name,value=value,id=rad+iterRadio,data-id!=attributes.id)
 					label(for=rad+iterRadio)= item
 					- iterRadio++
 mixin textarea(description)
