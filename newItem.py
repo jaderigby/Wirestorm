@@ -1,5 +1,5 @@
 import messages as msg
-import subprocess, os, helpers, time
+import helpers, time
 
 settings = helpers.get_settings()
 
