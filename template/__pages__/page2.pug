@@ -8,14 +8,14 @@ block content
 				hr
 				x-seg(of="4")
 					x-cell
-						+switch("settingsToggle", ['First Feature', 'Second Feature', 'Third Feature'])
+						+switch([{name: 'First Feature', family: 'settingsToggle'}, {name: 'Second Feature', family: 'settingsToggle'}, {name: 'Third Feature', family: 'settingsToggle'}])
 					x-cell
 						div.border-wrap
 							div: +select(['Light', 'Dark', 'Neutral'])
-							p: +radio("settingsRadio", ['Setting A', 'Setting B'])
+							p: +radio({name: 'Setting A', family: 'settingsRadio'}, {name: 'Setting B', family: 'settingsRadio'})
 							div.center-justify: +switch('Use')
 					x-cell
-						+checkbox("add", ['Add Item 1', 'Add Item 2', 'Add Item 3'])
+						+checkbox(['Add Item 1', 'Add Item 2', 'Add Item 3'])
 					x-cell
 						+switch()
 						p: +blockletter(30)
