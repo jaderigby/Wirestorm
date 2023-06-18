@@ -1,7 +1,7 @@
-class panelWrapper extends HTMLElement {}
-window.customElements.define('panel-wrapper', panelWrapper);
+class PanelWrapper extends HTMLElement {}
+window.customElements.define('panel-wrapper', PanelWrapper);
 
-class panelInner extends HTMLElement {
+class PanelInner extends HTMLElement {
   connectedCallback() {
     if (this.hasAttribute('space')) {
       const VAL = this.getAttribute('space');
@@ -17,7 +17,32 @@ class panelInner extends HTMLElement {
     }
   }
 }
-window.customElements.define('panel-inner', panelInner);
+window.customElements.define('panel-inner', PanelInner);
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  class PanelComplete extends PanelWrapper {
+    connectedCallback() {
+      const VAL = this.getAttribute('space');
+      const prepped = this.innerHTML;
+      const valList = (VAL) ? VAL.split(',') : null;
+      if (VAL) {
+        if (valList.length > 1) {
+          this.innerHTML = `<panel-inner space="${valList[0]},${valList[1]}">${prepped}</panel-inner>`;
+        }
+        else {
+          this.innerHTML = `<panel-inner space="${valList[0]}">${prepped}</panel-inner>`;
+        }
+      }
+      else {
+        this.innerHTML = `<panel-inner>${prepped}</panel-inner>`;
+      }
+    }
+  }
+
+  window.customElements.define('x-panel', PanelComplete);
+
+});
 
 class clearWrap extends HTMLElement {
   connectedCallback() {
