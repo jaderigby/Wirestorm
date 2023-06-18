@@ -55,9 +55,9 @@ block content
 						li= titles[i++] + " Item"
 			+tab()
 				h3 Third Tab
-				+col({lg : 5, sm : 1})
+				x-seg(of="5").sm-stack
 					+loop(5)
-						+cell()
+						x-cell
 							+image('100%',100).dimage
 							p
 								+rating(3, 5)
