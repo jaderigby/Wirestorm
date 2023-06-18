@@ -63,7 +63,7 @@ block content
 						h4 Code
 						pre
 							| <code class="language-jade">
-							| +seg(of="2")
+							| x-seg(of="2")
 							| 	x-major
 							| 		+image('100%', 200)
 							| 	x-major
@@ -74,7 +74,7 @@ block content
 			x-major
 				+demo()
 					+panel('light')
-						+seg(of="2")
+						x-seg(of="2")
 							x-minor
 								+image('100%', 200)
 							x-major
@@ -95,7 +95,7 @@ block content
 						h4 Code
 						pre
 							| <code class="language-jade">
-							| +seg().thirds
+							| x-seg(of="3")
 							| 	x-minor
 							| 		+image('100%', 200)
 							| 	x-major
@@ -259,7 +259,7 @@ block content
 								p And finally, the content for the third tab.
 
 		h3#loops.demo-heading Loops
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd.modal.trigger(data-target="loop") +loop(arg1)
 				div#loop.modal.window
@@ -295,7 +295,7 @@ block content
 								p
 									+blockletter(35)
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd.modal.trigger(data-target="columnLoop") +column-loop(arg1, arg2)
 				div#columnLoop.modal.window
@@ -340,7 +340,7 @@ block content
 										+blockletter(15)
 
 		h3#media.demo-heading Media
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd.modal.trigger(data-target="image") +image(arg1, arg2, arg3)
 				div#image.modal.window
@@ -381,7 +381,7 @@ block content
 				+demo()
 					+image(450, 250)
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd.modal.trigger(data-target="image2") +image2(arg1, arg2, arg3)
 				div#image2.modal.window
@@ -422,7 +422,7 @@ block content
 				+demo()
 					+image(450, 250).dimage
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd.modal.trigger(data-target="porthole") +porthole(arg1, arg2)
 				div#porthole.modal.window
@@ -458,7 +458,7 @@ block content
 					article(style="width: 450px")
 						+porthole(200, 'center')
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd.modal.trigger(data-target="profile") +profile(arg1, arg2, arg3)
 				div#profile.modal.window
@@ -500,7 +500,7 @@ block content
 					article(style="width: 450px")
 						+profile(200, 200, 'center')
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd.modal.trigger(data-target="profilePorthole") +profile-porthole(arg1, arg2)
 				div#profilePorthole.modal.window
@@ -536,7 +536,7 @@ block content
 					article(style="width: 450px")
 						+profile-porthole(200, 'center')
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd.modal.trigger(data-target="video") +video(arg1, arg2, arg3)
 				div#video.modal.window
@@ -577,7 +577,7 @@ block content
 				+demo()
 					+video(450, 250)
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd.modal.trigger(data-target="slideshow") +slideshow(arg1, arg2, arg3)
 				div#slideshow.modal.window
@@ -618,7 +618,7 @@ block content
 				+demo()
 					+slideshow(450, 250)
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd.modal.trigger(data-target="slideshow2") +slideshow2(arg1, arg2, arg3)
 				div#slideshow2.modal.window
@@ -660,7 +660,7 @@ block content
 					+slideshow2(450, 250)
 
 		h3#forms.demo-heading Forms
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd +input(arg1)
 			x-major
@@ -668,7 +668,7 @@ block content
 					article.extend
 						+input('First Name')
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd +email(arg1)
 			x-major
@@ -676,7 +676,7 @@ block content
 					article.extend
 						+email('Email Address')
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd +password(arg1)
 			x-major
@@ -684,14 +684,14 @@ block content
 					article.extend
 						+password('New Password')
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd +switch(arg1, arg2)
 			x-major
 				+demo()
 					+switch('switches', ['Item 1', 'Item 2', 'Item 3'])
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd +checkbox(arg1, arg2, arg3)
 			x-major
@@ -706,7 +706,7 @@ block content
 								h4 As A List:
 								+checkbox('checkboxes', ['Item 1', 'Item 2', 'Item 3'], 'list')
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd +radio(arg1, arg2)
 			x-major
@@ -714,7 +714,7 @@ block content
 					article
 						+radio('radios', ['Item 1', 'Item 2', 'Item 3'])
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd +select(arg1)
 			x-major
@@ -722,7 +722,7 @@ block content
 					article.extend
 						+select(['Item 1', 'Item 2', 'Item 3'])
 
-		+seg().thirds
+		x-seg(of="3")
 			x-minor
 				h4.ft-hd +submit(arg1, arg2)
 			x-major
