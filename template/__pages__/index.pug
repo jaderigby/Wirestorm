@@ -1,7 +1,7 @@
 extend __core__/default
 block content
 	+panel().light
-		x-seg(of="5").md-half.sm-stack.break
+		x-seg(of="5").md-half.sm-stack
 			x-major
 				h1 First One
 				p
@@ -23,14 +23,14 @@ block content
 			x-minor
 				+slideshow(380,235,'right')
 	+panel().dark
-		x-seg(of="4").md-half.tablet-stack.break
+		x-seg(of="4").md-half.tablet-stack
 			+loop(4)
 				x-cell
 					+porthole(120,'center')
 					p.center-align
 						+blockletter(15)
 	+panel().light
-		x-seg(of="3").md-half.sm-stack.break
+		x-seg(of="3").md-half.sm-stack
 			x-minor
 				+image('100%',180).dimage
 			x-major

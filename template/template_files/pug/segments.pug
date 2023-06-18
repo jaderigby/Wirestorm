@@ -9,8 +9,7 @@ mixin panel(PARAM1, PARAM2)
 			else
 				panel-inner(space= top)
 					block
-	- else {
+	else 
 		panel-wrapper(class!=attributes.class, id!=attributes.id)
 			panel-inner
 				block
-	- }
