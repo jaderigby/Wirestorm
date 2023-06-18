@@ -12,7 +12,7 @@ block content
 					x-cell
 						div.border-wrap
 							div: +select(['Light', 'Dark', 'Neutral'])
-							p: +radio({name: 'Setting A', family: 'settingsRadio'}, {name: 'Setting B', family: 'settingsRadio'})
+							p: +radio([{name: 'Setting A', family: 'settingsRadio'}, {name: 'Setting B', family: 'settingsRadio'}])
 							div.center-justify: +switch('Use')
 					x-cell
 						+checkbox(['Add Item 1', 'Add Item 2', 'Add Item 3'])
