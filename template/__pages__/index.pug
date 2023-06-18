@@ -13,9 +13,9 @@ block content
 							+blockletter(50)
 						form#moreInfo.wrap
 							x-seg(of="2")
-								+cell()
+								x-cell
 									+input('First Name', 'required')
-								+cell()
+								x-cell
 									+input('Last Name')
 							+email('Email', 'required')
 							+textarea('Message')
