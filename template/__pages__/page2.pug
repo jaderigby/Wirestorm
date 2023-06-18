@@ -1,41 +1,41 @@
 extend __core__/default
 block content
-	+panel('light')
+	+panel().light
 		div.collapsible.trigger(data-target="settingsDrawer").icon-cog.trigger-icon
 		section#settingsDrawer.collapsible.drawer
 			form.wrap
 				h4 Settings
 				hr
-				+col(4)
-					+cell()
+				x-seg(of="4")
+					x-cell
 						+switch("settingsToggle", ['First Feature', 'Second Feature', 'Third Feature'])
-					+cell()
+					x-cell
 						div.border-wrap
 							div: +select(['Light', 'Dark', 'Neutral'])
 							p: +radio("settingsRadio", ['Setting A', 'Setting B'])
 							div.center-justify: +switch('Use')
-					+cell()
+					x-cell
 						+checkbox("add", ['Add Item 1', 'Add Item 2', 'Add Item 3'])
-					+cell()
+					x-cell
 						+switch()
 						p: +blockletter(30)
 				hr
 		- var n = 0
 		+loop(5)
-			+segment().thirds.wrap
-				+min()
+			x-seg.thirds.wrap
+				x-minor
 					+image('100%',200).dimage
 					p.right-justify: +blockletter(4)
 					p.right-justify: +blockletter(2)
-				+max()
+				x-major
 					h3= titles[n++] + " Blog Title"
 					p: +blockletter(30)
-					+segment().thirds
-						+min()
-							+rack()
+					x-seg(of="3")
+						x-minor
+							.rack
 								+loop(4)
 									+image(40,40)
-						+max()
+						x-major
 							p.right: button Read More
 		div.right
 			+pagination()

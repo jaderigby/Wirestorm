@@ -1,0 +1,101 @@
+extend __core__/default
+block content
+    panel-wrapper
+        panel-inner
+            .clear-wrap
+                x-segment.half
+                    x-cell
+                        h2 Checkboxes
+                        .clear-wrap 
+                            h5.label Just the checkbox 
+                            +checkbox()
+                        .clear-wrap
+                            h5.label Simple Checkbox with just the label
+                            +checkbox('One Simple Item')
+                        .clear-wrap 
+                            h5.label Checkbox as object with just "name" value
+                            +checkbox([{name: 'Object Checkbox'}])
+                        .clear-wrap 
+                            h5.label Checkbox as two objects with just "name" value
+                            +checkbox([{'name': 'Object Checkbox #1'},{'name': 'Object Checkbox #2'}])
+                        .clear-wrap 
+                            h5.label Checkbox as two objects with just "name" value &mdash; horizontal
+                            +checkbox([{'name': 'Object Checkbox #1'},{'name': 'Object Checkbox #2'}], 'horizontal')
+                        .clear-wrap 
+                            h5.label Checkbox as three objects with "name" and "family" value &mdash; horizontal
+                            +checkbox([{'name': 'Object Checkbox #1', 'family': 'example'},{'name': 'Object Checkbox #2', 'family': 'example'},{'name': 'Object Checkbox #3'}], 'horizontal')
+                        .clear-wrap
+                            h5.label Checkbox as simple list &mdash; horizontal
+                            +checkbox(['Item 1', 'Item 2', 'Item 3'], 'horizontal')
+                    x-cell
+                        h2 Switches
+                        .clear-wrap 
+                            h5.label Just the switch, set to "on" by default
+                            +switch([{'checked': true}])
+                        .clear-wrap
+                            h5.label Simple Checkbox with just the label
+                            +switch('One Simple Item')
+                        .clear-wrap
+                            h5.label Checkbox as object with just "name" value
+                            +switch([{'name': 'Object Checkbox'}])
+                        .clear-wrap
+                            h5.label Checkbox as two objects with just "name" value
+                            +switch([{'name': 'Object Checkbox #1'},{'name': 'Object Checkbox #2'}])
+                        .clear-wrap
+                            h5.label Checkbox as two objects with just "name" value &mdash; horizontal
+                            +switch([{'name': 'Object Checkbox #1'},{'name': 'Object Checkbox #2'}], 'horizontal')
+                        .clear-wrap
+                            h5.label Checkbox as two objects with "name" and "family" value &mdash; horizontal
+                            +switch([{'name': 'Object Checkbox #1', 'family': 'example'},{'name': 'Object Checkbox #2', 'family': 'example'}], 'horizontal')
+            .clear-wrap 
+                x-segment.half
+                    x-cell
+                        h2 Radios
+                        .clear-wrap 
+                            h5.label Simple Radios
+                            +radio(['Item A', 'Item B'])
+                        .clear-wrap
+                            h5.label Simple Radios &mdash; horizontal
+                            +radio(['Item A', 'Item B'], 'horizontal')
+                        .clear-wrap
+                            h5.label Simple Radios, first one selected by default &mdash; horizontal
+                            +radio([{name: 'Item A', checked: true}, 'Item B', 'Item C'], 'horizontal')
+                    x-cell
+                        h2 Buttons
+                        .clear-wrap 
+                            h5.label Basic Button
+                            +button()
+                        .clear-wrap 
+                            h5.label Button with just a name
+                            +button('Test')
+                        .clear-wrap 
+                            h5.label Button with just a name and positioned center
+                            +button('Test Centering', 'center')
+                        .clear-wrap 
+                            h5.label Button with just a name and positioned right
+                            +button('Test Right', 'right')
+                        .clear-wrap 
+                            h5.label Button using object
+                            +button({name: "Object Button"})
+                        .clear-wrap 
+                            h5.label Button using object and extend
+                            +button({name: "Object Button"}, 'extend')
+                        .clear-wrap 
+                            h5.label Button using object with url set to Wikipedia, and extend
+                            +button({name: "To Wikipedia", url: 'https://www.wikipedia.org/', target: '_blank'}, 'extend')
+                        .clear-wrap 
+                            h5.label Button using object and adding class of "extend"
+                            +button({name: "Using Class"}).extend
+block script
+    script.
+        emphasize('#wifiSettings');
+        
+        function prepopWhitelist() {
+            if (_$('whitelistInputUpdated').vanilla.value == null) {
+                localData[thisPage].whitelistInput = '192.168.0.1, 192.177.0.4, 192.241.0.1, 127.0.0.1, 192.246.0.2';
+                localData.save();
+                _$('#whitelistInputUpdated').vanilla.textContent = localData[thisPage].whitelistInput;
+            }
+        }
+
+        prepopWhitelist();
