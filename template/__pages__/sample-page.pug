@@ -3,7 +3,7 @@ block content
     panel-wrapper
         panel-inner
             .clear-wrap
-                x-segment.half
+                x-seg(of="2")
                     x-cell
                         h2 Checkboxes
                         .clear-wrap 
@@ -48,7 +48,7 @@ block content
                             h5.label Checkbox as two objects with "name" and "family" value &mdash; horizontal
                             +switch([{'name': 'Object Checkbox #1', 'family': 'example'},{'name': 'Object Checkbox #2', 'family': 'example'}], 'horizontal')
             .clear-wrap 
-                x-segment.half
+                x-seg(of="2")
                     x-cell
                         h2 Radios
                         .clear-wrap 
