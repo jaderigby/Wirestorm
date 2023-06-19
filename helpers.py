@@ -148,7 +148,7 @@ Note: Page will not update until after Gitlab Pipeline has completed for the Pro
 	run_command('cd {} git status && git add README.md && git commit -m "adding readme" && git push'.format(DESTINATION))
 
 def install_wirestorm(DESTINATION):
-	copyCommand = "scp -r {root}/template/ {destination}/".format(root = path('util'), destination = DESTINATION)
+	copyCommand = "scp -r {root}/template/{destination}/".format(root = path('util'), destination = DESTINATION)
 	run_command(copyCommand)
 
 def rename_repo(OLD_NAME, NEW_NAME):
@@ -236,7 +236,7 @@ def rebuild_package_file(FILEPATH, NEW_NAME, REPO_NAME):
 		}},
 		"js": {{
 			"directory": "public/js/",
-			"files": "main.lib.js,magicVial-0.6.2.js,TweenMax.min.js,jquery-1.11.1.min.js"
+			"files": "main.lib.js,magicVial-0.6.2.js,TweenMax.min.js,jquery-1.11.1.min.js,jquishy.min.js"
 		}},
 		"images": {{
 			"directory": "public/images/"
