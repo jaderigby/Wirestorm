@@ -1,8 +1,8 @@
 extend __core__/default
 block content
 	+panel().light
-		x-seg(of="5").md-half.sm-stack
-			x-major
+		+segment(5).md-half.sm-stack
+			+major()
 				h1 First One
 				p
 					+blockletter(45)
@@ -12,28 +12,28 @@ block content
 						p
 							+blockletter(50)
 						form#moreInfo.wrap
-							x-seg(of="2")
-								x-cell
+							+segment(2)
+								+cell()
 									+input('First Name', 'required')
-								x-cell
+								+cell()
 									+input('Last Name')
 							+email('Email', 'required')
 							+textarea('Message')
 							+submit('Submit','right')
-			x-minor
+			+minor()
 				+slideshow(380,235,'right')
 	+panel().dark
-		x-seg(of="4").md-half.tablet-stack
+		+segment(4).md-half.tablet-stack
 			+loop(4)
-				x-cell
+				+cell()
 					+porthole(120,'center')
 					p.center-align
 						+blockletter(15)
 	+panel().light
-		x-seg(of="3").md-half.sm-stack
-			x-minor
+		+segment(3).md-half.sm-stack
+			+minor()
 				+image('100%',180).dimage
-			x-major
+			+major()
 				h2 Next Product
 				p
 					+blockletter(40)
@@ -55,9 +55,9 @@ block content
 						li= titles[i++] + " Item"
 			+tab()
 				h3 Third Tab
-				x-seg(of="5").sm-stack
+				+segment(5).sm-stack
 					+loop(5)
-						x-cell
+						+cell()
 							+image('100%',100).dimage
 							p
 								+rating(3, 5)

@@ -3,8 +3,8 @@ block content
     panel-wrapper
         panel-inner
             .clear-wrap
-                x-seg(of="2")
-                    x-cell
+                +segment(2)
+                    +cell()
                         h2 Checkboxes
                         .clear-wrap 
                             h5.label Just the checkbox 
@@ -27,7 +27,7 @@ block content
                         .clear-wrap
                             h5.label Checkbox as simple list &mdash; horizontal
                             +checkbox(['Item 1', 'Item 2', 'Item 3'], 'horizontal')
-                    x-cell
+                    +cell()
                         h2 Switches
                         .clear-wrap 
                             h5.label Just the switch, set to "on" by default
@@ -48,8 +48,8 @@ block content
                             h5.label Checkbox as two objects with "name" and "family" value &mdash; horizontal
                             +switch([{'name': 'Object Checkbox #1', 'family': 'example'},{'name': 'Object Checkbox #2', 'family': 'example'}], 'horizontal')
             .clear-wrap 
-                x-seg(of="2")
-                    x-cell
+                +segment(2)
+                    +cell()
                         h2 Radios
                         .clear-wrap 
                             h5.label Simple Radios
@@ -60,7 +60,7 @@ block content
                         .clear-wrap
                             h5.label Simple Radios, first one selected by default &mdash; horizontal
                             +radio([{name: 'Item A', checked: true}, 'Item B', 'Item C'], 'horizontal')
-                    x-cell
+                    +cell()
                         h2 Buttons
                         .clear-wrap 
                             h5.label Basic Button

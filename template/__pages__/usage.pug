@@ -4,10 +4,10 @@ block content
 	link(rel="stylesheet", type="text/css", href="../css/prism-okaidia.css")
 	script(src="../js/prism.js")
 	+panel().darker
-		x-seg(of="5")
-			x-minor
+		+segment(5)
+			+minor()
 				h2 Usage
-			x-major
+			+major()
 				div.wrap
 					p Note: Click on any element&squo;s name in order to see full details.
 	+panel().light
@@ -20,8 +20,8 @@ block content
 			li: a(href="#forms") Forms
 		h3#layout.demo-heading(data-move-to="150") Layout
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="panelDark") +panel()
 				div#panelDark.modal.window
 					p
@@ -42,7 +42,7 @@ block content
 							|	p
 							|		+blockletter(30)
 							| </code>
-			x-major
+			+major()
 				+demo('dark')
 					+panel('dark')
 						h3 Demo
@@ -50,40 +50,40 @@ block content
 							+blockletter(30)
 		
 		
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="half") .half
 				div#half.modal.window
 					p
 						strong Description: 
-						| Breaks content into halves.  These are defined by either "+min", "x-major", or both.
+						| Breaks content into halves.  These are defined by either "+min", "+major", or both.
 					ul
 						li: strong Class
 					div.clear-wrap
 						h4 Code
 						pre
 							| <code class="language-jade">
-							| x-seg(of="2")
-							| 	x-major
+							| +segment(2)
+							| 	+minor()
 							| 		+image('100%', 200)
-							| 	x-major
+							| 	+major()
 							|			h3 Content Title
 							| 		p
 							| 			+blockletter(40)
 							| </code>
-			x-major
+			+major()
 				+demo()
 					+panel('light')
-						x-seg(of="2")
-							x-minor
+						+segment(2)
+							+minor()
 								+image('100%', 200)
-							x-major
+							+major()
 								h3 Content Title
 								p
 									+blockletter(50)
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="thirds") .thirds
 				div#thirds.modal.window
 					p
@@ -95,27 +95,27 @@ block content
 						h4 Code
 						pre
 							| <code class="language-jade">
-							| x-seg(of="3")
-							| 	x-minor
+							| +segment(3)
+							| 	+minor()
 							| 		+image('100%', 200)
-							| 	x-major
+							| 	+major()
 							|		h3 Content Title
 							| 		p
 							| 			+blockletter(40)
 							| </code>
-			x-major
+			+major()
 				+demo()
 					+panel('light')
-						x-seg(of="3")
-							x-minor
+						+segment(3)
+							+minor()
 								+image('100%', 200)
-							x-major
+							+major()
 								h3 Content Title
 								p
 									+blockletter(50)
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="fifths") .fifths
 				div#fifths.modal.window
 					p
@@ -137,19 +137,19 @@ block content
 							| 				+blockletter(50)
 							| </code>
 
-			x-major
+			+major()
 				+demo()
 					+panel('light')
-						x-seg(of="5")
-							x-minor
+						+segment(of="5")
+							+minor()
 								+image('100%', 200)
-							x-major
+							+major()
 								h3 Content Title
 								p
 									+blockletter(50)
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="sevenths") .sevenths
 				div#sevenths.modal.window
 					p
@@ -161,28 +161,28 @@ block content
 						h4 Code
 						pre
 							| <code class="language-jade">
-							| x-seg(of="7")
-							| 	x-minor
+							| +segment(of="7")
+							| 	+minor()
 							| 		+image('100%', 200)
-							| 	x-major
+							| 	+major()
 							|		  h3 Content Title
 							| 		p
 							| 			+blockletter(40)
 							| </code>
-			x-major
+			+major()
 				+demo()
 					+panel().light
-						x-seg(of="7")
-							x-minor
+						+segment(of="7")
+							+minor()
 								+image('100%', 200)
-							x-major
+							+major()
 								h3 Content Title
 								p
 									+blockletter(50)
 			
 		h3#dynamic-elements.demo-heading Dynamic Elements
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="modal") +modal(arg1, arg2)
 				div#modal.modal.window
 					p
@@ -214,14 +214,14 @@ block content
 							|     p Content of the modal including an image
 							|    +image(100)
 							| </code>
-			x-major
+			+major()
 				+demo()
 					+panel('light')
 						+modal('Learn More', 'center')
 							h3 Special Modal
 							p Here lies my very special modal!
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="tabs") +tabs(arg1)
 				div#tabs.modal.window
 					p
@@ -247,7 +247,7 @@ block content
 							|         p And finally, the content for the third tab.
 							| 
 							| </code>
-			x-major
+			+major()
 				+demo()
 					+panel('light')
 						+tabs(['Tab 1', 'Tab 2', 'Tab 3'])
@@ -259,8 +259,8 @@ block content
 								p And finally, the content for the third tab.
 
 		h3#loops.demo-heading Loops
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="loop") +loop(arg1)
 				div#loop.modal.window
 					p
@@ -285,7 +285,7 @@ block content
 							|			p
 							|				+blockletter(35)
 							| </code>
-			x-major
+			+major()
 				+demo('transparent')
 					+panel()
 						- var i = 0
@@ -295,8 +295,8 @@ block content
 								p
 									+blockletter(35)
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="columnLoop") +column-loop(arg1, arg2)
 				div#columnLoop.modal.window
 					p
@@ -328,7 +328,7 @@ block content
 							| 				p
 							| 					+blockletter(15)
 							| </code>
-			x-major
+			+major()
 				+demo('dark')
 					+panel('dark')
 						+column-loop(4,'equalize')
@@ -340,8 +340,8 @@ block content
 										+blockletter(15)
 
 		h3#media.demo-heading Media
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="image") +image(arg1, arg2, arg3)
 				div#image.modal.window
 					p
@@ -377,12 +377,12 @@ block content
 							| article
 							|    +image('100%', 150, 'center')
 							| </code>
-			x-major
+			+major()
 				+demo()
 					+image(450, 250)
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="image2") +image2(arg1, arg2, arg3)
 				div#image2.modal.window
 					p
@@ -418,12 +418,12 @@ block content
 							| article
 							|    +image('100%', 150, 'center').dimage
 							| </code>
-			x-major
+			+major()
 				+demo()
 					+image(450, 250).dimage
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="porthole") +porthole(arg1, arg2)
 				div#porthole.modal.window
 					p
@@ -453,13 +453,13 @@ block content
 							| +panel('light')
 							|    +porthole(200, 'center')
 							| </code>
-			x-major
+			+major()
 				+demo('transparent')
 					article(style="width: 450px")
 						+porthole(200, 'center')
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="profile") +profile(arg1, arg2, arg3)
 				div#profile.modal.window
 					p
@@ -495,13 +495,13 @@ block content
 							| +panel('light')
 							|    +profile(200, 'center')
 							| </code>
-			x-major
+			+major()
 				+demo('transparent')
 					article(style="width: 450px")
 						+profile(200, 200, 'center')
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="profilePorthole") +profile-porthole(arg1, arg2)
 				div#profilePorthole.modal.window
 					p
@@ -531,13 +531,13 @@ block content
 							| +panel('light')
 							|    +profile-porthole(200, 'center')
 							| </code>
-			x-major
+			+major()
 				+demo('transparent')
 					article(style="width: 450px")
 						+profile-porthole(200, 'center')
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="video") +video(arg1, arg2, arg3)
 				div#video.modal.window
 					p
@@ -573,12 +573,12 @@ block content
 							| article
 							|    +video('100%', 150, 'center')
 							| </code>
-			x-major
+			+major()
 				+demo()
 					+video(450, 250)
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="slideshow") +slideshow(arg1, arg2, arg3)
 				div#slideshow.modal.window
 					p
@@ -614,12 +614,12 @@ block content
 							| article
 							|    +slideshow('100%', 150, 'center')
 							| </code>
-			x-major
+			+major()
 				+demo()
 					+slideshow(450, 250)
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd.modal.trigger(data-target="slideshow2") +slideshow2(arg1, arg2, arg3)
 				div#slideshow2.modal.window
 					p
@@ -655,46 +655,46 @@ block content
 							| article
 							|    +slideshow2('100%', 150, 'center')
 							| </code>
-			x-major
+			+major()
 				+demo()
 					+slideshow2(450, 250)
 
 		h3#forms.demo-heading Forms
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd +input(arg1)
-			x-major
+			+major()
 				+demo()
 					article.extend
 						+input('First Name')
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd +email(arg1)
-			x-major
+			+major()
 				+demo()
 					article.extend
 						+email('Email Address')
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd +password(arg1)
-			x-major
+			+major()
 				+demo()
 					article.extend
 						+password('New Password')
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd +switch(arg1, arg2)
-			x-major
+			+major()
 				+demo()
 					+switch('switches', ['Item 1', 'Item 2', 'Item 3'])
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd +checkbox(arg1, arg2, arg3)
-			x-major
+			+major()
 				+demo()
 					article
 						div.wrap
@@ -706,26 +706,26 @@ block content
 								h4 As A List:
 								+checkbox('checkboxes', ['Item 1', 'Item 2', 'Item 3'], 'list')
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd +radio(arg1, arg2)
-			x-major
+			+major()
 				+demo()
 					article
 						+radio('radios', ['Item 1', 'Item 2', 'Item 3'])
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd +select(arg1)
-			x-major
+			+major()
 				+demo()
 					article.extend
 						+select(['Item 1', 'Item 2', 'Item 3'])
 
-		x-seg(of="3")
-			x-minor
+		+segment(3)
+			+minor()
 				h4.ft-hd +submit(arg1, arg2)
-			x-major
+			+major()
 				+demo()
 					article.extend
 						div.wrap
