@@ -148,7 +148,7 @@ Note: Page will not update until after Gitlab Pipeline has completed for the Pro
 	run_command('cd {} git status && git add README.md && git commit -m "adding readme" && git push'.format(DESTINATION))
 
 def install_wirestorm(DESTINATION):
-	copyCommand = "scp -r {root}/template/{destination}/".format(root = path('util'), destination = DESTINATION)
+	copyCommand = "scp -r {root}/template/ {destination}/".format(root = path('util'), destination = DESTINATION)
 	run_command(copyCommand)
 
 def rename_repo(OLD_NAME, NEW_NAME):
