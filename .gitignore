@@ -1,2 +1,6 @@
 node_modules
 /profiles
+.DS_Store
+*.pyc
+package.json
+package-lock.json
