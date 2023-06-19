@@ -140,7 +140,7 @@ block content
 			+major()
 				+demo()
 					+panel('light')
-						+segment(of="5")
+						+segment(5)
 							+minor()
 								+image('100%', 200)
 							+major()
@@ -161,7 +161,7 @@ block content
 						h4 Code
 						pre
 							| <code class="language-jade">
-							| +segment(of="7")
+							| +segment(7)
 							| 	+minor()
 							| 		+image('100%', 200)
 							| 	+major()
@@ -172,7 +172,7 @@ block content
 			+major()
 				+demo()
 					+panel().light
-						+segment(of="7")
+						+segment(7)
 							+minor()
 								+image('100%', 200)
 							+major()
@@ -294,50 +294,6 @@ block content
 								h3= titles[i++] + ' Title'
 								p
 									+blockletter(35)
-
-		+segment(3)
-			+minor()
-				h4.ft-hd.modal.trigger(data-target="columnLoop") +column-loop(arg1, arg2)
-				div#columnLoop.modal.window
-					p
-						strong Description: 
-						| Makes a copy of the content for the number of times passed in as "arg1", as columns.  The copied column must be contained within an "article" tag.
-					ul
-						li
-							strong arg1 
-							br
-							| [ 
-							em integer 
-							| ] &ndash; number of columns to create.
-						li
-							strong arg2 
-							br
-							| [ 
-							em string 
-							| ] &ndash; pass in the string "equalize", if you would like each column to be equal in height.  Then, add "data-equalize" to each wrapper that acts as the column's height (See code below.)
-					div.clear-wrap
-						h4 Code
-						pre
-							| <code class="language-jade">
-							| +panel('dark')
-							| 	+column-loop(4,'equalize')
-							| 		article
-							| 			div.wrap(data-equal-height)
-							| 				p
-							| 					+porthole(150, 'center')
-							| 				p
-							| 					+blockletter(15)
-							| </code>
-			+major()
-				+demo('dark')
-					+panel('dark')
-						+column-loop(4,'equalize')
-							article
-								div.wrap(data-equal-height)
-									p
-										+porthole(150, 'center')
-									p
-										+blockletter(15)
 
 		h3#media.demo-heading Media
 		+segment(3)
