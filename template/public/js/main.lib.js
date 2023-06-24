@@ -574,6 +574,24 @@ function emphasize(PARAM1) {
 	_$(PARAM1).addClass('emphasize');
 }
 
+//================================
+//	Current Page Highlighting
+//================================
+
+function markCurrentPage() {
+	// _$('.current-page').removeClass('current-page');
+	const currentPage = window.location.pathname.replace('/', '');
+	_$('a').items.forEach((_item_) => {
+		const hrefValue = _$(_item_).attr('href');
+		const hrefPrimary = (hrefValue) ? hrefValue.match(/([^?]+)/)[1] : '';
+		if ( hrefPrimary === currentPage) {
+			_$(_item_).addClass('current-page');
+		}
+	});
+}
+
+markCurrentPage();
+
 /*
 input types:
 
