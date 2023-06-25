@@ -520,7 +520,7 @@ localData['saveAllClick'] = function() {
 	updateVals();
 }
 
-localData.saveOnlyClick = function(PARAM1) {
+localData['saveOnlyClick'] = function(PARAM1) {
 	_$('#' + PARAM1 + ' input').items.forEach(function(_item_) {
 		const itemName = _item_.id;
 		val = _item_.value;
@@ -582,7 +582,6 @@ function emphasize(PARAM1) {
 //================================
 
 function markCurrentPage() {
-	// _$('.current-page').removeClass('current-page');
 	const currentPage = window.location.pathname.replace('/', '');
 	_$('a').items.forEach((_item_) => {
 		const hrefValue = _$(_item_).attr('href');
@@ -619,7 +618,6 @@ _$('.editable-body .editable-close-action').click((e) => {
 });
 
 document.addEventListener("keyup", (e) => {
-	// console.log(document.activeElement.classList.contains('editable-field'));
 	if (e.key === 'Enter' && document.activeElement.classList.contains('editable-field')) {
 		localData.saveAllClick();
 		_$('.editable-body').removeClass('editing');
