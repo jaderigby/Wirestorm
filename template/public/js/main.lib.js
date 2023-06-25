@@ -448,11 +448,10 @@ $('[data-goback]').on('click', function(e) {
 });
 
 function getParams() {
-  var vars = {};
-  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-      vars[key] = value.replace('%20', ' ');
+	var vars = {};
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+		vars[key] = decodeURIComponent(value.replace(/\+/g, ' ').replace('%27', '\''));
   });
-//   window.params = decodeURI(vars);
 	window.params = vars;
 }
 
