@@ -108,6 +108,16 @@ mixin old-button(nameValue, pos='left')
 		- }
 	- }
 
+mixin editable(PARAM1)
+	prime-seg.vertical-center.editable-body
+		x-minor
+			p(style="display: inline-block", data-ref= attributes.id).editable-main-text= PARAM1
+			input(type="text", value= PARAM1, class!=attributes.class, id!=attributes.id).editable-field
+			.rack.editable-done
+				a().editable-done-action Done
+				.icon-close.editable-close-action
+		x-major
+			.icon-edit.editable-edit-action
 
 mixin bar-link(nameValue, arg2 = '#', arg3 = '#')
 	- linkUrl = arg2

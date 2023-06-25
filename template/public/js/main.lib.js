@@ -486,8 +486,10 @@ highlightNav();
 //	localData
 //================
 
+const thisPage = window.location.pathname.replace(/^.*\/([^/]+)\.html$/, '$1').replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+
 if (localStorage.getItem('localData') !== null) {
-    console.log('localData is available!');
+    console.log('localData is available! --', thisPage);
 } else {
     const localStorageData = {};
     localStorage.setItem('localData', JSON.stringify(localStorageData));
@@ -496,12 +498,37 @@ if (localStorage.getItem('localData') !== null) {
 const localData = JSON.parse(localStorage.getItem("localData"));
 
 localData['save'] = function() {
+	console.log('data saved!');
 	const localDataPreserve = JSON.parse(JSON.stringify(localData));
 	delete localDataPreserve.save;
 	localStorage.setItem('localData', JSON.stringify(localDataPreserve));
 }
 
-const thisPage = window.location.pathname.replace(/^.*\/([^/]+)\.html$/, '$1').replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+localData['saveAllClick'] = function() {
+	_$('.store').items.forEach(function(_item_) {
+		let val = '';
+		let itemName = _item_.id;
+		if (_$(_item_).attr('type') == 'text' || _item_.nodeName == 'TEXTAREA') {
+			val = _item_.value;
+		}
+		else {
+			val = _item_.innerHTML;
+		}
+		localData[thisPage][itemName] = val;
+		localData.save();
+	});
+	updateVals();
+}
+
+localData.saveOnlyClick = function(PARAM1) {
+	_$('#' + PARAM1 + ' input').items.forEach(function(_item_) {
+		const itemName = _item_.id;
+		val = _item_.value;
+		localData[thisPage][itemName] = val;
+		localData.save();
+	});
+	updateVals();
+}
 
 if (!(localData.hasOwnProperty(thisPage))) {
 	localData[thisPage] = {};
@@ -535,36 +562,13 @@ updateVals();
 
 _$('input[type="submit"').click(function(e) {
 	if (_$(e.target).hasClass('store') && _$(e.target).attr('data-store') == null) {
-		_$('.store').items.forEach(function(_item_) {
-			let val = '';
-			let itemName = _item_.id;
-			if (_$(_item_).attr('type') == 'text' || _item_.nodeName == 'TEXTAREA') {
-				val = _item_.value;
-			}
-			// else if (_$(_item_).attr('type') == 'radio') {
-			// 	itemName = _item_.name;
-			// 	val = _$(`[name="${_item_.name}"]:checked`);
-			// 	console.log(val);
-			// }
-			else {
-				val = _item_.innerHTML;
-			}
-			localData[thisPage][itemName] = val;
-			localData.save();
-		});
+		localData.saveAllClick();
 	}
-	updateVals();
 });
 
 _$('input[type="submit"][data-store], a[data-store]').click(function(e) {
 	const storeTarget = _$(e.target).attr('data-store');
-	_$('#' + storeTarget + ' input').items.forEach(function(_item_) {
-		const itemName = _item_.id;
-		val = _item_.value;
-		localData[thisPage][itemName] = val;
-		localData.save();
-	});
-	updateVals();
+	localData.saveOnlyClick(storeTarget);
 });
 
 formInit();
@@ -590,6 +594,39 @@ function markCurrentPage() {
 }
 
 markCurrentPage();
+
+_$('.editable-body .editable-edit-action').click((e) => {
+	e.target.parentElement.parentElement.children[0].children[1].focus();
+	_$(e.target.parentElement.parentElement).addClass('editing');
+	setTimeout(() => {
+		_$(e.target).css('display', 'none');
+	}, 250);
+});
+
+_$('.editable-body .editable-done-action').click((e) => {
+	_$(e.target.parentElement.parentElement.nextElementSibling.children[0]).css('display', 'block');
+	const val = e.target.parentElement.parentElement.children[1].value;
+	e.target.parentElement.parentElement.children[0].innerHTML = val;
+	localData.saveAllClick();
+	_$(e.target.parentElement.parentElement.parentElement).removeClass('editing');
+});
+
+_$('.editable-body .editable-close-action').click((e) => {
+	_$(e.target.parentElement.parentElement.nextElementSibling.children[0]).css('display', 'block');
+	const val = e.target.parentElement.parentElement.children[0].innerHTML;
+	e.target.parentElement.parentElement.children[1].value = val;
+	_$(e.target.parentElement.parentElement.parentElement).removeClass('editing');
+});
+
+document.addEventListener("keyup", (e) => {
+	// console.log(document.activeElement.classList.contains('editable-field'));
+	if (e.key === 'Enter' && document.activeElement.classList.contains('editable-field')) {
+		localData.saveAllClick();
+		_$('.editable-body').removeClass('editing');
+		_$('.editable-edit-action').css('display', 'block');
+	}
+});
+
 
 /*
 input types:

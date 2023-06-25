@@ -419,6 +419,62 @@ base()
 			box-shadow: 0 0 40px rgba(181,0,0,0.4), 0 0 6px rgba(181,0,0,0.7)
 		100%
 			box-shadow: 0 0 0 rgba(0,0,0,0)
+	
+	.editable-body
+		position: relative
+
+	.editable-body .icon-edit
+		position: relative
+		margin-left: 0
+		z-index: 2
+		transition: all 0.25s ease-in-out
+
+	.editable-body.editing .editable-edit-action
+		margin-left: 90%
+		opacity: 0
+
+	input[type="text"].editable-field
+		position: absolute
+		width: calc(100% - 109px)
+		top: 7px
+		left: -11px
+		opacity: 0
+		font-size: 1rem
+		transition: all 0.25s ease-in-out
+
+	.editable-body.editing input[type="text"].editable-field
+		opacity: 1
+
+	.editable-done
+		position: absolute
+		top: 15px
+		right: 15px
+		opacity: 0
+		transition: all 0.25s ease-in-out
+
+	.editable-body.editing .editable-done
+		opacity: 1
+
+	.rack .editable-close-action
+		margin-top: -3px
+		padding-left: 0
+
+	.editable-close-action:before
+		display: block
+		width: 23px
+		height: 21px
+		padding-top: 2px
+		border-radius: 100px
+		color: #fff
+		background-color: #a9a9a9
+
+	.editable-done-action
+		font-weight: 700
+
+	.editable-done-action
+	.editable-close-action
+	.editable-edit-action
+		cursor: pointer
 
 widgets()
 	//
