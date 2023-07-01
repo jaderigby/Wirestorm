@@ -481,13 +481,14 @@ function highlightNav() {
 
 highlightNav();
 
-
 //================
 //	localData
 //================
 
+// Get currently loaded page
 const thisPage = window.location.pathname.replace(/^.*\/([^/]+)\.html$/, '$1').replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
 
+// Get localData
 if (localStorage.getItem('localData') !== null) {
     console.log('localData is available! --', thisPage);
 } else {
@@ -504,72 +505,101 @@ localData['save'] = function() {
 	localStorage.setItem('localData', JSON.stringify(localDataPreserve));
 }
 
-localData['saveAllClick'] = function() {
-	_$('.store').items.forEach(function(_item_) {
-		let val = '';
-		let itemName = _item_.id;
-		if (_$(_item_).attr('type') == 'text' || _item_.nodeName == 'TEXTAREA') {
-			val = _item_.value;
-		}
-		else {
-			val = _item_.innerHTML;
-		}
-		localData[thisPage][itemName] = val;
-		localData.save();
-	});
-	updateVals();
-}
-
 localData['saveOnlyClick'] = function(PARAM1) {
-	_$('#' + PARAM1 + ' input').items.forEach(function(_item_) {
+	_$('#' + PARAM1 + ' input.store-on-save').items.forEach(function(_item_) {
 		const itemName = _item_.id;
-		val = _item_.value;
+		const val = _item_.value;
 		localData[thisPage][itemName] = val;
+		if (_$(_item_).attr('type') === 'checkbox') {
+			if (!_item_.checked) {
+				delete localData[thisPage][itemName];
+			}
+		}
+		if (_$(_item_).attr('type') === 'text') {
+			if (!_item_.value) {
+				delete localData[thisPage][itemName];
+			}
+		}
 		localData.save();
 	});
 	updateVals();
 }
 
+// Make sure page is ready with localData object, upon page load
 if (!(localData.hasOwnProperty(thisPage))) {
 	localData[thisPage] = {};
 	localData.save();
 }
 
-_$('.store').items.forEach(function(_item_) {
-	const itemName = _item_.id;
-	const val = _item_.value;
-	if (_$(_item_).attr('type') !== 'submit') {
-		if (!(localData[thisPage].hasOwnProperty(itemName))) {
-			localData[thisPage][itemName] = val;
-			localData.save();
-		}
-		if (localData[thisPage][itemName] !== '') {
-			_item_.value = localData[thisPage][itemName];
-		}
-	}
-});
-
 function updateVals() {
 	_$('[data-ref]').items.forEach(function(_item_) {
 		const keyVal = _$(_item_).attr('data-ref');
-		if (keyVal !== '') {
+		if (localData[thisPage].hasOwnProperty(keyVal)) {
+			console.log("YEP!");
 			_item_.innerHTML = localData[thisPage][keyVal];
 		}
 	});
 }
 
+// Ready data-ref's wherever used
 updateVals();
 
-_$('input[type="submit"').click(function(e) {
-	if (_$(e.target).hasClass('store') && _$(e.target).attr('data-store') == null) {
-		localData.saveAllClick();
+_$('.store').items.forEach((_item_) => {
+	const itemName = _item_.id;
+	let val = _item_.value;
+	if (_$(_item_).attr('type') === 'checkbox') {
+		console.log("item is checkbox: ", _item_);
+		if (localData[thisPage].hasOwnProperty(itemName)) {
+			_item_.checked = "checked";
+		}
+		_item_.addEventListener('change', (e) => {
+			if (_item_.checked) {
+				localData[thisPage][itemName] = val;
+			}
+			else {
+				delete localData[thisPage][itemName];
+			}
+			localData.save();
+		});
+	}
+	else if (_$(_item_).attr('type') === 'text') {
+		if (localData[thisPage].hasOwnProperty(itemName)) {
+			_item_.value = localData[thisPage][itemName]
+		}
+		_item_.addEventListener('focus', (e) => {
+			_item_.addEventListener('keyup', () => {
+				val = _item_.value;
+				localData[thisPage][itemName] = val;
+				localData.save();
+			});
+		});
+		_item_.addEventListener('blur', (e) => {
+			_item_.removeEventListener('keyup');
+		});
 	}
 });
 
-_$('input[type="submit"][data-store], a[data-store]').click(function(e) {
-	const storeTarget = _$(e.target).attr('data-store');
+_$('.store-on-save').items.forEach((_item_) => {
+	const itemName = _item_.id;
+	let val = _item_.value;
+	if (_$(_item_).attr('type') === 'checkbox') {
+		if (localData[thisPage].hasOwnProperty(itemName)) {
+			_item_.checked = "checked";
+		}
+	}
+	else if (_$(_item_).attr('type') === 'text') {
+		if (localData[thisPage].hasOwnProperty(itemName)) {
+			_item_.value = localData[thisPage][itemName]
+		}
+	}
+});
+
+_$('input[type="submit"][data-target], a[data-target]').click(function(e) {
+	const storeTarget = _$(e.target).attr('data-target');
 	localData.saveOnlyClick(storeTarget);
 });
+
+//===================================================
 
 formInit();
 
@@ -593,6 +623,8 @@ function markCurrentPage() {
 }
 
 markCurrentPage();
+
+//===================================================
 
 _$('.editable-body .editable-edit-action').click((e) => {
 	e.target.parentElement.parentElement.children[0].children[1].focus();
