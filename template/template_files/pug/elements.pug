@@ -109,10 +109,24 @@ mixin old-button(nameValue, pos='left')
 	- }
 
 mixin editable(PARAM1)
+	mixin editable(PARAM1, PARAM2 = 'left')
+	- const elem = {};
+	if (typeof PARAM1 === 'object')
+		- elem.name = PARAM1.name || 'None';
+		- elem.blockletter = PARAM1.blockletter || false;
+	else 
+		- elem.name = PARAM1 || 'None';
+		- elem.blockletter = null;
+
 	prime-seg.vertical-center.editable-body
 		x-minor
-			p(style="display: inline-block", data-ref= attributes.id).editable-main-text= PARAM1
-			input(type="text", value= PARAM1, class!=attributes.class, id!=attributes.id).editable-field
+			.rack.editable-add
+				.icon-add.editable-add-action
+			if (elem.blockletter)
+				p(data-ref= attributes.id).editable-main-text.blockletter= elem.name
+			else 
+				p(data-ref= attributes.id).editable-main-text= elem.name
+			input(type="text", value= elem.name, class!=attributes.class, id!=attributes.id).editable-field
 			.rack.editable-done
 				a().editable-done-action Done
 				.icon-close.editable-close-action
