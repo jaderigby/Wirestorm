@@ -108,8 +108,7 @@ mixin old-button(nameValue, pos='left')
 		- }
 	- }
 
-mixin editable(PARAM1)
-	mixin editable(PARAM1, PARAM2 = 'left')
+mixin editable(PARAM1, PARAM2 = 'left')
 	- const elem = {};
 	if (typeof PARAM1 === 'object')
 		- elem.name = PARAM1.name || 'None';
