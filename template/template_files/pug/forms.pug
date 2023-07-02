@@ -109,22 +109,22 @@ mixin submit(nameValue, pos='left')
 	- if (typeof nameValue === 'object') {
 	-	nameValue.name = nameValue.name || "Submit"
 	- 	nameValue.position = nameValue.position || "left"
-	- 	nameValue.store = nameValue.store || null
+	- 	nameValue.target = nameValue.target || null
 		- if (nameValue.position === 'center') {
 			.form-element.center-justify
-				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id)
+				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-target!=nameValue.target)
 		- }
 		- else if (nameValue.position === 'right') {
 			.form-element.right-justify
-				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id)
+				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-target!=nameValue.target)
 		- }
 		- else if (nameValue.position === 'extend') {
 			.form-element
-				input.extend(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id)
+				input.extend(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-target!=nameValue.target)
 		- }
 		- else {
 			.form-element
-				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-store=nameValue.store)
+				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-target!=nameValue.target)
 		- }
 	- }
 	- else {
@@ -157,7 +157,7 @@ mixin switch(PARAM1, PARAM2)
 		-		_item_.value = _item_.value || _item_.name.toLowerCase().replace(/ /g, '-');
 		-		_item_.family = _item_.family || randomizedFamily;
 		-		_item_.class = attributes.class || null;
-		-		_item_.id = _item_.id || randomizedId;
+		-		_item_.id = attributes.id || randomizedId;
 		-		_item_.checked = _item_.checked || false;
 		-		switchList.push(_item_);
 		-	}
@@ -168,7 +168,7 @@ mixin switch(PARAM1, PARAM2)
 		-		switchItem.value = (_item_ !== undefined && typeof _item_ !== 'object') ? _item_.toLowerCase().replace(/ /g, '-') : null;
 		-		switchItem.family = randomizedFamily;
 		-		switchItem.class = attributes.class || null;
-		-		switchItem.id = randomizedId;
+		-		switchItem.id = attributes.id || randomizedId;
 		-		switchItem.checked = false;
 		-		switchList.push(switchItem);
 		- 	}
@@ -250,7 +250,7 @@ mixin checkbox(PARAM1, PARAM2)
 		-		_item_.value = _item_.name.toLowerCase().replace(/ /g, '-');
 		-		_item_.family = _item_.family || randomizedFamily;
 		-		_item_.class = attributes.class || null;
-		-		_item_.id = _item_.id || randomizedId;
+		-		_item_.id = attributes.id || randomizedId;
 		-		_item_.checked = _item_.checked || false;
 		-		checkList.push(_item_);
 		-	}
@@ -261,7 +261,7 @@ mixin checkbox(PARAM1, PARAM2)
 		-		checkItem.value = (_item_ !== undefined && typeof _item_ !== 'object') ? _item_.toLowerCase().replace(/ /g, '-') : null;
 		-		checkItem.family = randomizedFamily;
 		-		checkItem.class = attributes.class || null;
-		-		checkItem.id = randomizedId;
+		-		checkItem.id = attributes.id || randomizedId;
 		-		checkItem.checked = false;
 		-		checkList.push(checkItem);
 		- 	}
