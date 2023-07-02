@@ -423,15 +423,16 @@ base()
 	.editable-body
 		position: relative
 
-	.editable-body .icon-edit
+	.editable-body .editable-edit-action
 		position: relative
 		margin-left: 0
 		z-index: 2
-		transition: all 0.25s ease-in-out
-
-	.editable-body.editing .editable-edit-action
-		margin-left: 90%
-		opacity: 0
+	
+	.icon-edit.editable-edit-action
+		color: #00a0b5
+		width: 20px
+		padding: 10px
+		margin-left: -10px
 
 	input[type="text"].editable-field
 		position: absolute
@@ -474,7 +475,49 @@ base()
 	.editable-done-action
 	.editable-close-action
 	.editable-edit-action
+	.editable-body .editable-add
 		cursor: pointer
+
+	.editable-body .editable-add
+		position: relative
+		display: none
+		margin-top: 5px
+		margin-bottom: -15px
+		width: 21px
+		z-index: 3
+	
+	.editable-body.editing .editable-add
+		margin-bottom: 23px
+	
+	.editable-body .editable-add .editable-add-action
+		position: relative
+		margin-left: -8px
+		width: 18px
+		height: 18px
+		padding: 10px
+		font-size: 0.95rem
+	
+	[class^="icon-"].editable-add-action
+		line-height: 1.1
+
+	.editable-body .editable-add-action:before
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 0
+		right: 0
+		margin: auto
+		width: 18px
+		height: 18px
+		border-radius: 100px
+		color: #00a0b5
+		border: 2px solid #00a0b5
+	
+	.editable-edit-action.slide-in
+		animation: icon-edit-slide-in 0.255s ease-in-out forwards
+
+	.editable-edit-action.slide-out
+		animation: icon-edit-slide-out 0.215s ease-in-out forwards
 
 widgets()
 	//

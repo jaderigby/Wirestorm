@@ -137,14 +137,14 @@ mixin bar-link(nameValue, arg2 = '#', arg3 = '#')
 	- if (linkUrl.includes('icon-'))
 		- if (arg3 !== '#')
 			a(href= arg3, class!=attributes.class, id!=attributes.id).bar-link
-				prime-segment.vertical-center
+				prime-seg.vertical-center
 					x-minor
 						div(class= arg2)
 					x-major
 						div= nameValue
 		- else 
 			a(href= linkUrl, class!=attributes.class, id!=attributes.id).bar-link
-				prime-segment.vertical-center
+				prime-seg.vertical-center
 					x-minor
 						div(class= arg2)
 					x-major
@@ -185,16 +185,16 @@ mixin placeholder(SIZE,LABEL)
 mixin modal(nameValue, pos)
 	- modalIter += 1
 	- if (pos === 'right')
-		button.modal.trigger.right(data-target="modal" + modalIter)= nameValue
+		button.modal.trigger.right(data-target="modal" + modalIter, class!=attributes.class, id!=attributes.id)= nameValue
 	- else if (pos === 'center')
 		div.center-justify
-			button.modal.trigger(data-target="modal" + modalIter)= nameValue
+			button.modal.trigger(data-target="modal" + modalIter, class!=attributes.class, id!=attributes.id)= nameValue
 	- else if (pos === 'extend') {
 		div
-			button.extend.modal.trigger(data-target="modal" + modalIter)= nameValue
+			button.extend.modal.trigger(data-target="modal" + modalIter, class!=attributes.class, id!=attributes.id)= nameValue
 	- }
 	- else
-		button.modal.trigger(data-target="modal" + modalIter)= nameValue
+		button.modal.trigger(data-target="modal" + modalIter, class!=attributes.class, id!=attributes.id)= nameValue
 	div(id="modal" + modalIter, class="modal window")
 		if block
 			block

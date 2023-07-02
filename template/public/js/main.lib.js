@@ -446,10 +446,11 @@ $('[data-goback]').on('click', function(e) {
 });
 
 function getParams() {
-	var vars = {};
-	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-		vars[key] = decodeURIComponent(value.replace(/\+/g, ' ').replace('%27', '\''));
+  var vars = {};
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+      vars[key] = decodeURIComponent(value.replace(/\+/g, ' ').replace('%27', '\''));
   });
+//   window.params = decodeURI(vars);
 	window.params = vars;
 }
 
@@ -463,23 +464,7 @@ function uuidv4() {
 }
 
 
-//============================
-//	Highlight Nav Element
-//============================
-
-function highlightNav() {
-	_$('.nav-highlight a').removeClass('selected');
-	var test = window.location.pathname.replace('/', '') + window.location.search;
-	_$('.nav-highlight a').items.forEach(function(_item_) {
-		if ( _$(_item_).attr('href') === test ) {
-			_$(_item_).addClass('selected');
-		}
-	});
-}
-
-highlightNav();
-
-//================
+///================
 //	localData
 //================
 
@@ -518,6 +503,22 @@ localData['saveOnlyClick'] = function(PARAM1) {
 				delete localData[thisPage][itemName];
 			}
 		}
+		localData.save();
+	});
+	updateVals();
+}
+
+localData['saveAllClick'] = function() {
+	_$('.store').items.forEach(function(_item_) {
+		let val = '';
+		let itemName = _item_.id;
+		if (_$(_item_).attr('type') == 'text' || _item_.nodeName == 'TEXTAREA') {
+			val = _item_.value;
+		}
+		else {
+			val = _item_.innerHTML;
+		}
+		localData[thisPage][itemName] = val;
 		localData.save();
 	});
 	updateVals();
@@ -605,11 +606,13 @@ function emphasize(PARAM1) {
 	_$(PARAM1).addClass('emphasize');
 }
 
+
 //================================
 //	Current Page Highlighting
 //================================
 
 function markCurrentPage() {
+	// _$('.current-page').removeClass('current-page');
 	const currentPage = window.location.pathname.replace('/', '');
 	_$('a').items.forEach((_item_) => {
 		const hrefValue = _$(_item_).attr('href');
@@ -746,7 +749,6 @@ document.addEventListener("keyup", (e) => {
 	}
 
 });
-
 
 /*
 input types:
