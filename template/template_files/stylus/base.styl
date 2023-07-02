@@ -518,6 +518,48 @@ base()
 
 	.editable-edit-action.slide-out
 		animation: icon-edit-slide-out 0.215s ease-in-out forwards
+	
+	@keyframes icon-edit-slide-in
+		from
+			opacity: 1
+			transform: translateX(0)
+		to
+			opacity: 0
+			transform: translateX(90px)
+	@keyframes icon-edit-slide-out
+		from
+			opacity: 0
+			transform: translateX(90px)
+		to
+			opacity: 1
+			transform: translateX(0)
+	
+	.icon-add-bubble
+		position: relative
+		margin-top: -11px
+		margin-right: -15px
+		margin-left: -8px
+		width: 18px
+		height: 18px
+		padding: 10px
+		font-size: 0.95rem
+
+	.icon-add-bubble:before
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 0
+		right: 0
+		margin: auto
+		width: 17px
+		height: 18px
+		padding-left: 1px
+		border-radius: 100px
+		color: #00a0b5
+		border: 2px solid #00a0b5
+	
+	[class^="icon-"].icon-add-bubble
+		line-height: 1.1
 
 widgets()
 	//
