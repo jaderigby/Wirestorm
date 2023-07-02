@@ -89,8 +89,24 @@ block content
                 .clear-wrap: h2.center-justify localData
                 +segment(2)
                     +cell()
-                        
-                         
+                        h4 Store
+                        .clear-wrap
+                            +switch("Test")#testSwitch.store
+                        .clear-wrap
+                            +checkbox("Check Off")#testCheckbox.store
+                        .clear-wrap
+                            +input("Sample")#testText.store
+                            +input("Demo")#testText2.store
+                    +cell()
+                        h4 Store On Save
+                        .wrap#saveOnClick
+                            +switch("Test")#saveTest.store-on-save
+                            +checkbox("Sample")#saveCheckbox.store-on-save
+                            +input("Demo")#saveTextInput.store-on-save
+                            h5 Reference Text
+                            p(data-ref="saveTextInput") Demo
+                            +submit({name: "Save", target: "saveOnClick"})
+
 block script
     script.
         emphasize('#wifiSettings');
