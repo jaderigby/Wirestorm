@@ -624,6 +624,30 @@ markCurrentPage();
 
 //===================================================
 
+function initEditable() {
+	_$('.editable-body').items.forEach((_item_) => {
+		const addElem = _item_.children[0].children[0];
+		const addElemIcon = addElem.children[0];
+		const editableText = addElem.parentElement.children[1];
+		const editElemIcon = addElem.parentElement.parentElement.children[1].children[0];
+		// console.log("addElem >>===========>", editElemIcon);
+
+		if ( editableText.innerHTML === 'None' || editableText.innerHTML === '') {
+			// console.log("addElem None ===========>", addElem);
+			_$(addElem).css('display', 'flex');
+			_$(editableText).css('display', 'none');
+			_$(editElemIcon).css('display', 'none').addClass('stasis');
+			_$(addElemIcon).css('display', 'block');
+		}
+		else {
+			// console.log("addElem filled ===========>", addElem);
+			_$(addElem).css('display', 'none');
+			_$(editableText).css('display', 'block');
+			_$(editElemIcon).css('display', 'block');
+		}
+	});
+}
+
 initEditable();
 
 function runEditIconAnimation(e) {
