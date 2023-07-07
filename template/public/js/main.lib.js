@@ -613,7 +613,8 @@ function emphasize(PARAM1) {
 
 function markCurrentPage() {
 	// _$('.current-page').removeClass('current-page');
-	const currentPage = window.location.pathname.replace('/', '');
+	const currentPageList = window.location.pathname.split('/');
+	const currentPage = currentPageList[currentPageList.length - 1];
 	_$('a').items.forEach((_item_) => {
 		const hrefValue = _$(_item_).attr('href');
 		const hrefPrimary = (hrefValue) ? hrefValue.match(/([^?]+)/)[1] : '';
