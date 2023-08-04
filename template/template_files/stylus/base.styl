@@ -558,6 +558,64 @@ base()
 	
 	[class^="icon-"].icon-add-bubble
 		line-height: 1.1
+	.fade
+		display: none !important
+	.fade.activate-in
+	.fade.activated
+		display: block !important
+		opacity: 1
+	.fade.activate-in
+		animation: 0.2s animate-fade-in ease-in-out forwards
+	.fade.activate-out
+		display: block !important
+		animation: 0.2s animate-fade-out ease-in-out forwards
+	@keyframes animate-fade-in
+		from
+			opacity: 0
+		to
+			opacity: 1
+	@keyframes animate-fade-out
+		from
+			opacity: 1
+		to
+			opacity: 0
+	.drawer
+		height: 0
+		overflow: hidden
+	.drawer.activate-in
+		animation: 0.2s animate-drawer-in forwards
+	.drawer.activated
+		height: auto
+	.drawer.activate-out
+		animation: 0.2s animate-drawer-out forwards
+	@keyframes animate-drawer-in
+		from
+			height: 0
+		to
+			height: 100px
+	@keyframes animate-drawer-out
+		from
+			height: 100px
+		to
+			height: 0
+	.disable
+		opacity: 0.4
+	.disable.activate-in
+		animation: 0.2s animate-disable-in forwards
+	.disable.activated
+		opacity: 1
+	.disable-activate-out
+		animation: 0.2s animate-disable-out forwards
+	@keyframes animate-disable-in
+		from
+			opacity: 0.4
+		to
+			opacity: 1
+	@keyframes animate-opacity-out
+		from
+			opacity: 1
+		to
+			opacity: 0
 
 widgets()
 	//

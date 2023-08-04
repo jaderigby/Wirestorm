@@ -18,15 +18,113 @@ $('.toggler').parent().delegate('.toggler', 'click', function() {
 });
 
 // Open/Close Animation Behaviors (CSS3 Animations): uses ".trigger", ".toggle", and ".closer" classes in conjunction with "data-target" attribute
-$('.trigger').parent().delegate('.trigger', 'click', function() {
-	var targetItem = $(this).data('target');
-	$(targetItem).addClass('active');
+// $('.trigger').parent().delegate('.trigger', 'click', function(e) {
+// 	var targetItem = _$(e.target).attr('data-target');
+// 	_$(targetItem).addClass('active');
+// });
+
+// _$('.toggle').click((e) => {
+// 	var targetItem = $(e.target).attr('data-target');
+// 	$(targetItem).toggleClass('active');
+// });
+
+jQuishy.prototype.selector = function(arg1) {
+	return this.t[0].querySelectorAll(arg1);
+}
+
+_$('.trigger').click((e) => {
+	const targetItem = _$(e.target).attr('data-target');
+	if (_$(targetItem).hasClass('prepend') || _$(targetItem).hasClass('append')) {
+		e.preventDefault();
+		const blueprint = _$(`${targetItem} .blueprint`).vanilla.cloneNode(true);
+		if (_$(targetItem).hasClass('prepend')) {
+			const idName = _$(blueprint.querySelectorAll('input[type="checkbox"]')).vanilla[0].id + '-' + uuidv4();
+			_$(blueprint.querySelectorAll('input[type="checkbox"]')).vanilla[0].id = idName;
+			_$(blueprint.querySelectorAll('label')).vanilla[0].setAttribute('for', idName);
+			const elemFormatted = _$(blueprint).removeClass('blueprint').vanilla;
+			_$(targetItem).vanilla.prepend(elemFormatted);
+		}
+		else if (_$(targetItem).hasClass('append')) {
+			const elem = _$(targetItem).vanilla.children[0].cloneNode(true);
+			const elemFormatted = _$(elem).removeClass('blueprint');
+			_$(targetItem).vanilla.append(elemFormatted);
+		}
+	}
+	else {
+		if (e.target.tagName !== 'SELECT') {
+			if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox') {
+				if (e.target.checked) {
+					_$(targetItem).addClass('activate-in');
+					setTimeout(() => {
+						_$(targetItem).addClass('activated');
+						_$(targetItem).removeClass('activate-in');
+					}, 200);
+				}
+				else {
+					_$(targetItem).addClass('activate-out');
+					_$(targetItem).removeClass('activated');
+					setTimeout(() => {
+						_$(targetItem).removeClass('activate-out');
+					}, 200);
+				}
+			}
+			else {
+				if (_$(targetItem).hasClass('activated')) {
+					_$(targetItem).addClass('activate-out');
+					_$(targetItem).removeClass('activated');
+					setTimeout(() => {
+						_$(targetItem).removeClass('activate-out');
+					}, 200);
+				}
+				else {
+					_$(targetItem).addClass('activate-in');
+					setTimeout(() => {
+						_$(targetItem).addClass('activated');
+						_$(targetItem).removeClass('activate-in');
+					}, 200);
+				}
+			}
+		}
+	}
 });
 
-$('.toggle').parent().delegate('.toggle', 'click', function() {
-	var targetItem = $(this).data('target');
-	$(targetItem).toggleClass('active');
+_$('select.trigger').items.forEach((_item_) => {
+	_item_.addEventListener('change', (e) => {
+		// const otps = _$(_item_).attr('data-options').split(',');
+		const val = e.target.value;
+		const targetItem = _$(e.target).attr('data-target');
+		if (val && !_$(targetItem).hasClass('activated')) {
+			_$(targetItem).addClass('activate-in');
+			setTimeout(() => {
+				_$(targetItem).addClass('activated');
+				_$(targetItem).removeClass('activate-in');
+			}, 200);
+		}
+		else if (val == '' && _$(targetItem).hasClass('activated')) {
+			_$(targetItem).addClass('activate-out');
+			_$(targetItem).removeClass('activated');
+			setTimeout(() => {
+				_$(targetItem).removeClass('activate-out');
+			}, 200);
+		}
+	});
 });
+
+function initTrigger() {
+	_$('.trigger').items.forEach((_item_) => {
+		const targetItem = _$(_item_).attr('data-target');
+		if (_item_.tagName === 'INPUT' && _item_.type === 'checkbox') {
+			if (_item_.checked) {
+				_$(targetItem).addClass('activated');
+			}
+		}
+		else if (_item_.tagName === 'SELECT') {
+			if (_item_.value) {
+				_$(targetItem).addClass('activated');
+			}
+		}
+	});
+}
 
 $('.closer').parent().delegate('.closer', 'click', function() {
 	var targetItem = $(this).data('target');
@@ -207,12 +305,14 @@ $(window).resize(function() {
 			else if (myQualifier === '>') {
 				if (windowSize > myBreakpoint) {
 					$('[data-equal-height]', this).css('height', '');
+					// console.log("greater than");
 				}
 				else {equalize()}
 			}
 			else if (myQualifier === '>=') {
 				if (windowSize >= myBreakpoint) {
 					$('[data-equal-height]', this).css('height', '');
+					// console.log("Yep");
 				}
 				else {equalize()}
 			}
@@ -448,7 +548,7 @@ $('[data-goback]').on('click', function(e) {
 function getParams() {
   var vars = {};
   var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-      vars[key] = decodeURIComponent(value.replace(/\+/g, ' ').replace('%27', '\''));
+      vars[key] = value.replace('%20', ' ');
   });
 //   window.params = decodeURI(vars);
 	window.params = vars;
@@ -464,16 +564,29 @@ function uuidv4() {
 }
 
 
-///================
+//============================
+//	Highlight Nav Element
+//============================
+
+function highlightNav() {
+	_$('.nav-highlight a').removeClass('selected');
+	var test = window.location.pathname.replace('/', '') + window.location.search;
+	_$('.nav-highlight a').items.forEach(function(_item_) {
+		if ( _$(_item_).attr('href') === test ) {
+			_$(_item_).addClass('selected');
+		}
+	});
+}
+
+highlightNav();
+
+
+//================
 //	localData
 //================
 
-// Get currently loaded page
-const thisPage = window.location.pathname.replace(/^.*\/([^/]+)\.html$/, '$1').replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
-
-// Get localData
 if (localStorage.getItem('localData') !== null) {
-    console.log('localData is available! --', thisPage);
+    console.log('localData is available!');
 } else {
     const localStorageData = {};
     localStorage.setItem('localData', JSON.stringify(localStorageData));
@@ -482,123 +595,145 @@ if (localStorage.getItem('localData') !== null) {
 const localData = JSON.parse(localStorage.getItem("localData"));
 
 localData['save'] = function() {
-	console.log('data saved!');
 	const localDataPreserve = JSON.parse(JSON.stringify(localData));
 	delete localDataPreserve.save;
 	localStorage.setItem('localData', JSON.stringify(localDataPreserve));
 }
 
-localData['saveOnlyClick'] = function(PARAM1) {
-	_$('#' + PARAM1 + ' input.store-on-save').items.forEach(function(_item_) {
-		const itemName = _item_.id;
-		const val = _item_.value;
-		localData[thisPage][itemName] = val;
-		if (_$(_item_).attr('type') === 'checkbox') {
-			if (!_item_.checked) {
-				delete localData[thisPage][itemName];
-			}
-		}
-		if (_$(_item_).attr('type') === 'text') {
-			if (!_item_.value) {
-				delete localData[thisPage][itemName];
-			}
-		}
-		localData.save();
-	});
-	updateVals();
-}
+const thisPage = window.location.pathname.replace(/^.*\/([^/]+)\.html$/, '$1').replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
 
-localData['saveAllClick'] = function() {
-	_$('.store').items.forEach(function(_item_) {
-		let val = '';
-		let itemName = _item_.id;
-		if (_$(_item_).attr('type') == 'text' || _item_.nodeName == 'TEXTAREA') {
-			val = _item_.value;
-		}
-		else {
-			val = _item_.innerHTML;
-		}
-		localData[thisPage][itemName] = val;
-		localData.save();
-	});
-	updateVals();
-}
-
-// Make sure page is ready with localData object, upon page load
 if (!(localData.hasOwnProperty(thisPage))) {
 	localData[thisPage] = {};
 	localData.save();
 }
 
+// store items marked for storing
+_$('.store').items.forEach(function(_item_) {
+	let itemName = _item_.id;
+	let val = _item_.value;
+	if (_$(_item_).vanilla.tagName === 'SELECT') {
+		if (!(localData[thisPage].hasOwnProperty(itemName))) {
+			localData[thisPage][itemName] = val;
+			localData.save();
+		}
+		if (localData[thisPage][itemName] !== '') {
+			_item_.value = localData[thisPage][itemName];
+		}
+	}
+	else if (_$(_item_).attr('type') !== 'submit' && _$(_item_).attr('type') !== 'checkbox' && _$(_item_).attr('type') !== 'radio') {
+		if (!(localData[thisPage].hasOwnProperty(itemName))) {
+			localData[thisPage][itemName] = val;
+			localData.save();
+		}
+		if (localData[thisPage][itemName] !== '') {
+			_item_.value = localData[thisPage][itemName];
+		}
+	}
+	// Check to see if it is a checkbox input; if it is, proceed
+	if (_$(_item_).attr('type') === 'checkbox') {
+		// Check to see if it has an entry in localData; if it does, set it to 'checked'
+		if (localData[thisPage].hasOwnProperty(itemName)) {
+			_$(_item_).attr('checked', 'checked');
+		}
+	}
+	// Check to see if it is a radio input; if it is, proceed
+	if (_$(_item_).attr('type') === 'radio') {
+		itemName = _$(_item_).attr('data-id');
+		// Check to see if it has an entry in localData; if it does, set it to 'checked'
+		if (localData[thisPage].hasOwnProperty(itemName)) {
+			const val = localData[thisPage][itemName];
+			_$(`[data-id][value="${val}"]`).attr('checked', 'checked');
+		}
+	}
+});
+
 function updateVals() {
 	_$('[data-ref]').items.forEach(function(_item_) {
 		const keyVal = _$(_item_).attr('data-ref');
-		if (localData[thisPage].hasOwnProperty(keyVal)) {
+		if (keyVal !== '') {
 			_item_.innerHTML = localData[thisPage][keyVal];
 		}
 	});
 }
 
-// Ready data-ref's wherever used
 updateVals();
 
-_$('.store').items.forEach((_item_) => {
-	const itemName = _item_.id;
-	let val = _item_.value;
-	if (_$(_item_).attr('type') === 'checkbox') {
-		if (localData[thisPage].hasOwnProperty(itemName)) {
-			_item_.checked = "checked";
-		}
-		_item_.addEventListener('change', (e) => {
-			if (_item_.checked) {
-				localData[thisPage][itemName] = val;
+_$('input[type="checkbox"]').click((e) => {
+	const itemName = e.target.id;
+	if (e.target.checked) {
+		const val = e.target.value;
+		localData[thisPage][itemName] = val;
+	}
+	else {
+		delete localData[thisPage][itemName];
+	}
+	localData.save();
+});
+
+_$('input[type="checkbox"]').click((e) => {
+	const itemName = e.target.id;
+	if (e.target.checked) {
+		const val = e.target.value;
+		localData[thisPage][itemName] = val;
+	}
+	else {
+		delete localData[thisPage][itemName];
+	}
+	localData.save();
+});
+
+_$('input[type="radio"]').click((e) => {
+	const itemName = _$(e.target).attr('data-id');
+	if (e.target.checked) {
+		const val = e.target.value;
+		localData[thisPage][itemName] = val;
+	}
+	localData.save();
+});
+
+_$('select').items.forEach((_item_) => {
+	_item_.addEventListener('change', (e) => {
+		const itemName = e.target.id;
+		const val = e.target.value;
+		localData[thisPage][itemName] = val;
+		localData.save();
+		updateVals();
+	});
+});
+
+_$('input[type="submit"').click(function(e) {
+	if (_$(e.target).hasClass('store') && _$(e.target).attr('data-store') == null) {
+		_$('.store').items.forEach(function(_item_) {
+			let val = '';
+			let itemName = _item_.id;
+			if (_$(_item_).attr('type') == 'text' || _item_.nodeName == 'TEXTAREA') {
+				val = _item_.value;
+			}
+			else if (_$(_item_).attr('type') == 'radio') {
+				itemName = _$(_item_).attr('data-id');
+				val = _$(`[name="${_item_.name}"]:checked`);
+				console.log(val);
 			}
 			else {
-				delete localData[thisPage][itemName];
+				val = _item_.innerHTML;
 			}
+			localData[thisPage][itemName] = val;
 			localData.save();
 		});
 	}
-	else if (_$(_item_).attr('type') === 'text') {
-		if (localData[thisPage].hasOwnProperty(itemName)) {
-			_item_.value = localData[thisPage][itemName]
-		}
-		if (!(_$(_item_).hasClass('editable-field'))) {
-			_item_.addEventListener('focus', (e) => {
-				_item_.addEventListener('keyup', () => {
-					val = _item_.value;
-					localData[thisPage][itemName] = val;
-					localData.save();
-				});
-			});
-			_item_.addEventListener('blur', (e) => {
-				_item_.removeEventListener('keyup');
-			});
-		}
-	}
+	updateVals();
 });
 
-_$('.store-on-save').items.forEach((_item_) => {
-	const itemName = _item_.id;
-	let val = _item_.value;
-	if (_$(_item_).attr('type') === 'checkbox') {
-		if (localData[thisPage].hasOwnProperty(itemName)) {
-			_item_.checked = "checked";
-		}
-	}
-	else if (_$(_item_).attr('type') === 'text') {
-		if (localData[thisPage].hasOwnProperty(itemName)) {
-			_item_.value = localData[thisPage][itemName]
-		}
-	}
+_$('input[type="submit"][data-store], a[data-store]').click(function(e) {
+	const storeTarget = _$(e.target).attr('data-store');
+	_$('#' + storeTarget + ' input').items.forEach(function(_item_) {
+		const itemName = _item_.id;
+		val = _item_.value;
+		localData[thisPage][itemName] = val;
+		localData.save();
+	});
+	updateVals();
 });
-
-_$('input[type="submit"][data-target], a[data-target]').click(function(e) {
-	const storeTarget = _$(e.target).attr('data-target');
-	localData.saveOnlyClick(storeTarget);
-});
-
-//===================================================
 
 formInit();
 
@@ -606,150 +741,165 @@ function emphasize(PARAM1) {
 	_$(PARAM1).addClass('emphasize');
 }
 
+_$('.status-indicator').click((e) => {
+	const target = _$(e.target);
+	const itemId = target.attr('data-item-id');
+	const timeoutId = target.attr('data-timeout-id');
+  
+	if (timeoutId) {
+	  clearTimeout(timeoutId);
+	  target.removeClass('show-bubble');
+  
+	  setTimeout(() => {
+		target.removeClass('display-block');
+	  }, 200);
+  
+	  target.attr('data-timeout-id', '');
+	} else {
+	  target.addClass('display-block');
+	  target.addClass('show-bubble');
+  
+	  const newTimeoutId = setTimeout(() => {
+		target.removeClass('show-bubble');
+		setTimeout(() => {
+		  target.removeClass('display-block');
+		}, 200);
+  
+		target.attr('data-timeout-id', '');
+	  }, 1800);
+  
+	  target.attr('data-timeout-id', newTimeoutId);
+	}
+  });
 
-//================================
-//	Current Page Highlighting
-//================================
+  _$('.show-hide-password').click((e) => {
+	const elem = e.target.nextElementSibling;
+	elem.focus();
+	if (elem.type === 'text') {
+		_$(e.target).removeClass('icon-hide');
+		_$(e.target).addClass('icon-show');
+		elem.type = 'password';
+	}
+	else if (elem.type === 'password') {
+		_$(e.target).removeClass('icon-show');
+		_$(e.target).addClass('icon-hide');
+		elem.type = 'text';
+	}
+  });
 
-function markCurrentPage() {
-	// _$('.current-page').removeClass('current-page');
-	const currentPageList = window.location.pathname.split('/');
-	const currentPage = currentPageList[currentPageList.length - 1];
-	_$('a').items.forEach((_item_) => {
-		const hrefValue = _$(_item_).attr('href');
-		const hrefPrimary = (hrefValue) ? hrefValue.match(/([^?]+)/)[1] : '';
-		if ( hrefPrimary === currentPage) {
-			_$(_item_).addClass('current-page');
-		}
-	});
-}
-
-markCurrentPage();
-
-//===================================================
-
-function initEditable() {
-	_$('.editable-body').items.forEach((_item_) => {
-		const addElem = _item_.children[0].children[0];
-		const addElemIcon = addElem.children[0];
-		const editableText = addElem.parentElement.children[1];
-		const editElemIcon = addElem.parentElement.parentElement.children[1].children[0];
-		// console.log("addElem >>===========>", editElemIcon);
-
-		if ( editableText.innerHTML === 'None' || editableText.innerHTML === '') {
-			// console.log("addElem None ===========>", addElem);
-			_$(addElem).css('display', 'flex');
-			_$(editableText).css('display', 'none');
-			_$(editElemIcon).css('display', 'none').addClass('stasis');
-			_$(addElemIcon).css('display', 'block');
+  _$('input[type="password"]').items.forEach((_item_) => {
+	_item_.addEventListener('keyup', (e) => {
+		const targetItem = e.target.offsetParent.children[0];
+		console.log("its working");
+		if (e.target.value !== '' && _$(targetItem).hasClass('show-hide-password')) {
+			_$(targetItem).addClass('activated');
 		}
 		else {
-			// console.log("addElem filled ===========>", addElem);
-			_$(addElem).css('display', 'none');
-			_$(editableText).css('display', 'block');
-			_$(editElemIcon).css('display', 'block');
+			_$(targetItem).removeClass('activated');
 		}
 	});
-}
+  })
 
-initEditable();
 
-function runEditIconAnimation(e) {
-	const target = e.target || e;
-	if (!(_$(target).hasClass('slide-in') || _$(target).hasClass('stasis')) && !_$(target).hasClass('slide-out')) {
-		_$(target).css('display', 'block');
-		_$(target).addClass('slide-in');
-		setTimeout(() => {
-			_$(target).css('display', 'none');
-		}, 255);
-	}
-	else if ((_$(target).hasClass('slide-in') || _$(target).hasClass('stasis'))) {
-		_$(target).css('display', 'block');
-		_$(target).removeClass('slide-in');
-		_$(target).addClass('slide-out');
 
-		setTimeout(() => {
-			_$(target).removeClass('slide-out');
-		}, 215);
-	}
-}
 
-_$('.editable-body .editable-edit-action').click((e) => {
-	e.target.parentElement.parentElement.children[0].children[2].focus();
-	_$(e.target.parentElement.parentElement).addClass('editing');
-	runEditIconAnimation(e);
-});
 
-_$('.editable-body .editable-done-action').click((e) => {
-	const editIcon = e.target.parentElement.parentElement.nextElementSibling.children[0];
-	const inputElem = e.target.parentElement.parentElement.children[2];
-	const itemName = e.target.parentElement.parentElement.children[2].id;
-	const val = inputElem.value;
-	const editableParagraph = e.target.parentElement.parentElement.children[1];
-	editableParagraph.innerHTML = val;
 
-	localData[thisPage][itemName] = val;
-	localData.save();
-	_$(e.target.parentElement.parentElement.parentElement).removeClass('editing');
+//   if (e.target.tagName !== 'SELECT') {
+// 	if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox') {
+// 		if (e.target.checked) {
+// 			_$(targetItem).addClass('activate-in');
+// 			setTimeout(() => {
+// 				_$(targetItem).addClass('activated');
+// 				_$(targetItem).removeClass('activate-in');
+// 			}, 200);
+// 		}
+// 		else {
+// 			_$(targetItem).addClass('activate-out');
+// 			_$(targetItem).removeClass('activated');
+// 			setTimeout(() => {
+// 				_$(targetItem).removeClass('activate-out');
+// 			}, 200);
+// 		}
+// 	}
 
-	runEditIconAnimation(editIcon);
-	initEditable();
-});
 
-_$('.editable-body .editable-close-action').click((e) => {
-	const editIcon = e.target.parentElement.parentElement.nextElementSibling.children[0];
-	_$(e.target.parentElement.parentElement.nextElementSibling.children[0]).css('display', 'block');
-	const val = e.target.parentElement.parentElement.children[0].innerHTML;
-	e.target.parentElement.parentElement.children[1].value = val;
 
-	_$(e.target.parentElement.parentElement.parentElement).removeClass('editing');
 
-	runEditIconAnimation(editIcon);
-	initEditable();
-});
 
-_$('.editable-add').click((e) => {
-	_$(e.target).css('display', 'none');
-	e.target.parentElement.parentElement.children[2].focus();
-	_$(e.target.parentElement.parentElement.parentElement).addClass('editing');
-});
 
-document.addEventListener("keyup", (e) => {
-	if (e.key === 'Enter' && document.activeElement.classList.contains('editable-field')) {
-		const parent = _$('.editable-body.editing').vanilla;
-		const editableText = parent.children[0].children[1];
-		const inputElem = parent.children[0].children[2];
-		const itemName = inputElem.id;
-		const val = inputElem.value;
-		const editIcon = parent.children[1].children[0];
-		console.log("editIcon: ", editIcon);
 
-		_$(parent).removeClass('editing');
 
-		if (_$(inputElem).hasClass('store')) {
-			editableText.innerHTML = val;
-			localData[thisPage][itemName] = val;
-			localData.save();
-		}
-		else {
-			editableText.innerHTML = val;
-			_$('.editable-edit-action').css('display', 'block');
-		}
 
-		runEditIconAnimation(editIcon);
-		initEditable();
-	}
-	else if (e.key === 'Escape' && document.activeElement.classList.contains('editable-field')) {
-		const parent = _$('.editable-body.editing').vanilla;
-		const editIcon = parent.children[1].children[0];
+//   _$('.trigger').click((e) => {
+// 	const targetItem = _$(e.target).attr('data-target');
+// 	if (_$(targetItem).hasClass('prepend') || _$(targetItem).hasClass('append')) {
+// 		e.preventDefault();
+// 		const blueprint = _$(`${targetItem} .blueprint`).vanilla.cloneNode(true);
+// 		if (_$(targetItem).hasClass('prepend')) {
+// 			const idName = _$(blueprint.querySelectorAll('input[type="checkbox"]')).vanilla[0].id + '-' + uuidv4();
+// 			_$(blueprint.querySelectorAll('input[type="checkbox"]')).vanilla[0].id = idName;
+// 			_$(blueprint.querySelectorAll('label')).vanilla[0].setAttribute('for', idName);
+// 			const elemFormatted = _$(blueprint).removeClass('blueprint').vanilla;
+// 			_$(targetItem).vanilla.prepend(elemFormatted);
+// 		}
+// 		else if (_$(targetItem).hasClass('append')) {
+// 			const elem = _$(targetItem).vanilla.children[0].cloneNode(true);
+// 			const elemFormatted = _$(elem).removeClass('blueprint');
+// 			_$(targetItem).vanilla.append(elemFormatted);
+// 		}
+// 	}
+// 	else {
+// 		if (e.target.tagName !== 'SELECT') {
+// 			if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox' || e.target.tagName === 'INPUT' && e.target.type === 'radio') {
+// 				if (e.target.checked) {
+// 					_$(targetItem).addClass('activate-in');
+// 					setTimeout(() => {
+// 						_$(targetItem).addClass('activated');
+// 						_$(targetItem).removeClass('activate-in');
+// 					}, 200);
+// 				}
+// 				else {
+// 					_$(targetItem).addClass('activate-out');
+// 					_$(targetItem).removeClass('activated');
+// 					setTimeout(() => {
+// 						_$(targetItem).removeClass('activate-out');
+// 					}, 200);
+// 				}
+// 			}
+// 			// else if (e.target.tagName === 'INPUT') {
+// 			// 	if (e.target.focus()) {
+// 			// 		console.log('focus');
+// 			// 	}
+// 			// }
+// 			else {
+// 				if (_$(targetItem).hasClass('activated')) {
+// 					_$(targetItem).addClass('activate-out');
+// 					_$(targetItem).removeClass('activated');
+// 					setTimeout(() => {
+// 						_$(targetItem).removeClass('activate-out');
+// 					}, 200);
+// 				}
+// 				else {
+// 					_$(targetItem).addClass('activate-in');
+// 					setTimeout(() => {
+// 						_$(targetItem).addClass('activated');
+// 						_$(targetItem).removeClass('activate-in');
+// 					}, 200);
+// 				}
+// 			}
+// 		}
+// 	}
+// });
 
-		_$('.editable-body').removeClass('editing');
 
-		runEditIconAnimation(editIcon);
-		initEditable();
-	}
 
-});
+
+
+
+
+// needs to come after localData, otherwise, localData state changes won't be updated
+initTrigger();
 
 /*
 input types:
@@ -758,4 +908,5 @@ input types:
 - radio
 - checkbox
 - email
+
 */
