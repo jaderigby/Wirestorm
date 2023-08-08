@@ -800,6 +800,129 @@ _$('.status-indicator').click((e) => {
 	});
   })
 
+  function initEditable() {
+	_$('.editable-body').items.forEach((_item_) => {
+		const addElem = _item_.children[0].children[0];
+		const addElemIcon = addElem.children[0];
+		const editableText = addElem.parentElement.children[1];
+		const editElemIcon = addElem.parentElement.parentElement.children[1].children[0];
+		// console.log("addElem >>===========>", editElemIcon);
+
+		if ( editableText.innerHTML === 'None' || editableText.innerHTML === '') {
+			// console.log("addElem None ===========>", addElem);
+			_$(addElem).css('display', 'flex');
+			_$(editableText).css('display', 'none');
+			_$(editElemIcon).css('display', 'none').addClass('stasis');
+			_$(addElemIcon).css('display', 'block');
+		}
+		else {
+			// console.log("addElem filled ===========>", addElem);
+			_$(addElem).css('display', 'none');
+			_$(editableText).css('display', 'block');
+			_$(editElemIcon).css('display', 'block');
+		}
+	});
+}
+
+initEditable();
+
+function runEditIconAnimation(e) {
+	const target = e.target || e;
+	if (!(_$(target).hasClass('slide-in') || _$(target).hasClass('stasis')) && !_$(target).hasClass('slide-out')) {
+		_$(target).css('display', 'block');
+		_$(target).addClass('slide-in');
+		setTimeout(() => {
+			_$(target).css('display', 'none');
+		}, 255);
+	}
+	else if ((_$(target).hasClass('slide-in') || _$(target).hasClass('stasis'))) {
+		_$(target).css('display', 'block');
+		_$(target).removeClass('slide-in');
+		_$(target).addClass('slide-out');
+
+		setTimeout(() => {
+			_$(target).removeClass('slide-out');
+		}, 215);
+	}
+}
+
+_$('.editable-body .editable-edit-action').click((e) => {
+	e.target.parentElement.parentElement.children[0].children[2].focus();
+	_$(e.target.parentElement.parentElement).addClass('editing');
+	runEditIconAnimation(e);
+});
+
+_$('.editable-body .editable-done-action').click((e) => {
+	const editIcon = e.target.parentElement.parentElement.nextElementSibling.children[0];
+	const inputElem = e.target.parentElement.parentElement.children[2];
+	const itemName = e.target.parentElement.parentElement.children[2].id;
+	const val = inputElem.value;
+	const editableParagraph = e.target.parentElement.parentElement.children[1];
+	editableParagraph.innerHTML = val;
+
+	localData[thisPage][itemName] = val;
+	localData.save();
+	_$(e.target.parentElement.parentElement.parentElement).removeClass('editing');
+
+	runEditIconAnimation(editIcon);
+	initEditable();
+});
+
+_$('.editable-body .editable-close-action').click((e) => {
+	const editIcon = e.target.parentElement.parentElement.nextElementSibling.children[0];
+	_$(e.target.parentElement.parentElement.nextElementSibling.children[0]).css('display', 'block');
+	const val = e.target.parentElement.parentElement.children[0].innerHTML;
+	e.target.parentElement.parentElement.children[1].value = val;
+
+	_$(e.target.parentElement.parentElement.parentElement).removeClass('editing');
+
+	runEditIconAnimation(editIcon);
+	initEditable();
+});
+
+_$('.editable-add').click((e) => {
+	_$(e.target).css('display', 'none');
+	e.target.parentElement.parentElement.children[2].focus();
+	_$(e.target.parentElement.parentElement.parentElement).addClass('editing');
+});
+
+document.addEventListener("keyup", (e) => {
+	if (e.key === 'Enter' && document.activeElement.classList.contains('editable-field')) {
+		const parent = _$('.editable-body.editing').vanilla;
+		const editableText = parent.children[0].children[1];
+		const inputElem = parent.children[0].children[2];
+		const itemName = inputElem.id;
+		const val = inputElem.value;
+		const editIcon = parent.children[1].children[0];
+		console.log("editIcon: ", editIcon);
+
+		_$(parent).removeClass('editing');
+
+		if (_$(inputElem).hasClass('store')) {
+			editableText.innerHTML = val;
+			localData[thisPage][itemName] = val;
+			localData.save();
+		}
+		else {
+			editableText.innerHTML = val;
+			_$('.editable-edit-action').css('display', 'block');
+		}
+
+		runEditIconAnimation(editIcon);
+		initEditable();
+	}
+	else if (e.key === 'Escape' && document.activeElement.classList.contains('editable-field')) {
+		const parent = _$('.editable-body.editing').vanilla;
+		const editIcon = parent.children[1].children[0];
+
+		_$('.editable-body').removeClass('editing');
+
+		runEditIconAnimation(editIcon);
+		initEditable();
+	}
+
+});
+
 
 
 
