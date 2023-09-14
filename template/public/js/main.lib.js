@@ -33,55 +33,74 @@ jQuishy.prototype.selector = function(arg1) {
 }
 
 _$('.trigger').click((e) => {
-	const targetItem = _$(e.target).attr('data-target');
-	if (_$(targetItem).hasClass('prepend') || _$(targetItem).hasClass('append')) {
-		e.preventDefault();
-		const blueprint = _$(`${targetItem} .blueprint`).vanilla.cloneNode(true);
-		if (_$(targetItem).hasClass('prepend')) {
-			const idName = _$(blueprint.querySelectorAll('input[type="checkbox"]')).vanilla[0].id + '-' + uuidv4();
-			_$(blueprint.querySelectorAll('input[type="checkbox"]')).vanilla[0].id = idName;
-			_$(blueprint.querySelectorAll('label')).vanilla[0].setAttribute('for', idName);
-			const elemFormatted = _$(blueprint).removeClass('blueprint').vanilla;
-			_$(targetItem).vanilla.prepend(elemFormatted);
-		}
-		else if (_$(targetItem).hasClass('append')) {
-			const elem = _$(targetItem).vanilla.children[0].cloneNode(true);
-			const elemFormatted = _$(elem).removeClass('blueprint');
-			_$(targetItem).vanilla.append(elemFormatted);
-		}
-	}
-	else {
-		if (e.target.tagName !== 'SELECT') {
-			if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox') {
-				if (e.target.checked) {
-					_$(targetItem).addClass('activate-in');
-					setTimeout(() => {
-						_$(targetItem).addClass('activated');
-						_$(targetItem).removeClass('activate-in');
-					}, 200);
-				}
-				else {
-					_$(targetItem).addClass('activate-out');
-					_$(targetItem).removeClass('activated');
-					setTimeout(() => {
-						_$(targetItem).removeClass('activate-out');
-					}, 200);
-				}
+	if ( !(_$(e.target).hasClass('modal')) ) {
+		const targetItem = _$(e.target).attr('data-target');
+		if (_$(targetItem).hasClass('prepend') || _$(targetItem).hasClass('append')) {
+			e.preventDefault();
+			const blueprint = _$(`${targetItem} .blueprint`).vanilla.cloneNode(true);
+			if (_$(targetItem).hasClass('prepend')) {
+				const idName = _$(blueprint.querySelectorAll('input[type="checkbox"]')).vanilla[0].id + '-' + uuidv4();
+				_$(blueprint.querySelectorAll('input[type="checkbox"]')).vanilla[0].id = idName;
+				_$(blueprint.querySelectorAll('label')).vanilla[0].setAttribute('for', idName);
+				const elemFormatted = _$(blueprint).removeClass('blueprint').vanilla;
+				_$(targetItem).vanilla.prepend(elemFormatted);
 			}
-			else {
-				if (_$(targetItem).hasClass('activated')) {
-					_$(targetItem).addClass('activate-out');
-					_$(targetItem).removeClass('activated');
-					setTimeout(() => {
-						_$(targetItem).removeClass('activate-out');
-					}, 200);
+			else if (_$(targetItem).hasClass('append')) {
+				const elem = _$(targetItem).vanilla.children[0].cloneNode(true);
+				const elemFormatted = _$(elem).removeClass('blueprint');
+				_$(targetItem).vanilla.append(elemFormatted);
+			}
+		}
+		else {
+			if (e.target.tagName !== 'SELECT') {
+				if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox') {
+					if (e.target.checked) {
+						_$(targetItem).addClass('activate-in');
+						setTimeout(() => {
+							_$(targetItem).addClass('activated');
+							_$(targetItem).removeClass('activate-in');
+						}, 200);
+					}
+					else {
+						_$(targetItem).addClass('activate-out');
+						_$(targetItem).removeClass('activated');
+						setTimeout(() => {
+							_$(targetItem).removeClass('activate-out');
+						}, 200);
+					}
 				}
 				else {
-					_$(targetItem).addClass('activate-in');
-					setTimeout(() => {
-						_$(targetItem).addClass('activated');
-						_$(targetItem).removeClass('activate-in');
-					}, 200);
+					if ( !(_$(targetItem).hasClass('toast')) ) {
+						if (_$(targetItem).hasClass('activated')) {
+							_$(targetItem).addClass('activate-out');
+							_$(targetItem).removeClass('activated');
+							setTimeout(() => {
+								_$(targetItem).removeClass('activate-out');
+							}, 200);
+						}
+						else {
+							_$(targetItem).addClass('activate-in');
+							setTimeout(() => {
+								_$(targetItem).addClass('activated');
+								_$(targetItem).removeClass('activate-in');
+							}, 200);
+						}
+					}
+					else {
+						// toast items
+						_$(targetItem).addClass('toast-activate-in');
+						setTimeout(() => {
+							_$(targetItem).addClass('toast-activated');
+							_$(targetItem).removeClass('toast-activate-in');
+						}, 300);
+						setTimeout(() => {
+							_$(targetItem).addClass('toast-activate-out');
+							_$(targetItem).removeClass('toast-activated');
+							setTimeout(() => {
+								_$(targetItem).removeClass('toast-activate-out');
+							}, 300);
+						}, 4000);
+					}
 				}
 			}
 		}
@@ -112,15 +131,16 @@ _$('select.trigger').items.forEach((_item_) => {
 
 function initTrigger() {
 	_$('.trigger').items.forEach((_item_) => {
-		const targetItem = _$(_item_).attr('data-target');
-		if (_item_.tagName === 'INPUT' && _item_.type === 'checkbox') {
-			if (_item_.checked) {
-				_$(targetItem).addClass('activated');
+		if ( !(_$(_item_).hasClass('modal')) ) {
+			const targetItem = _$(_item_).attr('data-target');
+			if (_item_.tagName === 'INPUT' && _item_.type === 'checkbox') {
+				if (_item_.checked) {
+					_$(targetItem).addClass('activated');
 			}
-		}
-		else if (_item_.tagName === 'SELECT') {
-			if (_item_.value) {
-				_$(targetItem).addClass('activated');
+			else if (_item_.tagName === 'SELECT') {
+				if (_item_.value) {
+					_$(targetItem).addClass('activated');
+				}
 			}
 		}
 	});
@@ -409,7 +429,7 @@ initModals();
 
 $('.modal.trigger').parent().delegate('.modal.trigger', 'click', function() {
 	var myModal = '#' + ($(this).data('target'));
-	var scrollTop = $(window).scrollTop();
+	// var scrollTop = $(window).scrollTop();
 	$('#overlay').show();
 	$('#modalViewport').show();
 	$('#overlay').animate({
@@ -607,21 +627,114 @@ if (!(localData.hasOwnProperty(thisPage))) {
 	localData.save();
 }
 
+// set up store on save items
+function initStoreOnSave() {
+	_$('[data-store-on-save]').items.forEach((_item_) => {
+		const itemRef = _$(_item_).attr('data-store-on-save');
+		const parentId = _item_.id;
+		_$(itemRef).attr('data-store-binding', `#${parentId}`);
+	});
+	_$('[data-store-binding').items.forEach((_item_) => {
+		const itemId = _item_.id; 
+		if (localData[thisPage].hasOwnProperty(itemId)) {
+			_item_.value = localData[thisPage][itemId];
+			
+			if (_$(_item_).attr('type') === 'checkbox') {
+				_$(_item_).attr('checked', 'checked');
+			}
+		}
+	});
+}
+
+initStoreOnSave();
+
+_$('input[type="submit"][data-store-on-save], a[data-store-on-save]').click(function(e) {
+	const storeTarget = _$(e.target).attr('data-store-on-save');
+	_$(storeTarget).items.forEach((_item_) => {
+		const itemName = _item_.id;
+		val = _item_.value;
+
+		if (_$(_item_).attr('type') === 'checkbox') {
+			if (_item_.checked) {
+				const val = _item_.value;
+				localData[thisPage][itemName] = val;
+			}
+			else {
+				delete localData[thisPage][itemName];
+			}
+		}
+		else if (_item_.nodeName === 'SELECT') {
+			localData[thisPage][itemName] = val;
+		}
+		else {
+			localData[thisPage][itemName] = val;
+		}
+		// for empty inputs, just remove item
+		if (val === '') {
+			delete localData[thisPage][itemName];
+		}
+		localData.save();
+	});
+	updateVals();
+});
+
+function initDefaultCheckboxes() {
+	_$('input[type="checkbox"]').items.forEach((_item_) => {
+		const itemName = _item_.id;
+		const defaultRef = `${itemName}--->useDefault`;
+		if ( !(localData[thisPage].hasOwnProperty(defaultRef)) && _$(_item_).attr('data-checked') ) {
+			_$(_item_).attr('checked', 'checked');
+			const val = _item_.value;
+			localData[thisPage][itemName] = val;
+			localData[thisPage][defaultRef] = 'false';
+			localData.save();
+			updateVals();
+		}
+		else if ( localData[thisPage].hasOwnProperty(defaultRef) && localData[thisPage][defaultRef] === 'true' ) {
+			_$(_item_).attr('checked', 'checked');
+			const val = _item_.value;
+			localData[thisPage][itemName] = val;
+			localData[thisPage][defaultRef] = 'false';
+			localData.save();
+		}
+	});
+}
+
+initDefaultCheckboxes();
+
 // store items marked for storing
 _$('.store').items.forEach(function(_item_) {
 	let itemName = _item_.id;
-	let val = _item_.value;
+	let val = _item_.value || _$(_item_).attr('value');
 	if (_$(_item_).vanilla.tagName === 'SELECT') {
 		if (!(localData[thisPage].hasOwnProperty(itemName))) {
+			if (_$(_item_).attr('data-default')) {
+				_item_.value = _$(_item_).attr('data-default')
+			}
 			localData[thisPage][itemName] = val;
 			localData.save();
+		}
+		else if (localData[thisPage][itemName] === '') {
+			if (_$(_item_).attr('data-default')) {
+				_item_.value = _$(_item_).attr('data-default');
+			}
 		}
 		if (localData[thisPage][itemName] !== '') {
 			_item_.value = localData[thisPage][itemName];
 		}
 	}
+	else if (_item_.tagName !== 'INPUT' && _item_.tagName !== 'SELECT') {
+		if (localData[thisPage].hasOwnProperty(itemName)) {
+			if (_$(_item_).attr('data-target')) {
+				const selector = _$(_item_).attr('data-target');
+				_$(selector).items.forEach((_elem_) => {
+					_$(_elem_).addClass('activated');
+				})
+			}
+		}
+	}
 	else if (_$(_item_).attr('type') !== 'submit' && _$(_item_).attr('type') !== 'checkbox' && _$(_item_).attr('type') !== 'radio') {
-		if (!(localData[thisPage].hasOwnProperty(itemName))) {
+		if ( !(localData[thisPage].hasOwnProperty(itemName)) ) {
 			localData[thisPage][itemName] = val;
 			localData.save();
 		}
@@ -647,39 +760,65 @@ _$('.store').items.forEach(function(_item_) {
 	}
 });
 
+// for select items that don't have 'store' class, check for default and assign if default exists
+_$('select').items.forEach((_item_) => {
+	if (!(_$(_item_).hasClass('store')) && _$(_item_).attr('data-default') && (_$(_item_).vanilla.value == '' || _$(_item_).vanilla.value == null)) {
+		_item_.value = _$(_item_).attr('data-default');
+	}
+});
+
 function updateVals() {
 	_$('[data-ref]').items.forEach(function(_item_) {
-		const keyVal = _$(_item_).attr('data-ref');
-		if (keyVal !== '') {
-			_item_.innerHTML = localData[thisPage][keyVal];
+		const refName = _$(_item_).attr('data-ref');
+		let val;
+		if ( _$(_item_).attr('data-default') && !(localData[thisPage].hasOwnProperty(refName)) ) {
+			val = _$(_item_).attr('data-default');
+			_item_.innerHTML = val;
+		}
+		else if (localData[thisPage].hasOwnProperty(refName)) {
+			val = localData[thisPage][refName];
+			_item_.innerHTML = val;
+		}
+		else if ( _$(_item_).attr('data-fallback') && !(localData[thisPage].hasOwnProperty(refName)) ) {
+			val = _$(_item_).attr('data-fallback');
+			_item_.innerHTML = val;
+		}
+		else {
+			val = '';
+			_item_.innerHTML = val;
 		}
 	});
 }
 
 updateVals();
 
-_$('input[type="checkbox"]').click((e) => {
-	const itemName = e.target.id;
-	if (e.target.checked) {
-		const val = e.target.value;
-		localData[thisPage][itemName] = val;
+// store items that are not form elements, ie elements which are not imputs or selects but DO have a value attribute
+_$('.store').click((e) => {
+	if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'SELECT') {
+		const itemName = e.target.id;
+		if ( !(localData[thisPage].hasOwnProperty(itemName)) ) {
+			const val = _$(e.target).attr('value');
+			localData[thisPage][itemName] = val;
+		}
+		else {
+			delete localData[thisPage][itemName];
+		}
+		localData.save();
+})
 	}
-	else {
-		delete localData[thisPage][itemName];
-	}
-	localData.save();
-});
 
 _$('input[type="checkbox"]').click((e) => {
 	const itemName = e.target.id;
-	if (e.target.checked) {
-		const val = e.target.value;
-		localData[thisPage][itemName] = val;
+	if (_$(e.target).hasClass('store')) {
+		if (e.target.checked) {
+			const val = e.target.value;
+			localData[thisPage][itemName] = val;
+		}
+		else {
+			delete localData[thisPage][itemName];
+		}
+		localData.save();
 	}
-	else {
-		delete localData[thisPage][itemName];
-	}
-	localData.save();
 });
 
 _$('input[type="radio"]').click((e) => {
@@ -693,11 +832,13 @@ _$('input[type="radio"]').click((e) => {
 
 _$('select').items.forEach((_item_) => {
 	_item_.addEventListener('change', (e) => {
-		const itemName = e.target.id;
-		const val = e.target.value;
-		localData[thisPage][itemName] = val;
-		localData.save();
-		updateVals();
+		if (_$(_item_).hasClass('store')) {
+			const itemName = e.target.id;
+			const val = e.target.value;
+			localData[thisPage][itemName] = val;
+			localData.save();
+			updateVals();
+		}
 	});
 });
 
@@ -735,13 +876,27 @@ _$('input[type="submit"][data-store], a[data-store]').click(function(e) {
 	updateVals();
 });
 
+_$('[data-cancel]').click((e) => {
+	const itemSet = _$(e.target).attr('data-cancel');
+	_$(itemSet).items.forEach((_elem_) => {
+		const itemName = _elem_.id;
+		const val = localData[thisPage][itemName];
+		if (val) {
+			_elem_.value = val;
+		}
+		else {
+			_elem_.value = null;
+		}
+	});
+});
+
 formInit();
 
 function emphasize(PARAM1) {
 	_$(PARAM1).addClass('emphasize');
 }
 
-_$('.status-indicator').click((e) => {
+_$('.status-indicator, .svg-indicator').click((e) => {
 	const target = _$(e.target);
 	const itemId = target.attr('data-item-id');
 	const timeoutId = target.attr('data-timeout-id');

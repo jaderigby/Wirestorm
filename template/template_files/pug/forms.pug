@@ -26,6 +26,11 @@ mixin form-segment(cols)
 				block
 	- }
 
+mixin cell()
+	div.cell(class!=attributes.class, id!=attributes.id)
+		if block
+			block
+
 mixin input(description, required, features)
 	- var capsule = false, capsulized = "", cls = attributes.class
 	- if (features && features.hasOwnProperty('capsule')) {
@@ -79,7 +84,27 @@ mixin email(description, required)
 			input(type="email", data-validate="email")
 	- }
 
-mixin password(description, required, matchName, features)
+mixin password(PARAM1, PARAM2)
+	- const passwordItem = {};
+	if (typeof PARAM1 === 'object')
+		- passwordItem.name = PARAM1.name || 'Password';
+		- passwordItem.required = PARAM1.required || false;
+		- passwordItem.showhide = PARAM1.showhide || false;
+	else 
+		- passwordItem.name = PARAM1 || 'Password';
+		- passwordItem.required = false;
+		- passwordItem.showhide = false;
+	if (passwordItem.showhide)
+		.form-element
+			.icon-show.show-hide-password
+			input(type="password", data-required!= attributes['data-required'], data-match!= attributes['data-match'], data-target!= attributes['data-target'], id!= attributes.id, class!= attributes.class)
+			label=passwordItem.name
+	else
+		.form-element
+			input(type="password", data-required!= attributes['data-required'], data-match!= attributes['data-match'], data-target!= attributes['data-target'], id!= attributes.id, class!= attributes.class)
+			label=passwordItem.name
+
+mixin old_password(description, required, matchName, features)
 	- if (matchName) {
 		.form-element
 			input(type="password", data-required='', data-match=matchName)
@@ -100,51 +125,109 @@ mixin password(description, required, matchName, features)
 			input(type="password")
 	- }
 
-mixin select(items)
+
+mixin select(PARAM1)
+	- const optionList = []
+	- PARAM1 = (Array.isArray(PARAM1)) ? {options: PARAM1} : PARAM1
+	each _item_ in PARAM1.options
+		if (typeof _item_ === 'object')
+			- _item_.name = _item_.name || '';
+			- _item_.value = _item_.value || _item_.name.replace(/ /g, '_');
+			- optionList.push(_item_);
+		else 
+			- const optionItem = {};
+			- optionItem.name = _item_ || '';
+			- optionItem.value = _item_.replace(/ /g, '_');
+			- optionList.push(optionItem);
+
+	select(class!= attributes.class,id!= attributes.id,data-target!= attributes['data-target'], data-default!= PARAM1.default)
+		each item, index in optionList
+			if (index == 0)
+				option(value="")= item.name
+			else 
+				if (PARAM1.hasOwnProperty('default') && item.value === PARAM1.default)
+					option(value= item.value)= item.name
+				else
+					option(value= item.value)= item.name
+
+mixin old_select(PARAM1, PARAM2)
+	- const optionList = []
+	each _item_ in PARAM1
+		if (typeof _item_ === 'object')
+			- _item_.name = _item_.name || '';
+			- _item_.value = _item_.value || _item_.name.replace(/ /g, '_');
+			- optionList.push(_item_);
+		else 
+			- const optionItem = {};
+			- optionItem.name = _item_ || '';
+			- optionItem.value = _item_.replace(/ /g, '_');
+			- optionList.push(optionItem);
+
+	select(class!= attributes.class,id!= attributes.id,data-target!= attributes['data-target'])
 	select
-		each item in items
-			option= item
+		each item, index in optionList
+			if (index == 0)
+				option(value="")= item.name
+			else 
+				option(value= item.value)= item.name
 
 mixin submit(nameValue, pos='left')
 	- if (typeof nameValue === 'object') {
 	-	nameValue.name = nameValue.name || "Submit"
 	- 	nameValue.position = nameValue.position || "left"
-	- 	nameValue.target = nameValue.target || null
+	- 	nameValue.store = nameValue.store || null
 		- if (nameValue.position === 'center') {
 			.form-element.center-justify
-				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-target!=nameValue.target)
+				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"])
 		- }
 		- else if (nameValue.position === 'right') {
 			.form-element.right-justify
-				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-target!=nameValue.target)
+				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"])
 		- }
 		- else if (nameValue.position === 'extend') {
 			.form-element
-				input.extend(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-target!=nameValue.target)
+				input.extend(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"])
 		- }
 		- else {
 			.form-element
-				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-target!=nameValue.target)
+				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-store=nameValue.store, data-target!= attributes["data-target"])
 		- }
 	- }
 	- else {
 		- if (pos === 'center') {
 			.form-element.center-justify
-				input(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id)
+				input(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"])
 		- }
 		- else if (pos === 'right') {
 			.form-element.right-justify
-				input(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id)
+				input(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"])
 		- }
 		- else if (pos === 'extend') {
 			.form-element
-				input.extend(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id)
+				input.extend(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"])
 		- }
 		- else {
 			.form-element
-				input(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id)
+				input(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"])
 		- }
 	- }
+
+mixin new-submit(PARAM1, PARAM2)
+	- PARAM1 = (typeof PARAM1 === 'object') ? PARAM1 : {name: PARAM1}
+	- PARAM1.name = PARAM1.name || "Submit"
+
+	if (PARAM2 === 'center')
+		.form-element.center-justify
+			input(type="submit", value=PARAM1.name, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"], data-store-on-save!= attributes["data-store-on-save"])
+	else if (PARAM2 === 'right')
+		.form-element.right-justify
+			input(type="submit", value=PARAM1.name, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"], data-store-on-save!= attributes["data-store-on-save"])
+	else if (PARAM2 === 'extend')
+		.form-element
+			input.extend(type="submit", value=PARAM1.name, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"], data-store-on-save!= attributes["data-store-on-save"])
+	else 
+		.form-element
+			input(type="submit", value=PARAM1.name, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"], data-store-on-save!= attributes["data-store-on-save"])
 
 mixin switch(PARAM1, PARAM2)
 	- const switchList = [];
@@ -157,8 +240,9 @@ mixin switch(PARAM1, PARAM2)
 		-		_item_.value = _item_.value || _item_.name.toLowerCase().replace(/ /g, '-');
 		-		_item_.family = _item_.family || randomizedFamily;
 		-		_item_.class = attributes.class || null;
-		-		_item_.id = attributes.id || randomizedId;
+		-		_item_.id = attributes.id || _item_.id || randomizedId;
 		-		_item_.checked = _item_.checked || false;
+		- 		_item_.target = _item_.target || null;
 		-		switchList.push(_item_);
 		-	}
 		- 	else {
@@ -170,6 +254,7 @@ mixin switch(PARAM1, PARAM2)
 		-		switchItem.class = attributes.class || null;
 		-		switchItem.id = attributes.id || randomizedId;
 		-		switchItem.checked = false;
+		- 		switchItem.target = null;
 		-		switchList.push(switchItem);
 		- 	}
 		//- - console.log('list', switchList);
@@ -180,9 +265,9 @@ mixin switch(PARAM1, PARAM2)
 					.form-element
 						.switch-item
 							if (item.checked)
-								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked")
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked",data-target!= item.target)
 							else
-								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class)
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,data-target!= item.target)
 							label(for=item.id)= item.name
 
 	else
@@ -192,18 +277,18 @@ mixin switch(PARAM1, PARAM2)
 					.form-element
 						.switch-item
 							if (item.checked)
-								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked")
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked",data-target!= item.target)
 							else
-								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class)
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,data-target!= item.target)
 							label(for=item.id)
 			else
 				.form-switch-widget
 					.form-element
 						.switch-item
 							if (item.checked)
-								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked")
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked",data-target!= item.target)
 							else
-								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class)
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,data-target!= item.target)
 							label(for=item.id)= item.name
 
 mixin old-switch(name, items)
@@ -232,13 +317,43 @@ mixin old-switch(name, items)
 			div.on
 	- }
 
-mixin trigger(family, value, reference)
-	- var chk = (Math.random() + 1).toString(36).substring(7);
-	.radio-widget.radio-trigger-widget
+mixin toggle(PARAM1, PARAM2)
+	- const switchList = [];
+	- PARAM1 = (typeof PARAM1 == 'object') ? PARAM1 : [PARAM1];
+	- const randomizedFamily = (Math.random() + 1).toString(36).substring(7);
+	each _item_ in PARAM1
+		- 	const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-	if (typeof _item_ === 'object') {
+		-		_item_.name = _item_.name || '';
+		-		_item_.value = _item_.value || _item_.name.toLowerCase().replace(/ /g, '-');
+		-		_item_.family = _item_.family || randomizedFamily;
+		-		_item_.class = attributes.class || null;
+		-		_item_.id = attributes.id || _item_.id || randomizedId;
+		-		_item_.checked = _item_.checked || false;
+		- 		_item_.target = _item_.target || null;
+		-		switchList.push(_item_);
+		-	}
+		- 	else {
+		- 		const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-		const switchItem = {};
+		-		switchItem.name = _item_ || '';
+		-		switchItem.value = (_item_ !== undefined && typeof _item_ !== 'object') ? _item_.toLowerCase().replace(/ /g, '-') : null;
+		-		switchItem.family = randomizedFamily;
+		-		switchItem.class = attributes.class || null;
+		-		switchItem.id = attributes.id || randomizedId;
+		-		switchItem.checked = false;
+		- 		switchItem.target = null;
+		-		switchList.push(switchItem);
+		- 	}
+	.form-switch-widget
 		.form-element
-			span.radio
-				input(type="radio", data-target=reference name=family, value=value, id=chk)
-				label(for=chk)
+			.switch-item
+				div.label1-for-switch= item.name[0]
+				if (item.checked)
+					input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked",data-target!= item.target)
+				else
+					input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,data-target!= item.target)
+				div.label2-for-switch= item.name[1]
 
 mixin checkbox(PARAM1, PARAM2)
 	- const checkList = [];
@@ -246,12 +361,13 @@ mixin checkbox(PARAM1, PARAM2)
 	each _item_ in PARAM1
 		- 	const randomizedId = (Math.random() + 1).toString(36).substring(7);
 		-	if (typeof _item_ === 'object') {
-		-		_item_.name = _item_.name || 'Test';
-		-		_item_.value = _item_.name.toLowerCase().replace(/ /g, '-');
+		-		_item_.name = _item_.name || '';
+		-		_item_.value = _item_.value || _item_.name.toLowerCase().replace(/ /g, '-');
 		-		_item_.family = _item_.family || randomizedFamily;
 		-		_item_.class = attributes.class || null;
 		-		_item_.id = attributes.id || randomizedId;
-		-		_item_.checked = _item_.checked || false;
+		-		_item_.checked = _item_.checked ? 'true' : null;
+		- 		_item_.target = _item_.target || null;
 		-		checkList.push(_item_);
 		-	}
 		- 	else {
@@ -262,7 +378,8 @@ mixin checkbox(PARAM1, PARAM2)
 		-		checkItem.family = randomizedFamily;
 		-		checkItem.class = attributes.class || null;
 		-		checkItem.id = attributes.id || randomizedId;
-		-		checkItem.checked = false;
+		-		checkItem.checked = null;
+		- 		checkItem.target = null;
 		-		checkList.push(checkItem);
 		- 	}
 	
@@ -272,10 +389,7 @@ mixin checkbox(PARAM1, PARAM2)
 				.checkbox-widget
 					.form-element
 						span.checkbox
-							if (item.checked)
-								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked")
-							else
-								input(type="checkbox",name=item.family,value=item.value,class!=item.class,id=item.id)
+							input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,data-checked!= item.checked,data-target!= item.target)
 							label(for=item.id)= item.name
 	else
 		each item in checkList
@@ -283,10 +397,7 @@ mixin checkbox(PARAM1, PARAM2)
 				.form-element
 					- const value = item.value
 					span.checkbox
-						if (item.checked)
-							input(type="checkbox",name=item.name,value=value,id=item.id,class!=item.class,checked="checked")
-						else
-							input(type="checkbox",name=item.name,value=value,class!=item.class,id=item.id)
+						input(type="checkbox",name=item.name,value=value,id=item.id,class!=item.class,data-checked!= item.checked,data-target!= item.target)
 						label(for=item.id)= item.name
 
 mixin radio(PARAM1, PARAM2)
@@ -316,7 +427,7 @@ mixin radio(PARAM1, PARAM2)
 		-		radioList.push(radioItem);
 		- 	}
 	if (PARAM2 === 'horizontal')
-		.rack.compress
+		.rack(id=attributes.id)
 			each item in radioList
 				.radio-widget
 					.form-element
@@ -327,6 +438,7 @@ mixin radio(PARAM1, PARAM2)
 								input(type="radio",name=item.family,value=item.value,id=item.id,data-id!=attributes.id,class!=attributes.class)
 							label(for=item.id)= item.name
 	else
+		div(id!=attributes.id)
 		each item in radioList
 			.radio-widget
 				.form-element

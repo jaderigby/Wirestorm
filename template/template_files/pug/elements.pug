@@ -59,19 +59,19 @@ mixin button(PARAM1, PARAM2)
 		- buttonObj.target = null
 	if (PARAM2 === 'left')
 		div.left-justify.button-module
-			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id).button= buttonObj.name
+			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id, data-target!= attributes['data-target']).button= buttonObj.name
 	else if (PARAM2 === 'right')
 		div.right-justify.button-module
-			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id).button= buttonObj.name
+			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id, data-target!= attributes['data-target']).button= buttonObj.name
 	else if (PARAM2 === 'center')
 		div.center-justify.button-module
-			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id).button= buttonObj.name
+			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id, data-target!= attributes['data-target']).button= buttonObj.name
 	else if (PARAM2 === 'extend')
 		div.button-module
-			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id).button.extend= buttonObj.name
+			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id, data-target!= attributes['data-target']).button.extend= buttonObj.name
 	else
 		div.button-module
-			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id).button= buttonObj.name
+			a(href=buttonObj.url, target=buttonObj.target, class!=attributes.class, id!=attributes.id, data-target!= attributes['data-target']).button= buttonObj.name
 		
 mixin old-button(nameValue, pos='left')
 	- if (typeof nameValue === 'object') {
@@ -266,6 +266,13 @@ mixin rating(min, max)
 		while (leftover > 0)
 			span.icon-star.unmarked
 			- leftover--
+mixin icon(PARAM1)
+	if (PARAM1 === 'half-bubble')
+		svg(width="16px", height="16px", viewBox="0 0 1024 1024", version="1.1", xml:space="preserve", style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;", xmlns="http://www.w3.org/2000/svg", xmlns:svg="http://www.w3.org/2000/svg", class!= attributes.class, id!= attributes.id)
+			path(d="M512,0C794.58,0 1024,229.42 1024,512C1024,794.58 794.58,1024 512,1024C229.42,1024 0,794.58 0,512C0,229.42 229.42,0 512,0ZM739.569,235.84C677.697,184.783 598.404,154.099 512,154.099C314.469,154.099 154.099,314.469 154.099,512C154.099,598.404 184.783,677.697 235.84,739.569L739.569,235.84Z")
+	if (PARAM1 === 'bubble')
+		svg(width="16px", height="16px", viewBox="0 0 1024 1024", version="1.1", xml:space="preserve", style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;", xmlns="http://www.w3.org/2000/svg", xmlns:svg="http://www.w3.org/2000/svg", class!= attributes.class, id!= attributes.id)
+			path(d="M512,0C794.58,0 1024,229.42 1024,512C1024,794.58 794.58,1024 512,1024C229.42,1024 0,794.58 0,512C0,229.42 229.42,0 512,0ZM739.569,235.84C677.697,184.783 598.404,154.099 512,154.099C314.469,154.099 154.099,314.469 154.099,512C154.099,598.404 184.783,677.697 235.84,739.569L739.569,235.84Z")
 
 mixin wrap(TOP = 0, BOTTOM = 0)
 	- BOTTOM = (BOTTOM == 0) ? BOTTOM = TOP : BOTTOM;
