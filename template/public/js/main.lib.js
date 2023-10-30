@@ -33,8 +33,8 @@ jQuishy.prototype.selector = function(arg1) {
 }
 
 _$('.trigger').click((e) => {
+	const targetItem = _$(e.target).attr('data-target');
 	if ( !(_$(e.target).hasClass('modal')) ) {
-		const targetItem = _$(e.target).attr('data-target');
 		if (_$(targetItem).hasClass('prepend') || _$(targetItem).hasClass('append')) {
 			e.preventDefault();
 			const blueprint = _$(`${targetItem} .blueprint`).vanilla.cloneNode(true);
@@ -130,12 +130,16 @@ _$('select.trigger').items.forEach((_item_) => {
 });
 
 function initTrigger() {
-	_$('.trigger').items.forEach((_item_) => {
-		if ( !(_$(_item_).hasClass('modal')) ) {
-			const targetItem = _$(_item_).attr('data-target');
+	_$('.trigger').items.forEach( (_item_) => {
+		const targetItem = _$(_item_).attr('data-target');
+		if ( _$(targetItem).hasClass('modal') ) {
+			// _$(_item_).addClass('.modal-trigger');
+		}
+		else {
 			if (_item_.tagName === 'INPUT' && _item_.type === 'checkbox') {
 				if (_item_.checked) {
 					_$(targetItem).addClass('activated');
+				}
 			}
 			else if (_item_.tagName === 'SELECT') {
 				if (_item_.value) {
@@ -390,12 +394,12 @@ $('.tabs-wrapper').each(function() {
 //======================
 
 function initModals() {
-	$('.modal.window').hide();
-	if ($('.modal.window').length > 0) {
+	$('.modal').hide();
+	if ($('.modal').length > 0) {
 		$('body').prepend('<div id="modalViewport" style="display: none; position: fixed; width: 100%; height: 100%; z-index: 9999"></div>');
 		$('body').prepend('<div id="overlay" style="display: none; position: fixed; width: 100%; height: 100%; background-color: rgba(0,0,0,0.45); opacity: 0; z-index: 9998"></div>');
-		$('.modal.window').prepend('<div class="close-modal close-modal-icon"><span class="icon-close"></span></div>');
-		$('.modal.window').css({
+		$('.modal').prepend('<div class="close-modal close-modal-icon"><span class="icon-close"></span></div>');
+		$('.modal').css({
 			position: 'absolute',
 			top: 0,
 			left: 0,
@@ -408,27 +412,27 @@ function initModals() {
 			'transform': 'scale(0.6)',
 			opacity: 0
 		});
-		$('.modal.window').each(function() {
+		$('.modal').each(function() {
 			var fullHeight = $(this).outerHeight();
 			$(this).css({
 				height: fullHeight,
 				bottom: 0
 			})
 		})
-		var thisModal = $('.modal.window').detach();
+		var thisModal = $('.modal').detach();
 		$('#modalViewport').prepend(thisModal);
 	}
 }
 
 function resetModal() {
-	$('.modal.window').hide();
+	$('.modal').hide();
 	$('#modalViewport').hide();
 }
 
 initModals();
 
-$('.modal.trigger').parent().delegate('.modal.trigger', 'click', function() {
-	var myModal = '#' + ($(this).data('target'));
+$('.modal-trigger').parent().delegate('.modal-trigger', 'click', function() {
+	var myModal = ($(this).data('target'));
 	// var scrollTop = $(window).scrollTop();
 	$('#overlay').show();
 	$('#modalViewport').show();
@@ -444,14 +448,14 @@ $('.modal.trigger').parent().delegate('.modal.trigger', 'click', function() {
 	});
 });
 
-$('.modal.window').delegate('.close-modal', 'click', function() {
+$('.modal').delegate('.close-modal', 'click', function() {
 	$('#overlay').animate({
 		top: 0,
 		opacity: 0
 	}, 280, function() {
 		$(this).hide();
 	});
-	TweenMax.to('.modal.window', 0.22, {
+	TweenMax.to('.modal', 0.22, {
 		opacity: 0,
 		scale: 0.6,
 		ease: Power1.easeIn,
@@ -466,7 +470,7 @@ $('#modalViewport').click(function(e) {
 	}, 280, function() {
 		$(this).hide();
 	});
-	TweenMax.to('.modal.window', 0.22, {
+	TweenMax.to('.modal', 0.22, {
 		opacity: 0,
 		scale: 0.6,
 		ease: Power1.easeIn,
@@ -804,8 +808,8 @@ _$('.store').click((e) => {
 			delete localData[thisPage][itemName];
 		}
 		localData.save();
-})
 	}
+});
 
 _$('input[type="checkbox"]').click((e) => {
 	const itemName = e.target.id;

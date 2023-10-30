@@ -185,17 +185,17 @@ mixin placeholder(SIZE,LABEL)
 mixin modal(nameValue, pos)
 	- modalIter += 1
 	- if (pos === 'right')
-		button.modal.trigger.right(data-target="modal" + modalIter, class!=attributes.class, id!=attributes.id)= nameValue
+		button.modal-trigger.right(data-target="#modal" + modalIter, class!=attributes.class, id!=attributes.id)= nameValue
 	- else if (pos === 'center')
 		div.center-justify
-			button.modal.trigger(data-target="modal" + modalIter, class!=attributes.class, id!=attributes.id)= nameValue
+			button.modal-trigger(data-target="#modal" + modalIter, class!=attributes.class, id!=attributes.id)= nameValue
 	- else if (pos === 'extend') {
 		div
-			button.extend.modal.trigger(data-target="modal" + modalIter, class!=attributes.class, id!=attributes.id)= nameValue
+			button.extend.modal-trigger(data-target="#modal" + modalIter, class!=attributes.class, id!=attributes.id)= nameValue
 	- }
 	- else
-		button.modal.trigger(data-target="modal" + modalIter, class!=attributes.class, id!=attributes.id)= nameValue
-	div(id="modal" + modalIter, class="modal window")
+		button.modal-trigger(data-target="#modal" + modalIter, class!=attributes.class, id!=attributes.id)= nameValue
+	div(id="modal" + modalIter, class="modal")
 		if block
 			block
 
