@@ -26,11 +26,6 @@ mixin form-segment(cols)
 				block
 	- }
 
-mixin cell()
-	div.cell(class!=attributes.class, id!=attributes.id)
-		if block
-			block
-
 mixin input(description, required, features)
 	- var capsule = false, capsulized = "", cls = attributes.class
 	- if (features && features.hasOwnProperty('capsule')) {
