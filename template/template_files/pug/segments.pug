@@ -14,6 +14,30 @@ mixin panel(PARAM1, PARAM2)
 			panel-inner
 				block
 
+mixin wrap(TOP, BOTTOM)
+	- BOTTOM = (BOTTOM === undefined) ? BOTTOM = TOP : BOTTOM;
+	- if (TOP === 'default') {
+	- 	TOP = 25;
+	- }
+	- if (BOTTOM === 'default') {
+	- 	BOTTOM = 25;
+	- }
+	- const marginString = "margin-top: "+ TOP +"px; margin-bottom: "+ BOTTOM +"px";
+	.wrap(style= marginString,  class!=attributes.class, id!=attributes.id, title= BOTTOM)
+		if block
+			block
+
+mixin clear-wrap(TOP = 0, BOTTOM = 0)
+	- BOTTOM = (BOTTOM === null) ? BOTTOM = TOP : BOTTOM;
+	if (TOP === 'default')
+	- 	TOP = 25;
+	if (BOTTOM === 'default')
+	- 	BOTTOM = 25;
+	- const marginString = "margin-top: "+ TOP +"px; margin-bottom: "+ BOTTOM +"px";
+	.clear-wrap(style= marginString,  class!=attributes.class, id!=attributes.id)
+		if block
+			block
+
 mixin prime()
 	prime-seg(class!=attributes.class,id!=attributes.id)
 		if block 

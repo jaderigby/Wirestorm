@@ -266,28 +266,6 @@ mixin rating(min, max)
 		while (leftover > 0)
 			span.icon-star.unmarked
 			- leftover--
-mixin icon(PARAM1)
-	if (PARAM1 === 'half-bubble')
-		svg(width="16px", height="16px", viewBox="0 0 1024 1024", version="1.1", xml:space="preserve", style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;", xmlns="http://www.w3.org/2000/svg", xmlns:svg="http://www.w3.org/2000/svg", class!= attributes.class, id!= attributes.id)
-			path(d="M512,0C794.58,0 1024,229.42 1024,512C1024,794.58 794.58,1024 512,1024C229.42,1024 0,794.58 0,512C0,229.42 229.42,0 512,0ZM739.569,235.84C677.697,184.783 598.404,154.099 512,154.099C314.469,154.099 154.099,314.469 154.099,512C154.099,598.404 184.783,677.697 235.84,739.569L739.569,235.84Z")
-	if (PARAM1 === 'bubble')
-		svg(width="16px", height="16px", viewBox="0 0 1024 1024", version="1.1", xml:space="preserve", style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;", xmlns="http://www.w3.org/2000/svg", xmlns:svg="http://www.w3.org/2000/svg", class!= attributes.class, id!= attributes.id)
-			path(d="M512,0C794.58,0 1024,229.42 1024,512C1024,794.58 794.58,1024 512,1024C229.42,1024 0,794.58 0,512C0,229.42 229.42,0 512,0ZM739.569,235.84C677.697,184.783 598.404,154.099 512,154.099C314.469,154.099 154.099,314.469 154.099,512C154.099,598.404 184.783,677.697 235.84,739.569L739.569,235.84Z")
-
-mixin wrap(TOP = 0, BOTTOM = 0)
-	- BOTTOM = (BOTTOM == 0) ? BOTTOM = TOP : BOTTOM;
-	- const marginString = "margin-top: "+ TOP +"px; margin-bottom: "+ BOTTOM +"px";
-	.wrap(style= marginString,  class!=attributes.class, id!=attributes.id)
-		if block
-			block
-
-mixin clear-wrap(TOP = 0, BOTTOM = 0)
-	- BOTTOM = (BOTTOM == 0) ? BOTTOM = TOP : BOTTOM;
-	- const marginString = "margin-top: "+ TOP +"px; margin-bottom: "+ BOTTOM +"px";
-	.clear-wrap(style= marginString,  class!=attributes.class, id!=attributes.id)
-		if block
-			block
-
 
 mixin footer-links(items)
 	ul.footer-links
