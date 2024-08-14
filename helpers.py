@@ -114,6 +114,7 @@ def user_selection(DESCRIPTION, LIST):
 			break
 		else:
 			print("\nPlease select a valid entry...")
+
 	return finalAnswer
 
 def arguments(ARGS, DIVIDER=':'):
@@ -148,7 +149,13 @@ Note: Page will not update until after Gitlab Pipeline has completed for the Pro
 	run_command('cd {} git status && git add README.md && git commit -m "adding readme" && git push'.format(DESTINATION))
 
 def install_wirestorm(DESTINATION):
-	copyCommand = "scp -r {root}/template/ {destination}/".format(root = path('util'), destination = DESTINATION)
+	import os
+
+	templatesList = os.listdir('{ROOT}/template/'.format(ROOT = path('util')))
+
+	selection = user_selection('Select template to use: ', templatesList)
+	selectedTemplate = templatesList[selection - 1]
+	copyCommand = "scp -r {root}/template/{selected_template}/ {destination}/".format(root = path('util'), selected_template = selectedTemplate,  destination = DESTINATION)
 	run_command(copyCommand)
 
 def rename_repo(OLD_NAME, NEW_NAME):
@@ -447,5 +454,16 @@ def verify_installation(CMD):
 				result = True
 
 	return result
+
+def run_wireframe(LIST, INDEX):
+	settings = get_settings()
+	# - go to wireframe directory
+	wireframePath = '{}{}/{}'.format(path('user'), settings['repoFolder'], LIST[INDEX])
+	# - kill any process already running on node server 3030
+	# .....................
+	# - cd into selected wireframe folder
+	# - run `node start`
+	run_command('cd {} && node start'.format(wireframePath))
+	
 
 # def update_packages_values():
