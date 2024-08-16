@@ -37,6 +37,12 @@ def create_repo_instructions():
 3. Name it. Remember the name; you will use it in the next step.
 [ Enter ] to Continue ... ''')
 
+def updatingCi_cdFile(FILEPATH):
+	print('\nUpdating: {}\n'.format(helpers.decorate('green', FILEPATH)))
+
+def ci_cdFileIsReady(FILEPATH):
+	print('\n{} is already set!\n'.format(helpers.decorate('yellow', FILEPATH)))
+
 # def stepsDescription():
 # 	repoName = raw_input('''
 # 1. Log in to gitlab and create the new repo

@@ -1,0 +1,469 @@
+mixin form-segment(cols)
+	- if (!cols) {
+		- var cls = (attributes.class) ? "form-segment " + attributes.class : "form-segment";
+		div(class=cls, id!=attributes.id)
+			if block
+				block
+	- }
+	- else if (typeof cols === 'object') {
+		- var cls = (attributes.class) ? attributes.class + " " : "";
+		- cls += 'form-segment break'
+		- for (var i = 0; i < breakpoints.length; i++) {
+			- 	if (cols[breakpoints[i]] !== undefined) {
+				- 		itemBreak = breakpoints[i];
+				- 		cls += " "+ itemBreak + "-columns-" + cols[itemBreak]
+				- 	}
+				- }
+		div(class=cls, id!=attributes.id)
+			if block
+				block
+	- }
+	- else {
+		- var cls = (attributes.class) ? attributes.class + " " : "";
+		- cls += "form-segment break lg-columns-" + cols
+		div(class=cls, id!=attributes.id)
+			if block
+				block
+	- }
+
+mixin input(description, required, features)
+	- var capsule = false, capsulized = "", cls = attributes.class
+	- if (features && features.hasOwnProperty('capsule')) {
+	-		capsule = features.capsule
+	- 		capsulized = 'capsulized'
+	- } 
+	- if (arguments.length === 2 && arguments[1].hasOwnProperty('capsule')) {
+	-		capsule = arguments[1].capsule
+	-		capsulized = 'capsulized'
+	- }
+	- if (capsulized !== '') {
+	- 	cls = cls.push(capsulized);
+	- }
+	- if (required) {
+		.form-element
+			- if (capsule) {
+				span(class=capsule)
+			- }
+			input(class=cls, type="text", data-required='', id!=attributes.id)
+			label=description
+	- }
+	- else if (description) {
+		.form-element
+			- if (capsule) {
+				span(class=capsule)
+			- }
+			input(class=cls, type="text", id!=attributes.id)
+			label=description
+	- }
+	- else {
+		.form-element
+			- if (capsule) {
+				span(class=capsule)
+			- }
+			input(class=cls, type="text", id!=attributes.id)
+	- }
+
+mixin email(description, required)
+	- if (required) {
+		.form-element
+			input(type="email", data-validate="email", data-required='')
+			label=description
+	- }
+	- else if (description) {
+		.form-element
+			input(type="email", data-validate="email")
+			label=description
+	- }
+	- else {
+		.form-element
+			input(type="email", data-validate="email")
+	- }
+
+mixin password(PARAM1, PARAM2)
+	- const passwordItem = {};
+	if (typeof PARAM1 === 'object')
+		- passwordItem.name = PARAM1.name || 'Password';
+		- passwordItem.required = PARAM1.required || false;
+		- passwordItem.showhide = PARAM1.showhide || false;
+	else 
+		- passwordItem.name = PARAM1 || 'Password';
+		- passwordItem.required = false;
+		- passwordItem.showhide = false;
+	if (passwordItem.showhide)
+		.form-element
+			.icon-show.show-hide-password
+			input(type="password", data-required!= attributes['data-required'], data-match!= attributes['data-match'], data-target!= attributes['data-target'], id!= attributes.id, class!= attributes.class)
+			label=passwordItem.name
+	else
+		.form-element
+			input(type="password", data-required!= attributes['data-required'], data-match!= attributes['data-match'], data-target!= attributes['data-target'], id!= attributes.id, class!= attributes.class)
+			label=passwordItem.name
+
+mixin old_password(description, required, matchName, features)
+	- if (matchName) {
+		.form-element
+			input(type="password", data-required='', data-match=matchName)
+			label=description
+	- }
+	- else if (required) {
+		.form-element
+			input(type="password", data-required='')
+			label=description
+	- }
+	- else if (description) {
+		.form-element
+			input(type="password")
+			label=description
+	- }
+	- else {
+		.form-element
+			input(type="password")
+	- }
+
+
+mixin select(PARAM1)
+	- const optionList = []
+	- PARAM1 = (Array.isArray(PARAM1)) ? {options: PARAM1} : PARAM1
+	each _item_ in PARAM1.options
+		if (typeof _item_ === 'object')
+			- _item_.name = _item_.name || '';
+			- _item_.value = _item_.value || _item_.name.replace(/ /g, '_');
+			- optionList.push(_item_);
+		else 
+			- const optionItem = {};
+			- optionItem.name = _item_ || '';
+			- optionItem.value = _item_.replace(/ /g, '_');
+			- optionList.push(optionItem);
+
+	select(class!= attributes.class,id!= attributes.id,data-target!= attributes['data-target'], data-default!= PARAM1.default)
+		each item, index in optionList
+			if (index == 0)
+				option(value="")= item.name
+			else 
+				if (PARAM1.hasOwnProperty('default') && item.value === PARAM1.default)
+					option(value= item.value)= item.name
+				else
+					option(value= item.value)= item.name
+
+mixin old_select(PARAM1, PARAM2)
+	- const optionList = []
+	each _item_ in PARAM1
+		if (typeof _item_ === 'object')
+			- _item_.name = _item_.name || '';
+			- _item_.value = _item_.value || _item_.name.replace(/ /g, '_');
+			- optionList.push(_item_);
+		else 
+			- const optionItem = {};
+			- optionItem.name = _item_ || '';
+			- optionItem.value = _item_.replace(/ /g, '_');
+			- optionList.push(optionItem);
+
+	select(class!= attributes.class,id!= attributes.id,data-target!= attributes['data-target'])
+	select
+		each item, index in optionList
+			if (index == 0)
+				option(value="")= item.name
+			else 
+				option(value= item.value)= item.name
+
+mixin submit(nameValue, pos='left')
+	- if (typeof nameValue === 'object') {
+	-	nameValue.name = nameValue.name || "Submit"
+	- 	nameValue.position = nameValue.position || "left"
+	- 	nameValue.store = nameValue.store || null
+		- if (nameValue.position === 'center') {
+			.form-element.center-justify
+				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"])
+		- }
+		- else if (nameValue.position === 'right') {
+			.form-element.right-justify
+				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"])
+		- }
+		- else if (nameValue.position === 'extend') {
+			.form-element
+				input.extend(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"])
+		- }
+		- else {
+			.form-element
+				input(type="submit", value=nameValue.name, class!=attributes.class, id!=attributes.id, data-store=nameValue.store, data-target!= attributes["data-target"])
+		- }
+	- }
+	- else {
+		- if (pos === 'center') {
+			.form-element.center-justify
+				input(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"])
+		- }
+		- else if (pos === 'right') {
+			.form-element.right-justify
+				input(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"])
+		- }
+		- else if (pos === 'extend') {
+			.form-element
+				input.extend(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"])
+		- }
+		- else {
+			.form-element
+				input(type="submit", value=nameValue, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"])
+		- }
+	- }
+
+mixin new-submit(PARAM1, PARAM2)
+	- PARAM1 = (typeof PARAM1 === 'object') ? PARAM1 : {name: PARAM1}
+	- PARAM1.name = PARAM1.name || "Submit"
+
+	if (PARAM2 === 'center')
+		.form-element.center-justify
+			input(type="submit", value=PARAM1.name, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"], data-store-on-save!= attributes["data-store-on-save"])
+	else if (PARAM2 === 'right')
+		.form-element.right-justify
+			input(type="submit", value=PARAM1.name, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"], data-store-on-save!= attributes["data-store-on-save"])
+	else if (PARAM2 === 'extend')
+		.form-element
+			input.extend(type="submit", value=PARAM1.name, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"], data-store-on-save!= attributes["data-store-on-save"])
+	else 
+		.form-element
+			input(type="submit", value=PARAM1.name, class!=attributes.class, id!=attributes.id, data-target!= attributes["data-target"], data-store-on-save!= attributes["data-store-on-save"])
+
+mixin switch(PARAM1, PARAM2)
+	- const switchList = [];
+	- PARAM1 = (typeof PARAM1 == 'object') ? PARAM1 : [PARAM1];
+	- const randomizedFamily = (Math.random() + 1).toString(36).substring(7);
+	each _item_ in PARAM1
+		- 	const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-	if (typeof _item_ === 'object') {
+		-		_item_.name = _item_.name || '';
+		-		_item_.value = _item_.value || _item_.name.toLowerCase().replace(/ /g, '-');
+		-		_item_.family = _item_.family || randomizedFamily;
+		-		_item_.class = attributes.class || null;
+		-		_item_.id = attributes.id || _item_.id || randomizedId;
+		-		_item_.checked = _item_.checked || false;
+		- 		_item_.target = _item_.target || null;
+		-		switchList.push(_item_);
+		-	}
+		- 	else {
+		- 		const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-		const switchItem = {};
+		-		switchItem.name = _item_ || '';
+		-		switchItem.value = (_item_ !== undefined && typeof _item_ !== 'object') ? _item_.toLowerCase().replace(/ /g, '-') : null;
+		-		switchItem.family = randomizedFamily;
+		-		switchItem.class = attributes.class || null;
+		-		switchItem.id = attributes.id || randomizedId;
+		-		switchItem.checked = false;
+		- 		switchItem.target = null;
+		-		switchList.push(switchItem);
+		- 	}
+		//- - console.log('list', switchList);
+	if (PARAM2 === 'horizontal')
+		.rack.compress
+			each item in switchList
+				.form-switch-widget
+					.form-element
+						.switch-item
+							if (item.checked)
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked",data-target!= item.target)
+							else
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,data-target!= item.target)
+							label(for=item.id)= item.name
+
+	else
+		each item in switchList
+			if (item.name === null || item.name === '')
+				.form-switch-widget
+					.form-element
+						.switch-item
+							if (item.checked)
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked",data-target!= item.target)
+							else
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,data-target!= item.target)
+							label(for=item.id)
+			else
+				.form-switch-widget
+					.form-element
+						.switch-item
+							if (item.checked)
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked",data-target!= item.target)
+							else
+								input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,data-target!= item.target)
+							label(for=item.id)= item.name
+
+mixin old-switch(name, items)
+	- if (items) {
+		.form-switch-widget
+			ul
+				- var iterCheck = 1
+				each item in items
+					- var value = item.toLowerCase(item.replace(' ','-'))
+						li
+							.switch-item
+								input(type="checkbox",name=name,value=value,id=value+iterCheck)
+								label(for=value+iterCheck)= item
+								- iterCheck++
+	- }
+	- else if (name) {
+		.form-switch-widget
+			.switch-item
+				- var value = name.toLowerCase(name.replace(' ','-'))
+				input(type="checkbox",name=name,value=value,id=value)
+				label(for=value)= name
+	- }
+	- else {
+		.switch-widget
+			div.switch
+			div.on
+	- }
+
+mixin toggle(PARAM1, PARAM2)
+	- const switchList = [];
+	- PARAM1 = (typeof PARAM1 == 'object') ? PARAM1 : [PARAM1];
+	- const randomizedFamily = (Math.random() + 1).toString(36).substring(7);
+	each _item_ in PARAM1
+		- 	const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-	if (typeof _item_ === 'object') {
+		-		_item_.name = _item_.name || '';
+		-		_item_.value = _item_.value || _item_.name.toLowerCase().replace(/ /g, '-');
+		-		_item_.family = _item_.family || randomizedFamily;
+		-		_item_.class = attributes.class || null;
+		-		_item_.id = attributes.id || _item_.id || randomizedId;
+		-		_item_.checked = _item_.checked || false;
+		- 		_item_.target = _item_.target || null;
+		-		switchList.push(_item_);
+		-	}
+		- 	else {
+		- 		const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-		const switchItem = {};
+		-		switchItem.name = _item_ || '';
+		-		switchItem.value = (_item_ !== undefined && typeof _item_ !== 'object') ? _item_.toLowerCase().replace(/ /g, '-') : null;
+		-		switchItem.family = randomizedFamily;
+		-		switchItem.class = attributes.class || null;
+		-		switchItem.id = attributes.id || randomizedId;
+		-		switchItem.checked = false;
+		- 		switchItem.target = null;
+		-		switchList.push(switchItem);
+		- 	}
+	.form-switch-widget
+		.form-element
+			.switch-item
+				div.label1-for-switch= item.name[0]
+				if (item.checked)
+					input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,checked="checked",data-target!= item.target)
+				else
+					input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,data-target!= item.target)
+				div.label2-for-switch= item.name[1]
+
+mixin checkbox(PARAM1, PARAM2)
+	- const checkList = [];
+	- PARAM1 = (typeof PARAM1 == 'object') ? PARAM1 : [PARAM1];
+	each _item_ in PARAM1
+		- 	const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-	if (typeof _item_ === 'object') {
+		-		_item_.name = _item_.name || '';
+		-		_item_.value = _item_.value || _item_.name.toLowerCase().replace(/ /g, '-');
+		-		_item_.family = _item_.family || randomizedFamily;
+		-		_item_.class = attributes.class || null;
+		-		_item_.id = attributes.id || randomizedId;
+		-		_item_.checked = _item_.checked ? 'true' : null;
+		- 		_item_.target = _item_.target || null;
+		-		checkList.push(_item_);
+		-	}
+		- 	else {
+		- 		const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-		const checkItem = {};
+		-		checkItem.name = _item_ || '';
+		-		checkItem.value = (_item_ !== undefined && typeof _item_ !== 'object') ? _item_.toLowerCase().replace(/ /g, '-') : null;
+		-		checkItem.family = randomizedFamily;
+		-		checkItem.class = attributes.class || null;
+		-		checkItem.id = attributes.id || randomizedId;
+		-		checkItem.checked = null;
+		- 		checkItem.target = null;
+		-		checkList.push(checkItem);
+		- 	}
+	
+	if (PARAM2 === 'horizontal')
+		.rack.compress
+			each item in checkList
+				.checkbox-widget
+					.form-element
+						span.checkbox
+							input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,data-checked!= item.checked,data-target!= item.target)
+							label(for=item.id)= item.name
+	else
+		each item in checkList
+			.checkbox-widget
+				.form-element
+					- const value = item.value
+					span.checkbox
+						input(type="checkbox",name=item.name,value=value,id=item.id,class!=item.class,data-checked!= item.checked,data-target!= item.target)
+						label(for=item.id)= item.name
+
+mixin radio(PARAM1, PARAM2)
+	- const radioList = [];
+	- PARAM1 = (typeof PARAM1 == 'object') ? PARAM1 : [PARAM1];
+	- const randomizedFamily = (Math.random() + 1).toString(36).substring(7);
+	each _item_ in PARAM1
+		- 	const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-	if (typeof _item_ === 'object') {
+		-		_item_.name = _item_.name || '';
+		-		_item_.value = _item_.value || _item_.name.toLowerCase().replace(/ /g, '-');
+		-		_item_.family = _item_.family || randomizedFamily;
+		-		_item_.class = attributes.class || null;
+		-		_item_.id = _item_.id || randomizedId;
+		-		_item_.checked = _item_.checked || false;
+		-		radioList.push(_item_);
+		-	}
+		- 	else {
+		- 		const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-		const radioItem = {};
+		-		radioItem.name = _item_ || '';
+		-		radioItem.value = (_item_ !== undefined && typeof _item_ !== 'object') ? _item_.toLowerCase().replace(/ /g, '-') : null;
+		-		radioItem.family = randomizedFamily;
+		-		radioItem.class = attributes.class || null;
+		-		radioItem.id = randomizedId;
+		-		radioItem.checked = false;
+		-		radioList.push(radioItem);
+		- 	}
+	if (PARAM2 === 'horizontal')
+		.rack(id=attributes.id)
+			each item in radioList
+				.radio-widget
+					.form-element
+						span.radio
+							if (item.checked)
+								input(type="radio",name=item.family,value=item.value,id=item.id,data-id!=attributes.id,class!=attributes.class,checked="checked")
+							else
+								input(type="radio",name=item.family,value=item.value,id=item.id,data-id!=attributes.id,class!=attributes.class)
+							label(for=item.id)= item.name
+	else
+		div(id!=attributes.id)
+		each item in radioList
+			.radio-widget
+				.form-element
+					span.radio
+						if (item.checked)
+							input(type="radio",name=item.family,value=item.value,id=item.id,data-id!=attributes.id,class!=attributes.class,checked="checked")
+						else
+							input(type="radio",name=item.family,value=item.value,id=item.id,data-id!=attributes.id,class!=attributes.class)
+						label(for=item.id)= item.name
+
+mixin old-radio(name, items)
+	.radio-widget
+		- var iterRadio = 1
+		- var rad = (Math.random() + 1).toString(36).substring(7);
+		.form-element
+			each item in items
+				- var value = item.toLowerCase(item.replace(' ','-'))
+				span.radio
+					input(type="radio",name=name,value=value,id=rad+iterRadio,data-id!=attributes.id)
+					label(for=rad+iterRadio)= item
+					- iterRadio++
+mixin textarea(description)
+	.form-element
+		textarea(class!=attributes.class, id!=attributes.id)
+		label=description
+
+mixin login(urlPath)
+	div.wrap
+		h3 Login
+		form#loginForm
+			+input("Username")
+			+password("Password")
+			+button({title: "Login", url: urlPath, position: "right"})

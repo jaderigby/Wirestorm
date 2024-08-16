@@ -1,0 +1,30 @@
+include ../../template_files/pug/elements
+doctype html
+html(lang="en")
+	head
+		meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
+		//- responsive
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		link(rel="stylesheet", type="text/css", href="css/wc-segments.lib.min.css")
+		script(src="js/segments.lib.js")
+		//- main stylesheet
+		link(rel="stylesheet", type="text/css", href="css/main.css")
+		link(rel="shortcut icon", href="images/favicon.ico", type="image/x-icon")
+	body
+		+menu-drawer()
+			include nav
+			div.clear-wrap.menu-drawer-search-cleanup
+				+search('search-results')
+		#siteWrapper
+			header
+				div.show-for-mobile
+					div.rack.compress.mobile-cleanup.vertical-align
+						+menu-drawer-trigger()
+						+logo("index.html", "TheSite")
+			nav.desktop-nav.dark.hide-for-mobile
+				prime-seg.vertical-align
+					x-major
+						include nav
+					x-minor
+						+search('search-results')
+			block content

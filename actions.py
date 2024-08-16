@@ -3,6 +3,8 @@ import messages as msg
 import sizzle
 import newItem
 import pipelineReady
+import Publish
+import Select
 # new imports start here
 
 # settings = helpers.get_settings()
@@ -34,4 +36,10 @@ elif action == "-":
 
 elif action == "ready":
     pipelineReady.execute()
+
+elif action == "publish":
+	Publish.execute()
+
+elif action == "select":
+	Select.execute()
 # new actions start here

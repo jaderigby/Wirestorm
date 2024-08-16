@@ -1,0 +1,102 @@
+mixin iphone-header(cls)
+	- if (!cls) {
+	- 	cls = 'ios-default'
+	- }
+	section(class='iphone-header ' + cls)
+		section.columns-3
+			article
+				div.rack
+					div
+						i.disc
+						i.disc
+						i.disc
+						i.circle
+						i.circle
+					div Horizon
+					div.transmit-elem: i.icon-transmit
+			article.center-justify
+				| 5:00 PM
+			article
+				div.right-justify
+					span.icon-battery-indicator
+
+mixin iphone-status(cls)
+	- if (!cls) {
+	- 	cls = 'ios-default'
+	- }
+	section(class='iphone-header ' + cls)
+		section.columns-3
+			article
+				div.rack
+					div
+						i.disc
+						i.disc
+						i.disc
+						i.circle
+						i.circle
+					div Horizon
+					div.transmit-elem: i.icon-transmit
+			article.center-justify
+				| 5:00 PM
+			article
+				div.right-justify
+					span.icon-battery-indicator
+
+mixin ios-header(cls)
+	- if (!cls) {
+	- 	cls = 'ios-default'
+	- }
+	header
+		+iphone-header(class=cls)
+		div(class=cls)
+			if block
+				block
+
+mixin ios-tray(cls)
+	- if (!cls) {
+	- 	cls = 'ios-default'
+	- }
+	footer.ios-tray(class=cls)
+		.tray-icons
+			if block
+				block
+			else
+				section.columns-5
+					article
+						div.center-justify
+							span.icon-home
+						div.center-justify Home
+					article
+						div.center-justify
+							span.icon-info-solid
+						div.center-justify Info
+					article
+						div.center-justify
+							span.icon-star
+						div.center-justify Favorites
+					article
+						div.center-justify
+							span.icon-ask-question
+						div.center-justify Help
+					article
+						div.center-justify
+							span.icon-cog
+						div.center-justify Settings
+
+mixin ios-main()
+	main.ios-wrapper
+		if block
+			block
+
+mixin iphone(size)
+	- var cls = 'iphone-5'
+	- if (size) {
+	- 	if (size === '6') {
+	- 		cls = 'iphone-6'
+	- 	} else if (size === '6+') {
+	- 		cls = 'iphone-6-plus'
+	- 	}
+	- }
+	section(class='iphone-wrap ' + cls)
+		if block
+			block

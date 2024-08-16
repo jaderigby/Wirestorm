@@ -13,6 +13,14 @@
         {
             "name": "ready",
             "description": "generates a gitlab pipeline yaml file"
+        },
+        {
+            "name": "publish",
+            "description": "Replaces the gitlab-ci file with one that includes the incorporation of \n\t\t\t\tthe github publishing repo; also, asks if you would like to \n\t\t\t\tadd a link to that repo's README"
+        },
+        {
+            "name": "select",
+            "description": ""
         }
     ]
 }

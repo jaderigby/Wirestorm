@@ -1,0 +1,29 @@
+{
+  "name": "Wirestorm",
+  "version": "3.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaderigby/wirestorm"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.0",
+    "grunt-autoprefixer": "^3.0.4",
+    "grunt-contrib-pug": "^1.0.0",
+    "grunt-contrib-stylus": "^1.2.0",
+    "grunt-contrib-watch": "^1.0.1",
+    "load-grunt-tasks": "^3.5.0",
+    "lost": "^8.2.1",
+    "nib": "^1.1.0",
+    "poststylus": "^1.0.0",
+    "rupture": "^0.6.1"
+  },
+  "dependencies": {
+    "childprocess": "^2.0.2",
+    "express": "3.0.0alpha4",
+    "npm": "^6.1.0",
+    "opn": "^4.0.2",
+    "sendevent": "^1.0.4",
+    "uglify-js": "^2.7.5"
+  }
+}

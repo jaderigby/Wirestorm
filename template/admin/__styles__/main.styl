@@ -1,0 +1,97 @@
+@import '../template_files/stylus/imports'
+@import 'nib'
+
+// Declare all fonts first
+fonts(open-sans, '300italic,400italic,600italic,700italic,800italic,400,300,600,700,800')
+fonts(play, '400,700')
+fonts(blockletter, '')
+iconfont()
+// Now declare global reset and all dependencies: base, headings, forms, etc
+global-reset()
+base()
+headings()
+forms()
+widgets()
+demo()
+
+// edit()
+
+body, *
+	font-family: open-sans
+h1
+h2
+h3
+h4
+h5
+h6
+	font-family: open-sans
+.show-for-mobile
+	display: none
+	+below(tablet)
+		display: block
+.hide-for-mobile
+	display: block
+	+below(tablet)
+		display: none
+#sidebar
+	padding: 25px 0
+	width: 230px
+#content panel-inner
+	padding-left: 30px
+	padding-right: 30px
+#content panel-inner
+	margin: 0
+	width: 1024px
+panel-wrapper panel-inner, x-panel panel-inner
+    width: 1200px
+.bar-link
+	display: block
+	padding: 8px 25px
+	&:hover
+		text-decoration: none
+		background-color: #ddd
+	[class^="icon-"]
+		margin-top: -3px
+		font-size: 1.6em
+	prime-segment > x-minor:nth-child(1n)
+		margin-right: 8px
+a.selected
+a.selected:hover
+a.current-page
+a.current-page:hover
+	color: #00a0b5
+	background-color: #fff
+.dark
+	> .bar-link:hover
+		background-color: #444
+.bar-link.super-admin-nav
+	margin-top: 25px
+	margin-bottom: 45px
+	padding-top: 23px
+	padding-bottom: 23px
+	color: #98e2eb
+	&:hover
+		background-color: #444
+.bar-link
+	display: block
+	padding: 8px 25px
+	&:hover
+		text-decoration: none
+		background-color: #ddd
+	[class^="icon-"]
+		margin-top: -3px
+		font-size: 1.6em
+	prime-segment > x-minor:nth-child(1n)
+		margin-right: 8px
+.sidebar-wrapper
+	background-color: #efefef
+#siteWrapper
+	display: flex
+	min-height: 100vh
+	flex-direction: column
+	background-color: #fff
+#main
+	flex: 1
+	align-items: stretch
+
+// Begin your custom styles here!

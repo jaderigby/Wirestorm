@@ -1,0 +1,425 @@
+segments()
+	//
+	// Panels
+	//
+	#contain
+		.panel-wrap
+			padding-left: 2%
+			padding-right: 2%
+			width: 96%
+			.panel
+				width: 100%
+				+below(lg)
+					margin: 0
+					padding: 40px 2%
+					width: 96%
+	.panel-wrap
+		.panel
+			margin: 0 auto
+			padding: 60px 0
+			width: lg
+			+below(lg)
+				margin: 0
+				padding: 40px 2%
+				width: 96%
+	.panel-wrap
+		.panel
+			margin: 0 auto
+			padding: 60px 0
+			width: lg
+			+below(lg)
+				margin: 0
+				padding: 40px 2%
+				width: 96%
+	.panel
+		padding: 20px 0
+	.panel.thirds
+	.panel.fifths
+		padding: 60px 0
+
+	// http://lostgrid.org/docs.html#basic-columns
+	@lost flexbox flex
+	@lost gutter 25px
+
+	.segment.equalize
+		align-items: stretch
+		.cell
+			.wrap
+				height: calc(100% - 30px)
+
+	.half, .thirds, .fifths, .sevenths
+		lost-flex-container: row
+
+	.half > .segment-min
+	.half > .segment-max
+	.half > .cell
+		lost-column: 1/2
+
+	.thirds > .segment-min
+		lost-column: 1/3
+
+	.thirds > .segment-max
+			lost-column: 2/3
+
+	.fifths.max-in-the-middle
+		> .segment-min
+			lost-column: 1/5
+		> .segment-max
+			lost-column: 3/5
+
+	.fifths > .segment-min
+		lost-column: 2/5
+
+	.fifths > .segment-max
+		lost-column: 3/5
+
+	.sevenths > .segment-min
+		lost-column: 3/7
+
+	.sevenths > .segment-max
+		lost-column: 4/7
+
+	.fifths.single
+		> .segment-min
+			lost-column: 1/5
+		> .segment-max
+			lost-column: 4/5
+
+	.sevenths.max-in-the-middle
+		> .segment-min
+			lost-column: 1/7
+		> .segment-max
+			lost-column: 5/7
+
+	.sevenths > .segment-min
+			lost-column: 3/7
+
+	.sevenths > .segment-max
+			lost-column: 4/7
+
+	.sevenths.single > .segment-min
+			lost-column: 1/7
+
+	.sevenths.single > .segment-max
+			lost-column: 6/7
+
+responsive-segments()
+	lg = 1024px
+	md = 960px
+	tablet = 768px
+	sm = 640px
+	xs = 320px
+
+	.segment.break
+		lost-flex-container: row
+		//
+		// SEVENTHS
+		//
+		&.lg-sevenths.max-in-the-middle
+			> .segment-min
+				lost-column: 1/7
+			> .segment-max
+				lost-column: 5/7
+			+below(lg)
+				> .segment-min
+					lost-column: 1/7
+				> .segment-max
+					lost-column: 5/7
+		&.lg-sevenths
+			> .segment-min
+				lost-column: 3/7
+			> .segment-max
+				lost-column: 4/7
+			+below(lg)
+				> .segment-min
+					lost-column: 3/7
+				> .segment-max
+					lost-column: 4/7
+		&.md-sevenths.max-in-the-middle
+			> .segment-min
+				lost-column: 1/7
+			> .segment-max
+				lost-column: 5/7
+			+below(lg)
+				> .segment-min
+					lost-column: 1/7
+				> .segment-max
+					lost-column: 5/7
+		&.md-sevenths
+			+below(md)
+				> .segment-min
+					lost-column: 3/7
+				> .segment-max
+					lost-column: 4/7
+		&.tablet-sevenths.max-in-the-middle
+			> .segment-min
+				lost-column: 1/7
+			> .segment-max
+				lost-column: 5/7
+			+below(lg)
+				> .segment-min
+					lost-column: 1/7
+				> .segment-max
+					lost-column: 5/7
+		&.tablet-sevenths
+			+below(tablet)
+				> .segment-min
+					lost-column: 3/7
+				> .segment-max
+					lost-column: 4/7
+		&.sm-sevenths.max-in-the-middle
+			> .segment-min
+				lost-column: 1/7
+			> .segment-max
+				lost-column: 5/7
+			+below(lg)
+				> .segment-min
+					lost-column: 1/7
+				> .segment-max
+					lost-column: 5/7
+		&.sm-sevenths
+			+below(sm)
+				> .segment-min
+					lost-column: 3/7
+				> .segment-max
+					lost-column: 4/7
+		&.xs-sevenths.max-in-the-middle
+			> .segment-min
+				lost-column: 1/7
+			> .segment-max
+				lost-column: 5/7
+			+below(lg)
+				> .segment-min
+					lost-column: 1/7
+				> .segment-max
+					lost-column: 5/7
+		&.xs-sevenths
+			+below(xs)
+				> .segment-min
+					lost-column: 3/7
+				> .segment-max
+					lost-column: 4/7
+		//
+		// FIFTHS
+		//
+		&.lg-fifths.max-in-the-middle
+			> .segment-min
+				lost-column: 1/5
+			> .segment-max
+				lost-column: 3/5
+			+below(lg)
+				> .segment-min
+					lost-column: 1/5
+				> .segment-max
+					lost-column: 3/5
+		&.lg-fifths
+			> .segment-min
+				lost-column: 2/5
+			> .segment-max
+				lost-column: 3/5
+			+below(lg)
+				> .segment-min
+					lost-column: 2/5
+				> .segment-max
+					lost-column: 3/5
+		&.md-fifths.max-in-the-middle
+			> .segment-min
+				lost-column: 1/5
+			> .segment-max
+				lost-column: 3/5
+			+below(lg)
+				> .segment-min
+					lost-column: 1/5
+				> .segment-max
+					lost-column: 3/5
+		&.md-fifths
+			+below(md)
+				> .segment-min
+					lost-column: 2/5
+				> .segment-max
+					lost-column: 3/5
+		&.tablet-fifths.max-in-the-middle
+			> .segment-min
+				lost-column: 1/5
+			> .segment-max
+				lost-column: 3/5
+			+below(lg)
+				> .segment-min
+					lost-column: 1/5
+				> .segment-max
+					lost-column: 3/5
+		&.tablet-fifths
+			+below(tablet)
+				> .segment-min
+					lost-column: 2/5
+				> .segment-max
+					lost-column: 3/5
+		&.sm-fifths.max-in-the-middle
+			> .segment-min
+				lost-column: 1/5
+			> .segment-max
+				lost-column: 3/5
+			+below(lg)
+				> .segment-min
+					lost-column: 1/5
+				> .segment-max
+					lost-column: 3/5
+		&.sm-fifths
+			+below(sm)
+				> .segment-min
+					lost-column: 2/5
+				> .segment-max
+					lost-column: 3/5
+		&.xs-fifths.max-in-the-middle
+			> .segment-min
+				lost-column: 1/5
+			> .segment-max
+				lost-column: 3/5
+			+below(lg)
+				> .segment-min
+					lost-column: 1/5
+				> .segment-max
+					lost-column: 3/5
+		&.xs-fifths
+			+below(xs)
+				> .segment-min
+					lost-column: 2/5
+				> .segment-max
+					lost-column: 3/5
+		//
+		// THIRDS
+		//
+		&.lg-thirds
+			> .segment-min
+				lost-column: 1/3
+			> .segment-max
+				lost-column: 2/3
+			+below(lg)
+				> .segment-min
+					lost-column: 1/3
+				> .segment-max
+					lost-column: 2/3
+		&.md-thirds
+			+below(md)
+				> .segment-min
+					lost-column: 1/3
+				> .segment-max
+					lost-column: 2/3
+		&.tablet-thirds
+			+below(tablet)
+				> .segment-min
+					lost-column: 1/3
+				> .segment-max
+					lost-column: 2/3
+		&.sm-thirds
+			+below(sm)
+				> .segment-min
+					lost-column: 1/3
+				> .segment-max
+					lost-column: 2/3
+		&.xs-thirds
+			+below(xs)
+				> .segment-min
+					lost-column: 1/3
+				> .segment-max
+					lost-column: 2/3
+		//
+		// HALF
+		//
+		&.lg-half
+			> .segment-min
+			> .segment-max
+			> .cell
+				lost-column: 1/2
+			+below(lg)
+				> .segment-min
+				> .segment-max
+				> .cell
+					lost-column: 1/2
+		&.md-half
+			+below(md)
+				> .segment-min
+				> .segment-max
+				> .cell
+					lost-column: 1/2
+		&.tablet-half
+			+below(tablet)
+				> .segment-min
+				> .segment-max
+				> .cell
+					lost-column: 1/2
+		&.sm-half
+			+below(sm)
+				> .segment-min
+				> .segment-max
+				> .cell
+					lost-column: 1/2
+		&.xs-half
+			+below(xs)
+				> .segment-min
+				> .segment-max
+				> .cell
+					lost-column: 1/2
+		//
+		// STACK
+		//
+		&.lg-stack
+			> .segment-min
+				lost-column: 1/1
+			> .segment-max
+				lost-column: 1/1
+			+below(lg)
+				> .segment-min
+					lost-column: 1/1
+				> .segment-max
+					lost-column: 1/1
+		&.md-stack
+			+below(md)
+				> .segment-min
+					lost-column: 1/1
+				> .segment-max
+					lost-column: 1/1
+		&.tablet-stack
+			+below(tablet)
+				> .segment-min
+					lost-column: 1/1
+				> .segment-max
+					lost-column: 1/1
+		&.sm-stack
+			+below(sm)
+				> .segment-min
+					lost-column: 1/1
+				> .segment-max
+					lost-column: 1/1
+		&.xs-stack
+			+below(xs)
+				> .segment-min
+					lost-column: 1/1
+				> .segment-max
+					lost-column: 1/1
+		//
+		// FOR COLUMNS
+		//
+		for item in (10..1)
+			&.lg-columns-{item}
+				> .cell
+					lost-column: 1/item
+				+below(lg)
+					> .cell
+						lost-column: 1/item
+			&.md-columns-{item}
+				+below(md)
+					> .cell
+						lost-column: 1/item
+			&.tablet-columns-{item}
+				+below(tablet)
+					> .cell
+						lost-column: 1/item
+			&.sm-columns-{item}
+				+below(sm)
+					> .cell
+						lost-column: 1/item
+			&.xs-columns-{item}
+				+below(xs)
+					> .cell
+						lost-column: 1/item
