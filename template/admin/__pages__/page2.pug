@@ -1,41 +1,46 @@
 extend __core__/default
 block content
-	+panel().light
-		div.collapsible.trigger(data-target="settingsDrawer").icon-cog.trigger-icon
-		section#settingsDrawer.collapsible.drawer
-			form.wrap
-				h4 Settings
-				hr
-				+segment(4)
-					+cell()
-						+switch([{name: 'First Feature', family: 'settingsToggle'}, {name: 'Second Feature', family: 'settingsToggle'}, {name: 'Third Feature', family: 'settingsToggle'}])
-					+cell()
-						div.border-wrap
-							div: +select(['Light', 'Dark', 'Neutral'])
-							p: +radio([{name: 'Setting A', family: 'settingsRadio'}, {name: 'Setting B', family: 'settingsRadio'}])
-							div.center-justify: +switch('Use')
-					+cell()
-						+checkbox(['Add Item 1', 'Add Item 2', 'Add Item 3'])
-					+cell()
-						+switch()
-						p: +blockletter(30)
-				hr
-		- var n = 0
-		+loop(5)
-			+segment(3).wrap
-				+minor()
-					+image('100%',200).dimage
-					p.right-justify: +blockletter(4)
-					p.right-justify: +blockletter(2)
-				+major()
-					h3= titles[n++] + " Blog Title"
-					p: +blockletter(30)
-					+segment(3)
+	prime-seg#main
+		x-minor.sidebar-wrapper
+			#sidebar.nav-highlight
+				include __core__/sidebar
+		x-major
+			+panel().light
+				div.collapsible.trigger(data-target="settingsDrawer").icon-cog.trigger-icon
+				section#settingsDrawer.collapsible.drawer
+					form.wrap
+						h4 Settings
+						hr
+						+segment(4)
+							+cell()
+								+switch([{name: 'First Feature', family: 'settingsToggle'}, {name: 'Second Feature', family: 'settingsToggle'}, {name: 'Third Feature', family: 'settingsToggle'}])
+							+cell()
+								div.border-wrap
+									div: +select(['Light', 'Dark', 'Neutral'])
+									p: +radio([{name: 'Setting A', family: 'settingsRadio'}, {name: 'Setting B', family: 'settingsRadio'}])
+									div.center-justify: +switch('Use')
+							+cell()
+								+checkbox(['Add Item 1', 'Add Item 2', 'Add Item 3'])
+							+cell()
+								+switch()
+								p: +blockletter(30)
+						hr
+				- var n = 0
+				+loop(5)
+					+segment(3).wrap
 						+minor()
-							.rack
-								+loop(4)
-									+image(40,40)
+							+image('100%',200).dimage
+							p.right-justify: +blockletter(4)
+							p.right-justify: +blockletter(2)
 						+major()
-							p.right: button Read More
-		div.right
-			+pagination()
+							h3= titles[n++] + " Blog Title"
+							p: +blockletter(30)
+							+segment(3)
+								+minor()
+									.rack
+										+loop(4)
+											+image(40,40)
+								+major()
+									p.right: button Read More
+				div.right
+					+pagination()

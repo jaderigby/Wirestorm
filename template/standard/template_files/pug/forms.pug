@@ -460,10 +460,21 @@ mixin textarea(description)
 		textarea(class!=attributes.class, id!=attributes.id)
 		label=description
 
-mixin login(urlPath)
-	div.wrap
+mixin login-form(urlPath)
+	div.wrap.login-width
 		h3 Login
 		form#loginForm
 			+input("Username")
 			+password("Password")
-			+button({title: "Login", url: urlPath, position: "right"})
+			a(href="#") Forgot Password?
+			.clear-wrap: +button({title: "Login", url: urlPath}, "right")
+
+mixin login(urlPath, PARAM2)
+	if (PARAM2 === 'center')
+		.center
+			+login-form(urlPath)
+	else if (PARAM2 === 'right')
+		.right
+			+login-form(urlPath)
+	else 
+		+login-form(urlPath)

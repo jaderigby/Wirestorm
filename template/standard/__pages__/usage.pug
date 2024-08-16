@@ -20,9 +20,9 @@ block content
 			li: a(href="#forms") Forms
 		h3#layout.demo-heading(data-move-to="150") Layout
 
-		+segment(3)
-			+minor()
-				h4.ft-hd.modal.trigger(data-target="panelDark") +panel()
+		x-segment(of="3")
+			x-minor
+				h4.ft-hd.modal-trigger(data-target="#panelDark") +panel()
 				div#panelDark.modal.window
 					p
 						strong Description: 
@@ -52,7 +52,7 @@ block content
 		
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="half") .half
+				h4.ft-hd.modal-trigger(data-target="#half") .half
 				div#half.modal.window
 					p
 						strong Description: 
@@ -84,7 +84,7 @@ block content
 
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="thirds") .thirds
+				h4.ft-hd.modal-trigger(data-target="#thirds") .thirds
 				div#thirds.modal.window
 					p
 						strong Description: 
@@ -116,7 +116,7 @@ block content
 
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="fifths") .fifths
+				h4.ft-hd.modal-trigger(data-target="#fifths") .fifths
 				div#fifths.modal.window
 					p
 						strong Description: 
@@ -150,7 +150,7 @@ block content
 
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="sevenths") .sevenths
+				h4.ft-hd.modal-trigger(data-target="#sevenths") .sevenths
 				div#sevenths.modal.window
 					p
 						strong Description: 
@@ -183,7 +183,7 @@ block content
 		h3#dynamic-elements.demo-heading Dynamic Elements
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="modal") +modal(arg1, arg2)
+				h4.ft-hd.modal-trigger(data-target="#modal") +modal(arg1, arg2)
 				div#modal.modal.window
 					p
 						strong Description: 
@@ -222,7 +222,7 @@ block content
 							p Here lies my very special modal!
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="tabs") +tabs(arg1)
+				h4.ft-hd.modal-trigger(data-target="#tabs") +tabs(arg1)
 				div#tabs.modal.window
 					p
 						strong Description: 
@@ -261,7 +261,7 @@ block content
 		h3#loops.demo-heading Loops
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="loop") +loop(arg1)
+				h4.ft-hd.modal-trigger(data-target="#loop") +loop(arg1)
 				div#loop.modal.window
 					p
 						strong Description: 
@@ -298,7 +298,7 @@ block content
 		h3#media.demo-heading Media
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="image") +image(arg1, arg2, arg3)
+				h4.ft-hd.modal-trigger(data-target="#image") +image(arg1, arg2, arg3)
 				div#image.modal.window
 					p
 						strong Description: 
@@ -339,7 +339,7 @@ block content
 
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="image2") +image2(arg1, arg2, arg3)
+				h4.ft-hd.modal-trigger(data-target="#image2") +image2(arg1, arg2, arg3)
 				div#image2.modal.window
 					p
 						strong Description: 
@@ -380,7 +380,7 @@ block content
 
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="porthole") +porthole(arg1, arg2)
+				h4.ft-hd.modal-trigger(data-target="#porthole") +porthole(arg1, arg2)
 				div#porthole.modal.window
 					p
 						strong Description: 
@@ -416,7 +416,7 @@ block content
 
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="profile") +profile(arg1, arg2, arg3)
+				h4.ft-hd.modal-trigger(data-target="#profile") +profile(arg1, arg2, arg3)
 				div#profile.modal.window
 					p
 						strong Description: 
@@ -458,7 +458,7 @@ block content
 
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="profilePorthole") +profile-porthole(arg1, arg2)
+				h4.ft-hd.modal-trigger(data-target="#profilePorthole") +profile-porthole(arg1, arg2)
 				div#profilePorthole.modal.window
 					p
 						strong Description: 
@@ -494,7 +494,7 @@ block content
 
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="video") +video(arg1, arg2, arg3)
+				h4.ft-hd.modal-trigger(data-target="#video") +video(arg1, arg2, arg3)
 				div#video.modal.window
 					p
 						strong Description: 
@@ -535,7 +535,7 @@ block content
 
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="slideshow") +slideshow(arg1, arg2, arg3)
+				h4.ft-hd.modal-trigger(data-target="#slideshow") +slideshow(arg1, arg2, arg3)
 				div#slideshow.modal.window
 					p
 						strong Description: 
@@ -576,7 +576,7 @@ block content
 
 		+segment(3)
 			+minor()
-				h4.ft-hd.modal.trigger(data-target="slideshow2") +slideshow2(arg1, arg2, arg3)
+				h4.ft-hd.modal-trigger(data-target="#slideshow2") +slideshow2(arg1, arg2, arg3)
 				div#slideshow2.modal.window
 					p
 						strong Description: 
