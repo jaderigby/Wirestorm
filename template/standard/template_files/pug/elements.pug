@@ -56,7 +56,7 @@ mixin button(PARAM1, PARAM2)
 		- buttonObj.target = PARAM1.url || null
 	else
 		- buttonObj.name = PARAM1 || 'OK'
-		- buttonObj.url = ''
+		- buttonObj.url = '#'
 		- buttonObj.target = null
 	if (PARAM2 === 'left')
 		div.left-justify.button-module

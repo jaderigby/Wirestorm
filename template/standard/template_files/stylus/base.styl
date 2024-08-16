@@ -616,7 +616,34 @@ base()
 			opacity: 1
 		to
 			opacity: 0
-
+	.toast
+		position: fixed
+		width: 60%
+		margin: -200px auto 0
+		padding: 15px
+		background-color: #fff
+		box-shadow: 0 0 30px rgba(0,0,0,0.18)
+		left: 0
+		right: 0
+		top: 0
+		z-index: 10000
+	.toast.toast-activate-in
+	.toast.toast-activated
+		margin: 30px auto 0
+	.toast.toast-activate-in
+		animation: 0.3s animate-toast-in ease-in-out forwards
+	.toast.toast-activate-out
+		animation: 0.3s animate-toast-out ease-in-out forwards
+	@keyframes animate-toast-in
+		from
+			margin: -200px auto 0
+		to
+			margin: 30px auto 0	
+	@keyframes animate-toast-out
+		from
+			margin: 30px auto 0
+		to
+			margin: -200px auto 0
 widgets()
 	//
 	// Panels
