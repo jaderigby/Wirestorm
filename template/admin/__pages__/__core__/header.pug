@@ -22,9 +22,10 @@ html(lang="en")
 						+menu-drawer-trigger()
 						+logo("index.html", "TheSite")
 			nav.desktop-nav.dark.hide-for-mobile
-				prime-seg.vertical-align
-					x-major
+				+prime().vertical-align
+					+major()
 						include nav
-					x-minor
+					+minor()
 						+search('search-results')
 			block content
+				
