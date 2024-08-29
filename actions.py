@@ -5,6 +5,14 @@ import newItem
 import pipelineReady
 import Publish
 import Select
+import Add
+import Create
+import Data
+import Nav
+import Sidebar
+import Header
+import Index
+import Style
 # new imports start here
 
 # settings = helpers.get_settings()
@@ -42,4 +50,28 @@ elif action == "publish":
 
 elif action == "select":
 	Select.execute()
+
+elif action == "add":
+	Add.execute()
+
+elif action == "create":
+	Create.execute()
+
+elif action == "data":
+	Data.execute()
+
+elif action == "nav":
+	Nav.execute()
+
+elif action == "side":
+	Sidebar.execute()
+
+elif action == "header":
+	Header.execute()
+
+elif action == "index":
+	Index.execute()
+
+elif action == "style":
+	Style.execute()
 # new actions start here

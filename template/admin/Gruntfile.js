@@ -87,9 +87,16 @@
 			},
 
 			watch: {
-				pug: {
-					files: ['__pages__/*.pug', '__pages__/__core__/*.pug'],
-					tasks: 'pug',
+				pages: {
+					files: ['__pages__/*.pug'],
+					tasks: ['newer:pug:dev'],
+					options: {
+						livereload: true,
+					},
+				},
+				core: {
+					files: ['__pages__/__core__/*.pug'],
+					tasks: ['pug:dev'],  // Full rebuild for development when core files change
 					options: {
 						livereload: true,
 					},

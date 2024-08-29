@@ -43,6 +43,12 @@ def updatingCi_cdFile(FILEPATH):
 def ci_cdFileIsReady(FILEPATH):
 	print('\n{} is already set!\n'.format(helpers.decorate('yellow', FILEPATH)))
 
+def data_updated(STRING):
+	print('\nData has been updated: {}'.format(STRING))
+
+def sidebar_updated(STRING):
+	print('\nSidebar has been updated: {}'.format(STRING))
+
 # def stepsDescription():
 # 	repoName = raw_input('''
 # 1. Log in to gitlab and create the new repo

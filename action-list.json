@@ -21,6 +21,38 @@
         {
             "name": "select",
             "description": ""
+        },
+        {
+            "name": "add",
+            "description": "Creates a new page, and adds it to the nav (top nav for 'standard'; sidebar for 'admin'"
+        },
+        {
+            "name": "create",
+            "description": "Creates a new page only"
+        },
+        {
+            "name": "data",
+            "description": ""
+        },
+        {
+            "name": "nav",
+            "description": ""
+        },
+        {
+            "name": "side",
+            "description": ""
+        },
+        {
+            "name": "header",
+            "description": ""
+        },
+        {
+            "name": "index",
+            "description": ""
+        },
+        {
+            "name": "style",
+            "description": ""
         }
     ]
 }

@@ -325,6 +325,7 @@ def rebuild_package_file(FILEPATH, NEW_NAME, REPO_NAME):
 		"grunt-contrib-stylus": "^1.2.0",
 		"grunt-contrib-watch": "^1.0.1",
 		"grunt-exec": "^3.0.0",
+		"grunt-newer": "^1.3.0",
 		"load-grunt-tasks": "^3.5.0",
 		"lost": "^8.2.1",
 		"nib": "^1.1.0",
