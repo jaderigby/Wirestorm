@@ -34,6 +34,19 @@ jQuishy.prototype.selector = function(arg1) {
 
 _$('.trigger').click((e) => {
 	const targetItem = _$(e.target).attr('data-target');
+	const untarget = _$(e.target).attr('data-untarget');
+	if (untarget) {
+		_$(untarget).items.forEach((_elem_) => {
+			if (_$(_elem_).hasClass('activated')) {
+				_$(_elem_).addClass('activate-out');
+				_$(_elem_).removeClass('activated');
+				setTimeout(() => {
+					_$(_elem_).removeClass('activate-out');
+				}, 200);
+			}
+		});
+	}
+	
 	if ( !(_$(e.target).hasClass('modal')) ) {
 		if (_$(targetItem).hasClass('prepend') || _$(targetItem).hasClass('append')) {
 			e.preventDefault();
@@ -1084,6 +1097,83 @@ document.addEventListener("keyup", (e) => {
 
 // needs to come after localData, otherwise, localData state changes won't be updated
 initTrigger();
+
+_$('.hover-trigger').items.forEach((_item_) => {
+	const targetItem = _$(_item_).attr('data-hover');
+  
+	// Initialize a data attribute to store the timeout ID
+	_$(_item_).attr('data-timeout-id', '');
+  
+	_item_.addEventListener('mouseenter', (e) => {
+	  // Clear any existing timeout
+	  const existingTimeoutId = _$(targetItem).attr('data-timeout-id');
+	  if (existingTimeoutId) {
+		clearTimeout(existingTimeoutId);
+		_$(targetItem).removeClass('activate-in');
+	  }
+  
+	  console.log("That JUST happened!");
+  
+	  // Add class for entering activation
+	  _$(targetItem).addClass('activate-in');
+  
+	  const timeoutId = setTimeout(() => {
+		_$(targetItem).addClass('activated');
+		_$(targetItem).removeClass('activate-in');
+	  }, 200);
+  
+	  // Store the timeout ID
+	  _$(targetItem).attr('data-timeout-id', timeoutId);
+	});
+  
+	_item_.addEventListener('mouseleave', (e) => {
+	  // Clear any existing timeout
+	  const existingTimeoutId = _$(targetItem).attr('data-timeout-id');
+	  if (existingTimeoutId) {
+		clearTimeout(existingTimeoutId);
+		_$(targetItem).removeClass('activate-in');
+	  }
+  
+	  // Only proceed if the element is already activated or in the process of activation
+	  if (_$(targetItem).hasClass('activated') || _$(targetItem).hasClass('activate-in')) {
+		// Deactivate element with an animation
+		_$(targetItem).addClass('activate-out');
+		_$(targetItem).removeClass('activated');
+  
+		const timeoutId = setTimeout(() => {
+		  _$(targetItem).removeClass('activate-out');
+		  _$(targetItem).attr('data-timeout-id', '');  // Clear timeout ID after animation completes
+		}, 200);
+  
+		// Store the timeout ID
+		_$(targetItem).attr('data-timeout-id', timeoutId);
+	  }
+	});
+  });
+
+  _$('.const-trigger').click((e) => {
+	const targetItem = _$(e.target).attr('data-target');
+	const untarget = _$(e.target).attr('data-untarget');
+	if (untarget) {
+		_$(untarget).items.forEach((_elem_) => {
+			if (_$(_elem_).hasClass('activated')) {
+				_$(_elem_).addClass('activate-out');
+				_$(_elem_).removeClass('activated');
+				setTimeout(() => {
+					_$(_elem_).removeClass('activate-out');
+				}, 200);
+			}
+		});
+	}
+	_$(targetItem).addClass('activate-in');
+	setTimeout(() => {
+		_$(targetItem).addClass('activated');
+		_$(targetItem).removeClass('activate-in');
+	}, 200);
+});
+  
+
+  
 
 /*
 input types:
