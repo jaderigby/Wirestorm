@@ -33,7 +33,20 @@ jQuishy.prototype.selector = function(arg1) {
 }
 
 _$('.trigger').click((e) => {
-	const targetItem = _$(e.target).attr('data-target');
+	const targetItem = _$(e.target).attr('data-target') || e.target;
+	const untarget = _$(e.target).attr('data-untarget');
+	if (untarget) {
+		_$(untarget).items.forEach((_elem_) => {
+			if (_$(_elem_).hasClass('activated')) {
+				_$(_elem_).addClass('activate-out');
+				_$(_elem_).removeClass('activated');
+				setTimeout(() => {
+					_$(_elem_).removeClass('activate-out');
+				}, 200);
+			}
+		});
+	}
+	
 	if ( !(_$(e.target).hasClass('modal')) ) {
 		if (_$(targetItem).hasClass('prepend') || _$(targetItem).hasClass('append')) {
 			e.preventDefault();
@@ -51,8 +64,51 @@ _$('.trigger').click((e) => {
 				_$(targetItem).vanilla.append(elemFormatted);
 			}
 		}
+		else if (_$(targetItem).hasClass('check')) {
+			const groupTotal = _$(targetItem).items.length;
+			const groupSelected = Array.from(_$(targetItem).items).filter(item => item.checked).length;
+			let labels = null;
+
+			if (e.target.dataset.label) {
+				labels = e.target.dataset.label.split('|');
+			}
+
+			if (groupTotal == groupSelected) {
+				_$(targetItem).items.forEach((_item_) => {
+					_item_.checked = false;
+					if (e.target.dataset.label) {
+						e.target.innerHTML = labels[0];
+					}
+					console.log(_item_)
+					if (_$(_item_).hasClass('store')) {
+						const itemName = _item_.id;
+						const val = _item_.value;
+						
+						delete localData[thisPage][itemName]
+						localData.save();
+					}
+				});
+			}
+			else {
+				_$(targetItem).items.forEach((_item_) => {
+					_item_.checked = true;
+					if (e.target.dataset.label) {
+						e.target.innerHTML = labels[1];
+					}
+					console.log("attempting to store all")
+					if (_$(_item_).hasClass('store')) {
+						const itemName = _item_.id;
+						const val = _item_.value;
+						
+						localData[thisPage][itemName] = val;
+						localData.save();
+					}
+				});
+			}
+		}
 		else {
 			if (e.target.tagName !== 'SELECT') {
+				// checkboxes
 				if (e.target.tagName === 'INPUT' && e.target.type === 'checkbox') {
 					if (e.target.checked) {
 						_$(targetItem).addClass('activate-in');
@@ -68,6 +124,84 @@ _$('.trigger').click((e) => {
 							_$(targetItem).removeClass('activate-out');
 						}, 200);
 					}
+				}
+				// radios
+				else if (e.target.tagName === 'INPUT' && e.target.type === 'radio') {
+					const currName = _$(e.target).attr('name');
+					const targetElems = e.target.dataset.target ? e.target.dataset.target.split(',').map(item => item.trim()) : [];
+					// let isAlreadyActivated = targetElems.some(_selector_ => _$(_selector_).hasClass('activated'));
+					
+					if (e.target.checked && !e.target.dataset.already && e.target.dataset.target) {
+						const currElem = e.target;
+						const siblings = Array.from(_$(`[name="${currName}"]`).items).filter(elem => elem !== currElem);
+
+						siblings.forEach((_sibling_) => {
+							const siblingTargets = _sibling_.dataset.target ? _sibling_.dataset.target.split(',').map(item => item.trim()) : [];
+							// console.log("_sibling_: ", _sibling_);
+							// console.log('targetElems', targetElems);
+							// console.log('siblingTargets', siblingTargets);
+
+							siblingTargets.forEach((_siblingSelector_) => {
+								// checks if current sibling's current selector is already active AND that its not one of the current elem's targets
+								// if both these conditions are met, then activate-out the item
+								if (_$(_siblingSelector_).hasClass('activated') && !(targetElems.includes(_siblingSelector_.trim()) )) {
+									// console.log("====================================");
+									// console.log('_siblingSelector_: ', '"' + _siblingSelector_.trim() + '"');
+									// console.log("status: ", targetElems.includes(_siblingSelector_.trim()));
+									// console.log("currentElement: ", e.target);
+									_$(_siblingSelector_).addClass('activate-out');
+									_$(_siblingSelector_).removeClass('activated');
+									setTimeout(() => {
+										_$(_siblingSelector_).removeClass('activate-out');
+									}, 200);
+								}
+								else {
+									// console.log("=========================<<<<<<<<<<<");
+									// console.log('_siblingSelector_: ', _siblingSelector_);
+									// console.log("status: ", targetElems.includes(_siblingSelector_.trim()));
+									// console.log("currentElement: ", e.target);
+								}
+								// // if it's one of the current elem's targets, skip triggering an animation and keep it activated
+								// else if  {
+									
+								// }
+								// else {
+									
+								// }
+							});
+						});
+						// if current selectors are not already activated, activate those that aren't
+						targetElems.forEach((_selector_) => {
+							// console.log("=========================<<<<<<<<<<<");
+							// console.log('_selector_: ', _selector_);
+							// console.log("status: ", (_$(_selector_).hasClass('activated')));
+							// console.log('context: ', e.target);
+							if ( !(_$(_selector_).hasClass('activated')) ) {
+								_$(_selector_).addClass('activate-in');
+								setTimeout(() => {
+									_$(_selector_).addClass('activated');
+									_$(_selector_).removeClass('activate-in');
+								}, 200);
+							}
+						})
+					}
+					else {
+						_$(`[name="${currName}"]`).items.forEach((_elem_) => {
+							if (_elem_.dataset.target) {
+								const targetElems = _elem_.dataset.target.split(',')
+								console.log(targetElems)
+								targetElems.forEach((_selector_) => {
+									if (_$(_selector_).hasClass('activated')) {
+										_$(_selector_).addClass('activate-out');
+										_$(_selector_).removeClass('activated');
+										setTimeout(() => {
+											_$(_selector_).removeClass('activate-out');
+										}, 200);
+									}
+								});
+							}
+						});
+					}	
 				}
 				else {
 					if ( !(_$(targetItem).hasClass('toast')) ) {
@@ -131,14 +265,37 @@ _$('select.trigger').items.forEach((_item_) => {
 
 function initTrigger() {
 	_$('.trigger').items.forEach( (_item_) => {
-		const targetItem = _$(_item_).attr('data-target');
-		if ( _$(targetItem).hasClass('modal') ) {
-			// _$(_item_).addClass('.modal-trigger');
+		const targetItem = _$(_item_).attr('data-target') || _item_;
+		if (_$(targetItem).hasClass('check')) {
+			_$(targetItem).items.forEach((_elem_) => {
+				_elem_.dataset.watch = `#${_item_.id}`;
+			});
 		}
-		else {
+		// if (_$(targetItem)) {
+			
+		// 	// _$(targetItem).forEach((_elem_) => {
+		// 	// 	_elem_.dataset.watch = `#${_item_.id}`;
+		// 	// })
+		// }
+		// console.log(targetItem);
+		// if (targetItem !== 'none') {
+		// 	// if ( _$(targetItem).hasClass('modal') ) {
+		// 	// 	// _$(_item_).addClass('.modal-trigger');
+		// 	// }
+		// }
+		// if {
 			if (_item_.tagName === 'INPUT' && _item_.type === 'checkbox') {
 				if (_item_.checked) {
+					console.log('prechecked')
 					_$(targetItem).addClass('activated');
+				}
+			}
+			else if (_item_.tagName === 'INPUT' && _item_.type === 'radio') {
+				if (targetItem !== 'none' && _item_.checked) {
+					_$(targetItem).addClass('activated');
+				}
+				if (_item_.checked) {
+					_item_.setAttribute('data-already', 'true');
 				}
 			}
 			else if (_item_.tagName === 'SELECT') {
@@ -146,7 +303,7 @@ function initTrigger() {
 					_$(targetItem).addClass('activated');
 				}
 			}
-		}
+		// }
 	});
 }
 
@@ -541,7 +698,7 @@ function formInit() {
 			$parent.addClass('has-value');
 		}
 	});
-}
+}	
 
 //==================================
 //	Url Params, goto, and goback
@@ -755,11 +912,11 @@ _$('.store').items.forEach(function(_item_) {
 	}
 	// Check to see if it is a radio input; if it is, proceed
 	if (_$(_item_).attr('type') === 'radio') {
-		itemName = _$(_item_).attr('data-id');
+		itemName = _item_.getAttribute('name');
 		// Check to see if it has an entry in localData; if it does, set it to 'checked'
 		if (localData[thisPage].hasOwnProperty(itemName)) {
 			const val = localData[thisPage][itemName];
-			_$(`[data-id][value="${val}"]`).attr('checked', 'checked');
+			_$(`[name="${itemName}"][value="${val}"]`).attr('checked', 'checked');
 		}
 	}
 });
@@ -826,8 +983,20 @@ _$('input[type="checkbox"]').click((e) => {
 });
 
 _$('input[type="radio"]').click((e) => {
-	const itemName = _$(e.target).attr('data-id');
-	if (e.target.checked) {
+	const itemName = _$(e.target).attr('name');
+	const alreadySelected = _$(e.target).attr('data-already');
+
+	if (alreadySelected) {
+		e.target.checked = false;
+		delete e.target.dataset.already
+		delete localData[thisPage][itemName]
+	} else {
+		_$(`input[name="${itemName}"]`).items.forEach((_elem_) => {
+			delete _elem_.dataset.already;
+			_elem_.checked = false;
+		});
+		e.target.setAttribute('data-already', 'true');
+		e.target.checked = true;
 		const val = e.target.value;
 		localData[thisPage][itemName] = val;
 	}
@@ -893,6 +1062,32 @@ _$('[data-cancel]').click((e) => {
 		}
 	});
 });
+
+function initCheckTargets() {
+	_$('.check').click((e) => {
+		const label = e.target.dataset.watch;
+		const parentTrigger = _$(label).vanilla;
+		const targetItem = parentTrigger.dataset.target;
+		const groupTotal = _$(targetItem).items.length;
+		const groupSelected = Array.from(_$(targetItem).items).filter(item => item.checked).length;
+		let labels = null;
+
+		if (parentTrigger.dataset.label) {
+			labels = parentTrigger.dataset.label.split('|');
+		}
+
+		if (groupTotal == groupSelected) {
+			if (parentTrigger.dataset.label) {
+				parentTrigger.innerHTML = labels[1];
+			}
+		}
+		else {
+			if (parentTrigger.dataset.label) {
+				parentTrigger.innerHTML = labels[0];
+			}
+		}
+	});
+}
 
 formInit();
 
@@ -1084,6 +1279,84 @@ document.addEventListener("keyup", (e) => {
 
 // needs to come after localData, otherwise, localData state changes won't be updated
 initTrigger();
+
+_$('.hover-trigger').items.forEach((_item_) => {
+	const targetItem = _$(_item_).attr('data-hover');
+  
+	// Initialize a data attribute to store the timeout ID
+	_$(_item_).attr('data-timeout-id', '');
+  
+	_item_.addEventListener('mouseenter', (e) => {
+	  // Clear any existing timeout
+	  const existingTimeoutId = _$(targetItem).attr('data-timeout-id');
+	  if (existingTimeoutId) {
+		clearTimeout(existingTimeoutId);
+		_$(targetItem).removeClass('activate-in');
+	  }
+  
+	  console.log("That JUST happened!");
+  
+	  // Add class for entering activation
+	  _$(targetItem).addClass('activate-in');
+  
+	  const timeoutId = setTimeout(() => {
+		_$(targetItem).addClass('activated');
+		_$(targetItem).removeClass('activate-in');
+	  }, 200);
+  
+	  // Store the timeout ID
+	  _$(targetItem).attr('data-timeout-id', timeoutId);
+	});
+  
+	_item_.addEventListener('mouseleave', (e) => {
+	  // Clear any existing timeout
+	  const existingTimeoutId = _$(targetItem).attr('data-timeout-id');
+	  if (existingTimeoutId) {
+		clearTimeout(existingTimeoutId);
+		_$(targetItem).removeClass('activate-in');
+	  }
+  
+	  // Only proceed if the element is already activated or in the process of activation
+	  if (_$(targetItem).hasClass('activated') || _$(targetItem).hasClass('activate-in')) {
+		// Deactivate element with an animation
+		_$(targetItem).addClass('activate-out');
+		_$(targetItem).removeClass('activated');
+  
+		const timeoutId = setTimeout(() => {
+		  _$(targetItem).removeClass('activate-out');
+		  _$(targetItem).attr('data-timeout-id', '');  // Clear timeout ID after animation completes
+		}, 200);
+  
+		// Store the timeout ID
+		_$(targetItem).attr('data-timeout-id', timeoutId);
+	  }
+	});
+  });
+
+  _$('.const-trigger').click((e) => {
+	const targetItem = _$(e.target).attr('data-target');
+	const untarget = _$(e.target).attr('data-untarget');
+	if (untarget) {
+		_$(untarget).items.forEach((_elem_) => {
+			if (_$(_elem_).hasClass('activated')) {
+				_$(_elem_).addClass('activate-out');
+				_$(_elem_).removeClass('activated');
+				setTimeout(() => {
+					_$(_elem_).removeClass('activate-out');
+				}, 200);
+			}
+		});
+	}
+	_$(targetItem).addClass('activate-in');
+	setTimeout(() => {
+		_$(targetItem).addClass('activated');
+		_$(targetItem).removeClass('activate-in');
+	}, 200);
+});
+
+initCheckTargets()
+
+  
 
 /*
 input types:
