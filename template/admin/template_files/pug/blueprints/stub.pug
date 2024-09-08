@@ -1,0 +1,7 @@
+extend __core__/default
+block content
+	- const data = pageData['index'];
+	include __core__/admin
+		block admin-content
+			+panel(25,60).admin.light
+				h3 Title
