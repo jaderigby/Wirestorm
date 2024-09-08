@@ -395,6 +395,61 @@ mixin checkbox(PARAM1, PARAM2)
 						input(type="checkbox",name=item.name,value=value,id=item.id,class!=item.class,data-checked!= item.checked,data-target!= item.target)
 						label(for=item.id)= item.name
 
+
+
+
+
+
+mixin new-checkbox(PARAM1, PARAM2)
+	- const checkList = [];
+	- PARAM1 = (typeof PARAM1 == 'object') ? PARAM1 : [PARAM1];
+	each _item_ in PARAM1
+		- 	const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-	if (typeof _item_ === 'object') {
+		-		_item_.name = _item_.name || '';
+		-		_item_.value = _item_.value || _item_.name.toLowerCase().replace(/ /g, '-');
+		-		_item_.family = _item_.family || randomizedFamily;
+		-		_item_.class = attributes.class || null;
+		-		_item_.id = attributes.id || randomizedId;
+		-		_item_.checked = _item_.checked ? 'true' : null;
+		- 		_item_.target = _item_.target || null;
+		-		checkList.push(_item_);
+		-	}
+		- 	else {
+		- 		const randomizedId = (Math.random() + 1).toString(36).substring(7);
+		-		const checkItem = {};
+		-		checkItem.name = _item_ || '';
+		-		checkItem.value = (_item_ !== undefined && typeof _item_ !== 'object') ? _item_.toLowerCase().replace(/ /g, '-') : null;
+		-		checkItem.family = randomizedFamily;
+		-		checkItem.class = attributes.class || null;
+		-		checkItem.id = attributes.id || randomizedId;
+		-		checkItem.checked = null;
+		- 		checkItem.target = null;
+		-		checkList.push(checkItem);
+		- 	}
+	
+	if (PARAM2 === 'horizontal')
+		.rack
+			each item in checkList
+				.checkbox-widget
+					.form-element
+						span.checkbox
+							input(type="checkbox",name=item.family,value=item.value,id=item.id,class!=item.class,data-checked!= item.checked,data-target!= item.target)
+							label(for=item.id)= item.name
+	else
+		each item in checkList
+			.checkbox-widget2
+				.form-element
+					- const value = item.value
+					span.checkbox
+						input(type="checkbox",name=item.name,value=value,id=item.id,class!=item.class,data-checked!= item.checked,data-target!= item.target)
+						label(for=item.id)= item.name
+
+
+
+
+
+
 mixin radio(PARAM1, PARAM2)
 	- const radioList = [];
 	- PARAM1 = (typeof PARAM1 == 'object') ? PARAM1 : [PARAM1];
@@ -461,7 +516,7 @@ mixin textarea(description)
 		label=description
 
 mixin login-form(urlPath)
-	div.wrap.login-width
+	div.wrap.login-width(class!=attributes.class)
 		h3 Login
 		form#loginForm
 			+input("Username")
@@ -471,8 +526,7 @@ mixin login-form(urlPath)
 
 mixin login(urlPath, PARAM2)
 	if (PARAM2 === 'center')
-		.center
-			+login-form(urlPath)
+		+login-form(urlPath).center
 	else if (PARAM2 === 'right')
 		.right
 			+login-form(urlPath)

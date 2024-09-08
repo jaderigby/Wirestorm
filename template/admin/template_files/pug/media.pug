@@ -40,13 +40,13 @@ mixin image(param1,param2,position)
 	-       position = param2;	
 	-     }
 	-     else {
-	-	    width = param1;
-	-		height = param2;
+	-	    height = param1;
+	-		width = param2;
 	-     }
 	-   } 
 	-   else {
-	-     width = param1;
-	-     height = param2;
+	-     height = param1;
+	-     width = param2;
 	-   }
 	- }
 	-// assign 'px' string to pixel values
@@ -105,7 +105,7 @@ mixin image(param1,param2,position)
 				div.image-border
 	- }
 
-mixin chart(w,h,alignment)
+mixin chart(h,w,alignment)
 	- var a;
 	- if (h === undefined) {
 		- h = w;

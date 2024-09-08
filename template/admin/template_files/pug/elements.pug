@@ -207,20 +207,27 @@ mixin search(resultsPage)
 			.icon-search
 			input(type="text")
 
-mixin pagination(count)
-	- if (!count) {
-		- count = 3;
+mixin pagination-content(COUNT)
+	.pagination.vertical-center
+		.left-arrow-indicator.pagination-elem: +icon('arrow-left', 19)
+		- var n = 1;
+		while n < (COUNT + 1)
+			.pagination-elem: div= n++
+		.right-arrow-indicator.pagination-elem: +icon('arrow-right', 19)
+
+mixin pagination(COUNT, POSITION)
+	- if (!COUNT) {
+		- COUNT = 3;
 	- }
-	.page-widget
-		nav.pagination
-			ul.right-align
-				li.arrows: a(href="#")
-					span.icon-arrow-left
-				- var n = 1;
-				while n < (count + 1)
-					li: a(href="#")= n++
-				li.arrows: a(href="#")
-					span.icon-arrow-right
+	if POSITION == 'center'
+		.page-widget.center
+			+pagination-content(COUNT)
+	else if POSITION == 'right'
+		.page-widget.right
+			+pagination-content(COUNT)
+	else
+		.page-widget
+			+pagination-content(COUNT)
 
 mixin tabs(tabs)
 	div.tabs-widget(id!=attributes.id)
