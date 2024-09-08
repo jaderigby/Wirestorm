@@ -1,3 +1,5 @@
 {
-    "index" : "test"
+    "index" : {
+        "title": "Dashboard"
+    }
 }

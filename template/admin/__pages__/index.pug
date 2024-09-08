@@ -1,10 +1,7 @@
 extend __core__/default
 block content
-	prime-seg#main
-		x-minor.sidebar-wrapper
-			#sidebar.nav-highlight
-				include __core__/sidebar
-		x-major
-			#content
-				+panel(25,60).light
-					h3 Dashboard
+	- const data = pageData['index'];
+	include __core__/admin
+		block admin-content
+			+panel(25,60).admin.light
+				h3= data.title
