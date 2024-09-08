@@ -53,6 +53,10 @@
         {
             "name": "style",
             "description": ""
+        },
+        {
+            "name": "stub",
+            "description": ""
         }
     ]
 }

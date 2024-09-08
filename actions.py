@@ -13,6 +13,7 @@ import Sidebar
 import Header
 import Index
 import Style
+import Stub
 # new imports start here
 
 # settings = helpers.get_settings()
@@ -74,4 +75,7 @@ elif action == "index":
 
 elif action == "style":
 	Style.execute()
+
+elif action == "stub":
+	Stub.execute()
 # new actions start here
