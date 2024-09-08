@@ -3,6 +3,6 @@ block content
 	- const data = pageData['index'];
 	include __core__/admin
 		block admin-content
-			include versions
+			include __core__/versions
 			+panel(25,60).admin.light
 				h3= data.title
