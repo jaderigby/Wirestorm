@@ -14,6 +14,7 @@ import Header
 import Index
 import Style
 import Stub
+import JavaScript
 # new imports start here
 
 # settings = helpers.get_settings()
@@ -78,4 +79,7 @@ elif action == "style":
 
 elif action == "stub":
 	Stub.execute()
+
+elif action == "js":
+	JavaScript.execute()
 # new actions start here
