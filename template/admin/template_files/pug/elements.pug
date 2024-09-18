@@ -215,6 +215,20 @@ mixin pagination-content(COUNT)
 			.pagination-elem: div= n++
 		.right-arrow-indicator.pagination-elem: +icon('arrow-right', 19)
 
+mixin full-pagination-content(COUNT)
+	.pagination.vertical-center
+		.left-absolute-indicator.pagination-elem
+			+icon('arrow-left', 19)
+			+icon('arrow-left', 19)
+		.left-arrow-indicator.pagination-elem: +icon('arrow-left', 19)
+		- var n = 1;
+		while n < (COUNT + 1)
+			.pagination-elem: div= n++
+		.right-arrow-indicator.pagination-elem: +icon('arrow-right', 19)
+		.right-absolute-indicator.pagination-elem
+			+icon('arrow-right', 19)
+			+icon('arrow-right', 19)
+
 mixin pagination(COUNT, POSITION)
 	- if (!COUNT) {
 		- COUNT = 3;
@@ -225,6 +239,23 @@ mixin pagination(COUNT, POSITION)
 	else if POSITION == 'right'
 		.page-widget.right
 			+pagination-content(COUNT)
+	else
+		.page-widget
+			+pagination-content(COUNT)
+
+mixin full-pagination(COUNT, POSITION)
+	- if (!COUNT) {
+		- COUNT = 3;
+	- }
+	if POSITION == 'center'
+		.rack.center
+			.page-widget
+				+full-pagination-content(COUNT)
+			.select-result-count
+				+select(['25', '50', '75', '100', '200'])
+	else if POSITION == 'right'
+		.page-widget.right
+			+full-pagination-content(COUNT)
 	else
 		.page-widget
 			+pagination-content(COUNT)

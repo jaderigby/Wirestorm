@@ -1473,6 +1473,27 @@ widgets()
 		&:hover
 			background-color: #ddd
 			cursor: pointer
+	.pagination-elem.left-arrow-indicator
+	.pagination-elem.right-arrow-indicator
+		justify-content: center
+		width: 27.2px
+		svg
+			position: absolute
+			top: 0
+			bottom: 0
+			margin: auto
+	.pagination-elem.left-absolute-indicator
+		svg 
+			left: -2px
+			+ svg
+				left: 8px
+	.pagination-elem.right-absolute-indicator 
+		svg 
+			right: -2px
+			+ svg
+				right: 8px
+	.pagination-elem
+		position: relative
 	.full
 		display: block
 		width: 100%
